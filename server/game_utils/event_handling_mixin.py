@@ -68,7 +68,7 @@ class EventHandlingMixin:
                 self.execute_action(player, "leave_game")
 
         elif menu_id == "action_input_menu":
-            self._handle_action_input_menu(player, selection_id)
+            self._handle_action_input_menu(player, event, selection_id)
         elif menu_id == "leave_game_confirm":
             self._handle_leave_game_confirm(player, event, selection_id)
 
@@ -151,12 +151,43 @@ class EventHandlingMixin:
             if player.id not in self._pending_actions:
                 self.rebuild_all_menus()
 
-    def _handle_action_input_menu(self, player: "Player", selection_id: str) -> None:
+    def _handle_action_input_menu(self, player: "Player", event: dict, selection_id: str) -> None:
         if player.id in self._pending_actions:
             action_id = self._pending_actions.pop(player.id)
-            if selection_id != "_cancel":
-                self.execute_action(player, action_id, selection_id)
+            resolved_selection_id = selection_id or self._resolve_action_input_selection_id(
+                player, action_id, event
+            )
+            if resolved_selection_id and resolved_selection_id != "_cancel":
+                self.execute_action(player, action_id, resolved_selection_id)
         self.rebuild_player_menu(player)
+
+    def _resolve_action_input_selection_id(
+        self, player: "Player", action_id: str, event: dict
+    ) -> str | None:
+        action = self.find_action(player, action_id)
+        if not action:
+            return None
+        input_request = action.input_request
+        if not input_request:
+            return None
+
+        selection = event.get("selection")
+        if not isinstance(selection, int):
+            return None
+        selection_index = selection - 1
+
+        if hasattr(self, "_get_menu_options_for_action"):
+            options = self._get_menu_options_for_action(action, player)  # type: ignore[attr-defined]
+        else:
+            options = None
+
+        if options and 0 <= selection_index < len(options):
+            return options[selection_index]
+
+        include_cancel = getattr(input_request, "include_cancel", False)
+        if include_cancel and options and selection_index == len(options):
+            return "_cancel"
+        return None
 
     def _handle_leave_game_confirm(self, player: "Player", event: dict, selection_id: str) -> None:
         user = self.get_user(player)

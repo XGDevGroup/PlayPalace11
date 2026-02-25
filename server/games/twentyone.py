@@ -74,77 +74,77 @@ MODIFIER_POOL = (
 )
 
 MODIFIER_LABELS = {
-    MODIFIER_RAISE_1: "Stake Raise 1",
-    MODIFIER_RAISE_2: "Stake Raise 2",
-    MODIFIER_RAISE_2_PLUS: "Stake Raise 2+",
-    MODIFIER_DRAW_2: "Exact 2",
-    MODIFIER_DRAW_3: "Exact 3",
-    MODIFIER_DRAW_4: "Exact 4",
-    MODIFIER_DRAW_5: "Exact 5",
-    MODIFIER_DRAW_6: "Exact 6",
-    MODIFIER_DRAW_7: "Exact 7",
-    MODIFIER_SCRAP: "Scrap Card",
-    MODIFIER_RECYCLE: "Recycle Card",
-    MODIFIER_SWAP_DRAW: "Swap Draw",
-    MODIFIER_REDRAFT: "Redraft",
-    MODIFIER_REDRAFT_PLUS: "Redraft+",
-    MODIFIER_GUARD: "Guard",
-    MODIFIER_GUARD_PLUS: "Guard+",
-    MODIFIER_BREAK: "Break Effect",
-    MODIFIER_BREAK_PLUS: "Break All",
-    MODIFIER_LOCKDOWN: "Lockdown",
-    MODIFIER_PRECISION_DRAW: "Precision Draw",
-    MODIFIER_PRECISION_DRAW_PLUS: "Precision Draw+",
-    MODIFIER_PRIME_DRAW: "Prime Draw",
-    MODIFIER_TARGET_17: "Target 17",
-    MODIFIER_TARGET_24: "Target 24",
-    MODIFIER_TARGET_27: "Target 27",
-    MODIFIER_SALVAGE: "Salvage",
-    MODIFIER_AID_RIVAL: "Aid Rival",
+    MODIFIER_RAISE_1: "raise one",
+    MODIFIER_RAISE_2: "raise two",
+    MODIFIER_RAISE_2_PLUS: "withdraw and raise two",
+    MODIFIER_DRAW_2: "draw 2",
+    MODIFIER_DRAW_3: "draw 3",
+    MODIFIER_DRAW_4: "draw 4",
+    MODIFIER_DRAW_5: "draw 5",
+    MODIFIER_DRAW_6: "draw 6",
+    MODIFIER_DRAW_7: "draw 7",
+    MODIFIER_SCRAP: "withdraw",
+    MODIFIER_RECYCLE: "undraw",
+    MODIFIER_SWAP_DRAW: "swap top cards",
+    MODIFIER_REDRAFT: "change-up",
+    MODIFIER_REDRAFT_PLUS: "change-up enhanced",
+    MODIFIER_GUARD: "defend",
+    MODIFIER_GUARD_PLUS: "defend enhanced",
+    MODIFIER_BREAK: "delete",
+    MODIFIER_BREAK_PLUS: "delete enhanced",
+    MODIFIER_LOCKDOWN: "delete double enhanced",
+    MODIFIER_PRECISION_DRAW: "best draw",
+    MODIFIER_PRECISION_DRAW_PLUS: "best draw and raise five",
+    MODIFIER_PRIME_DRAW: "best draw with change",
+    MODIFIER_TARGET_17: "target 17",
+    MODIFIER_TARGET_24: "target 24",
+    MODIFIER_TARGET_27: "target 27",
+    MODIFIER_SALVAGE: "embrace change",
+    MODIFIER_AID_RIVAL: "trojan horse",
 }
 MODIFIER_HELP = [
-    (MODIFIER_RAISE_1, "Increase opponent damage by 1. Gain 1 random modifier."),
-    (MODIFIER_RAISE_2, "Increase opponent damage by 2. Gain 1 random modifier."),
+    (MODIFIER_RAISE_1, "Raise one: increase opponent damage by 1 and gain 1 change card."),
+    (MODIFIER_RAISE_2, "Raise two: increase opponent damage by 2 and gain 1 change card."),
     (
         MODIFIER_RAISE_2_PLUS,
-        "Increase opponent damage by 2, return opponent last drawn card to top of deck, and gain 1 random modifier.",
+        "Withdraw and raise two: increase opponent damage by 2, return opponent last drawn card to top of deck, and gain 1 change card.",
     ),
-    (MODIFIER_DRAW_2, "Draw an exact 2 from deck if available."),
-    (MODIFIER_DRAW_3, "Draw an exact 3 from deck if available."),
-    (MODIFIER_DRAW_4, "Draw an exact 4 from deck if available."),
-    (MODIFIER_DRAW_5, "Draw an exact 5 from deck if available."),
-    (MODIFIER_DRAW_6, "Draw an exact 6 from deck if available."),
-    (MODIFIER_DRAW_7, "Draw an exact 7 from deck if available."),
-    (MODIFIER_SCRAP, "Remove opponent last drawn face-up card and place it on top of deck."),
-    (MODIFIER_RECYCLE, "Return opponent last drawn face-up card to top of deck."),
+    (MODIFIER_DRAW_2, "Draw 2: draw a 2 from deck if available."),
+    (MODIFIER_DRAW_3, "Draw 3: draw a 3 from deck if available."),
+    (MODIFIER_DRAW_4, "Draw 4: draw a 4 from deck if available."),
+    (MODIFIER_DRAW_5, "Draw 5: draw a 5 from deck if available."),
+    (MODIFIER_DRAW_6, "Draw 6: draw a 6 from deck if available."),
+    (MODIFIER_DRAW_7, "Draw 7: draw a 7 from deck if available."),
+    (MODIFIER_SCRAP, "Withdraw: remove opponent last drawn card and place it on top of deck."),
+    (MODIFIER_RECYCLE, "Undraw: return your last drawn card to top of deck."),
     (
         MODIFIER_SWAP_DRAW,
-        "Both players return their own last drawn face-up card and each draw one new card.",
+        "Swap top cards: exchange your last drawn card with your opponent's last drawn card.",
     ),
-    (MODIFIER_REDRAFT, "Discard 2 random modifiers, then gain 3 random modifiers."),
-    (MODIFIER_REDRAFT_PLUS, "Discard 1 random modifier, then gain 4 random modifiers."),
-    (MODIFIER_GUARD, "Reduce incoming round damage by 1 while active."),
-    (MODIFIER_GUARD_PLUS, "Reduce incoming round damage by 2 while active."),
-    (MODIFIER_BREAK, "Destroy opponent newest table effect."),
-    (MODIFIER_BREAK_PLUS, "Destroy all opponent table effects."),
+    (MODIFIER_REDRAFT, "Change-up: discard 2 change cards, then gain 3 change cards."),
+    (MODIFIER_REDRAFT_PLUS, "Change-up enhanced: discard 1 change card, then gain 4 change cards."),
+    (MODIFIER_GUARD, "Defend: reduce incoming damage by 1."),
+    (MODIFIER_GUARD_PLUS, "Defend enhanced: reduce incoming damage by 2."),
+    (MODIFIER_BREAK, "Delete: destroy opponent newest change card effect."),
+    (MODIFIER_BREAK_PLUS, "Delete enhanced: destroy all opponent change card effects."),
     (
         MODIFIER_LOCKDOWN,
-        "Clear opponent table effects and lock opponent from playing modifiers while active.",
+        "Delete double enhanced: clear opponent change card effects and lock opponent from playing change cards.",
     ),
-    (MODIFIER_PRECISION_DRAW, "Draw the best available card for current target."),
+    (MODIFIER_PRECISION_DRAW, "Best draw: draw the best available card for current target."),
     (
         MODIFIER_PRECISION_DRAW_PLUS,
-        "Precision draw plus increase opponent damage by 5 while active.",
+        "Best draw and raise five: best draw plus increase opponent damage by 5.",
     ),
-    (MODIFIER_PRIME_DRAW, "Precision draw and gain 2 random modifiers."),
-    (MODIFIER_TARGET_17, "Set round target to 17."),
-    (MODIFIER_TARGET_24, "Set round target to 24."),
-    (MODIFIER_TARGET_27, "Set round target to 27."),
+    (MODIFIER_PRIME_DRAW, "Best draw with change: best draw and gain 2 change cards."),
+    (MODIFIER_TARGET_17, "Target 17: set round target to 17."),
+    (MODIFIER_TARGET_24, "Target 24: set round target to 24."),
+    (MODIFIER_TARGET_27, "Target 27: set round target to 27."),
     (
         MODIFIER_SALVAGE,
-        "Whenever any modifier is played, gain 1 random modifier while active.",
+        "Embrace change: whenever any change card is played, gain 1 change card.",
     ),
-    (MODIFIER_AID_RIVAL, "Opponent draws their best available card for current target."),
+    (MODIFIER_AID_RIVAL, "Trojan horse: opponent draws their best available card for current target."),
 ]
 MODIFIER_HELP_MAP = {modifier_id: desc for modifier_id, desc in MODIFIER_HELP}
 
@@ -169,6 +169,13 @@ TARGET_VALUE_MODIFIERS = {
 }
 
 TABLE_EFFECT_LIMIT = 5
+
+SOUND_ROUND_START = "game_pig/roundstart.ogg"
+SOUND_HIT = "game_cards/draw3.ogg"
+SOUND_STAND = "game_pig/bank.ogg"
+SOUND_PLAY_CHANGE_CARD = "game_cards/play1.ogg"
+SOUND_ROUND_WIN = "game_pig/win.ogg"
+SOUND_ROUND_LOSE = "game_pig/lose.ogg"
 
 
 @dataclass
@@ -306,12 +313,12 @@ class TwentyOneGame(ActionGuardMixin, Game):
         action_set.add(
             Action(
                 id="play_modifier",
-                label="Play Modifier",
+                label="Play Change Card",
                 handler="_action_play_modifier",
                 is_enabled="_is_play_modifier_enabled",
                 is_hidden="_is_play_modifier_hidden",
                 input_request=MenuInput(
-                    prompt="twentyone-select-modifier",
+                    prompt="twentyone-select-change-card",
                     options="_options_for_play_modifier",
                     bot_select="_bot_select_play_modifier",
                 ),
@@ -333,7 +340,7 @@ class TwentyOneGame(ActionGuardMixin, Game):
         action_set.add(
             Action(
                 id="modifier_guide",
-                label="Modifier Guide",
+                label="Change Card Guide",
                 handler="_action_modifier_guide",
                 is_enabled="_is_check_enabled",
                 is_hidden="_is_check_hidden",
@@ -369,7 +376,7 @@ class TwentyOneGame(ActionGuardMixin, Game):
         action_set.add(
             Action(
                 id="read_21_active_effects",
-                label="Read active modifier effects",
+                label="Read active change-card effects",
                 handler="_action_read_active_effects",
                 is_enabled="_is_check_enabled",
                 is_hidden="_is_always_hidden",
@@ -381,9 +388,9 @@ class TwentyOneGame(ActionGuardMixin, Game):
         super().setup_keybinds()
         self.define_keybind("1", "Hit", ["hit"], state=KeybindState.ACTIVE)
         self.define_keybind("2", "Stand", ["stand"], state=KeybindState.ACTIVE)
-        self.define_keybind("3", "Play Modifier", ["play_modifier"], state=KeybindState.ACTIVE)
+        self.define_keybind("3", "Play Change Card", ["play_modifier"], state=KeybindState.ACTIVE)
         self.define_keybind("4", "Check 21 status", ["check_21_status"], state=KeybindState.ACTIVE)
-        self.define_keybind("m", "Modifier Guide", ["modifier_guide"], state=KeybindState.ACTIVE)
+        self.define_keybind("m", "Change Card Guide", ["modifier_guide"], state=KeybindState.ACTIVE)
         self.define_keybind("o", "Read opponent face-up cards", ["read_21_opponent_face_up"], state=KeybindState.ACTIVE)
         self.define_keybind("r", "Read current hand", ["read_21_hand"], state=KeybindState.ACTIVE)
         self.define_keybind("b", "Read current bets", ["read_21_bets"], state=KeybindState.ACTIVE)
@@ -394,13 +401,13 @@ class TwentyOneGame(ActionGuardMixin, Game):
         if not p:
             return []
         options: list[str] = []
-        for index, modifier in enumerate(p.modifiers):
+        for display_index, modifier in enumerate(p.modifiers, start=1):
             label = MODIFIER_LABELS.get(modifier, modifier)
             description = MODIFIER_HELP_MAP.get(modifier, "")
             if description:
-                options.append(f"{index}:{label} - {description}")
+                options.append(f"{display_index}:{label} - {description}")
             else:
-                options.append(f"{index}:{label}")
+                options.append(f"{display_index}:{label}")
         return options
 
     def _bot_select_play_modifier(self, player: Player, options: list[str]) -> str | None:
@@ -480,6 +487,7 @@ class TwentyOneGame(ActionGuardMixin, Game):
             self.rebuild_all_menus()
             return
 
+        self.play_sound(SOUND_HIT, volume=80)
         self._clear_pending_stands()
         self._add_card_to_hand(
             p,
@@ -500,6 +508,7 @@ class TwentyOneGame(ActionGuardMixin, Game):
         if not p:
             return
 
+        self.play_sound(SOUND_STAND, volume=75)
         p.stand_pending = True
         self.broadcast(f"{p.name} chooses to stay.")
 
@@ -514,8 +523,12 @@ class TwentyOneGame(ActionGuardMixin, Game):
         if not p:
             return
 
-        choice_index = self._parse_modifier_option(selected)
-        if choice_index is None or choice_index < 0 or choice_index >= len(p.modifiers):
+        choice_number = self._parse_modifier_option(selected)
+        if choice_number is None:
+            return
+
+        choice_index = choice_number - 1
+        if choice_index < 0 or choice_index >= len(p.modifiers):
             return
 
         modifier = p.modifiers.pop(choice_index)
@@ -523,6 +536,7 @@ class TwentyOneGame(ActionGuardMixin, Game):
             p.modifiers.insert(choice_index, modifier)
             return
 
+        self.play_sound(SOUND_PLAY_CHANGE_CARD, volume=75)
         self._clear_pending_stands()
         self.broadcast(f"{p.name} plays {MODIFIER_LABELS.get(modifier, modifier)}.")
         self._resolve_modifier(p, modifier)
@@ -545,10 +559,10 @@ class TwentyOneGame(ActionGuardMixin, Game):
         table_text = ", ".join(MODIFIER_LABELS.get(t, t) for t in p.table_modifiers) if p.table_modifiers else "none"
         user.speak(
             f"Target {target}. HP {p.hp}. Bet {bet}. Hand [{hand_text}] total {self._hand_total(p)}. "
-            f"Modifiers in hand: {modifiers_text}. Table effects: {table_text}.",
+            f"Change cards in hand: {modifiers_text}. Table effects: {table_text}.",
             "table",
         )
-        user.speak("Press M for the full modifier guide.", "table")
+        user.speak("Press M for the full change card guide.", "table")
         opponent = self._opponent_of(p)
         if opponent:
             shown_cards = self._opponent_visible_cards(opponent)
@@ -568,12 +582,12 @@ class TwentyOneGame(ActionGuardMixin, Game):
         if not user:
             return
 
-        user.speak("Modifier guide.", "table")
+        user.speak("Change Card guide.", "table")
         for modifier_id, description in MODIFIER_HELP:
             name = MODIFIER_LABELS.get(modifier_id, modifier_id)
             user.speak(f"{name}: {description}", "table")
         user.speak(
-            "Table effect limit is five. Target modifiers replace older target modifiers.",
+            "Table effect limit is five. Target change cards replace older target change cards.",
             "table",
         )
 
@@ -706,6 +720,7 @@ class TwentyOneGame(ActionGuardMixin, Game):
         self.phase = "turns"
         self.round_number += 1
         self.modifier_used_since_last_stand_resolution = False
+        self.play_sound(SOUND_ROUND_START, volume=70)
 
         self._build_round_deck()
 
@@ -741,7 +756,7 @@ class TwentyOneGame(ActionGuardMixin, Game):
                     user.speak(f"Your shown card is {card_name(shown, user.locale)} ({shown.rank}).", "table")
                 user.speak(f"Your total is {self._hand_total(player)}.", "table")
                 modifiers_text = ", ".join(MODIFIER_LABELS.get(t, t) for t in player.modifiers) if player.modifiers else "none"
-                user.speak(f"Your modifiers: {modifiers_text}.", "table")
+                user.speak(f"Your change cards: {modifiers_text}.", "table")
 
         current = self.current_player
         if current:
@@ -791,6 +806,7 @@ class TwentyOneGame(ActionGuardMixin, Game):
             self._apply_round_loss_damage(p1)
             self._apply_round_loss_damage(p2)
             self.broadcast("Round is a draw. Both players take damage.")
+        self._play_round_outcome_sounds(outcome, p1, p2)
 
         if bust_1 and bust_2:
             self.broadcast("Both players busted; closer to target decides the winner.")
@@ -845,6 +861,25 @@ class TwentyOneGame(ActionGuardMixin, Game):
         else:
             self.broadcast("21 ends with no winner.")
         self.finish_game()
+
+    def _play_round_outcome_sounds(
+        self, outcome: str, p1: TwentyOnePlayer, p2: TwentyOnePlayer
+    ) -> None:
+        if outcome == "p1_wins":
+            self._play_sound_for_player(p1, SOUND_ROUND_WIN)
+            self._play_sound_for_player(p2, SOUND_ROUND_LOSE)
+            return
+        if outcome == "p2_wins":
+            self._play_sound_for_player(p2, SOUND_ROUND_WIN)
+            self._play_sound_for_player(p1, SOUND_ROUND_LOSE)
+            return
+        self._play_sound_for_player(p1, SOUND_ROUND_LOSE)
+        self._play_sound_for_player(p2, SOUND_ROUND_LOSE)
+
+    def _play_sound_for_player(self, player: TwentyOnePlayer, sound_name: str) -> None:
+        user = self.get_user(player)
+        if user:
+            user.play_sound(sound_name)
 
     def bot_think(self, player: TwentyOnePlayer) -> str | None:
         if self.phase != "turns" or self.current_player != player:
@@ -926,43 +961,34 @@ class TwentyOneGame(ActionGuardMixin, Game):
             return
 
         if modifier == MODIFIER_RECYCLE:
-            removed = self._extract_last_drawn_card(opponent)
+            removed = self._extract_last_drawn_card(player)
             if removed:
                 self._return_card_to_top_of_deck(removed)
-                self.broadcast(f"{opponent.name}'s last face-up card returns to top of deck.")
+                self.broadcast(f"{player.name}'s last face-up card returns to top of deck.")
             else:
                 self.broadcast("No face-up card to return.")
             return
 
         if modifier == MODIFIER_SWAP_DRAW:
+            player_recent = self._peek_last_drawn_card(player)
+            opponent_recent = self._peek_last_drawn_card(opponent)
+            if not player_recent or not opponent_recent:
+                self.broadcast("Both players need a face-up card to exchange.")
+                return
+
             first = self._extract_last_drawn_card(player)
             second = self._extract_last_drawn_card(opponent)
+            if not first or not second:
+                self.broadcast("Exchange failed.")
+                return
 
-            new_self = self._draw_card()
-            new_opp = self._draw_card()
-            if new_self:
-                self._add_card_to_hand(
-                    player,
-                    new_self,
-                    announce_source=f"{player.name} draws",
-                    reveal_to_others=True,
-                )
-                player.stand_pending = False
-            if new_opp:
-                self._add_card_to_hand(
-                    opponent,
-                    new_opp,
-                    announce_source=f"{opponent.name} draws",
-                    reveal_to_others=True,
-                )
-                opponent.stand_pending = False
-            returned_cards: list[Card] = []
-            if first:
-                returned_cards.append(first)
-            if second:
-                returned_cards.append(second)
-            self._return_cards_to_top_of_deck(returned_cards)
-            self.broadcast("Exchange resolves for both players.")
+            player.hand.append(second)
+            player.last_drawn_card_id = second.id
+            opponent.hand.append(first)
+            opponent.last_drawn_card_id = first.id
+            player.stand_pending = False
+            opponent.stand_pending = False
+            self.broadcast("Exchange resolves: both players swap their most recent face-up cards.")
             return
 
         if modifier == MODIFIER_REDRAFT:
@@ -1157,8 +1183,15 @@ class TwentyOneGame(ActionGuardMixin, Game):
         if not opponent:
             return False
 
-        if modifier in (MODIFIER_SCRAP, MODIFIER_RECYCLE):
+        if modifier == MODIFIER_SCRAP:
             return self._peek_last_drawn_card(opponent) is not None
+        if modifier == MODIFIER_RECYCLE:
+            return self._peek_last_drawn_card(player) is not None
+        if modifier == MODIFIER_SWAP_DRAW:
+            return (
+                self._peek_last_drawn_card(player) is not None
+                and self._peek_last_drawn_card(opponent) is not None
+            )
         if modifier == MODIFIER_BREAK:
             return bool(opponent.table_modifiers)
         if modifier == MODIFIER_BREAK_PLUS:
@@ -1270,14 +1303,6 @@ class TwentyOneGame(ActionGuardMixin, Game):
             return
         self.deck.add_top([card])
 
-    def _return_cards_to_top_of_deck(self, cards: list[Card]) -> None:
-        if not cards:
-            return
-        if not self.deck:
-            self.deck = Deck(cards=list(cards))
-            return
-        self.deck.add_top(cards)
-
     def _peek_last_drawn_card(self, player: TwentyOnePlayer) -> Card | None:
         if player.last_drawn_card_id is None:
             return None
@@ -1302,8 +1327,8 @@ class TwentyOneGame(ActionGuardMixin, Game):
             modifier = random.choice(MODIFIER_POOL)  # nosec B311
             player.modifiers.append(modifier)
             if announce:
-                self._speak_private(player, f"You gain modifier {MODIFIER_LABELS.get(modifier, modifier)}.")
-                self.broadcast(f"{player.name} gains a modifier card.", exclude=player)
+                self._speak_private(player, f"You gain change card {MODIFIER_LABELS.get(modifier, modifier)}.")
+                self.broadcast(f"{player.name} gains a change card.", exclude=player)
 
     @staticmethod
     def _discard_random_modifiers(player: TwentyOnePlayer, count: int) -> None:
