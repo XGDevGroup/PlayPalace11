@@ -1020,13 +1020,10 @@ class TwentyOneGame(ActionGuardMixin, Game):
     def _play_near_bust_sounds(self, player: TwentyOnePlayer) -> None:
         total = self._hand_total(player)
         target = self._current_target()
-        if total < target - 1 or total > target:
+        if total != target:
             return
 
         self._play_sound_for_player(player, SOUND_NEAR_BUST, volume=65)
-        opponent = self._opponent_of(player)
-        if opponent:
-            self._play_sound_for_player(opponent, SOUND_NEAR_BUST, volume=55)
 
     def bot_think(self, player: TwentyOnePlayer) -> str | None:
         if self.phase != "turns" or self.current_player != player:
@@ -1315,7 +1312,7 @@ class TwentyOneGame(ActionGuardMixin, Game):
                 self._add_card_to_hand(
                     player,
                     card,
-                    announce_source=f"{player.name} draws exact",
+                    announce_source=f"{player.name} draws",
                     reveal_to_others=True,
                 )
                 player.stand_pending = False
@@ -1572,7 +1569,7 @@ class TwentyOneGame(ActionGuardMixin, Game):
 
         if modifier in TABLE_EFFECT_MODIFIERS:
             if modifier in TARGET_VALUE_MODIFIERS:
-                return True
+                return TARGET_VALUE_MODIFIERS[modifier] != self._current_target()
             return len(player.table_modifiers) < TABLE_EFFECT_LIMIT
 
         opponent = self._opponent_of(player)
@@ -1657,20 +1654,21 @@ class TwentyOneGame(ActionGuardMixin, Game):
         current = self._hand_total(player)
         best_index = -1
         best_value = -1
-        fallback_index = 0
-        fallback_value = 999
         for index, card in enumerate(self.deck.cards):
             value = card.rank
             projected = current + value
             if projected <= target and value > best_value:
                 best_value = value
                 best_index = index
-            diff = abs(projected - target)
-            if diff < fallback_value:
-                fallback_value = diff
-                fallback_index = index
-        chosen_index = best_index if best_index >= 0 else fallback_index
-        return self.deck.cards.pop(chosen_index)
+
+        if best_index >= 0:
+            return self.deck.cards.pop(best_index)
+
+        lowest_index = min(
+            range(len(self.deck.cards)),
+            key=lambda index: self.deck.cards[index].rank,
+        )
+        return self.deck.cards.pop(lowest_index)
 
     def _add_card_to_hand(
         self,

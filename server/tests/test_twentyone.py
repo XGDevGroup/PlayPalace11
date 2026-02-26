@@ -15,6 +15,7 @@ from server.games.twentyone import (
     MODIFIER_RAISE_1,
     MODIFIER_RAISE_2,
     MODIFIER_PRECISION_DRAW,
+    MODIFIER_AID_RIVAL,
     MODIFIER_RAISE_2_PLUS,
     MODIFIER_SCRAP,
     MODIFIER_RECYCLE,
@@ -154,6 +155,48 @@ def test_twentyone_hit_plays_draw_sound_for_both_players() -> None:
 
     assert twentyone_module.SOUND_HIT in host_user.get_sounds_played()
     assert twentyone_module.SOUND_HIT in guest_user.get_sounds_played()
+
+
+def test_twentyone_target_proximity_sound_only_on_exact_target_for_actor() -> None:
+    game, p1, p2 = setup_game()
+    host_user = game.get_user(p1)
+    guest_user = game.get_user(p2)
+    assert host_user is not None
+    assert guest_user is not None
+    game.status = "playing"
+    game.game_active = True
+    game.phase = "turns"
+    game.set_turn_players([p1, p2], reset_index=True)
+    p1.hp = 10
+    p2.hp = 10
+    p1.hand = [make_card(1, 10), make_card(2, 10)]
+    game.deck = Deck(cards=[make_card(99, 1)])
+
+    host_user.clear_messages()
+    guest_user.clear_messages()
+    game.execute_action(p1, "hit")
+
+    assert twentyone_module.SOUND_NEAR_BUST in host_user.get_sounds_played()
+    assert twentyone_module.SOUND_NEAR_BUST not in guest_user.get_sounds_played()
+
+
+def test_twentyone_target_proximity_sound_not_played_when_below_target() -> None:
+    game, p1, p2 = setup_game()
+    host_user = game.get_user(p1)
+    assert host_user is not None
+    game.status = "playing"
+    game.game_active = True
+    game.phase = "turns"
+    game.set_turn_players([p1, p2], reset_index=True)
+    p1.hp = 10
+    p2.hp = 10
+    p1.hand = [make_card(1, 10), make_card(2, 9)]
+    game.deck = Deck(cards=[make_card(99, 1)])
+
+    host_user.clear_messages()
+    game.execute_action(p1, "hit")
+
+    assert twentyone_module.SOUND_NEAR_BUST not in host_user.get_sounds_played()
 
 
 def test_twentyone_hit_empty_deck_plays_fail_sound_for_actor() -> None:
@@ -603,6 +646,22 @@ def test_twentyone_target_card_plays_target_specific_sound() -> None:
     assert twentyone_module.SOUND_TARGET_24 in guest_user.get_sounds_played()
 
 
+def test_twentyone_target_card_matching_current_target_is_not_playable() -> None:
+    game, p1, p2 = setup_game()
+    game.status = "playing"
+    game.game_active = True
+    game.phase = "turns"
+    game.set_turn_players([p1, p2], reset_index=True)
+    p1.hp = 10
+    p2.hp = 10
+    p1.modifiers = [MODIFIER_TARGET_24]
+    p2.table_modifiers = [MODIFIER_TARGET_24]
+
+    assert game._current_target() == 24
+    assert game._is_single_modifier_playable(p1, MODIFIER_TARGET_24) is False
+    assert game._is_play_modifier_enabled(p1) == "action-not-available"
+
+
 def test_twentyone_effect_expire_plays_expire_sound() -> None:
     game, p1, p2 = setup_game()
     host_user = game.get_user(p1)
@@ -715,6 +774,42 @@ def test_twentyone_precision_draw_picks_best_non_bust_card() -> None:
     game.execute_action(p1, "play_modifier", f"1:{MODIFIER_LABELS[MODIFIER_PRECISION_DRAW]}")
 
     assert any(card.rank == 5 for card in p1.hand)
+
+
+def test_twentyone_precision_draw_uses_lowest_card_when_all_choices_bust() -> None:
+    game, p1, p2 = setup_game()
+    game.status = "playing"
+    game.game_active = True
+    game.phase = "turns"
+    game.set_turn_players([p1, p2], reset_index=True)
+    p1.hp = 10
+    p2.hp = 10
+
+    p1.modifiers = [MODIFIER_PRECISION_DRAW]
+    p1.hand = [make_card(1, 10), make_card(2, 10)]  # total 20, all deck options bust
+    game.deck = Deck(cards=[make_card(10, 11), make_card(11, 3), make_card(12, 2)])
+
+    game.execute_action(p1, "play_modifier", f"1:{MODIFIER_LABELS[MODIFIER_PRECISION_DRAW]}")
+
+    assert any(card.rank == 2 for card in p1.hand)
+
+
+def test_twentyone_trojan_horse_uses_lowest_card_when_all_choices_bust() -> None:
+    game, p1, p2 = setup_game()
+    game.status = "playing"
+    game.game_active = True
+    game.phase = "turns"
+    game.set_turn_players([p1, p2], reset_index=True)
+    p1.hp = 10
+    p2.hp = 10
+
+    p1.modifiers = [MODIFIER_AID_RIVAL]
+    p2.hand = [make_card(1, 10), make_card(2, 10)]  # total 20, all deck options bust
+    game.deck = Deck(cards=[make_card(10, 11), make_card(11, 3), make_card(12, 2)])
+
+    game.execute_action(p1, "play_modifier", f"1:{MODIFIER_LABELS[MODIFIER_AID_RIVAL]}")
+
+    assert any(card.rank == 2 for card in p2.hand)
 
 
 def test_twentyone_hit_keeps_turn_until_stand() -> None:
@@ -933,6 +1028,29 @@ def test_twentyone_bot_think_hits_when_change_cards_unplayable_and_below_target(
     p2.modifiers = [MODIFIER_GUARD]
     p2.table_modifiers = [MODIFIER_GUARD] * 5
 
+    assert game.bot_think(p2) == "hit"
+
+
+def test_twentyone_bot_does_not_replay_same_target_card() -> None:
+    game = TwentyOneGame()
+    human = MockUser("Host")
+    bot_user = Bot("GuestBot")
+    p1 = game.add_player("Host", human)
+    p2 = game.add_player("GuestBot", bot_user)
+    game.host = "Host"
+    game.status = "playing"
+    game.game_active = True
+    game.phase = "turns"
+    game.set_turn_players([p2, p1], reset_index=True)
+    p1.hp = 10
+    p2.hp = 10
+    p1.hand = [make_card(1, 7), make_card(2, 8)]
+    p2.hand = [make_card(3, 8), make_card(4, 8)]
+    p1.table_modifiers = [MODIFIER_TARGET_24]
+    p2.modifiers = [MODIFIER_TARGET_24]
+
+    assert game._current_target() == 24
+    assert game._is_single_modifier_playable(p2, MODIFIER_TARGET_24) is False
     assert game.bot_think(p2) == "hit"
 
 

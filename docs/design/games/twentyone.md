@@ -20,11 +20,12 @@ Implemented in `server/games/twentyone.py`.
 - `hit`: draw a number card
 - `play_modifier`: play one change card from hand
 - `stand`: mark as standing
-4. Turn does not pass on `hit` or `play_modifier`.
-5. Turn passes only when the current player chooses `stand`.
-6. Round resolves only after both players stand consecutively.
+4. Change-card selection menu options are one-based (`1`, `2`, `3`, ...).
+5. Turn does not pass on `hit` or `play_modifier`.
+6. Turn passes only when the current player chooses `stand`.
+7. Round resolves only after both players stand consecutively.
 - Any non-stand card action between stands resets pending stands.
-7. Round winner is decided by closest to target with bust rules.
+8. Round winner is decided by closest to target with bust rules.
 
 ## Visibility Rules
 
@@ -61,7 +62,7 @@ Implemented in `server/games/twentyone.py`.
 - `defend enhanced`: Reduce incoming damage by 2.
 - `best draw and raise five`: Best draw and increase opponent damage by 5.
 
-### Exact Draw Effects
+### Numbered Draw Effects
 
 - `draw 2`, `draw 3`, `draw 4`, `draw 5`, `draw 6`, `draw 7`: draw that number if available.
 
@@ -86,10 +87,26 @@ Implemented in `server/games/twentyone.py`.
 - `target 17`: Set round target to 17.
 - `target 24`: Set round target to 24.
 - `target 27`: Set round target to 27.
+- A target change card matching the current target value is not playable.
 
 ### Opponent Assistance
 
 - `trojan horse`: Opponent draws their best available card for the current target.
+
+## Bot Behavior Notes
+
+- Bot evaluation uses visible opponent cards plus a hidden-card estimate.
+- Bot does not replay a target change card that would keep the same target value.
+
+## Audio Cues (Current)
+
+- Stand uses separate cues for acting player and opponent.
+- Change-card menu opening has its own cue.
+- A round-resolve transition cue plays when both players stand and the round settles.
+- Winner/no-winner end-game branches have distinct cues.
+- Target reminder cues can play at turn start when target is not `21`.
+- Target-proximity cue plays only for the acting player, and only on exact target total.
+- Invalid/unavailable action-input cases play a fail cue.
 
 ## Keybinds
 
@@ -115,4 +132,6 @@ Covered by `server/tests/test_twentyone.py`, including:
 - Change card visibility and playability
 - Keybind mappings and readout actions
 - Top-of-deck return behavior for removed face-up cards
+- Target-card playability guard for already-active target value
+- Target-proximity cue only on exact target total for the acting player
 - Bot play with save/reload round-trip
