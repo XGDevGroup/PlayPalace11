@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from datetime import datetime
 import random
+from collections.abc import Callable
 
 from ..base import Game, GameOptions, Player
 from ..registry import register_game
@@ -647,7 +648,7 @@ class BlackjackGame(Game):
         self.define_keybind("x", "Stand", ["stand"], state=KeybindState.ACTIVE)
         self.define_keybind("d", "Double down", ["double_down"], state=KeybindState.ACTIVE)
         self.define_keybind("p", "Split", ["split"], state=KeybindState.ACTIVE)
-        self.define_keybind("s", "Surrender", ["surrender"], state=KeybindState.ACTIVE)
+        self.define_keybind("u", "Surrender", ["surrender"], state=KeybindState.ACTIVE)
         self.define_keybind("i", "Insurance", ["take_insurance"], state=KeybindState.ACTIVE)
         self.define_keybind("n", "Decline insurance", ["decline_insurance"], state=KeybindState.ACTIVE)
         self.define_keybind("m", "Even money", ["even_money"], state=KeybindState.ACTIVE)
@@ -924,23 +925,25 @@ class BlackjackGame(Game):
                 break
             self.dealer_hand.append(card)
             self.play_sound("game_cards/draw3.ogg")
-            self.broadcast_l(
+            self._broadcast_l_with_locale_args(
                 "blackjack-dealer-hits",
-                card=card_name(card, "en"),
-                cards=read_cards(self.dealer_hand, "en"),
-                total=self._total_text("en", *self.hand_value(self.dealer_hand)),
+                lambda locale: {
+                    "card": card_name(card, locale),
+                    "cards": read_cards(self.dealer_hand, locale),
+                    "total": self._total_text(locale, *self.hand_value(self.dealer_hand)),
+                },
             )
 
         total, is_soft = self.hand_value(self.dealer_hand)
         if total > 21:
-            self.broadcast_l(
+            self._broadcast_l_with_locale_args(
                 "blackjack-dealer-bust",
-                total=self._total_text("en", total, is_soft),
+                lambda locale: {"total": self._total_text(locale, total, is_soft)},
             )
         else:
-            self.broadcast_l(
+            self._broadcast_l_with_locale_args(
                 "blackjack-dealer-stands",
-                total=self._total_text("en", total, is_soft),
+                lambda locale: {"total": self._total_text(locale, total, is_soft)},
             )
         self._settle_hand()
 
@@ -966,7 +969,7 @@ class BlackjackGame(Game):
             p,
             "blackjack-you-hit",
             "blackjack-player-hits",
-            card=card_name(card, "en"),
+            card=card_name(card, self._player_locale(p)),
         )
         self._evaluate_current_hand_after_draw(p)
 
@@ -1032,7 +1035,7 @@ class BlackjackGame(Game):
                 p,
                 "blackjack-you-hit",
                 "blackjack-player-hits",
-                card=card_name(card, "en"),
+                card=card_name(card, self._player_locale(p)),
             )
 
         total, is_soft = self.hand_value(hand)
@@ -1042,7 +1045,7 @@ class BlackjackGame(Game):
                 p,
                 "blackjack-you-bust",
                 "blackjack-player-bust",
-                total=self._total_text("en", total, is_soft),
+                total=self._total_text(self._player_locale(p), total, is_soft),
             )
         else:
             self._set_current_hand_done(p, done=True, stood=True)
@@ -1396,6 +1399,64 @@ class BlackjackGame(Game):
     def _dealer_upcard_is_ace(self) -> bool:
         return bool(self.dealer_hand) and self.dealer_hand[0].rank == 1
 
+    def _player_locale(self, player: Player) -> str:
+        user = self.get_user(player)
+        return user.locale if user else "en"
+
+    def _broadcast_l_with_locale_args(
+        self,
+        message_id: str,
+        args_for_locale: Callable[[str], dict[str, object]],
+        *,
+        buffer: str = "table",
+        exclude: Player | None = None,
+    ) -> None:
+        """Broadcast with per-recipient localized kwargs."""
+        for player in self.players:
+            if player is exclude:
+                continue
+            locale = self._player_locale(player)
+            kwargs = args_for_locale(locale)
+            localized = Localization.get(locale, message_id, **kwargs)
+            if hasattr(self, "record_transcript_event"):
+                self.record_transcript_event(player, localized, buffer)
+            user = self.get_user(player)
+            if user:
+                user.speak_l(message_id, buffer, **kwargs)
+
+    def _broadcast_personal_l_with_locale_args(
+        self,
+        actor: BlackjackPlayer,
+        personal_message_id: str,
+        others_message_id: str,
+        args_for_locale: Callable[[str], dict[str, object]],
+        *,
+        buffer: str = "table",
+    ) -> None:
+        """Personalized broadcast with per-recipient localized kwargs."""
+        actor_locale = self._player_locale(actor)
+        actor_kwargs = args_for_locale(actor_locale)
+        actor_text = Localization.get(actor_locale, personal_message_id, **actor_kwargs)
+        if hasattr(self, "record_transcript_event"):
+            self.record_transcript_event(actor, actor_text, buffer)
+        actor_user = self.get_user(actor)
+        if actor_user:
+            actor_user.speak_l(personal_message_id, buffer, **actor_kwargs)
+
+        for player in self.players:
+            if player is actor:
+                continue
+            locale = self._player_locale(player)
+            kwargs = args_for_locale(locale)
+            localized = Localization.get(
+                locale, others_message_id, player=actor.name, **kwargs
+            )
+            if hasattr(self, "record_transcript_event"):
+                self.record_transcript_event(player, localized, buffer)
+            user = self.get_user(player)
+            if user:
+                user.speak_l(others_message_id, buffer, player=actor.name, **kwargs)
+
     def _can_view_player_cards(self, viewer: Player | None, target: BlackjackPlayer) -> bool:
         if self.options.players_cards_face_up:
             return True
@@ -1625,17 +1686,22 @@ class BlackjackGame(Game):
                 self.dealer_hand.append(dealer_card)
 
         if self.dealer_hand:
-            self.broadcast_l("blackjack-dealer-shows", card=card_name(self.dealer_hand[0], "en"))
+            self._broadcast_l_with_locale_args(
+                "blackjack-dealer-shows",
+                lambda locale: {"card": card_name(self.dealer_hand[0], locale)},
+            )
 
         for player in players:
             total, is_soft = self.hand_value(player.hand)
             if self.options.players_cards_face_up:
-                self.broadcast_personal_l(
+                self._broadcast_personal_l_with_locale_args(
                     player,
                     "blackjack-you-have",
                     "blackjack-player-has",
-                    cards=read_cards(player.hand, "en"),
-                    total=self._total_text("en", total, is_soft),
+                    lambda locale: {
+                        "cards": read_cards(player.hand, locale),
+                        "total": self._total_text(locale, total, is_soft),
+                    },
                 )
             else:
                 user = self.get_user(player)
@@ -1658,24 +1724,27 @@ class BlackjackGame(Game):
 
         if len(self.dealer_hand) >= 2:
             total, is_soft = self.hand_value(self.dealer_hand)
-            self.broadcast_l(
+            self._broadcast_l_with_locale_args(
                 "blackjack-dealer-reveals",
-                card=card_name(self.dealer_hand[1], "en"),
-                cards=read_cards(self.dealer_hand, "en"),
-                total=self._total_text("en", total, is_soft),
+                lambda locale: {
+                    "card": card_name(self.dealer_hand[1], locale),
+                    "cards": read_cards(self.dealer_hand, locale),
+                    "total": self._total_text(locale, total, is_soft),
+                },
             )
 
     def _announce_player_total(self, player: BlackjackPlayer) -> None:
         total, is_soft = self.hand_value(self._current_hand(player))
-        total_text = self._total_text("en", total, is_soft)
         if player.split_bet > 0:
             if self.options.players_cards_face_up:
-                self.broadcast_personal_l(
+                self._broadcast_personal_l_with_locale_args(
                     player,
                     "blackjack-your-total-hand",
                     "blackjack-player-total-hand",
-                    hand=player.active_hand_index + 1,
-                    total=total_text,
+                    lambda locale: {
+                        "hand": player.active_hand_index + 1,
+                        "total": self._total_text(locale, total, is_soft),
+                    },
                 )
             else:
                 user = self.get_user(player)
@@ -1687,11 +1756,11 @@ class BlackjackGame(Game):
                     )
             return
         if self.options.players_cards_face_up:
-            self.broadcast_personal_l(
+            self._broadcast_personal_l_with_locale_args(
                 player,
                 "blackjack-your-total",
                 "blackjack-player-total",
-                total=total_text,
+                lambda locale: {"total": self._total_text(locale, total, is_soft)},
             )
         else:
             user = self.get_user(player)
@@ -1732,7 +1801,7 @@ class BlackjackGame(Game):
                 player,
                 "blackjack-you-bust",
                 "blackjack-player-bust",
-                total=self._total_text("en", total, is_soft),
+                total=self._total_text(self._player_locale(player), total, is_soft),
             )
             self._advance_to_next_player()
             return
