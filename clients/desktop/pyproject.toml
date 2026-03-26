@@ -21,3 +21,6 @@ playpalace-client = "client:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["."]
+
+[tool.uv.sources]
+sound-lib = { git = "https://github.com/samtupy/sound_lib_macos_fixes.git" }
