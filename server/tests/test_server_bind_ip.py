@@ -137,3 +137,183 @@ async def test_run_server_host_param_overrides_config(tmp_path, monkeypatch):
     await core_server.run_server(host="0.0.0.0")
 
     assert captured["host"] == "0.0.0.0"
+
+
+# ---------------------------------------------------------------------------
+# Port resolution tests
+# ---------------------------------------------------------------------------
+
+@pytest.mark.asyncio
+async def test_run_server_uses_port_from_config(tmp_path, monkeypatch):
+    config_path, example_path, var_dir = _patch_run_server_environment(tmp_path, monkeypatch)
+    config_path.write_text('[server]\nport = 9000\n', encoding="utf-8")
+    example_path.write_text("", encoding="utf-8")
+    (var_dir / "playpalace.db").write_text("", encoding="utf-8")
+
+    captured = {}
+
+    class DummyServer:
+        def __init__(self, *args, **kwargs):
+            captured["port"] = kwargs.get("port")
+
+        async def start(self):
+            return None
+
+        async def stop(self):
+            return None
+
+    async def fake_sleep(_):
+        raise KeyboardInterrupt
+
+    monkeypatch.setattr(core_server, "Database", _DummyDB)
+    monkeypatch.setattr(core_server, "Server", DummyServer)
+    monkeypatch.setattr(asyncio, "sleep", fake_sleep)
+    monkeypatch.setattr(core_server, "_ensure_server_owner", lambda *args, **kwargs: None)
+
+    await core_server.run_server(port=None)
+
+    assert captured["port"] == 9000
+
+
+@pytest.mark.asyncio
+async def test_run_server_defaults_port_to_8000(tmp_path, monkeypatch):
+    config_path, example_path, var_dir = _patch_run_server_environment(tmp_path, monkeypatch)
+    config_path.write_text("[server]\n", encoding="utf-8")
+    example_path.write_text("", encoding="utf-8")
+    (var_dir / "playpalace.db").write_text("", encoding="utf-8")
+
+    captured = {}
+
+    class DummyServer:
+        def __init__(self, *args, **kwargs):
+            captured["port"] = kwargs.get("port")
+
+        async def start(self):
+            return None
+
+        async def stop(self):
+            return None
+
+    async def fake_sleep(_):
+        raise KeyboardInterrupt
+
+    monkeypatch.setattr(core_server, "Database", _DummyDB)
+    monkeypatch.setattr(core_server, "Server", DummyServer)
+    monkeypatch.setattr(asyncio, "sleep", fake_sleep)
+    monkeypatch.setattr(core_server, "_ensure_server_owner", lambda *args, **kwargs: None)
+
+    await core_server.run_server(port=None)
+
+    assert captured["port"] == 8000
+
+
+@pytest.mark.asyncio
+async def test_run_server_port_param_overrides_config(tmp_path, monkeypatch):
+    config_path, example_path, var_dir = _patch_run_server_environment(tmp_path, monkeypatch)
+    config_path.write_text("[server]\nport = 9000\n", encoding="utf-8")
+    example_path.write_text("", encoding="utf-8")
+    (var_dir / "playpalace.db").write_text("", encoding="utf-8")
+
+    captured = {}
+
+    class DummyServer:
+        def __init__(self, *args, **kwargs):
+            captured["port"] = kwargs.get("port")
+
+        async def start(self):
+            return None
+
+        async def stop(self):
+            return None
+
+    async def fake_sleep(_):
+        raise KeyboardInterrupt
+
+    monkeypatch.setattr(core_server, "Database", _DummyDB)
+    monkeypatch.setattr(core_server, "Server", DummyServer)
+    monkeypatch.setattr(asyncio, "sleep", fake_sleep)
+    monkeypatch.setattr(core_server, "_ensure_server_owner", lambda *args, **kwargs: None)
+
+    await core_server.run_server(port=7777)
+
+    assert captured["port"] == 7777
+
+
+# ---------------------------------------------------------------------------
+# SSL resolution tests
+# ---------------------------------------------------------------------------
+
+@pytest.mark.asyncio
+async def test_run_server_uses_ssl_from_config(tmp_path, monkeypatch):
+    config_path, example_path, var_dir = _patch_run_server_environment(tmp_path, monkeypatch)
+    config_path.write_text(
+        '[network]\nssl_cert = "/etc/cert.pem"\nssl_key = "/etc/key.pem"\n'
+        "allow_insecure_ws = false\n",
+        encoding="utf-8",
+    )
+    example_path.write_text("", encoding="utf-8")
+    (var_dir / "playpalace.db").write_text("", encoding="utf-8")
+
+    captured = {}
+
+    class DummyServer:
+        def __init__(self, *args, **kwargs):
+            captured["ssl_cert"] = kwargs.get("ssl_cert")
+            captured["ssl_key"] = kwargs.get("ssl_key")
+
+        async def start(self):
+            return None
+
+        async def stop(self):
+            return None
+
+    async def fake_sleep(_):
+        raise KeyboardInterrupt
+
+    monkeypatch.setattr(core_server, "Database", _DummyDB)
+    monkeypatch.setattr(core_server, "Server", DummyServer)
+    monkeypatch.setattr(asyncio, "sleep", fake_sleep)
+    monkeypatch.setattr(core_server, "_ensure_server_owner", lambda *args, **kwargs: None)
+
+    await core_server.run_server(ssl_cert=None, ssl_key=None)
+
+    assert captured["ssl_cert"] == "/etc/cert.pem"
+    assert captured["ssl_key"] == "/etc/key.pem"
+
+
+@pytest.mark.asyncio
+async def test_run_server_ssl_cli_overrides_config(tmp_path, monkeypatch):
+    config_path, example_path, var_dir = _patch_run_server_environment(tmp_path, monkeypatch)
+    config_path.write_text(
+        '[network]\nssl_cert = "/etc/cert.pem"\nssl_key = "/etc/key.pem"\n'
+        "allow_insecure_ws = false\n",
+        encoding="utf-8",
+    )
+    example_path.write_text("", encoding="utf-8")
+    (var_dir / "playpalace.db").write_text("", encoding="utf-8")
+
+    captured = {}
+
+    class DummyServer:
+        def __init__(self, *args, **kwargs):
+            captured["ssl_cert"] = kwargs.get("ssl_cert")
+            captured["ssl_key"] = kwargs.get("ssl_key")
+
+        async def start(self):
+            return None
+
+        async def stop(self):
+            return None
+
+    async def fake_sleep(_):
+        raise KeyboardInterrupt
+
+    monkeypatch.setattr(core_server, "Database", _DummyDB)
+    monkeypatch.setattr(core_server, "Server", DummyServer)
+    monkeypatch.setattr(asyncio, "sleep", fake_sleep)
+    monkeypatch.setattr(core_server, "_ensure_server_owner", lambda *args, **kwargs: None)
+
+    await core_server.run_server(ssl_cert="/other/cert.pem", ssl_key="/other/key.pem")
+
+    assert captured["ssl_cert"] == "/other/cert.pem"
+    assert captured["ssl_key"] == "/other/key.pem"
