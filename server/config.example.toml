@@ -20,11 +20,18 @@ refresh_window_seconds = 60
 max_message_bytes = 1048576
 # Allow ws:// without TLS (only for trusted local development)
 allow_insecure_ws = false
+# Paths to TLS certificate and key files (enables WSS). Both must be set together.
+# For Let's Encrypt, use fullchain.pem and privkey.pem respectively.
+# Leave commented out (or omit) to run without TLS (ws://).
+#ssl_cert = "/etc/letsencrypt/live/yourdomain.com/fullchain.pem"
+#ssl_key = "/etc/letsencrypt/live/yourdomain.com/privkey.pem"
 
 [server]
 # Bind interface IP address (default: 127.0.0.1). Use 127.0.0.1 for local-only
 # access or 0.0.0.0 to listen on all interfaces.
 bind_ip = "127.0.0.1"
+# Port to listen on (default: 8000). Can be overridden at runtime with --port.
+port = 8000
 # Tick interval in milliseconds (default: 50ms = 20 ticks/sec)
 # Lower values = faster game updates but more CPU usage
 # Higher values = slower updates but less CPU usage
