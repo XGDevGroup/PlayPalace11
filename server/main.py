@@ -46,8 +46,8 @@ Examples:
     parser.add_argument(
         "--port",
         type=int,
-        default=8000,
-        help="Port number to listen on (default: 8000)",
+        default=None,
+        help="Port number to listen on (overrides config; default: 8000)",
     )
     parser.add_argument(
         "--ssl-cert",
@@ -67,12 +67,9 @@ Examples:
 
     args = parser.parse_args()
 
-    # Validate SSL arguments
+    # Validate SSL arguments (CLI-supplied; config-supplied is validated inside run_server)
     if (args.ssl_cert and not args.ssl_key) or (args.ssl_key and not args.ssl_cert):
         parser.error("Both --ssl-cert and --ssl-key must be provided together")
-
-    protocol = "wss" if args.ssl_cert else "ws"
-    print(f"Starting PlayPalace v11 server on {protocol}://{args.host}:{args.port}")
 
     asyncio.run(
         run_server(
