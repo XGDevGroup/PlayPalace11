@@ -37,6 +37,13 @@ port = 8000
 # Higher values = slower updates but less CPU usage
 tick_interval_ms = 50
 
+[documents]
+# How document contributions are handled:
+#   "manual"      - changes stay uncommitted; admin exports a ZIP file
+#   "auto_commit" - server auto-commits after each save (default)
+#   "auto_pr"     - auto-commit + admin can create a PR via the gh CLI
+contribution_mode = "auto_commit"
+
 [localization]
 # Default locale for new users (and for auth flows without a client locale)
 default_locale = "en"

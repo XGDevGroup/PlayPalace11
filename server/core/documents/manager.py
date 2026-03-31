@@ -3,7 +3,11 @@
 Supports a shared/independent directory split for pull-only sync infrastructure:
 - ``shared/`` contains canonical documents tracked in the git repository.
 - ``independent/`` contains server-specific documents (gitignored).
-- ``_pending/`` tracks changesets for shared document edits (gitignored).
+
+Three contribution modes (configured via ``config.toml``):
+- **manual**: changes stay uncommitted; admin exports a ZIP.
+- **auto_commit** (default): server auto-commits after each save.
+- **auto_pr**: auto-commit + admin can create a PR via ``gh`` CLI.
 """
 
 import hashlib
@@ -25,6 +29,10 @@ _MAX_HISTORY_PER_LOCALE = 5
 SCOPE_SHARED = "shared"
 SCOPE_INDEPENDENT = "independent"
 
+MODE_MANUAL = "manual"
+MODE_AUTO_COMMIT = "auto_commit"
+MODE_AUTO_PR = "auto_pr"
+
 
 class DocumentManager:
     """Manages document metadata, content, edit locks, and version history.
@@ -33,15 +41,16 @@ class DocumentManager:
     and ``independent/`` (server-local) subdirectories.  Each subfolder is a
     document containing locale-specific ``.md`` files and a ``_metadata.json``.
 
-    A ``_pending/`` directory tracks edits made to shared documents so they
-    can be exported and submitted upstream via pull request.
+    The ``contribution_mode`` controls how edits to shared documents are
+    tracked and exported.  See module docstring for the three modes.
     """
 
-    def __init__(self, documents_dir: Path):
+    def __init__(self, documents_dir: Path, contribution_mode: str = MODE_AUTO_COMMIT):
         self._dir = documents_dir
         self._shared_dir = documents_dir / "shared"
         self._independent_dir = documents_dir / "independent"
-        self._pending_dir = documents_dir / "_pending"
+        self._attribution_path = documents_dir / "_attribution.json"
+        self.contribution_mode = contribution_mode
         self._categories: dict = {}  # slug -> {sort, name: {locale: str}}
         self._documents: dict = {}  # folder_name -> document metadata dict
         self._scopes: dict = {}  # folder_name -> SCOPE_SHARED | SCOPE_INDEPENDENT
@@ -62,7 +71,6 @@ class DocumentManager:
         self._dir.mkdir(parents=True, exist_ok=True)
         self._shared_dir.mkdir(exist_ok=True)
         self._independent_dir.mkdir(exist_ok=True)
-        self._pending_dir.mkdir(exist_ok=True)
 
         # Migrate legacy flat layout into shared/
         self._migrate_legacy_layout()
@@ -316,16 +324,6 @@ class DocumentManager:
             }
         self._save_document_metadata(folder_name)
 
-        # Track changeset for shared documents
-        if self._scopes.get(folder_name) == SCOPE_SHARED:
-            self._record_pending_change(
-                folder_name,
-                locale,
-                editor_username,
-                "edit",
-                content,
-            )
-
         # Release edit lock
         self.release_edit_lock(folder_name, locale, editor_username)
         return True
@@ -377,16 +375,6 @@ class DocumentManager:
 
         md_path = doc_dir / f"{locale}.md"
         md_path.write_text(content, encoding="utf-8")
-
-        # Track changeset for shared documents
-        if scope == SCOPE_SHARED:
-            self._record_pending_change(
-                folder_name,
-                locale,
-                "",
-                "create",
-                content,
-            )
 
         return True
 
@@ -460,16 +448,6 @@ class DocumentManager:
         md_path = doc_dir / f"{locale}.md"
         md_path.write_text(content, encoding="utf-8")
         self._save_document_metadata(folder_name)
-
-        # Track changeset for shared documents
-        if self._scopes.get(folder_name) == SCOPE_SHARED:
-            self._record_pending_change(
-                folder_name,
-                locale,
-                "",
-                "translation_add",
-                content,
-            )
 
         return True
 
@@ -661,154 +639,435 @@ class DocumentManager:
             del self._edit_locks[key]
 
     # ------------------------------------------------------------------
-    # Changeset tracking (_pending/)
+    # Attribution log (manual mode only)
     # ------------------------------------------------------------------
 
-    def _record_pending_change(
+    def _log_attribution(
         self,
         folder_name: str,
         locale: str,
         editor_username: str,
         change_type: str,
-        content: str,
+        message: str = "",
     ) -> None:
-        """Record a pending change for a shared document.
+        """Append an entry to the attribution log.
 
-        Saves a copy of the changed content and appends to the manifest.
+        Only used in manual mode.  The log records which in-app user
+        made each edit so the export ZIP can include proper credit.
         """
-        changes_dir = self._pending_dir / "changes" / folder_name
-        changes_dir.mkdir(parents=True, exist_ok=True)
-        (changes_dir / f"{locale}.md").write_text(content, encoding="utf-8")
-
-        manifest = self._load_pending_manifest()
-        now = datetime.now(timezone.utc).isoformat()
-        # Remove any existing entry for the same folder+locale (latest wins)
-        manifest["changes"] = [
-            c
-            for c in manifest["changes"]
-            if not (c["folder_name"] == folder_name and c["locale"] == locale)
-        ]
-        manifest["changes"].append(
+        entries = self._load_attribution_log()
+        entries.append(
             {
                 "folder_name": folder_name,
                 "locale": locale,
                 "editor": editor_username,
-                "timestamp": now,
                 "change_type": change_type,
+                "message": message,
+                "timestamp": datetime.now(timezone.utc).isoformat(),
             }
         )
-        self._save_pending_manifest(manifest)
+        self._save_attribution_log(entries)
 
-    def _load_pending_manifest(self) -> dict:
-        """Load the pending changes manifest, or return an empty one."""
-        manifest_path = self._pending_dir / "manifest.json"
-        if manifest_path.exists():
-            with open(manifest_path, "r", encoding="utf-8") as f:
-                return json.load(f)
-        return {"changes": []}
+    def _load_attribution_log(self) -> list[dict]:
+        """Load the attribution log, or return an empty list."""
+        if self._attribution_path.exists():
+            with open(self._attribution_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            if isinstance(data, list):
+                return data
+        return []
 
-    def _save_pending_manifest(self, manifest: dict) -> None:
-        """Write the pending changes manifest to disk."""
-        manifest_path = self._pending_dir / "manifest.json"
-        with open(manifest_path, "w", encoding="utf-8") as f:
-            json.dump(manifest, f, indent=4, ensure_ascii=False)
+    def _save_attribution_log(self, entries: list[dict]) -> None:
+        """Write the attribution log to disk."""
+        with open(self._attribution_path, "w", encoding="utf-8") as f:
+            json.dump(entries, f, indent=4, ensure_ascii=False)
 
-    def get_pending_changes(self) -> list[dict]:
-        """Return the list of pending changes for shared documents."""
-        manifest = self._load_pending_manifest()
-        return manifest.get("changes", [])
-
-    def get_pending_change_count(self) -> int:
-        """Return the number of pending changes."""
-        return len(self.get_pending_changes())
-
-    def export_pending_changes(self, output_path: Path) -> int:
-        """Package all pending changes into a ZIP file.
-
-        The ZIP contains the changed ``.md`` files in their document
-        folder structure, plus an ``attribution.json`` with editor and
-        timestamp metadata.
-
-        Args:
-            output_path: Path where the ZIP file will be written.
-
-        Returns the number of changes included in the export.
-        """
-        manifest = self._load_pending_manifest()
-        changes = manifest.get("changes", [])
-        if not changes:
-            return 0
-
-        output_path.parent.mkdir(parents=True, exist_ok=True)
-
-        with zipfile.ZipFile(output_path, "w", zipfile.ZIP_DEFLATED) as zf:
-            for change in changes:
-                folder_name = change["folder_name"]
-                locale = change["locale"]
-                pending_file = self._pending_dir / "changes" / folder_name / f"{locale}.md"
-                if pending_file.exists():
-                    archive_path = f"shared/{folder_name}/{locale}.md"
-                    zf.write(pending_file, archive_path)
-
-                    # Also include the document's metadata
-                    meta_path = self._pending_dir / "changes" / folder_name / "_metadata.json"
-                    if not meta_path.exists():
-                        # Copy current metadata alongside the change
-                        doc_meta = self._documents.get(folder_name)
-                        if doc_meta:
-                            with open(meta_path, "w", encoding="utf-8") as f:
-                                json.dump(doc_meta, f, indent=4, ensure_ascii=False)
-                    if meta_path.exists():
-                        zf.write(meta_path, f"shared/{folder_name}/_metadata.json")
-
-            # Include attribution metadata
-            zf.writestr(
-                "attribution.json",
-                json.dumps({"changes": changes}, indent=4, ensure_ascii=False),
-            )
-
-        return len(changes)
-
-    def clear_pending_changes(self) -> None:
-        """Remove all pending changes and their content copies."""
-        changes_dir = self._pending_dir / "changes"
-        if changes_dir.exists():
-            shutil.rmtree(changes_dir)
-        manifest_path = self._pending_dir / "manifest.json"
-        if manifest_path.exists():
-            manifest_path.unlink()
+    def get_attribution_log(self) -> list[dict]:
+        """Return the current attribution log entries."""
+        return self._load_attribution_log()
 
     # ------------------------------------------------------------------
-    # Sync (pull-only)
+    # Auto-commit (auto_commit and auto_pr modes)
     # ------------------------------------------------------------------
 
-    def sync_shared_documents(self) -> tuple[bool, str]:
-        """Sync shared documents from the git repository.
+    def commit_changes(
+        self,
+        folder_name: str,
+        locale: str,
+        editor_username: str,
+        message: str,
+    ) -> tuple[bool, str]:
+        """Stage and commit changes for a shared document.
 
-        Runs ``git checkout HEAD -- <shared_dir>`` to restore the canonical
-        versions of all shared documents from the latest commit.
+        Runs ``git add`` on the document's files, then ``git commit``
+        with the given message and ``--author`` set to the in-app user.
 
-        Returns a ``(success, message)`` tuple.
+        Returns ``(success, error_message)``.
         """
-        # Resolve the repo root by walking up from the documents directory
+        if self.contribution_mode == MODE_MANUAL:
+            return False, "Auto-commit is disabled in manual mode."
+
         repo_root = self._find_git_root()
         if repo_root is None:
             return False, "Not inside a git repository."
 
+        doc_dir = self._document_dir(folder_name)
+        if doc_dir is None:
+            return False, f"Document '{folder_name}' not found."
+
+        # Resolve paths to stage
         try:
-            # Get the relative path from repo root to shared dir
-            rel_path = self._shared_dir.resolve().relative_to(repo_root.resolve())
+            rel_dir = str(doc_dir.resolve().relative_to(repo_root.resolve()))
+        except ValueError:
+            return False, "Document directory is outside the git repository."
+
+        # Stage the entire document folder (catches .md + _metadata.json)
+        add_result = subprocess.run(
+            ["git", "add", "--", rel_dir],
+            cwd=str(repo_root),
+            capture_output=True,
+            text=True,
+            timeout=10,
+        )
+        if add_result.returncode != 0:
+            error = add_result.stderr.strip() or "Unknown git error."
+            LOG.error("git add failed: %s", error)
+            return False, error
+
+        # Build commit message
+        if not message.strip():
+            message = f"Update {folder_name}/{locale}"
+
+        author = f"{editor_username} <noreply@playpalace>"
+
+        commit_result = subprocess.run(
+            [
+                "git", "commit",
+                "-m", message,
+                "--author", author,
+            ],
+            cwd=str(repo_root),
+            capture_output=True,
+            text=True,
+            timeout=10,
+        )
+        if commit_result.returncode != 0:
+            error = commit_result.stderr.strip() or "Unknown git error."
+            # "nothing to commit" is not a real error
+            if "nothing to commit" in error.lower() or "nothing to commit" in (
+                commit_result.stdout or ""
+            ).lower():
+                return True, ""
+            LOG.error("git commit failed: %s", error)
+            return False, error
+
+        return True, ""
+
+    # ------------------------------------------------------------------
+    # Change detection
+    # ------------------------------------------------------------------
+
+    def get_pending_changes(self) -> list[str]:
+        """Return pending changes for shared documents.
+
+        In manual mode, returns file paths that differ from HEAD
+        (uncommitted working-tree changes).  In auto modes, returns
+        commit subject lines ahead of ``origin/main``.
+        """
+        repo_root = self._find_git_root()
+        if repo_root is None:
+            return []
+
+        if self.contribution_mode == MODE_MANUAL:
+            return self._get_uncommitted_changes(repo_root)
+        return self._get_commits_ahead(repo_root)
+
+    def _get_uncommitted_changes(self, repo_root: Path) -> list[str]:
+        """Return file paths with uncommitted changes under shared/."""
+        try:
+            rel_shared = str(
+                self._shared_dir.resolve().relative_to(repo_root.resolve())
+            )
+        except ValueError:
+            return []
+
+        changed: list[str] = []
+
+        # Tracked files that differ from HEAD
+        try:
             result = subprocess.run(
-                ["git", "checkout", "HEAD", "--", str(rel_path)],
+                ["git", "diff", "--name-only", "HEAD", "--", rel_shared],
+                cwd=str(repo_root),
+                capture_output=True,
+                text=True,
+                timeout=10,
+            )
+            if result.returncode == 0:
+                changed.extend(
+                    line for line in result.stdout.strip().splitlines() if line
+                )
+        except (FileNotFoundError, subprocess.TimeoutExpired):
+            return []
+
+        # Untracked new files
+        try:
+            result = subprocess.run(
+                [
+                    "git", "ls-files",
+                    "--others", "--exclude-standard",
+                    "--", rel_shared,
+                ],
+                cwd=str(repo_root),
+                capture_output=True,
+                text=True,
+                timeout=10,
+            )
+            if result.returncode == 0:
+                for line in result.stdout.strip().splitlines():
+                    if line and line not in changed:
+                        changed.append(line)
+        except (FileNotFoundError, subprocess.TimeoutExpired):
+            pass
+
+        return changed
+
+    def _get_commits_ahead(self, repo_root: Path) -> list[str]:
+        """Return commit subject lines ahead of origin/main."""
+        try:
+            result = subprocess.run(
+                [
+                    "git", "log", "--oneline",
+                    "origin/main..HEAD",
+                ],
+                cwd=str(repo_root),
+                capture_output=True,
+                text=True,
+                timeout=10,
+            )
+            if result.returncode == 0:
+                return [
+                    line for line in result.stdout.strip().splitlines() if line
+                ]
+        except (FileNotFoundError, subprocess.TimeoutExpired):
+            pass
+        return []
+
+    def get_pending_change_count(self) -> int:
+        """Return the number of pending changes or commits ahead."""
+        return len(self.get_pending_changes())
+
+    # ------------------------------------------------------------------
+    # Export
+    # ------------------------------------------------------------------
+
+    def export_pending_changes(self, output_path: Path) -> int:
+        """Package uncommitted shared document changes into a ZIP.
+
+        Only used in manual mode.  The ZIP mirrors the ``shared/``
+        directory structure with only the changed files, plus an
+        ``attribution.json`` built from the attribution log.
+
+        Returns the number of files included, or 0 if nothing changed.
+        """
+        changed_paths = self._get_uncommitted_changes(
+            self._find_git_root() or Path()
+        )
+        if not changed_paths:
+            return 0
+
+        repo_root = self._find_git_root()
+        if repo_root is None:
+            return 0
+
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        included = 0
+
+        with zipfile.ZipFile(output_path, "w", zipfile.ZIP_DEFLATED) as zf:
+            for rel_path in changed_paths:
+                abs_path = repo_root / rel_path
+                if abs_path.exists() and abs_path.is_file():
+                    try:
+                        archive_path = str(
+                            abs_path.resolve().relative_to(
+                                self._dir.resolve()
+                            )
+                        )
+                    except ValueError:
+                        archive_path = rel_path
+                    zf.write(abs_path, archive_path)
+                    included += 1
+
+            attribution = self._load_attribution_log()
+            zf.writestr(
+                "attribution.json",
+                json.dumps(
+                    {"changes": attribution},
+                    indent=4,
+                    ensure_ascii=False,
+                ),
+            )
+
+        if included == 0:
+            output_path.unlink(missing_ok=True)
+
+        return included
+
+    def create_pull_request(self) -> tuple[bool, str]:
+        """Create a pull request from local commits via ``gh`` CLI.
+
+        Only used in auto_pr mode.  Creates a branch from the current
+        commits ahead of ``origin/main``, pushes it, and opens a PR.
+
+        Returns ``(success, pr_url_or_error)``.
+        """
+        repo_root = self._find_git_root()
+        if repo_root is None:
+            return False, "Not inside a git repository."
+
+        commits = self._get_commits_ahead(repo_root)
+        if not commits:
+            return False, "No commits to include in a pull request."
+
+        timestamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
+        branch = f"documents/{timestamp}"
+
+        try:
+            # Create and switch to the new branch
+            result = subprocess.run(
+                ["git", "checkout", "-b", branch],
+                cwd=str(repo_root),
+                capture_output=True,
+                text=True,
+                timeout=10,
+            )
+            if result.returncode != 0:
+                return False, result.stderr.strip() or "Failed to create branch."
+
+            # Push the branch
+            result = subprocess.run(
+                ["git", "push", "-u", "origin", branch],
+                cwd=str(repo_root),
+                capture_output=True,
+                text=True,
+                timeout=60,
+            )
+            if result.returncode != 0:
+                # Return to main before reporting error
+                subprocess.run(
+                    ["git", "checkout", "main"],
+                    cwd=str(repo_root),
+                    capture_output=True,
+                    timeout=10,
+                )
+                return False, result.stderr.strip() or "Failed to push branch."
+
+            # Create the PR via gh CLI
+            title = f"Document updates ({len(commits)} commits)"
+            body = "Automated document contribution from PlayPalace server.\n\n"
+            body += "## Commits\n"
+            for line in commits:
+                body += f"- {line}\n"
+
+            result = subprocess.run(
+                [
+                    "gh", "pr", "create",
+                    "--title", title,
+                    "--body", body,
+                    "--base", "main",
+                ],
                 cwd=str(repo_root),
                 capture_output=True,
                 text=True,
                 timeout=30,
             )
+
+            # Return to main regardless of PR result
+            subprocess.run(
+                ["git", "checkout", "main"],
+                cwd=str(repo_root),
+                capture_output=True,
+                timeout=10,
+            )
+
             if result.returncode != 0:
-                error = result.stderr.strip() or "Unknown git error."
-                LOG.error("Document sync failed: %s", error)
-                return False, f"Sync failed: {error}"
+                error = result.stderr.strip() or "Failed to create pull request."
+                return False, error
+
+            pr_url = result.stdout.strip()
+            return True, pr_url
+
+        except FileNotFoundError:
+            return False, "Git or gh CLI is not installed or not in PATH."
+        except subprocess.TimeoutExpired:
+            return False, "Operation timed out."
+
+    def clear_pending_changes(self) -> None:
+        """Clear the attribution log (manual mode only).
+
+        In auto modes this is a no-op since git log is the record.
+        """
+        if self.contribution_mode == MODE_MANUAL and self._attribution_path.exists():
+            self._attribution_path.unlink()
+
+    # ------------------------------------------------------------------
+    # Sync
+    # ------------------------------------------------------------------
+
+    def sync_shared_documents(self) -> tuple[bool, str]:
+        """Sync shared documents from the remote repository.
+
+        In auto modes, uses ``git pull --rebase`` to preserve local
+        commits on top of upstream changes.  In manual mode, fetches
+        and checks out ``origin/main`` (overwriting local edits).
+
+        Returns a ``(success, message)`` tuple.
+        """
+        repo_root = self._find_git_root()
+        if repo_root is None:
+            return False, "Not inside a git repository."
+
+        try:
+            if self.contribution_mode != MODE_MANUAL:
+                # Auto modes: rebase local commits on top of upstream
+                result = subprocess.run(
+                    ["git", "pull", "--rebase", "origin", "main"],
+                    cwd=str(repo_root),
+                    capture_output=True,
+                    text=True,
+                    timeout=60,
+                )
+                if result.returncode != 0:
+                    error = result.stderr.strip() or "Unknown git error."
+                    LOG.error("Document sync pull failed: %s", error)
+                    return False, f"Sync failed: {error}"
+            else:
+                # Manual mode: overwrite local shared/ with upstream
+                rel_path = self._shared_dir.resolve().relative_to(
+                    repo_root.resolve()
+                )
+                fetch = subprocess.run(
+                    ["git", "fetch", "origin"],
+                    cwd=str(repo_root),
+                    capture_output=True,
+                    text=True,
+                    timeout=60,
+                )
+                if fetch.returncode != 0:
+                    error = fetch.stderr.strip() or "Unknown git error."
+                    LOG.error("Document sync fetch failed: %s", error)
+                    return False, f"Fetch failed: {error}"
+
+                checkout = subprocess.run(
+                    ["git", "checkout", "origin/main", "--", str(rel_path)],
+                    cwd=str(repo_root),
+                    capture_output=True,
+                    text=True,
+                    timeout=30,
+                )
+                if checkout.returncode != 0:
+                    error = checkout.stderr.strip() or "Unknown git error."
+                    LOG.error("Document sync checkout failed: %s", error)
+                    return False, f"Sync failed: {error}"
 
             # Reload documents from disk after sync
             old_count = len(self._documents)
