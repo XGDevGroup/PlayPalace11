@@ -167,7 +167,8 @@ class Server(AdministrationMixin, DocumentBrowsingMixin, TranscriberRoleMixin):
         self._users: dict[str, NetworkUser] = {}  # username -> NetworkUser
         self._user_states: dict[str, dict] = {}  # username -> UI state
 
-        # Document manager
+        # Document manager (contribution_mode set by _load_config_settings)
+        self._contribution_mode = "auto_commit"
         self._documents = DocumentManager(_DOCUMENTS_DIR)
 
         # Virtual bot manager
@@ -431,6 +432,15 @@ class Server(AdministrationMixin, DocumentBrowsingMixin, TranscriberRoleMixin):
             self._refresh_ip_window = _read_limit(
                 rate_cfg, "refresh_window_seconds", self._refresh_ip_window, minimum=1
             )
+
+        docs_cfg = config.get("documents")
+        if isinstance(docs_cfg, dict):
+            mode = docs_cfg.get("contribution_mode")
+            if isinstance(mode, str) and mode.strip().lower() in (
+                "manual", "auto_commit", "auto_pr",
+            ):
+                self._contribution_mode = mode.strip().lower()
+        self._documents.contribution_mode = self._contribution_mode
 
     def _validate_transport_security(self) -> None:
         """Validate TLS/insecure configuration and exit on invalid combos."""

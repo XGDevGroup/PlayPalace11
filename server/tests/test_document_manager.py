@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 import time
 import zipfile
 
@@ -10,6 +11,9 @@ import pytest
 
 from server.core.documents.manager import (
     DocumentManager,
+    MODE_AUTO_COMMIT,
+    MODE_AUTO_PR,
+    MODE_MANUAL,
     SCOPE_INDEPENDENT,
     SCOPE_SHARED,
 )
@@ -26,6 +30,11 @@ def docs_dir(tmp_path):
 @pytest.fixture
 def manager(docs_dir):
     return DocumentManager(docs_dir)
+
+
+@pytest.fixture
+def manual_manager(docs_dir):
+    return DocumentManager(docs_dir, contribution_mode=MODE_MANUAL)
 
 
 # ------------------------------------------------------------------
@@ -83,7 +92,6 @@ class TestLoad:
         # Subdirectories should be created
         assert (docs_dir / "shared").is_dir()
         assert (docs_dir / "independent").is_dir()
-        assert (docs_dir / "_pending").is_dir()
 
     def test_load_creates_root_metadata_if_missing(self, manager, docs_dir):
         assert not (docs_dir / "_metadata.json").exists()
@@ -373,23 +381,20 @@ class TestSaveDocumentContent:
         manager.load()
         assert manager.save_document_content("nope", "en", "x", "alice") is False
 
-    def test_shared_edit_records_pending_change(self, manager, docs_dir):
+    def test_save_does_not_auto_log_attribution(self, manager, docs_dir):
+        """Attribution is logged by the browsing layer, not save_document_content."""
         _create_doc_on_disk(docs_dir, "shared_doc", scope="shared")
         manager.load()
 
         manager.save_document_content("shared_doc", "en", "updated content", "alice")
-        pending = manager.get_pending_changes()
-        assert len(pending) == 1
-        assert pending[0]["folder_name"] == "shared_doc"
-        assert pending[0]["editor"] == "alice"
-        assert pending[0]["change_type"] == "edit"
+        assert manager.get_attribution_log() == []
 
-    def test_independent_edit_does_not_record_pending(self, manager, docs_dir):
+    def test_independent_edit_does_not_log_attribution(self, manager, docs_dir):
         _create_doc_on_disk(docs_dir, "indie_doc", scope="independent")
         manager.load()
 
         manager.save_document_content("indie_doc", "en", "updated", "bob")
-        assert manager.get_pending_change_count() == 0
+        assert manager.get_attribution_log() == []
 
 
 # ------------------------------------------------------------------
@@ -675,69 +680,183 @@ class TestCategorySort:
 
 
 # ------------------------------------------------------------------
-# Changeset tracking
+# Attribution log
 # ------------------------------------------------------------------
 
 
-class TestChangesetTracking:
-    def test_pending_changes_initially_empty(self, manager):
+class TestAttributionLog:
+    """Attribution logging is used in manual mode only.
+
+    Attribution is now logged explicitly by the browsing layer (after the
+    commit-message editbox), so these tests call ``_log_attribution``
+    directly rather than expecting it to be triggered by save methods.
+    """
+
+    def test_attribution_initially_empty(self, manual_manager):
+        manual_manager.load()
+        assert manual_manager.get_attribution_log() == []
+
+    def test_log_attribution_edit(self, manual_manager, docs_dir):
+        _create_doc_on_disk(docs_dir, "tracked", scope="shared")
+        manual_manager.load()
+
+        manual_manager._log_attribution("tracked", "en", "alice", "edit", "fixed typo")
+        log = manual_manager.get_attribution_log()
+        assert len(log) == 1
+        assert log[0]["folder_name"] == "tracked"
+        assert log[0]["locale"] == "en"
+        assert log[0]["editor"] == "alice"
+        assert log[0]["change_type"] == "edit"
+        assert log[0]["message"] == "fixed typo"
+        assert "timestamp" in log[0]
+
+    def test_multiple_edits_accumulate(self, manual_manager, docs_dir):
+        _create_doc_on_disk(docs_dir, "multi_edit", scope="shared")
+        manual_manager.load()
+
+        manual_manager._log_attribution("multi_edit", "en", "alice", "edit")
+        manual_manager._log_attribution("multi_edit", "en", "bob", "edit")
+        log = manual_manager.get_attribution_log()
+        assert len(log) == 2
+        assert log[0]["editor"] == "alice"
+        assert log[1]["editor"] == "bob"
+
+    def test_clear_pending_changes_clears_attribution(self, manual_manager, docs_dir):
+        manual_manager.load()
+
+        manual_manager._log_attribution("clear_test", "en", "alice", "edit")
+        assert len(manual_manager.get_attribution_log()) == 1
+
+        manual_manager.clear_pending_changes()
+        assert manual_manager.get_attribution_log() == []
+
+    def test_translation_add_attribution(self, manual_manager, docs_dir):
+        manual_manager.load()
+
+        manual_manager._log_attribution("translatable", "fr", "bob", "translation_add")
+        log = manual_manager.get_attribution_log()
+        assert len(log) == 1
+        assert log[0]["change_type"] == "translation_add"
+        assert log[0]["locale"] == "fr"
+
+    def test_create_attribution(self, manual_manager, docs_dir):
+        manual_manager.load()
+
+        manual_manager._log_attribution("new_shared", "en", "alice", "create")
+        log = manual_manager.get_attribution_log()
+        assert len(log) == 1
+        assert log[0]["change_type"] == "create"
+
+    def test_auto_commit_mode_clear_is_noop(self, manager, docs_dir):
+        """clear_pending_changes is a no-op in auto_commit mode."""
+        manager.load()
+        # Shouldn't crash or create attribution file
+        manager.clear_pending_changes()
+        assert manager.get_attribution_log() == []
+
+
+# ------------------------------------------------------------------
+# Git-based change detection
+# ------------------------------------------------------------------
+
+
+def _git_run(cwd, *args):
+    """Run a git command in the given directory."""
+    subprocess.run(
+        ["git"] + list(args),
+        cwd=str(cwd),
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+
+
+@pytest.fixture
+def git_docs_dir(tmp_path):
+    """Create a documents directory inside an initialized git repo."""
+    repo = tmp_path / "repo"
+    repo.mkdir()
+    docs_dir = repo / "documents"
+    docs_dir.mkdir()
+
+    _git_run(repo, "init", "-b", "main")
+    _git_run(repo, "config", "user.email", "test@test.com")
+    _git_run(repo, "config", "user.name", "Test")
+
+    return docs_dir
+
+
+@pytest.fixture
+def git_manager(git_docs_dir):
+    """Manual-mode manager in a git repo (default for existing tests)."""
+    return DocumentManager(git_docs_dir, contribution_mode=MODE_MANUAL)
+
+
+@pytest.fixture
+def git_auto_manager(git_docs_dir):
+    """Auto-commit-mode manager in a git repo."""
+    return DocumentManager(git_docs_dir, contribution_mode=MODE_AUTO_COMMIT)
+
+
+class TestGitChangeDetection:
+    def test_no_changes_after_commit(self, git_manager, git_docs_dir):
+        _create_doc_on_disk(git_docs_dir, "committed", scope="shared")
+        git_manager.load()
+
+        repo = git_docs_dir.parent
+        _git_run(repo, "add", "-A")
+        _git_run(repo, "commit", "-m", "initial")
+
+        assert git_manager.get_pending_changes() == []
+        assert git_manager.get_pending_change_count() == 0
+
+    def test_modified_file_detected(self, git_manager, git_docs_dir):
+        _create_doc_on_disk(git_docs_dir, "tracked", scope="shared")
+        git_manager.load()
+
+        repo = git_docs_dir.parent
+        _git_run(repo, "add", "-A")
+        _git_run(repo, "commit", "-m", "initial")
+
+        # Now modify via manager
+        git_manager.save_document_content("tracked", "en", "changed", "alice")
+        changes = git_manager.get_pending_changes()
+        assert len(changes) >= 1
+        # Should include the .md file
+        md_paths = [p for p in changes if p.endswith("en.md")]
+        assert len(md_paths) == 1
+
+    def test_new_untracked_file_detected(self, git_manager, git_docs_dir):
+        _create_doc_on_disk(git_docs_dir, "existing", scope="shared")
+        git_manager.load()
+
+        repo = git_docs_dir.parent
+        _git_run(repo, "add", "-A")
+        _git_run(repo, "commit", "-m", "initial")
+
+        # Create new document via manager
+        git_manager.create_document("brand_new", [], "en", "New", "content", scope=SCOPE_SHARED)
+        changes = git_manager.get_pending_changes()
+        assert any("brand_new" in p for p in changes)
+
+    def test_metadata_change_detected(self, git_manager, git_docs_dir):
+        _create_doc_on_disk(git_docs_dir, "meta_test", scope="shared")
+        git_manager.load()
+
+        repo = git_docs_dir.parent
+        _git_run(repo, "add", "-A")
+        _git_run(repo, "commit", "-m", "initial")
+
+        # Change title (metadata only)
+        git_manager.set_document_title("meta_test", "en", "New Title")
+        changes = git_manager.get_pending_changes()
+        meta_paths = [p for p in changes if "_metadata.json" in p]
+        assert len(meta_paths) == 1
+
+    def test_no_git_repo_returns_empty(self, manager):
+        """Non-git directory returns empty changes gracefully."""
         manager.load()
         assert manager.get_pending_changes() == []
-        assert manager.get_pending_change_count() == 0
-
-    def test_edit_shared_records_change(self, manager, docs_dir):
-        _create_doc_on_disk(docs_dir, "tracked", scope="shared")
-        manager.load()
-
-        manager.save_document_content("tracked", "en", "new content", "alice")
-        changes = manager.get_pending_changes()
-        assert len(changes) == 1
-        assert changes[0]["folder_name"] == "tracked"
-        assert changes[0]["locale"] == "en"
-        assert changes[0]["editor"] == "alice"
-        assert changes[0]["change_type"] == "edit"
-        assert "timestamp" in changes[0]
-
-    def test_pending_content_copy_exists(self, manager, docs_dir):
-        _create_doc_on_disk(docs_dir, "tracked", scope="shared")
-        manager.load()
-
-        manager.save_document_content("tracked", "en", "changed text", "bob")
-        pending_file = docs_dir / "_pending" / "changes" / "tracked" / "en.md"
-        assert pending_file.exists()
-        assert pending_file.read_text(encoding="utf-8") == "changed text"
-
-    def test_multiple_edits_same_file_latest_wins(self, manager, docs_dir):
-        _create_doc_on_disk(docs_dir, "multi_edit", scope="shared")
-        manager.load()
-
-        manager.save_document_content("multi_edit", "en", "v1", "alice")
-        manager.save_document_content("multi_edit", "en", "v2", "bob")
-        changes = manager.get_pending_changes()
-        # Only one entry for same folder+locale (latest wins)
-        assert len(changes) == 1
-        assert changes[0]["editor"] == "bob"
-
-    def test_clear_pending_changes(self, manager, docs_dir):
-        _create_doc_on_disk(docs_dir, "clear_test", scope="shared")
-        manager.load()
-
-        manager.save_document_content("clear_test", "en", "changed", "alice")
-        assert manager.get_pending_change_count() == 1
-
-        manager.clear_pending_changes()
-        assert manager.get_pending_change_count() == 0
-        assert not (docs_dir / "_pending" / "changes").exists()
-
-    def test_add_translation_records_pending(self, manager, docs_dir):
-        _create_doc_on_disk(docs_dir, "translatable", scope="shared")
-        manager.load()
-
-        manager.add_document_translation("translatable", "fr", "Mon Doc", "contenu")
-        changes = manager.get_pending_changes()
-        assert len(changes) == 1
-        assert changes[0]["change_type"] == "translation_add"
-        assert changes[0]["locale"] == "fr"
 
 
 # ------------------------------------------------------------------
@@ -746,50 +865,67 @@ class TestChangesetTracking:
 
 
 class TestExport:
-    def test_export_creates_zip(self, manager, docs_dir, tmp_path):
-        _create_doc_on_disk(docs_dir, "exportable", scope="shared")
-        manager.load()
-        manager.save_document_content("exportable", "en", "exported text", "alice")
+    """Export is manual-mode only."""
+
+    def test_export_creates_zip(self, git_manager, git_docs_dir, tmp_path):
+        _create_doc_on_disk(git_docs_dir, "exportable", scope="shared")
+        git_manager.load()
+
+        repo = git_docs_dir.parent
+        _git_run(repo, "add", "-A")
+        _git_run(repo, "commit", "-m", "initial")
+
+        git_manager.save_document_content("exportable", "en", "exported text", "alice")
+        # Simulate browsing layer logging attribution (manual mode)
+        git_manager._log_attribution("exportable", "en", "alice", "edit", "test edit")
 
         output = tmp_path / "export.zip"
-        count = manager.export_pending_changes(output)
-        assert count == 1
+        count = git_manager.export_pending_changes(output)
+        assert count >= 1
         assert output.exists()
 
         with zipfile.ZipFile(output, "r") as zf:
             names = zf.namelist()
-            assert "shared/exportable/en.md" in names
+            md_entries = [n for n in names if n.endswith("en.md")]
+            assert len(md_entries) >= 1
             assert "attribution.json" in names
-
-            content = zf.read("shared/exportable/en.md").decode("utf-8")
-            assert content == "exported text"
 
             attr = json.loads(zf.read("attribution.json"))
             assert len(attr["changes"]) == 1
             assert attr["changes"][0]["editor"] == "alice"
 
-    def test_export_empty_returns_zero(self, manager, tmp_path):
-        manager.load()
+    def test_export_empty_returns_zero(self, git_manager, git_docs_dir, tmp_path):
+        git_manager.load()
+
+        repo = git_docs_dir.parent
+        _git_run(repo, "add", "-A")
+        _git_run(repo, "commit", "-m", "initial")
+
         output = tmp_path / "empty.zip"
-        count = manager.export_pending_changes(output)
+        count = git_manager.export_pending_changes(output)
         assert count == 0
         assert not output.exists()
 
-    def test_export_multiple_changes(self, manager, docs_dir, tmp_path):
-        _create_doc_on_disk(docs_dir, "doc_a", scope="shared")
-        _create_doc_on_disk(docs_dir, "doc_b", scope="shared")
-        manager.load()
+    def test_export_multiple_changes(self, git_manager, git_docs_dir, tmp_path):
+        _create_doc_on_disk(git_docs_dir, "doc_a", scope="shared")
+        _create_doc_on_disk(git_docs_dir, "doc_b", scope="shared")
+        git_manager.load()
 
-        manager.save_document_content("doc_a", "en", "a content", "alice")
-        manager.save_document_content("doc_b", "en", "b content", "bob")
+        repo = git_docs_dir.parent
+        _git_run(repo, "add", "-A")
+        _git_run(repo, "commit", "-m", "initial")
+
+        git_manager.save_document_content("doc_a", "en", "a content", "alice")
+        git_manager.save_document_content("doc_b", "en", "b content", "bob")
 
         output = tmp_path / "multi.zip"
-        count = manager.export_pending_changes(output)
-        assert count == 2
+        count = git_manager.export_pending_changes(output)
+        assert count >= 2
 
         with zipfile.ZipFile(output, "r") as zf:
-            assert "shared/doc_a/en.md" in zf.namelist()
-            assert "shared/doc_b/en.md" in zf.namelist()
+            names = zf.namelist()
+            assert any("doc_a" in n for n in names)
+            assert any("doc_b" in n for n in names)
 
 
 # ------------------------------------------------------------------
@@ -915,3 +1051,184 @@ class TestDeleteDocument:
     def test_delete_nonexistent_fails(self, manager):
         manager.load()
         assert manager.delete_document("nope") is False
+
+
+# ------------------------------------------------------------------
+# Auto-commit mode
+# ------------------------------------------------------------------
+
+
+class TestAutoCommit:
+    """Tests for commit_changes() in auto_commit mode."""
+
+    def test_commit_creates_git_commit(self, git_auto_manager, git_docs_dir):
+        _create_doc_on_disk(git_docs_dir, "autotest", scope="shared")
+        git_auto_manager.load()
+
+        repo = git_docs_dir.parent
+        _git_run(repo, "add", "-A")
+        _git_run(repo, "commit", "-m", "initial")
+
+        git_auto_manager.save_document_content("autotest", "en", "updated", "alice")
+
+        success, error = git_auto_manager.commit_changes(
+            "autotest", "en", "alice", "Fixed typo in autotest"
+        )
+        assert success is True
+        assert error == ""
+
+        # Verify the git log has our commit
+        result = subprocess.run(
+            ["git", "log", "--oneline", "-1"],
+            cwd=str(repo),
+            capture_output=True,
+            text=True,
+        )
+        assert "Fixed typo in autotest" in result.stdout
+
+    def test_commit_uses_default_message_when_empty(self, git_auto_manager, git_docs_dir):
+        _create_doc_on_disk(git_docs_dir, "defmsg", scope="shared")
+        git_auto_manager.load()
+
+        repo = git_docs_dir.parent
+        _git_run(repo, "add", "-A")
+        _git_run(repo, "commit", "-m", "initial")
+
+        git_auto_manager.save_document_content("defmsg", "en", "changed", "bob")
+
+        success, _ = git_auto_manager.commit_changes("defmsg", "en", "bob", "")
+        assert success is True
+
+        result = subprocess.run(
+            ["git", "log", "--oneline", "-1"],
+            cwd=str(repo),
+            capture_output=True,
+            text=True,
+        )
+        assert "Update defmsg/en" in result.stdout
+
+    def test_commit_sets_author(self, git_auto_manager, git_docs_dir):
+        _create_doc_on_disk(git_docs_dir, "authored", scope="shared")
+        git_auto_manager.load()
+
+        repo = git_docs_dir.parent
+        _git_run(repo, "add", "-A")
+        _git_run(repo, "commit", "-m", "initial")
+
+        git_auto_manager.save_document_content("authored", "en", "new text", "charlie")
+        git_auto_manager.commit_changes("authored", "en", "charlie", "test")
+
+        result = subprocess.run(
+            ["git", "log", "-1", "--format=%an <%ae>"],
+            cwd=str(repo),
+            capture_output=True,
+            text=True,
+        )
+        assert "charlie" in result.stdout
+        assert "noreply@playpalace" in result.stdout
+
+    def test_commit_nothing_to_commit_is_ok(self, git_auto_manager, git_docs_dir):
+        _create_doc_on_disk(git_docs_dir, "nochange", scope="shared")
+        git_auto_manager.load()
+
+        repo = git_docs_dir.parent
+        _git_run(repo, "add", "-A")
+        _git_run(repo, "commit", "-m", "initial")
+
+        # Don't modify anything — commit should succeed (nothing to commit)
+        success, _ = git_auto_manager.commit_changes("nochange", "en", "alice", "noop")
+        assert success is True
+
+    def test_commit_rejected_in_manual_mode(self, git_manager, git_docs_dir):
+        git_manager.load()
+        success, error = git_manager.commit_changes("any", "en", "alice", "msg")
+        assert success is False
+        assert "manual mode" in error.lower()
+
+    def test_commit_nonexistent_document(self, git_auto_manager, git_docs_dir):
+        git_auto_manager.load()
+        repo = git_docs_dir.parent
+        _git_run(repo, "add", "-A")
+        _git_run(repo, "commit", "-m", "initial")
+
+        success, error = git_auto_manager.commit_changes("ghost", "en", "alice", "msg")
+        assert success is False
+        assert "not found" in error.lower()
+
+
+# ------------------------------------------------------------------
+# Pending detection in auto modes
+# ------------------------------------------------------------------
+
+
+class TestPendingDetectionAutoMode:
+    """In auto modes, pending changes are commits ahead of origin/main."""
+
+    def test_no_commits_ahead(self, git_auto_manager, git_docs_dir):
+        """With no remote, get_commits_ahead returns empty."""
+        git_auto_manager.load()
+        repo = git_docs_dir.parent
+        _git_run(repo, "add", "-A")
+        _git_run(repo, "commit", "-m", "initial")
+
+        # No origin remote configured, so git log origin/main..HEAD will fail
+        changes = git_auto_manager.get_pending_changes()
+        assert changes == []
+
+    def test_commits_ahead_detected(self, git_auto_manager, git_docs_dir, tmp_path):
+        """Commits ahead of origin/main are detected as pending."""
+        repo = git_docs_dir.parent
+
+        # Set up a bare remote so we have an origin/main
+        bare = tmp_path / "bare.git"
+        subprocess.run(
+            ["git", "init", "--bare", str(bare)],
+            capture_output=True,
+            check=True,
+        )
+        _git_run(repo, "remote", "add", "origin", str(bare))
+
+        _create_doc_on_disk(git_docs_dir, "remote_test", scope="shared")
+        git_auto_manager.load()
+        _git_run(repo, "add", "-A")
+        _git_run(repo, "commit", "-m", "initial")
+        _git_run(repo, "push", "-u", "origin", "main")
+
+        # Now make a local commit
+        git_auto_manager.save_document_content("remote_test", "en", "v2", "alice")
+        git_auto_manager.commit_changes("remote_test", "en", "alice", "local change")
+
+        changes = git_auto_manager.get_pending_changes()
+        assert len(changes) == 1
+        assert "local change" in changes[0]
+
+    def test_manual_mode_uses_diff(self, git_manager, git_docs_dir):
+        """Manual mode uses git diff, not git log."""
+        _create_doc_on_disk(git_docs_dir, "manual_test", scope="shared")
+        git_manager.load()
+
+        repo = git_docs_dir.parent
+        _git_run(repo, "add", "-A")
+        _git_run(repo, "commit", "-m", "initial")
+
+        git_manager.save_document_content("manual_test", "en", "edited", "alice")
+        changes = git_manager.get_pending_changes()
+        # Should be file paths, not commit messages
+        assert any("en.md" in c for c in changes)
+
+
+# ------------------------------------------------------------------
+# Contribution mode property
+# ------------------------------------------------------------------
+
+
+class TestContributionMode:
+    def test_default_mode_is_auto_commit(self, manager):
+        assert manager.contribution_mode == MODE_AUTO_COMMIT
+
+    def test_manual_mode(self, manual_manager):
+        assert manual_manager.contribution_mode == MODE_MANUAL
+
+    def test_mode_can_be_changed(self, manager):
+        manager.contribution_mode = MODE_AUTO_PR
+        assert manager.contribution_mode == MODE_AUTO_PR
