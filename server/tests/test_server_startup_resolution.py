@@ -129,6 +129,18 @@ async def test_run_server_port_param_overrides_config(server_env):
     assert captured["port"] == 7777
 
 
+@pytest.mark.parametrize("bad_port", [-1, 0, 70000, "not_a_port"])
+async def test_run_server_invalid_port_in_config_falls_back(server_env, caplog, bad_port):
+    write_config, captured = server_env
+    if isinstance(bad_port, str):
+        write_config(f'[server]\nport = "{bad_port}"\n')
+    else:
+        write_config(f"[server]\nport = {bad_port}\n")
+    with caplog.at_level(logging.WARNING, logger="playpalace.server"):
+        await core_server.run_server(port=None)
+    assert captured["port"] == 8000
+
+
 # ---------------------------------------------------------------------------
 # SSL resolution
 # ---------------------------------------------------------------------------

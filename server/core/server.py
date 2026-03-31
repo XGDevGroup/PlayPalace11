@@ -4530,8 +4530,14 @@ def _resolve_port(port: int | None, config_path: Path) -> int:
         return port
     server_config = load_server_config(config_path)
     cfg_port = server_config.get("port")
-    if isinstance(cfg_port, int) and cfg_port > 0:
+    if isinstance(cfg_port, int) and 1 <= cfg_port <= 65535:
         return cfg_port
+    if cfg_port is not None:
+        LOG.warning(
+            "Invalid port %r in config.toml [server].port (must be 1–65535). "
+            "Falling back to 8000.",
+            cfg_port,
+        )
     return 8000
 
 
