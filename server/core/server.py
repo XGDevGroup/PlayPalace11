@@ -30,6 +30,7 @@ from .config_paths import (
     get_default_config_path,
     get_example_config_path,
     ensure_default_config_dir,
+    load_full_config,
 )
 from .state import ModeSnapshot, ServerLifecycleState, ServerMode
 from .tick import TickScheduler, load_server_config
@@ -4547,11 +4548,15 @@ def _resolve_ssl(
     """
     if ssl_cert is not None or ssl_key is not None:
         return ssl_cert, ssl_key
-    from .config_paths import load_full_config
     cfg = load_full_config(config_path)
     net_cfg = cfg.get("network", {})
     cfg_cert = net_cfg.get("ssl_cert")
     cfg_key = net_cfg.get("ssl_key")
     if cfg_cert and cfg_key:
         return cfg_cert, cfg_key
+    if bool(cfg_cert) != bool(cfg_key):
+        LOG.warning(
+            "SSL misconfiguration in config.toml: both [network].ssl_cert and "
+            "[network].ssl_key must be set together. SSL will not be enabled."
+        )
     return None, None
