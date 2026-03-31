@@ -9,7 +9,14 @@ from ..users.network_user import NetworkUser
 from ..users.base import MenuItem, EscapeBehavior, TrustLevel
 from ...messages.localization import Localization
 from server.core.ui.common_flows import show_yes_no_menu
-from .manager import DocumentManager, SCOPE_SHARED, SCOPE_INDEPENDENT
+from .manager import (
+    DocumentManager,
+    SCOPE_SHARED,
+    SCOPE_INDEPENDENT,
+    MODE_MANUAL,
+    MODE_AUTO_COMMIT,
+    MODE_AUTO_PR,
+)
 
 if TYPE_CHECKING:
     from ...persistence.database import Database
@@ -90,6 +97,10 @@ class DocumentBrowsingMixin:
                 self._handle_add_translation_lang_selection,
                 (user, selection_id, state),
             ),
+            "new_document_scope_menu": (
+                self._handle_new_document_scope_selection,
+                (user, selection_id, state),
+            ),
             "new_document_categories_menu": (
                 self._handle_new_document_categories_selection,
                 (user, selection_id, state),
@@ -150,6 +161,11 @@ class DocumentBrowsingMixin:
         if current_menu == "rename_category_editbox":
             text = packet.get("text", "")
             self._handle_rename_category(user, text, state)
+            return True
+
+        if current_menu == "commit_message_editbox":
+            text = packet.get("text", "")
+            self._handle_commit_message(user, text, state)
             return True
 
         return False
@@ -234,7 +250,7 @@ class DocumentBrowsingMixin:
                     id="new_category",
                 )
             )
-            # Sync and export admin actions
+            # Sync and export/pending admin actions
             items.append(
                 MenuItem(
                     text=Localization.get(user.locale, "documents-sync"),
@@ -242,12 +258,29 @@ class DocumentBrowsingMixin:
                 )
             )
             pending_count = self._documents.get_pending_change_count()
-            export_label = Localization.get(
-                user.locale,
-                "documents-export-pending",
-                count=str(pending_count),
-            )
-            items.append(MenuItem(text=export_label, id="export_pending"))
+            mode = self._documents.contribution_mode
+            if mode == MODE_MANUAL:
+                pending_label = Localization.get(
+                    user.locale,
+                    "documents-export-pending",
+                    count=str(pending_count),
+                )
+                items.append(MenuItem(text=pending_label, id="export_pending"))
+            elif mode == MODE_AUTO_PR:
+                pending_label = Localization.get(
+                    user.locale,
+                    "documents-pr-button",
+                    count=str(pending_count),
+                )
+                items.append(MenuItem(text=pending_label, id="create_pr"))
+            else:
+                # auto_commit — informational button
+                pending_label = Localization.get(
+                    user.locale,
+                    "documents-pending-commits-button",
+                    count=str(pending_count),
+                )
+                items.append(MenuItem(text=pending_label, id="pending_info"))
         items.append(
             MenuItem(
                 text=Localization.get(user.locale, "transcribers-by-language"),
@@ -280,13 +313,17 @@ class DocumentBrowsingMixin:
         elif selection_id == "uncategorized":
             self._show_documents_list(user, "")
         elif selection_id == "new_document":
-            self._show_new_document_categories(user)
+            self._show_new_document_scope(user)
         elif selection_id == "new_category":
             self._show_new_category_slug_editbox(user)
         elif selection_id == "sync_documents":
             await self._handle_sync_documents(user)
         elif selection_id == "export_pending":
             await self._handle_export_pending(user)
+        elif selection_id == "create_pr":
+            await self._handle_create_pr(user)
+        elif selection_id == "pending_info":
+            self._handle_pending_info(user)
         elif selection_id == "transcribers_by_language":
             self._show_transcribers_by_language(user)
         elif selection_id == "transcribers_by_user":
@@ -334,6 +371,30 @@ class DocumentBrowsingMixin:
             self._documents.clear_pending_changes()
         else:
             user.speak_l("documents-export-no-changes")
+        self._show_documents_menu(user)
+
+    async def _handle_create_pr(self, user: NetworkUser) -> None:
+        """Create a pull request from pending commits (auto_pr mode)."""
+        pending_count = self._documents.get_pending_change_count()
+        if pending_count == 0:
+            user.speak_l("documents-pr-no-commits")
+            self._show_documents_menu(user)
+            return
+
+        success, result = self._documents.create_pull_request()
+        if success:
+            user.speak_l("documents-pr-success", url=result)
+        else:
+            user.speak_l("documents-pr-failed", reason=result)
+        self._show_documents_menu(user)
+
+    def _handle_pending_info(self, user: NetworkUser) -> None:
+        """Show informational message about pending commits (auto_commit mode)."""
+        pending_count = self._documents.get_pending_change_count()
+        user.speak_l(
+            "documents-pending-commits-info",
+            count=str(pending_count),
+        )
         self._show_documents_menu(user)
 
     def _show_documents_list(self, user: NetworkUser, category_slug: str | None) -> None:
@@ -1371,6 +1432,7 @@ class DocumentBrowsingMixin:
             "locale_code": locale_code,
             "category_slug": state.get("category_slug"),
             "selected_categories": state.get("selected_categories", []),
+            "new_document_scope": state.get("new_document_scope", SCOPE_INDEPENDENT),
             "flow": flow,
             "pending_title": pending_title,
             "dialog_id": dialog_id,
@@ -1399,14 +1461,21 @@ class DocumentBrowsingMixin:
                 content = packet.get("content", "")
                 pending_title = state.get("pending_title", "")
                 selected_categories = state.get("selected_categories", [])
+                scope = state.get("new_document_scope", SCOPE_INDEPENDENT)
                 self._documents.create_document(
                     folder_name,
                     selected_categories,
                     locale_code,
                     pending_title,
                     content,
+                    scope=scope,
                 )
                 user.speak_l("documents-document-created")
+                if scope == SCOPE_SHARED:
+                    self._show_commit_message_editbox(
+                        user, folder_name, locale_code, flow,
+                    )
+                    return
             self._show_documents_menu(user)
             return
 
@@ -1417,6 +1486,9 @@ class DocumentBrowsingMixin:
 
         if action == "save" and meta is not None:
             content = packet.get("content", "")
+            is_shared = (
+                self._documents.get_document_scope(folder_name) == SCOPE_SHARED
+            )
             if flow == "add_translation":
                 pending_title = state.get("pending_title", "")
                 self._documents.add_document_translation(
@@ -1449,6 +1521,13 @@ class DocumentBrowsingMixin:
                     f"language-{locale_code}",
                 )
                 user.speak_l("documents-content-saved", language=lang_name)
+
+            # Chain to commit message editbox for shared documents
+            if is_shared:
+                self._show_commit_message_editbox(
+                    user, folder_name, locale_code, flow,
+                )
+                return
         else:
             # Cancel — release lock (safe even if already cleared)
             self._documents.release_edit_lock(
@@ -1467,8 +1546,116 @@ class DocumentBrowsingMixin:
             self._show_document_actions(user, folder_name, state)
 
     # ------------------------------------------------------------------
+    # Commit message (shared document saves)
+    # ------------------------------------------------------------------
+
+    def _show_commit_message_editbox(
+        self,
+        user: NetworkUser,
+        folder_name: str,
+        locale_code: str,
+        flow: str,
+    ) -> None:
+        """Show an editbox prompting for a commit/change description.
+
+        Displayed after every save to a shared document, regardless of
+        contribution mode.  The text entered is used differently per mode:
+        manual stores it in the attribution log; auto modes pass it as
+        the git commit message.
+        """
+        prompt = Localization.get(
+            user.locale, "documents-commit-message-prompt",
+        )
+        user.show_editbox("commit_message_editbox", prompt)
+        self._user_states[user.username] = {
+            "menu": "commit_message_editbox",
+            "folder_name": folder_name,
+            "locale_code": locale_code,
+            "flow": flow,
+        }
+
+    def _handle_commit_message(
+        self, user: NetworkUser, text: str, state: dict
+    ) -> None:
+        """Process the commit message after a shared document save."""
+        folder_name = state.get("folder_name", "")
+        locale_code = state.get("locale_code", "")
+        flow = state.get("flow", "edit")
+        message = text.strip()
+
+        mode = self._documents.contribution_mode
+
+        if mode == MODE_MANUAL:
+            # Determine change type from the flow
+            if flow == "new_document":
+                change_type = "create"
+            elif flow == "add_translation":
+                change_type = "translation_add"
+            else:
+                change_type = "edit"
+            self._documents._log_attribution(
+                folder_name, locale_code, user.username, change_type, message,
+            )
+        else:
+            # auto_commit / auto_pr — commit the staged changes
+            success, error = self._documents.commit_changes(
+                folder_name, locale_code, user.username, message,
+            )
+            if success:
+                user.speak_l("documents-commit-success")
+            else:
+                user.speak_l("documents-commit-failed", reason=error)
+
+        # Return to the appropriate menu
+        if flow == "new_document":
+            self._show_documents_menu(user)
+        elif flow == "add_translation":
+            self._show_document_settings(user, folder_name, state)
+        else:
+            self._show_document_actions(user, folder_name, state)
+
+    # ------------------------------------------------------------------
     # New document creation
     # ------------------------------------------------------------------
+
+    def _show_new_document_scope(self, user: NetworkUser) -> None:
+        """Show scope selection menu for a new document."""
+        items = [
+            MenuItem(
+                text=Localization.get(user.locale, "documents-scope-shared"),
+                id="shared",
+            ),
+            MenuItem(
+                text=Localization.get(user.locale, "documents-scope-independent"),
+                id="independent",
+            ),
+            MenuItem(
+                text=Localization.get(user.locale, "back"),
+                id="back",
+            ),
+        ]
+        user.speak_l("documents-scope-prompt")
+        user.show_menu(
+            "new_document_scope_menu",
+            items,
+            multiletter=True,
+            escape_behavior=EscapeBehavior.SELECT_LAST,
+        )
+        self._user_states[user.username] = {"menu": "new_document_scope_menu"}
+
+    async def _handle_new_document_scope_selection(
+        self, user: NetworkUser, selection_id: str, state: dict
+    ) -> None:
+        """Handle scope selection for new document creation."""
+        if selection_id == "back":
+            self._show_documents_menu(user)
+            return
+        scope = SCOPE_SHARED if selection_id == "shared" else SCOPE_INDEPENDENT
+        self._user_states[user.username] = {
+            "menu": "new_document_scope_menu",
+            "new_document_scope": scope,
+        }
+        self._show_new_document_categories(user)
 
     def _show_new_document_categories(
         self,
@@ -1480,13 +1667,17 @@ class DocumentBrowsingMixin:
         If there are no categories, skips straight to the title editbox.
         """
         state = self._user_states.get(user.username, {})
+        scope = state.get("new_document_scope", SCOPE_INDEPENDENT)
         selected = set(state.get("selected_categories", []))
 
         all_cats = self._documents.get_categories(user.locale)
 
         # No categories — skip straight to slug.
         if not all_cats:
-            new_state = {"selected_categories": []}
+            new_state = {
+                "selected_categories": [],
+                "new_document_scope": scope,
+            }
             self._show_new_document_slug_editbox(user, new_state)
             return
 
@@ -1524,6 +1715,7 @@ class DocumentBrowsingMixin:
         self._user_states[user.username] = {
             "menu": "new_document_categories_menu",
             "selected_categories": list(selected),
+            "new_document_scope": scope,
         }
 
     async def _handle_new_document_categories_selection(
@@ -1557,6 +1749,7 @@ class DocumentBrowsingMixin:
         self._user_states[user.username] = {
             "menu": "new_document_slug_editbox",
             "selected_categories": state.get("selected_categories", []),
+            "new_document_scope": state.get("new_document_scope", SCOPE_INDEPENDENT),
         }
 
     def _handle_new_document_slug(self, user: NetworkUser, value: str, state: dict) -> None:
@@ -1589,6 +1782,7 @@ class DocumentBrowsingMixin:
             "folder_name": slug,
             "locale_code": user.locale,
             "selected_categories": state.get("selected_categories", []),
+            "new_document_scope": state.get("new_document_scope", SCOPE_INDEPENDENT),
             "flow": "new_document",
         }
 
