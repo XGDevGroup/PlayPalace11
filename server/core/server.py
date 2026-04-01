@@ -1455,10 +1455,11 @@ class Server(AdministrationMixin, DocumentBrowsingMixin, TranscriberRoleMixin):
             if needs_approval:
                 self._notify_admins("account-request", "accountrequest.ogg")
         else:
+            error_message = Localization.get(locale, "username-taken")
             await client.send(
                 {
                     "type": "speak",
-                    "text": "Username already taken. Please choose a different username.",
+                    "text": error_message,
                     "buffer": "activity",
                 }
             )
