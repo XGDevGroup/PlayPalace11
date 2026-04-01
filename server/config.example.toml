@@ -4,7 +4,7 @@
 [auth]
 # Auto-approve new accounts (skip admin approval step)
 auto_approve_new_accounts = false
-#block new accounts
+# block new accounts
 block_new_accounts = false
 # These limits are enforced during both login and registration.
 username_min_length = 3
