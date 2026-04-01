@@ -1028,9 +1028,12 @@ class DocumentManager:
 
         try:
             if self.contribution_mode != MODE_MANUAL:
-                # Auto modes: rebase local commits on top of upstream
+                # Auto modes: rebase local commits on top of upstream.
+                # --autostash lets git atomically stash/restore any dirty
+                # working-tree state so the rebase can proceed even when
+                # unrelated files in the repo have uncommitted changes.
                 result = subprocess.run(
-                    ["git", "pull", "--rebase", "origin", "main"],
+                    ["git", "pull", "--rebase", "--autostash", "origin", "main"],
                     cwd=str(repo_root),
                     capture_output=True,
                     text=True,

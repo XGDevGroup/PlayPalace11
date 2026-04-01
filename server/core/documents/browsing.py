@@ -1566,7 +1566,7 @@ class DocumentBrowsingMixin:
         prompt = Localization.get(
             user.locale, "documents-commit-message-prompt",
         )
-        user.show_editbox("commit_message_editbox", prompt)
+        user.show_editbox("commit_message_editbox", prompt, multiline = True)
         self._user_states[user.username] = {
             "menu": "commit_message_editbox",
             "folder_name": folder_name,
