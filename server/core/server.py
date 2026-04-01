@@ -1440,7 +1440,7 @@ class Server(AdministrationMixin, DocumentBrowsingMixin, TranscriberRoleMixin):
             block_new_accounts=self._block_new_accounts,
             locale=locale,
         ):
-            if not approval:
+            if not self._auto_approve_new_accounts:
                 approval_message = Localization.get(locale, "approval_needed")
             else:
                 approval_message = Localization.get(locale, "account-approved-welcome")
