@@ -307,13 +307,13 @@ account-approved-welcome = Your account has been approved! Welcome to PlayPalace
 account-declined-goodbye = Your account request has been declined.
     Reason:
 account-banned = Your account is banned and cannot be accessed.
-
 # Login errors
 incorrect-username = The username you entered does not exist.
 incorrect-password = The password you entered is incorrect.
 already-logged-in = This account is already logged in.
 accounts-blocked = Sorry, registration is currently disabled. Only administrators or the server owner can create accounts at this time. Check back later!
 needs-approval = Registration successful! Your account is awaiting approval by an administrator
+username-taken = Username already taken. Please choose a different username.
 
 # Decline reason
 decline-reason-prompt = Enter a reason for declining (or press Escape to cancel):
