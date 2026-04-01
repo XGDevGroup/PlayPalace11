@@ -1441,7 +1441,7 @@ class Server(AdministrationMixin, DocumentBrowsingMixin, TranscriberRoleMixin):
             locale=locale,
         ):
             if not self._auto_approve_new_accounts:
-                approval_message = Localization.get(locale, "approval_needed")
+                approval_message = Localization.get(locale, "approval-needed")
             else:
                 approval_message = Localization.get(locale, "account-approved-welcome")
             await client.send(
