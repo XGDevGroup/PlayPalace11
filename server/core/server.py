@@ -1400,6 +1400,7 @@ class Server(AdministrationMixin, DocumentBrowsingMixin, TranscriberRoleMixin):
             packet: Incoming register payload.
         """
 
+        locale = packet.get("locale") or self._default_locale
         if self._block_new_accounts:
             error_message = Localization.get(locale, "accounts-blocked")
             await client.send({"type": "play_sound", "name": "accounterror.ogg"})
@@ -1417,7 +1418,6 @@ class Server(AdministrationMixin, DocumentBrowsingMixin, TranscriberRoleMixin):
         username_raw = packet.get("username", "")
         password_raw = packet.get("password", "")
         # email and bio are sent but not stored yet
-        locale = packet.get("locale") or self._default_locale
 
         username, password, error = self._validate_credentials(username_raw, password_raw)
         if error:
