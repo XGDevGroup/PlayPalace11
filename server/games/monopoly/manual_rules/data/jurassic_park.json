@@ -2,7 +2,7 @@
   "board_id": "jurassic_park",
   "anchor_edition_id": "monopoly-f1662",
   "board": {
-    "note": "Property names use classic Monopoly placeholders. Actual Jurassic Park board space names require Title Deed card photos to transcribe accurately.",
+    "note": "Property names themed after dinosaur species and locations from the Jurassic Park franchise.",
     "spaces": [
       {
         "position": 0,
@@ -21,8 +21,8 @@
       },
       {
         "position": 1,
-        "space_id": "mediterranean_avenue",
-        "name": "Mediterranean Avenue",
+        "space_id": "compsognathus_pen",
+        "name": "Compsognathus Pen",
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 60,
@@ -31,7 +31,10 @@
         "house_cost": 0,
         "fence_cost": 50,
         "repair_cost": 25,
-        "rents": [2, 10],
+        "rents": [
+          2,
+          10
+        ],
         "fenced_rent": 10
       },
       {
@@ -51,8 +54,8 @@
       },
       {
         "position": 3,
-        "space_id": "baltic_avenue",
-        "name": "Baltic Avenue",
+        "space_id": "dilophosaurus_paddock",
+        "name": "Dilophosaurus Paddock",
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 60,
@@ -61,7 +64,10 @@
         "house_cost": 0,
         "fence_cost": 50,
         "repair_cost": 25,
-        "rents": [4, 20],
+        "rents": [
+          4,
+          20
+        ],
         "fenced_rent": 20
       },
       {
@@ -92,13 +98,18 @@
         "house_cost": 0,
         "fence_cost": 0,
         "repair_cost": 100,
-        "rents": [25, 50, 100, 200],
+        "rents": [
+          25,
+          50,
+          100,
+          200
+        ],
         "fenced_rent": 0
       },
       {
         "position": 6,
-        "space_id": "oriental_avenue",
-        "name": "Oriental Avenue",
+        "space_id": "gallimimus_valley",
+        "name": "Gallimimus Valley",
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 100,
@@ -107,7 +118,10 @@
         "house_cost": 0,
         "fence_cost": 50,
         "repair_cost": 50,
-        "rents": [6, 30],
+        "rents": [
+          6,
+          30
+        ],
         "fenced_rent": 30
       },
       {
@@ -127,8 +141,8 @@
       },
       {
         "position": 8,
-        "space_id": "vermont_avenue",
-        "name": "Vermont Avenue",
+        "space_id": "parasaurolophus_creek",
+        "name": "Parasaurolophus Creek",
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 100,
@@ -137,13 +151,16 @@
         "house_cost": 0,
         "fence_cost": 50,
         "repair_cost": 50,
-        "rents": [6, 30],
+        "rents": [
+          6,
+          30
+        ],
         "fenced_rent": 30
       },
       {
         "position": 9,
-        "space_id": "connecticut_avenue",
-        "name": "Connecticut Avenue",
+        "space_id": "corythosaurus_clearing",
+        "name": "Corythosaurus Clearing",
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 120,
@@ -152,7 +169,10 @@
         "house_cost": 0,
         "fence_cost": 50,
         "repair_cost": 50,
-        "rents": [8, 40],
+        "rents": [
+          8,
+          40
+        ],
         "fenced_rent": 40
       },
       {
@@ -172,8 +192,8 @@
       },
       {
         "position": 11,
-        "space_id": "st_charles_place",
-        "name": "St. Charles Place",
+        "space_id": "triceratops_paddock",
+        "name": "Triceratops Paddock",
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 140,
@@ -182,7 +202,10 @@
         "house_cost": 0,
         "fence_cost": 100,
         "repair_cost": 70,
-        "rents": [10, 50],
+        "rents": [
+          10,
+          50
+        ],
         "fenced_rent": 50
       },
       {
@@ -204,8 +227,8 @@
       },
       {
         "position": 13,
-        "space_id": "states_avenue",
-        "name": "States Avenue",
+        "space_id": "pachycephalosaurus_pen",
+        "name": "Pachycephalosaurus Pen",
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 140,
@@ -214,13 +237,16 @@
         "house_cost": 0,
         "fence_cost": 100,
         "repair_cost": 70,
-        "rents": [10, 50],
+        "rents": [
+          10,
+          50
+        ],
         "fenced_rent": 50
       },
       {
         "position": 14,
-        "space_id": "virginia_avenue",
-        "name": "Virginia Avenue",
+        "space_id": "stegosaurus_grove",
+        "name": "Stegosaurus Grove",
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 160,
@@ -229,7 +255,10 @@
         "house_cost": 0,
         "fence_cost": 100,
         "repair_cost": 80,
-        "rents": [12, 60],
+        "rents": [
+          12,
+          60
+        ],
         "fenced_rent": 60
       },
       {
@@ -244,13 +273,18 @@
         "house_cost": 0,
         "fence_cost": 0,
         "repair_cost": 100,
-        "rents": [25, 50, 100, 200],
+        "rents": [
+          25,
+          50,
+          100,
+          200
+        ],
         "fenced_rent": 0
       },
       {
         "position": 16,
-        "space_id": "st_james_place",
-        "name": "St. James Place",
+        "space_id": "brachiosaurus_enclosure",
+        "name": "Brachiosaurus Enclosure",
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 180,
@@ -259,7 +293,10 @@
         "house_cost": 0,
         "fence_cost": 100,
         "repair_cost": 90,
-        "rents": [14, 70],
+        "rents": [
+          14,
+          70
+        ],
         "fenced_rent": 70
       },
       {
@@ -279,8 +316,8 @@
       },
       {
         "position": 18,
-        "space_id": "tennessee_avenue",
-        "name": "Tennessee Avenue",
+        "space_id": "apatosaurus_plains",
+        "name": "Apatosaurus Plains",
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 180,
@@ -289,13 +326,16 @@
         "house_cost": 0,
         "fence_cost": 100,
         "repair_cost": 90,
-        "rents": [14, 70],
+        "rents": [
+          14,
+          70
+        ],
         "fenced_rent": 70
       },
       {
         "position": 19,
-        "space_id": "new_york_avenue",
-        "name": "New York Avenue",
+        "space_id": "ankylosaurus_paddock",
+        "name": "Ankylosaurus Paddock",
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 200,
@@ -304,7 +344,10 @@
         "house_cost": 0,
         "fence_cost": 100,
         "repair_cost": 100,
-        "rents": [16, 80],
+        "rents": [
+          16,
+          80
+        ],
         "fenced_rent": 80
       },
       {
@@ -324,8 +367,8 @@
       },
       {
         "position": 21,
-        "space_id": "kentucky_avenue",
-        "name": "Kentucky Avenue",
+        "space_id": "baryonyx_marsh",
+        "name": "Baryonyx Marsh",
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 220,
@@ -334,7 +377,10 @@
         "house_cost": 0,
         "fence_cost": 150,
         "repair_cost": 110,
-        "rents": [18, 90],
+        "rents": [
+          18,
+          90
+        ],
         "fenced_rent": 90
       },
       {
@@ -354,8 +400,8 @@
       },
       {
         "position": 23,
-        "space_id": "indiana_avenue",
-        "name": "Indiana Avenue",
+        "space_id": "metriacanthosaurus_pen",
+        "name": "Metriacanthosaurus Pen",
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 220,
@@ -364,13 +410,16 @@
         "house_cost": 0,
         "fence_cost": 150,
         "repair_cost": 110,
-        "rents": [18, 90],
+        "rents": [
+          18,
+          90
+        ],
         "fenced_rent": 90
       },
       {
         "position": 24,
-        "space_id": "illinois_avenue",
-        "name": "Illinois Avenue",
+        "space_id": "ceratosaurus_paddock",
+        "name": "Ceratosaurus Paddock",
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 240,
@@ -379,7 +428,10 @@
         "house_cost": 0,
         "fence_cost": 150,
         "repair_cost": 120,
-        "rents": [20, 100],
+        "rents": [
+          20,
+          100
+        ],
         "fenced_rent": 100
       },
       {
@@ -394,13 +446,18 @@
         "house_cost": 0,
         "fence_cost": 0,
         "repair_cost": 100,
-        "rents": [25, 50, 100, 200],
+        "rents": [
+          25,
+          50,
+          100,
+          200
+        ],
         "fenced_rent": 0
       },
       {
         "position": 26,
-        "space_id": "atlantic_avenue",
-        "name": "Atlantic Avenue",
+        "space_id": "pteranodon_aviary",
+        "name": "Pteranodon Aviary",
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 260,
@@ -409,13 +466,16 @@
         "house_cost": 0,
         "fence_cost": 150,
         "repair_cost": 130,
-        "rents": [22, 110],
+        "rents": [
+          22,
+          110
+        ],
         "fenced_rent": 110
       },
       {
         "position": 27,
-        "space_id": "ventnor_avenue",
-        "name": "Ventnor Avenue",
+        "space_id": "carnotaurus_paddock",
+        "name": "Carnotaurus Paddock",
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 260,
@@ -424,7 +484,10 @@
         "house_cost": 0,
         "fence_cost": 150,
         "repair_cost": 130,
-        "rents": [22, 110],
+        "rents": [
+          22,
+          110
+        ],
         "fenced_rent": 110
       },
       {
@@ -446,8 +509,8 @@
       },
       {
         "position": 29,
-        "space_id": "marvin_gardens",
-        "name": "Marvin Gardens",
+        "space_id": "spinosaurus_enclosure",
+        "name": "Spinosaurus Enclosure",
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 280,
@@ -456,7 +519,10 @@
         "house_cost": 0,
         "fence_cost": 150,
         "repair_cost": 140,
-        "rents": [24, 120],
+        "rents": [
+          24,
+          120
+        ],
         "fenced_rent": 120
       },
       {
@@ -476,8 +542,8 @@
       },
       {
         "position": 31,
-        "space_id": "pacific_avenue",
-        "name": "Pacific Avenue",
+        "space_id": "velociraptor_pen",
+        "name": "Velociraptor Pen",
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 300,
@@ -486,13 +552,16 @@
         "house_cost": 0,
         "fence_cost": 200,
         "repair_cost": 150,
-        "rents": [26, 130],
+        "rents": [
+          26,
+          130
+        ],
         "fenced_rent": 130
       },
       {
         "position": 32,
-        "space_id": "north_carolina_avenue",
-        "name": "North Carolina Avenue",
+        "space_id": "allosaurus_paddock",
+        "name": "Allosaurus Paddock",
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 300,
@@ -501,7 +570,10 @@
         "house_cost": 0,
         "fence_cost": 200,
         "repair_cost": 150,
-        "rents": [26, 130],
+        "rents": [
+          26,
+          130
+        ],
         "fenced_rent": 130
       },
       {
@@ -521,8 +593,8 @@
       },
       {
         "position": 34,
-        "space_id": "pennsylvania_avenue",
-        "name": "Pennsylvania Avenue",
+        "space_id": "giganotosaurus_enclosure",
+        "name": "Giganotosaurus Enclosure",
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 320,
@@ -531,7 +603,10 @@
         "house_cost": 0,
         "fence_cost": 200,
         "repair_cost": 160,
-        "rents": [28, 150],
+        "rents": [
+          28,
+          150
+        ],
         "fenced_rent": 150
       },
       {
@@ -546,7 +621,12 @@
         "house_cost": 0,
         "fence_cost": 0,
         "repair_cost": 100,
-        "rents": [25, 50, 100, 200],
+        "rents": [
+          25,
+          50,
+          100,
+          200
+        ],
         "fenced_rent": 0
       },
       {
@@ -566,8 +646,8 @@
       },
       {
         "position": 37,
-        "space_id": "park_place",
-        "name": "Park Place",
+        "space_id": "trex_feeding_ground",
+        "name": "T. Rex Feeding Ground",
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 350,
@@ -576,7 +656,10 @@
         "house_cost": 0,
         "fence_cost": 200,
         "repair_cost": 175,
-        "rents": [35, 175],
+        "rents": [
+          35,
+          175
+        ],
         "fenced_rent": 175
       },
       {
@@ -597,8 +680,8 @@
       },
       {
         "position": 39,
-        "space_id": "boardwalk",
-        "name": "Boardwalk",
+        "space_id": "tyrannosaurus_paddock",
+        "name": "Tyrannosaurus Paddock",
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 400,
@@ -607,7 +690,10 @@
         "house_cost": 0,
         "fence_cost": 200,
         "repair_cost": 200,
-        "rents": [50, 200],
+        "rents": [
+          50,
+          200
+        ],
         "fenced_rent": 200
       }
     ]
@@ -621,25 +707,31 @@
     "auction_minimum": 10,
     "total_fences": 24,
     "properties": {
-      "mediterranean_avenue": {
+      "compsognathus_pen": {
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 60,
         "rent": 2,
         "fence_cost": 50,
         "repair_cost": 25,
-        "rents": [2, 10],
+        "rents": [
+          2,
+          10
+        ],
         "fenced_rent": 10,
         "color_group": "brown"
       },
-      "baltic_avenue": {
+      "dilophosaurus_paddock": {
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 60,
         "rent": 4,
         "fence_cost": 50,
         "repair_cost": 25,
-        "rents": [4, 20],
+        "rents": [
+          4,
+          20
+        ],
         "fenced_rent": 20,
         "color_group": "brown"
       },
@@ -650,51 +742,68 @@
         "rent": 25,
         "fence_cost": 0,
         "repair_cost": 100,
-        "rents": [25, 50, 100, 200],
+        "rents": [
+          25,
+          50,
+          100,
+          200
+        ],
         "fenced_rent": 0,
         "color_group": "park_road"
       },
-      "oriental_avenue": {
+      "gallimimus_valley": {
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 100,
         "rent": 6,
         "fence_cost": 50,
         "repair_cost": 50,
-        "rents": [6, 30],
+        "rents": [
+          6,
+          30
+        ],
         "fenced_rent": 30,
         "color_group": "light_blue"
       },
-      "vermont_avenue": {
+      "parasaurolophus_creek": {
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 100,
         "rent": 6,
         "fence_cost": 50,
         "repair_cost": 50,
-        "rents": [6, 30],
+        "rents": [
+          6,
+          30
+        ],
         "fenced_rent": 30,
         "color_group": "light_blue"
       },
-      "connecticut_avenue": {
+      "corythosaurus_clearing": {
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 120,
         "rent": 8,
         "fence_cost": 50,
         "repair_cost": 50,
-        "rents": [8, 40],
+        "rents": [
+          8,
+          40
+        ],
         "fenced_rent": 40,
         "color_group": "light_blue"
       },
-      "st_charles_place": {
+      "triceratops_paddock": {
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 140,
         "rent": 10,
         "fence_cost": 100,
         "repair_cost": 70,
-        "rents": [10, 50],
+        "rents": [
+          10,
+          50
+        ],
         "fenced_rent": 50,
         "color_group": "pink"
       },
@@ -711,25 +820,31 @@
         "utility_multiplier_one": 4,
         "utility_multiplier_both": 10
       },
-      "states_avenue": {
+      "pachycephalosaurus_pen": {
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 140,
         "rent": 10,
         "fence_cost": 100,
         "repair_cost": 70,
-        "rents": [10, 50],
+        "rents": [
+          10,
+          50
+        ],
         "fenced_rent": 50,
         "color_group": "pink"
       },
-      "virginia_avenue": {
+      "stegosaurus_grove": {
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 160,
         "rent": 12,
         "fence_cost": 100,
         "repair_cost": 80,
-        "rents": [12, 60],
+        "rents": [
+          12,
+          60
+        ],
         "fenced_rent": 60,
         "color_group": "pink"
       },
@@ -740,73 +855,96 @@
         "rent": 25,
         "fence_cost": 0,
         "repair_cost": 100,
-        "rents": [25, 50, 100, 200],
+        "rents": [
+          25,
+          50,
+          100,
+          200
+        ],
         "fenced_rent": 0,
         "color_group": "park_road"
       },
-      "st_james_place": {
+      "brachiosaurus_enclosure": {
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 180,
         "rent": 14,
         "fence_cost": 100,
         "repair_cost": 90,
-        "rents": [14, 70],
+        "rents": [
+          14,
+          70
+        ],
         "fenced_rent": 70,
         "color_group": "orange"
       },
-      "tennessee_avenue": {
+      "apatosaurus_plains": {
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 180,
         "rent": 14,
         "fence_cost": 100,
         "repair_cost": 90,
-        "rents": [14, 70],
+        "rents": [
+          14,
+          70
+        ],
         "fenced_rent": 70,
         "color_group": "orange"
       },
-      "new_york_avenue": {
+      "ankylosaurus_paddock": {
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 200,
         "rent": 16,
         "fence_cost": 100,
         "repair_cost": 100,
-        "rents": [16, 80],
+        "rents": [
+          16,
+          80
+        ],
         "fenced_rent": 80,
         "color_group": "orange"
       },
-      "kentucky_avenue": {
+      "baryonyx_marsh": {
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 220,
         "rent": 18,
         "fence_cost": 150,
         "repair_cost": 110,
-        "rents": [18, 90],
+        "rents": [
+          18,
+          90
+        ],
         "fenced_rent": 90,
         "color_group": "red"
       },
-      "indiana_avenue": {
+      "metriacanthosaurus_pen": {
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 220,
         "rent": 18,
         "fence_cost": 150,
         "repair_cost": 110,
-        "rents": [18, 90],
+        "rents": [
+          18,
+          90
+        ],
         "fenced_rent": 90,
         "color_group": "red"
       },
-      "illinois_avenue": {
+      "ceratosaurus_paddock": {
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 240,
         "rent": 20,
         "fence_cost": 150,
         "repair_cost": 120,
-        "rents": [20, 100],
+        "rents": [
+          20,
+          100
+        ],
         "fenced_rent": 100,
         "color_group": "red"
       },
@@ -817,29 +955,40 @@
         "rent": 25,
         "fence_cost": 0,
         "repair_cost": 100,
-        "rents": [25, 50, 100, 200],
+        "rents": [
+          25,
+          50,
+          100,
+          200
+        ],
         "fenced_rent": 0,
         "color_group": "park_road"
       },
-      "atlantic_avenue": {
+      "pteranodon_aviary": {
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 260,
         "rent": 22,
         "fence_cost": 150,
         "repair_cost": 130,
-        "rents": [22, 110],
+        "rents": [
+          22,
+          110
+        ],
         "fenced_rent": 110,
         "color_group": "yellow"
       },
-      "ventnor_avenue": {
+      "carnotaurus_paddock": {
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 260,
         "rent": 22,
         "fence_cost": 150,
         "repair_cost": 130,
-        "rents": [22, 110],
+        "rents": [
+          22,
+          110
+        ],
         "fenced_rent": 110,
         "color_group": "yellow"
       },
@@ -856,47 +1005,59 @@
         "utility_multiplier_one": 4,
         "utility_multiplier_both": 10
       },
-      "marvin_gardens": {
+      "spinosaurus_enclosure": {
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 280,
         "rent": 24,
         "fence_cost": 150,
         "repair_cost": 140,
-        "rents": [24, 120],
+        "rents": [
+          24,
+          120
+        ],
         "fenced_rent": 120,
         "color_group": "yellow"
       },
-      "pacific_avenue": {
+      "velociraptor_pen": {
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 300,
         "rent": 26,
         "fence_cost": 200,
         "repair_cost": 150,
-        "rents": [26, 130],
+        "rents": [
+          26,
+          130
+        ],
         "fenced_rent": 130,
         "color_group": "green"
       },
-      "north_carolina_avenue": {
+      "allosaurus_paddock": {
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 300,
         "rent": 26,
         "fence_cost": 200,
         "repair_cost": 150,
-        "rents": [26, 130],
+        "rents": [
+          26,
+          130
+        ],
         "fenced_rent": 130,
         "color_group": "green"
       },
-      "pennsylvania_avenue": {
+      "giganotosaurus_enclosure": {
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 320,
         "rent": 28,
         "fence_cost": 200,
         "repair_cost": 160,
-        "rents": [28, 150],
+        "rents": [
+          28,
+          150
+        ],
         "fenced_rent": 150,
         "color_group": "green"
       },
@@ -907,44 +1068,93 @@
         "rent": 25,
         "fence_cost": 0,
         "repair_cost": 100,
-        "rents": [25, 50, 100, 200],
+        "rents": [
+          25,
+          50,
+          100,
+          200
+        ],
         "fenced_rent": 0,
         "color_group": "park_road"
       },
-      "park_place": {
+      "trex_feeding_ground": {
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 350,
         "rent": 35,
         "fence_cost": 200,
         "repair_cost": 175,
-        "rents": [35, 175],
+        "rents": [
+          35,
+          175
+        ],
         "fenced_rent": 175,
         "color_group": "dark_blue"
       },
-      "boardwalk": {
+      "tyrannosaurus_paddock": {
         "kind": "property",
         "subtype": "dino_paddock",
         "price": 400,
         "rent": 50,
         "fence_cost": 200,
         "repair_cost": 200,
-        "rents": [50, 200],
+        "rents": [
+          50,
+          200
+        ],
         "fenced_rent": 200,
         "color_group": "dark_blue"
       }
     },
     "color_groups": {
-      "brown": ["mediterranean_avenue", "baltic_avenue"],
-      "light_blue": ["oriental_avenue", "vermont_avenue", "connecticut_avenue"],
-      "pink": ["st_charles_place", "states_avenue", "virginia_avenue"],
-      "orange": ["st_james_place", "tennessee_avenue", "new_york_avenue"],
-      "red": ["kentucky_avenue", "indiana_avenue", "illinois_avenue"],
-      "yellow": ["atlantic_avenue", "ventnor_avenue", "marvin_gardens"],
-      "green": ["pacific_avenue", "north_carolina_avenue", "pennsylvania_avenue"],
-      "dark_blue": ["park_place", "boardwalk"],
-      "park_road": ["park_road_1", "park_road_2", "park_road_3", "park_road_4"],
-      "utility": ["control_room", "maintenance_shed"]
+      "brown": [
+        "compsognathus_pen",
+        "dilophosaurus_paddock"
+      ],
+      "light_blue": [
+        "gallimimus_valley",
+        "parasaurolophus_creek",
+        "corythosaurus_clearing"
+      ],
+      "pink": [
+        "triceratops_paddock",
+        "pachycephalosaurus_pen",
+        "stegosaurus_grove"
+      ],
+      "orange": [
+        "brachiosaurus_enclosure",
+        "apatosaurus_plains",
+        "ankylosaurus_paddock"
+      ],
+      "red": [
+        "baryonyx_marsh",
+        "metriacanthosaurus_pen",
+        "ceratosaurus_paddock"
+      ],
+      "yellow": [
+        "pteranodon_aviary",
+        "carnotaurus_paddock",
+        "spinosaurus_enclosure"
+      ],
+      "green": [
+        "velociraptor_pen",
+        "allosaurus_paddock",
+        "giganotosaurus_enclosure"
+      ],
+      "dark_blue": [
+        "trex_feeding_ground",
+        "tyrannosaurus_paddock"
+      ],
+      "park_road": [
+        "park_road_1",
+        "park_road_2",
+        "park_road_3",
+        "park_road_4"
+      ],
+      "utility": [
+        "control_room",
+        "maintenance_shed"
+      ]
     }
   },
   "cards": {
@@ -1143,8 +1353,16 @@
       "theme_song_payout": 200,
       "roar_payout": 100,
       "no_sound_fallback": "amber_die",
-      "amber_die_theme_range": [1, 2, 3],
-      "amber_die_roar_range": [4, 5, 6]
+      "amber_die_theme_range": [
+        1,
+        2,
+        3
+      ],
+      "amber_die_roar_range": [
+        4,
+        5,
+        6
+      ]
     },
     "complete_sets": {
       "immune_to_trex": true,
@@ -1186,7 +1404,7 @@
       "edition_id": "monopoly-f1662",
       "page_ref": "p.2",
       "confidence": "medium",
-      "note": "Property names are classic placeholders; actual JP board names need Title Deed photos."
+      "note": "Property names are themed after Jurassic Park dinosaur species."
     },
     {
       "rule_path": "economy",

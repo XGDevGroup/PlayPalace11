@@ -14,6 +14,7 @@ class Citation:
     edition_id: str
     page_ref: str
     confidence: str
+    note: str = ""
 
 
 @dataclass(frozen=True)

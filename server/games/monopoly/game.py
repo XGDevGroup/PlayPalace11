@@ -1627,7 +1627,7 @@ class MonopolyGame(ActionGuardMixin, Game):
         """Return one Monopoly locale string with optional fallback text."""
         kwargs = self._format_monopoly_message_kwargs(kwargs)
         text = Localization.get(locale, key, **kwargs)
-        if fallback is not None and text == key:
+        if fallback is not None and (text == key or text == f"[{key}]"):
             return fallback
         return text
 
@@ -1801,7 +1801,7 @@ class MonopolyGame(ActionGuardMixin, Game):
         for space in self.active_board_spaces:
             key = f"monopoly-space-{space.space_id}"
             resolved = Localization.get("en", key)
-            if resolved and resolved != key:
+            if resolved and resolved != key and not resolved.startswith("["):
                 normalized_spaces.append(replace(space, name=resolved))
             else:
                 normalized_spaces.append(space)
