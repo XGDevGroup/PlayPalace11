@@ -1,0 +1,252 @@
+{
+  "board_id": "star_wars_solo",
+  "candidate_lines": [
+    {
+      "line": "• Pay to the Bank the Hideout cost price on the Title",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Locations in a color set, you can pay to",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "• Pay to the Bank the Facility cost price on the Title",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Deed card, return all 4 Hideouts to the Bank, and put",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "or Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "• repay the mortgage (pay the Bank the unmortgage",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "• keep the mortgage (just pay the Bank 10% of the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Give them any Get Out of Jail Free cards and",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "• repay the mortgage (pay the Bank the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "• keep the mortgage (just pay the Bank 10%",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Return all your properties to the Bank.",
+      "tags": []
+    },
+    {
+      "line": "Return any Get Out of Jail Free cards to the",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "If you owe money and can’t pay, try to",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "and collect the mortgage value shown on the back",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "To repay a mortgage, pay the unmortgage",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Move around the board buying as many Star Wars",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Move forward that number of spaces.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "and take another turn.",
+      "tags": []
+    },
+    {
+      "line": "you must Go To Jail!",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay the price shown on",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "the board space and take",
+      "tags": []
+    },
+    {
+      "line": "When you land on a Location that someone else owns, pay them the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Collect color sets to build Hideouts!",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Cut deals, take risks with the",
+      "tags": []
+    },
+    {
+      "line": "When you land on a Vehicle that someone else owns, pay them rent.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If they don’t ask, you don’t have to pay!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If your move took you onto or past the GO space, collect",
+      "tags": [
+        "collect",
+        "movement"
+      ]
+    },
+    {
+      "line": "Take the top card from the matching pile and immediately do",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Then return it to the bottom of the pile.",
+      "tags": []
+    },
+    {
+      "line": "Pay the Bank the amount shown on the space.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "next turn, then roll and move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Move your token to the In Jail space immediately!",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "collect A200 for passing GO.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "still collect rent, auction, buy Hideouts and Facilities, mortgage,",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay A50 at the start of your next turn, then roll and move as normal.",
+      "tags": [
+        "pay",
+        "movement"
+      ]
+    },
+    {
+      "line": "Use a Get Out of Jail Free card at the start of your next turn if you",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "of the appropriate pile, then roll and move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "move, and that’s the end of your turn.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "If you don’t roll a double by your third turn In Jail, pay A50 and",
+      "tags": [
+        "pay",
+        "jail"
+      ]
+    },
+    {
+      "line": "use your last roll to move.",
+      "tags": [
+        "movement"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/star_wars_solo.txt"
+}

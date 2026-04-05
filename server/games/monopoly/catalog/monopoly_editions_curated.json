@@ -1,0 +1,1682 @@
+[
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-standard-monopoly",
+    "categories": [],
+    "display_name": "MONOPOLY - Standard Monopoly",
+    "edition_id": "monopoly-00009",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "00009"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-deluxe-edition",
+    "categories": [],
+    "display_name": "MONOPOLY Deluxe Edition Property Trading Game from PARKER BROTHERS",
+    "edition_id": "monopoly-00011",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "00011"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-brand-electronic-banking-edition",
+    "categories": [],
+    "display_name": "MONOPOLY Brand Electronic Banking Edition",
+    "edition_id": "monopoly-00114",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "00114"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-get-out-of-jail-mini-game",
+    "categories": [],
+    "display_name": "MONOPOLY GET OUT OF JAIL Mini Game",
+    "edition_id": "monopoly-00175",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "00175"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-free-parking-mini-game",
+    "categories": [],
+    "display_name": "MONOPOLY FREE PARKING Mini Game",
+    "edition_id": "monopoly-00176",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "00176"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-property-trading-game-from-parker-brothers-here---now-limited-edition",
+    "categories": [],
+    "display_name": "MONOPOLY Property Trading Game from Parker Brothers: Here & Now Limited Edition",
+    "edition_id": "monopoly-00402",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "00402"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-junior-game",
+    "categories": [],
+    "display_name": "MONOPOLY Junior Game",
+    "edition_id": "monopoly-00441",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "00441"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-narodni-edice-monopoly-narodna-edicia",
+    "categories": [],
+    "display_name": "MONOPOLY NÁRODNÍ EDICE/ MONOPOLY NÁRODNÁ EDÍCIA",
+    "edition_id": "monopoly-01610",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "01610"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-here-now-world-edition",
+    "categories": [],
+    "display_name": "MONOPOLY Here & Now World Edition",
+    "edition_id": "monopoly-01612",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "01612"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-revolution",
+    "categories": [],
+    "display_name": "MONOPOLY REVOLUTION",
+    "edition_id": "monopoly-17146",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "17146"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-city",
+    "categories": [],
+    "display_name": "MONOPOLY City",
+    "edition_id": "monopoly-1790",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "1790"
+  },
+  {
+    "brand": "U-Build",
+    "canonical_slug": "u-build-monopoly-game",
+    "categories": [],
+    "display_name": "U-BUILD - MONOPOLY Game",
+    "edition_id": "monopoly-18361",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "18361"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-disney-edition",
+    "categories": [],
+    "display_name": "MONOPOLY  - Disney Edition",
+    "edition_id": "monopoly-19643",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "19643"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-live-game",
+    "categories": [],
+    "display_name": "MONOPOLY Live Game",
+    "edition_id": "monopoly-19652",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "19652"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "travel-monopoly-fun-on-the-run",
+    "categories": [],
+    "display_name": "MONOPOLY Fun on the Run Game",
+    "edition_id": "monopoly-29188",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "29188"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-brand-junior-disney-edition",
+    "categories": [],
+    "display_name": "MONOPOLY Brand Junior Disney Edition",
+    "edition_id": "monopoly-40067",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "40067"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-the-disney-edition",
+    "categories": [],
+    "display_name": "MONOPOLY- The Disney Edition",
+    "edition_id": "monopoly-40224",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "40224"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-junior-shrek-2-edition",
+    "categories": [],
+    "display_name": "MONOPOLY Junior Shrek 2 Edition",
+    "edition_id": "monopoly-40504",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "40504"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-game-the-america-edition-property-trading-game-from-parker-brothers",
+    "categories": [],
+    "display_name": "MONOPOLY Game - The America Edition Property Trading Game from PARKER BROTHERS",
+    "edition_id": "monopoly-40798",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "40798"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-junior-dign-dinos-game",
+    "categories": [],
+    "display_name": "MONOPOLY Junior Dig'n Dinos Game",
+    "edition_id": "monopoly-41468",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "41468"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-the-lord-of-the-rings-trilogy-edition",
+    "categories": [],
+    "display_name": "MONOPOLY THE LORD OF THE RINGS Trilogy Edition",
+    "edition_id": "monopoly-41603",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "41603"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-game-70th-anniversary-edition",
+    "categories": [],
+    "display_name": "MONOPOLY Game 70th Anniversary Edition",
+    "edition_id": "monopoly-42377",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "42377"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-game-star-wars-the-saga-edition",
+    "categories": [],
+    "display_name": "MONOPOLY Game - Star Wars the Saga Edition",
+    "edition_id": "monopoly-42452",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "42452"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-express-game",
+    "categories": [],
+    "display_name": "MONOPOLY Express Game",
+    "edition_id": "monopoly-42787",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "42787"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-millionaire",
+    "categories": [],
+    "display_name": "MONOPOLY Millionaire",
+    "edition_id": "monopoly-98838",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "98838"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-ich-einfach-unverbesserlich",
+    "categories": [],
+    "display_name": "Monopoly Ich - Einfach unverbesserlich",
+    "edition_id": "monopoly-a2574",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "A2574"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-junior-game",
+    "categories": [],
+    "display_name": "Monopoly Junior Game",
+    "edition_id": "monopoly-a6984",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "A6984"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-electronic-banking-game",
+    "categories": [],
+    "display_name": "Monopoly Electronic Banking Game",
+    "edition_id": "monopoly-a7444",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "A7444"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "my-monopoly-game",
+    "categories": [],
+    "display_name": "My Monopoly Game",
+    "edition_id": "monopoly-a8595",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "A8595"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-marvel-avengers-edition-board-game",
+    "categories": [],
+    "display_name": "Monopoly: Marvel Avengers Edition Game",
+    "edition_id": "monopoly-b0323",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "B0323"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-star-wars",
+    "categories": [],
+    "display_name": "Monopoly Star Wars",
+    "edition_id": "monopoly-b0324",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "B0324"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-deal-card-game",
+    "categories": [],
+    "display_name": "Monopoly Deal Card Game",
+    "edition_id": "monopoly-b0965",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "B0965"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-kompakt",
+    "categories": [],
+    "display_name": "Monopoly Kompakt",
+    "edition_id": "monopoly-b1002",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "B1002"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-junior-game-frozen-edition",
+    "categories": [],
+    "display_name": "Monopoly Junior Game Frozen Edition",
+    "edition_id": "monopoly-b2247",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "B2247"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-world",
+    "categories": [],
+    "display_name": "Monopoly World",
+    "edition_id": "monopoly-b2348",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "B2348"
+  },
+  {
+    "brand": "Disney Princess",
+    "canonical_slug": "jogo-monopoly-edicao-princesas-da-disney",
+    "categories": [],
+    "display_name": "Jogo Monopoly Edição Princesas da Disney",
+    "edition_id": "monopoly-b4644",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "B4644"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "juego-monopoly-imperio",
+    "categories": [],
+    "display_name": "Juego Monopoly Imperio",
+    "edition_id": "monopoly-b5095",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "B5095"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-junior-yo-kai-watch-edition",
+    "categories": [],
+    "display_name": "Monopoly Junior: Yo-kai Watch Edition",
+    "edition_id": "monopoly-b6494",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "B6494"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-game-ultimate-banking-edition",
+    "categories": [],
+    "display_name": "Monopoly Game: Ultimate Banking Edition ",
+    "edition_id": "monopoly-b6677",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "B6677"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-jackpot",
+    "categories": [],
+    "display_name": "Monopoly Jackpot",
+    "edition_id": "monopoly-b7368",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "B7368"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-game-star-wars-edition",
+    "categories": [],
+    "display_name": "Monopoly Game: Star Wars Edition",
+    "edition_id": "monopoly-b8613",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "B8613"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-junior-finding-dory",
+    "categories": [],
+    "display_name": "Monopoly Junior Finding Dory",
+    "edition_id": "monopoly-b8618",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "B8618"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-token-madness-game",
+    "categories": [],
+    "display_name": "Monopoly Token Madness Game",
+    "edition_id": "monopoly-c0087",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "C0087"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-signature-token-collection",
+    "categories": [],
+    "display_name": "Monopoly Signature Token Collection",
+    "edition_id": "monopoly-c0729",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "C0729"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-game",
+    "categories": [],
+    "display_name": "Monopoly Klassik",
+    "edition_id": "monopoly-c1009",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "C1009"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-junior-disney-pixar-cars-3-edition",
+    "categories": [],
+    "display_name": "Monopoly Junior: Disney Pixar Cars 3 Edition",
+    "edition_id": "monopoly-c1343",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "C1343"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-gamer",
+    "categories": [],
+    "display_name": "Monopoly Gamer",
+    "edition_id": "monopoly-c1815",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "C1815"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-game-regional-edition-australia",
+    "categories": [],
+    "display_name": "Monopoly Game: Regional Edition Australia",
+    "edition_id": "monopoly-c1816",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "C1816"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-italia",
+    "categories": [],
+    "display_name": "MONOPOLY ITALIA",
+    "edition_id": "monopoly-c1817",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "C1817"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-game-star-wars-40th-anniversary-special-edition",
+    "categories": [],
+    "display_name": "Monopoly Game: Star Wars 40th Anniversary Special Edition",
+    "edition_id": "monopoly-c1990",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "C1990"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-disney-animation-edition",
+    "categories": [],
+    "display_name": "Monopoly: Disney Animation Edition",
+    "edition_id": "monopoly-c2116",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "C2116"
+  },
+  {
+    "brand": "Hasbro Games",
+    "canonical_slug": "monopoly-cars",
+    "categories": [],
+    "display_name": "MONOPOLY CARS",
+    "edition_id": "monopoly-c2124",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "C2124"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-gamer-collector-s-edition",
+    "categories": [],
+    "display_name": "Monopoly Gamer Collector's Edition",
+    "edition_id": "monopoly-c2127",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "C2127"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-super-mario-bros-collector-s-edition-board-game-ages-8-and-up",
+    "categories": [],
+    "display_name": "Monopoly: Super Mario Bros. Collector's Edition Board Game Ages 8 and Up",
+    "edition_id": "monopoly-c4382",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "C4382"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-stranger-things-edition",
+    "categories": [],
+    "display_name": "Monopoly Stranger Things Edition",
+    "edition_id": "monopoly-c4550",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "C4550"
+  },
+  {
+    "brand": "Hasbro Games",
+    "canonical_slug": "monopoly-payday",
+    "categories": [],
+    "display_name": "Monopoly PayDay",
+    "edition_id": "monopoly-e0751",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E0751"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-germany",
+    "categories": [],
+    "display_name": "MONOPOLY GERMANY",
+    "edition_id": "monopoly-e1553",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E1553"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-france",
+    "categories": [],
+    "display_name": "MONOPOLY FRANCE",
+    "edition_id": "monopoly-e1653",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E1653"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-espana",
+    "categories": [],
+    "display_name": "MONOPOLY ESPAÑA",
+    "edition_id": "monopoly-e1654",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E1654"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-solo-a-star-wars-story",
+    "categories": [],
+    "display_name": "Monopoly Solo - A Star Wars Story",
+    "edition_id": "monopoly-e1702",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E1702"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-die-unglaublichen",
+    "categories": [],
+    "display_name": "Monopoly Die Unglaublichen",
+    "edition_id": "monopoly-e1781",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E1781"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-junior-banking",
+    "categories": [],
+    "display_name": "Monopoly Junior Banking",
+    "edition_id": "monopoly-e1842",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E1842"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-gamer-mario-kart",
+    "categories": [],
+    "display_name": "Monopoly Gamer Mario Kart",
+    "edition_id": "monopoly-e1870",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E1870"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-mogeln-tauschen",
+    "categories": [],
+    "display_name": "Monopoly Mogeln & Täuschen ",
+    "edition_id": "monopoly-e1871",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E1871"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-game-marvel-deadpool-edition",
+    "categories": [],
+    "display_name": "Monopoly Game: Marvel Deadpool Edition",
+    "edition_id": "monopoly-e2033",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E2033"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-geldregen-cash-grab",
+    "categories": [],
+    "display_name": "Monopoly Geldregen  = Cash Grab ",
+    "edition_id": "monopoly-e3037",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E3037"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-deal-kartenspiel",
+    "categories": [],
+    "display_name": "Monopoly Deal Kartenspiel",
+    "edition_id": "monopoly-e3113",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E3113"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-game-of-thrones",
+    "categories": [],
+    "display_name": "Monopoly Game of Thrones",
+    "edition_id": "monopoly-e3278",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E3278"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-voice-banking",
+    "categories": [],
+    "display_name": "Monopoly Voice Banking",
+    "edition_id": "monopoly-e4816",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E4816"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-deadpool-collectors-edition",
+    "categories": [],
+    "display_name": "MONOPOLY DEADPOOL COLLECTORS EDITION",
+    "edition_id": "monopoly-e4833",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E4833"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-game-cheaters-edition",
+    "categories": [],
+    "display_name": "Monopoly Game: Cheaters Edition",
+    "edition_id": "monopoly-e4888",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E4888"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-fur-millennials",
+    "categories": [],
+    "display_name": "Monopoly für Millennials",
+    "edition_id": "monopoly-e4989",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E4989"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-toy-story-board-game-family-and-kids-ages-8",
+    "categories": [],
+    "display_name": "Monopoly Toy Story Board Game Family and Kids Ages 8+",
+    "edition_id": "monopoly-e5065",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E5065"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-die-eiskonigin-ii",
+    "categories": [],
+    "display_name": "Monopoly Die Eiskönigin II",
+    "edition_id": "monopoly-e5066",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E5066"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "hasbro-gaming-road-trip-series-monopoly-game",
+    "categories": [],
+    "display_name": "Hasbro Gaming Road Trip Series Monopoly Game",
+    "edition_id": "monopoly-e5340",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E5340"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-cats-vs-dogs-board-game",
+    "categories": [],
+    "display_name": "Monopoly Cats Vs. Dogs Board Game",
+    "edition_id": "monopoly-e5793",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E5793"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-game-black-panther-edition",
+    "categories": [],
+    "display_name": "Monopoly Game: Black Panther Edition",
+    "edition_id": "monopoly-e5797",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E5797"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-pizza",
+    "categories": [],
+    "display_name": "Monopoly Pizza",
+    "edition_id": "monopoly-e5798",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E5798"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-gamer-overwatch-collector-s-edition-board-game",
+    "categories": [],
+    "display_name": "Monopoly Gamer Overwatch Collector's Edition Board Game",
+    "edition_id": "monopoly-e6291",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E6291"
+  },
+  {
+    "brand": "Hasbro Games",
+    "canonical_slug": "monopoly-neon-pop-board-game",
+    "categories": [],
+    "display_name": "Monopoly Neon Pop Board Game",
+    "edition_id": "monopoly-e6449",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E6449"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-marvel-avengers-edition-board-game",
+    "categories": [],
+    "display_name": "Monopoly: Marvel Avengers Edition Board Game",
+    "edition_id": "monopoly-e6504",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E6504"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-fortnite",
+    "categories": [],
+    "display_name": "Monopoly Fortnite",
+    "edition_id": "monopoly-e6603",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E6603"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-game-disney-the-lion-king-edition",
+    "categories": [],
+    "display_name": "Monopoly Game Disney The Lion King Edition",
+    "edition_id": "monopoly-e6707",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E6707"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-arcade-pac-man-game-for-kids-8-and-up",
+    "categories": [],
+    "display_name": "Monopoly Arcade Pac-Man Game for Kids 8 and Up",
+    "edition_id": "monopoly-e7030",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E7030"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-speed",
+    "categories": [],
+    "display_name": "Monopoly Speed",
+    "edition_id": "monopoly-e7033",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E7033"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-junior-dreamworks-trolls-world-tour-edition-board-game",
+    "categories": [],
+    "display_name": "Monopoly Junior: DreamWorks Trolls World Tour Edition Board Game",
+    "edition_id": "monopoly-e7496",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E7496"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-game-l-o-l-surprise-edition-board-game-for-kids-ages-8-and-up",
+    "categories": [],
+    "display_name": "Monopoly Game: L.O.L. SURPRISE! Edition Board Game For Kids Ages 8 and Up",
+    "edition_id": "monopoly-e7572",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E7572"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-marvel-80-years-edition-board-game",
+    "categories": [],
+    "display_name": "Monopoly: Marvel 80 Years Edition Board Game",
+    "edition_id": "monopoly-e7866",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E7866"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-star-wars-the-complete-saga-edition-board-game",
+    "categories": [],
+    "display_name": "Monopoly: Star Wars The Complete Saga Edition Board Game",
+    "edition_id": "monopoly-e8066",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E8066"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-house-divided-board-game",
+    "categories": [],
+    "display_name": "Monopoly House Divided Board Game",
+    "edition_id": "monopoly-e8172",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E8172"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-game-stranger-things-collector-s-edition-board-game",
+    "categories": [],
+    "display_name": "Monopoly Game Stranger Things Collector's Edition Board Game",
+    "edition_id": "monopoly-e8194",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E8194"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-gamer-sonic-the-hedgehog-edition-board-game",
+    "categories": [],
+    "display_name": "Monopoly Gamer Sonic the Hedgehog Edition Board Game",
+    "edition_id": "monopoly-e8396",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E8396"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "ms-monopoly",
+    "categories": [],
+    "display_name": "Ms. Monopoly",
+    "edition_id": "monopoly-e8424",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E8424"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-friends-the-tv-series-edition-board-game",
+    "categories": [],
+    "display_name": "Monopoly: Friends the TV Series Edition Board Game",
+    "edition_id": "monopoly-e8714",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E8714"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-longest-game-ever-board-game",
+    "categories": [],
+    "display_name": "Monopoly Longest Game Ever Board Game",
+    "edition_id": "monopoly-e8915",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E8915"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-banking-cash-back",
+    "categories": [],
+    "display_name": "Monopoly Banking Cash-Back",
+    "edition_id": "monopoly-e8978",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E8978"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-rivals-edition-board-game-2-player-game",
+    "categories": [],
+    "display_name": "Monopoly Rivals Edition Board Game; 2 Player Game",
+    "edition_id": "monopoly-e9264",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E9264"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-go-green-edition-board-game-for-families-ages-8-and-up",
+    "categories": [],
+    "display_name": "Monopoly: Go Green Edition Board Game for Families Ages 8 and Up",
+    "edition_id": "monopoly-e9348",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E9348"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-game-ghostbusters-edition-for-kids-8-and-up",
+    "categories": [],
+    "display_name": "Monopoly Game: Ghostbusters Edition for Kids 8 and Up",
+    "edition_id": "monopoly-e9479",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E9479"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-super-mario-celebration",
+    "categories": [],
+    "display_name": "Monopoly Super Mario Celebration ",
+    "edition_id": "monopoly-e9517",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E9517"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-fur-schlechte-verlierer",
+    "categories": [],
+    "display_name": "Monopoly für schlechte Verlierer",
+    "edition_id": "monopoly-e9972",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E9972"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-85th-anniversary-edition-board-game",
+    "categories": [],
+    "display_name": "Monopoly 85TH Anniversary Edition Board Game",
+    "edition_id": "monopoly-e9983",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "E9983"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-disney-villains-edition-board-game-for-ages-8-and-up",
+    "categories": [],
+    "display_name": "Monopoly: Disney Villains Edition Board Game for Ages 8 and Up",
+    "edition_id": "monopoly-f0091",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F0091"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-star-wars-the-mandalorian-edition-board-game-protect-the-child-baby-yoda",
+    "categories": [],
+    "display_name": "Monopoly: Star Wars The Mandalorian Edition Board Game Protect The Child (\"Baby Yoda\")",
+    "edition_id": "monopoly-f1276",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F1276"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-roblox-2021-edition-game-for-kids-8-and-up",
+    "categories": [],
+    "display_name": "Monopoly: Roblox 2021 Edition Game for Kids 8 and Up",
+    "edition_id": "monopoly-f1325",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F1325"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-junior-peppa-pig-edition-board-game-for-2-4-players-for-kids-ages-5-and-up",
+    "categories": [],
+    "display_name": "Monopoly Junior: Peppa Pig Edition Board Game for 2-4 Players, For Kids Ages 5 and Up",
+    "edition_id": "monopoly-f1656",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F1656"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-space-jam-a-new-legacy-edition-family-board-game-lebron-james-space-jam-2-game-for-kids-ages-8-and-up",
+    "categories": [],
+    "display_name": "Monopoly: Space Jam: A New Legacy Edition Family Board Game, LeBron James Space Jam 2 Game, for Kids Ages 8 and Up",
+    "edition_id": "monopoly-f1658",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F1658"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-marvel-studios-eternals-edition-board-game-for-marvel-fans-kids-ages-8-and-up",
+    "categories": [],
+    "display_name": "Monopoly: Marvel Studios' Eternals Edition Board Game for Marvel Fans, Kids Ages 8 and Up",
+    "edition_id": "monopoly-f1659",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F1659"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-transformers-edition-board-game",
+    "categories": [],
+    "display_name": "Monopoly: Transformers Edition Board Game for Kids Ages 8 and Up",
+    "edition_id": "monopoly-f1660",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F1660"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-animal-crossing-new-horizons-edition-board-game-for-kids-ages-8-and-up-fun-game-to-play",
+    "categories": [],
+    "display_name": "Monopoly Animal Crossing New Horizons Edition Board Game for Kids Ages 8 and Up, Fun Game to Play",
+    "edition_id": "monopoly-f1661",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F1661"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-jurassic-park-edition-board-game-for-kids-ages-8-and-up",
+    "categories": [],
+    "display_name": "Monopoly: Jurassic Park Edition Board Game for Kids Ages 8 and Up",
+    "edition_id": "monopoly-f1662",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F1662"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-the-lord-of-the-rings-edition-board-game-for-kids-ages-8-and-up",
+    "categories": [],
+    "display_name": "Monopoly: The Lord of the Rings Edition Board Game for Kids Ages 8 and Up",
+    "edition_id": "monopoly-f1663",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F1663"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-wolkenkratzer",
+    "categories": [],
+    "display_name": "Monopoly Wolkenkratzer ",
+    "edition_id": "monopoly-f1696",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F1696"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-lunar-new-year-edition-board-game-for-kids-ages-8-and-up",
+    "categories": [],
+    "display_name": "Monopoly Lunar New Year Edition Board Game for Kids Ages 8 and Up",
+    "edition_id": "monopoly-f1697",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F1697"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-bid-game-quick-playing-card-game-for-families-and-kids-ages-7-and-up",
+    "categories": [],
+    "display_name": "Monopoly Bid Game, Quick-Playing Card Game For Families and Kids Ages 7 and Up",
+    "edition_id": "monopoly-f1699",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F1699"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-junior-unicorn-edition-board-game-rules",
+    "categories": [],
+    "display_name": "MONOPOLY Junior: Unicorn Edition Board Game",
+    "edition_id": "monopoly-f1717",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F1717"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-star-wars-the-child-edition-board-game-for-kids-and-families",
+    "categories": [],
+    "display_name": "Monopoly: Star Wars The Child Edition Board Game for Kids and Families",
+    "edition_id": "monopoly-f2013",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F2013"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-netflix-stranger-things-edition-board-game-for-adults-and-teens-ages-14-game-for-2-6-players",
+    "categories": [],
+    "display_name": "Monopoly: Netflix Stranger Things Edition Board Game for Adults and Teens Ages 14+, Game for 2-6 Players",
+    "edition_id": "monopoly-f2544",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F2544"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-fortnite-collector-s-edition-board-game-inspired-by-fortnite-video-game-board-game-for-teens-and-adults",
+    "categories": [],
+    "display_name": "Monopoly: Fortnite Collector's Edition Board Game Inspired by Fortnite Video Game, Board Game for Teens and Adults",
+    "edition_id": "monopoly-f2546",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F2546"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-falsches-spiel",
+    "categories": [],
+    "display_name": "Monopoly Falsches Spiel",
+    "edition_id": "monopoly-f2674",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F2674"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-netflix-la-casa-de-papel-money-heist-edition-board-game-for-adults-and-teens-ages-16-and-up",
+    "categories": [],
+    "display_name": "Monopoly: Netflix La Casa de Papel/Money Heist Edition Board Game for Adults and Teens, Ages 16 and Up",
+    "edition_id": "monopoly-f2725",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F2725"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-diced-game-easy-to-learn-game-quick-game-portable-travel-game-fast-game-for-kids-8-and-up",
+    "categories": [],
+    "display_name": "Monopoly Diced Game, Easy to Learn Game, Quick Game, Portable Travel Game, Fast Game for Kids 8 and Up",
+    "edition_id": "monopoly-f2953",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F2953"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-marvel-spider-man-edition-board-game-play-as-a-spider-hero-fun-game-to-play-for-kids-ages-8-and-up",
+    "categories": [],
+    "display_name": "Monopoly: Marvel Spider-Man Edition Board Game, Play as a Spider Hero, Fun Game to Play for Kids Ages 8 and Up",
+    "edition_id": "monopoly-f3968",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F3968"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-travel-world-tour-board-game-for-families-and-kids-ages-8-includes-token-stampers-and-dry-erase-gameboard",
+    "categories": [],
+    "display_name": "Monopoly Travel World Tour Board Game for Families and Kids Ages 8+, Includes Token Stampers and Dry-Erase Gameboard",
+    "edition_id": "monopoly-f4007",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F4007"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-indiana-jones-game-board-game-for-2-6-players-for-kids-ages-8-and-up",
+    "categories": [],
+    "display_name": "Monopoly Indiana Jones Game, Board Game for 2-6 Players, For Kids Ages 8 and up",
+    "edition_id": "monopoly-f4112",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F4112"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-star-wars-the-mandalorian-edition-board-game-inspired-by-season-2-protect-grogu-from-imperial-enemies",
+    "categories": [],
+    "display_name": "Monopoly: Star Wars The Mandalorian Edition Board Game, Inspired by Season 2, Protect Grogu From Imperial Enemies",
+    "edition_id": "monopoly-f4257",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F4257"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "mein-erstes-monopoly",
+    "categories": [],
+    "display_name": "Mein erstes Monopoly",
+    "edition_id": "monopoly-f4436",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F4436"
+  },
+  {
+    "brand": "Hasbro Games",
+    "canonical_slug": "monopoly-avatar-nickelodeon-the-last-airbender-edition-board-game-for-kids-ages-8-and-up",
+    "categories": [],
+    "display_name": "MONOPOLY AVATAR THE LAST AIRBENDER",
+    "edition_id": "monopoly-f4748",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F4748"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-fall-guys-ultimate-knockout-edition-board-game-for-players-ages-8-and-up-dodge-interactive-obstacles",
+    "categories": [],
+    "display_name": "Monopoly Fall Guys Ultimate Knockout Edition Board Game for Players Ages 8 and Up, Dodge Interactive Obstacles",
+    "edition_id": "monopoly-f4749",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F4749"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-junior-super-mario-edition",
+    "categories": [],
+    "display_name": "Monopoly Junior Super Mario Edition",
+    "edition_id": "monopoly-f4817",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F4817"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-junior-board-game-2-sided-gameboard-2-games-in-1-monopoly-game-for-ages-4",
+    "categories": [],
+    "display_name": "Monopoly Signature Collection Family Board Game for 2 to 6 Players, Premium Packaging and Components, Game for Ages 8+",
+    "edition_id": "monopoly-f5007",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F5007"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-geheimtresor",
+    "categories": [],
+    "display_name": "Monopoly Geheimtresor",
+    "edition_id": "monopoly-f5023",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F5023"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-disney-mickey-and-friends-edition-board-game-ages-8-for-disney-fans-exclusive-disney-pins",
+    "categories": [],
+    "display_name": "Monopoly: Disney Mickey and Friends Edition Board Game, Ages 8+, for Disney Fans, Exclusive Disney Pins",
+    "edition_id": "monopoly-f5267",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F5267"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-transformers-beast-wars-edition-board-game-for-kids-ages-8-and-up",
+    "categories": [],
+    "display_name": "Monopoly: Transformers Beast Wars Edition Board Game for Kids Ages 8 and Up",
+    "edition_id": "monopoly-f5269",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F5269"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-marvel-super-villains-edition-board-game-for-families-and-kids-ages-8-and-up",
+    "categories": [],
+    "display_name": "Monopoly: Marvel Super Villains Edition Board Game for Families and Kids Ages 8 and Up",
+    "edition_id": "monopoly-f5270",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F5270"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-star-wars-boba-fett-edition-board-game-for-kids-ages-8-and-up",
+    "categories": [],
+    "display_name": "Monopoly: Star Wars Boba Fett Edition Board Game for Kids Ages 8 and Up,",
+    "edition_id": "monopoly-f5394",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F5394"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-marvel-studios-black-panther-wakanda-forever-edition-board-game-for-families-and-kids-ages-8-game-for-2-6-players",
+    "categories": [],
+    "display_name": "Monopoly: Marvel Studios' Black Panther: Wakanda Forever Edition Board Game for Families and Kids Ages 8+, Game for 2-6 Players",
+    "edition_id": "monopoly-f5405",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F5405"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-junior-bluey-edition-board-game-for-kids-ages-5-and-up",
+    "categories": [],
+    "display_name": "Monopoly Junior: Bluey Edition Board Game for Kids Ages 5 and Up",
+    "edition_id": "monopoly-f5687",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F5687"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-marvel-studios-the-falcon-and-the-winter-soldier-edition-board-game-for-2-6-players-for-ages-14-and-up",
+    "categories": [],
+    "display_name": "Monopoly: Marvel Studios' The Falcon and the Winter Soldier Edition Board Game for 2-6 Players for Ages 14 and Up",
+    "edition_id": "monopoly-f5851",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F5851"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-prizm-nba-edition-board-game-with-panini-nba-trading-cards-2-4-players-ages-8",
+    "categories": [],
+    "display_name": "Monopoly Prizm: NBA Edition Board Game with Panini NBA Trading Cards, 2-4 Players, Ages 8+",
+    "edition_id": "monopoly-f5900",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F5900"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-disney-star-wars-dark-side-edition-board-game-for-families-games-for-kids-star-wars-gift",
+    "categories": [],
+    "display_name": "Monopoly: Disney Star Wars Dark Side Edition Board Game for Families, Games for Kids, Star Wars Gift",
+    "edition_id": "monopoly-f6167",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F6167"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-dungeons-dragons-honor-among-thieves-game-for-2-5-players-ages-8-and-up",
+    "categories": [],
+    "display_name": "Monopoly Dungeons & Dragons: Ehre unter Dieben",
+    "edition_id": "monopoly-f6219",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F6219"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-the-super-mario-bros-movie-edition-kids-board-game-includes-bowser-token-family-games-ages-8",
+    "categories": [],
+    "display_name": "Monopoly The Super Mario Bros. Movie Edition Kids Board Game Includes Bowser Token, Family Games, Ages 8+",
+    "edition_id": "monopoly-f6818",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F6818"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-flip-edition-fortnite-board-game-monopoly-game-inspired-by-fortnite-ages-13",
+    "categories": [],
+    "display_name": "Monopoly Flip Edition: Fortnite Board Game, Monopoly Game Inspired by Fortnite, Ages 13+",
+    "edition_id": "monopoly-f7774",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F7774"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-disney-and-pixar-s-lightyear-edition-board-game-for-families-and-kids-family-board-games-gifts-for-kids",
+    "categories": [],
+    "display_name": "Monopoly: Disney and Pixar's Lightyear Edition Board Game for Families and Kids, Family Board Games, Gifts for Kids",
+    "edition_id": "monopoly-f8046",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F8046"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-grab-and-go-game-for-ages-8-and-up-travel-game-for-2-4-players",
+    "categories": [],
+    "display_name": "Monopoly Kompakt",
+    "edition_id": "monopoly-f8256",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F8256"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-star-wars-light-side-edition-board-game-for-families-games-for-kids-8",
+    "categories": [],
+    "display_name": "Monopoly: Star Wars Light Side Edition Board Game for Families, Games for Kids 8+",
+    "edition_id": "monopoly-f8383",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F8383"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-chance-board-game-fast-paced-monopoly-game-20-min-average-ages-8",
+    "categories": [],
+    "display_name": "Monopoly Chance Board Game, Fast-Paced Monopoly Game, 20 Min. Average, Ages 8+",
+    "edition_id": "monopoly-f8555",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F8555"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-junior-board-game-2-sided-gameboard-2-games-in-1-monopoly-games-for-ages-4",
+    "categories": [],
+    "display_name": "Monopoly Junior Board Game, 2-Sided Gameboard, 2 Games in 1, Monopoly Game for Ages 4+",
+    "edition_id": "monopoly-f8562",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F8562"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-signature-collection-family-board-game-premium-packaging-and-components-ages-8",
+    "categories": [],
+    "display_name": "Monopoly Signature Collection Family Board Game, Premium Packaging and Components, Ages 8+",
+    "edition_id": "monopoly-f8706",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F8706"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-knockout-family-party-game-quick-playing-board-games-for-ages-8-2-8-players-20-mins",
+    "categories": [],
+    "display_name": "Monopoly Knockout",
+    "edition_id": "monopoly-f8995",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F8995"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-harry-potter-edition-board-game-family-games-for-2-to-6-players-ages-8",
+    "categories": [],
+    "display_name": "Monopoly Harry Potter Edition Board Game, Family Games for 2 to 6 Players, Ages 8+",
+    "edition_id": "monopoly-f9422",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F9422"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-flip-edition-marvel-board-game-for-2-to-4-players-ages-8",
+    "categories": [],
+    "display_name": "Monopoly Flip Edition: Marvel Board Game for 2 to 4 Players, Ages 8+",
+    "edition_id": "monopoly-f9931",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "F9931"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-board-game-classic-game-with-storage-tray-and-larger-tokens-family-games-8",
+    "categories": [],
+    "display_name": "Monopoly Board Game, Classic Game with Storage Tray and Larger Tokens, Family Games, 8+",
+    "edition_id": "monopoly-g0009",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "G0009"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-barbie-edition-board-game-family-games-for-2-6-players-ages-8",
+    "categories": [],
+    "display_name": "Monopoly Barbie",
+    "edition_id": "monopoly-g0038",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "G0038"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-deal-card-game-quick-playing-family-card-game-for-2-5-players-ages-8",
+    "categories": [],
+    "display_name": "Monopoly Deal Kartenspiel",
+    "edition_id": "monopoly-g0351",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "G0351"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-pokemon-edition-board-game",
+    "categories": [],
+    "display_name": "Monopoly Pokémon Edition Board Game",
+    "edition_id": "monopoly-g0716",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "G0716"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-deal-harry-potter-card-game",
+    "categories": [],
+    "display_name": "Monopoly Deal: HARRY POTTER Card Game",
+    "edition_id": "monopoly-g0717",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "G0717"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-erganzung-frei-parken-jackpot",
+    "categories": [],
+    "display_name": "Monopoly Ergänzung: Frei Parken Jackpot",
+    "edition_id": "monopoly-g0718",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "G0718"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-erganzung-gehe-in-das-gefangnis",
+    "categories": [],
+    "display_name": "Monopoly Ergänzung: Gehe in das Gefängnis",
+    "edition_id": "monopoly-g0719",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "G0719"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-erganzung-kaufe-alles",
+    "categories": [],
+    "display_name": "Monopoly Ergänzung: Kaufe alles",
+    "edition_id": "monopoly-g0720",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "G0720"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-go",
+    "categories": [],
+    "display_name": "Monopoly GO!",
+    "edition_id": "monopoly-g1291",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "G1291"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-board-crawl-party-game-official-monopoly-drinking-game-for-adults-ages-21",
+    "categories": [],
+    "display_name": "Monopoly Board Crawl Party Game, Official Monopoly Drinking Game for Adults Ages 21+",
+    "edition_id": "monopoly-g1298",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "G1298"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-wicked-edition",
+    "categories": [],
+    "display_name": "Monopoly Wicked Edition",
+    "edition_id": "monopoly-g1312",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "G1312"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-app-banking-board-game",
+    "categories": [],
+    "display_name": "Monopoly App Banking Board Game",
+    "edition_id": "monopoly-g1424",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "G1424"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-big-deal-card-game-oversized-giant-large-cards-for-family-fun-ages-8-2-to-5-players-15-mins-travel-games-for-kids-and-adults",
+    "categories": [],
+    "display_name": "Monopoly Big Deal Card Game | Oversized Giant Large Cards for Family Fun | Ages 8+ | 2 to 5 Players | 15 Mins. | Travel Games for Kids and Adults",
+    "edition_id": "monopoly-g2634",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "G2634"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-deal-disney-stitch-edition-card-game",
+    "categories": [],
+    "display_name": "Monopoly Deal: Disney Stitch Edition Card Game",
+    "edition_id": "monopoly-g2975",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "G2975"
+  },
+  {
+    "brand": "Monopoly",
+    "canonical_slug": "monopoly-deal-kpop-demon-hunters-card-game",
+    "categories": [],
+    "display_name": "Monopoly Deal: KPop Demon Hunters Card Game",
+    "edition_id": "monopoly-g4498",
+    "first_seen_at": "",
+    "last_seen_at": "",
+    "sku": "G4498"
+  }
+]

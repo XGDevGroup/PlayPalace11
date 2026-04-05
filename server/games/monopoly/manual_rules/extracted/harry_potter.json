@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-f9422",
+  "board_id": "harry_potter",
+  "extraction_mode": "pypdf",
+  "family": "harry",
+  "filename": "F94220000_INST_526988_MONOPOLY_HARRY_POTTER_F24.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-harry-potter-edition-board-game-family-games-for-2-to-6-players-ages-8",
+  "page_count": 2,
+  "pdf_sha256": "bdbfcdbb608d10546dcbdc39e2ad4e8a8b8d28dc4f24e234759f2e70ad6564d4",
+  "pdf_size_bytes": 578365856,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/c68f09ff-6a8e-4271-bcd8-9948d3700881/F94220000_INST_526988_MONOPOLY_HARRY_POTTER_F24.pdf",
+  "preferred_text_char_count": 20887,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/harry_potter.txt",
+  "preferred_text_sha256": "b9d154b98c81922b67d76f5b9333b1dba1420f85e574cee537a1afe5375f8c80",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 20887,
+  "text_path": "server/games/monopoly/manual_rules/extracted/harry_potter.txt",
+  "text_sha256": "b9d154b98c81922b67d76f5b9333b1dba1420f85e574cee537a1afe5375f8c80",
+  "zlib_limit_used": 120000000
+}

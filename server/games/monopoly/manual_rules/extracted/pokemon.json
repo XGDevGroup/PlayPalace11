@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-g0716",
+  "board_id": "pokemon",
+  "extraction_mode": "pypdf",
+  "family": "pokemon",
+  "filename": "G0716GA01_INST_537263_MONOPOLY_POKEMON_S25_FAR.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-pokemon-edition-board-game",
+  "page_count": 2,
+  "pdf_sha256": "0c57ef5aab9211035c47200f9aa5ded50946dbc571a3cb1eed7ba27e6a9c3bd5",
+  "pdf_size_bytes": 24325912,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/558f574a-a7c4-4143-9eac-d22e84c54d18/G0716GA01_INST_537263_MONOPOLY_POKEMON_S25_FAR.pdf",
+  "preferred_text_char_count": 28384,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/pokemon.txt",
+  "preferred_text_sha256": "73fd30112e06437379114b2831e0e60a6e1afe4d03448c3ea1d9d8e78f7ee6cd",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 28384,
+  "text_path": "server/games/monopoly/manual_rules/extracted/pokemon.txt",
+  "text_sha256": "73fd30112e06437379114b2831e0e60a6e1afe4d03448c3ea1d9d8e78f7ee6cd",
+  "zlib_limit_used": 120000000
+}

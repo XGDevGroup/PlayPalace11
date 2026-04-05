@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-e3278",
+  "board_id": "game_of_thrones",
+  "extraction_mode": "pypdf",
+  "family": "game",
+  "filename": "51bd8cd9b5c0ddddd38aa5c35a5338af.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/Monopoly-Game-of-Thrones-Board-Game-for-Adults",
+  "page_count": 2,
+  "pdf_sha256": "fd7ab12af498f8e0fc80b76ea962c9404b26c7a1603ee4bf5989c07c38ea334f",
+  "pdf_size_bytes": 18610430,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/5ee241a9-d2f9-49c8-b129-e5ac64460318/51bd8cd9b5c0ddddd38aa5c35a5338af.pdf",
+  "preferred_text_char_count": 12308,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/game_of_thrones.txt",
+  "preferred_text_sha256": "d74a7ec4eb58277fe4ec4bf23b4b5da55060fd48f4916c8fd61eec19d6d1e358",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 12308,
+  "text_path": "server/games/monopoly/manual_rules/extracted/game_of_thrones.txt",
+  "text_sha256": "d74a7ec4eb58277fe4ec4bf23b4b5da55060fd48f4916c8fd61eec19d6d1e358",
+  "zlib_limit_used": 120000000
+}

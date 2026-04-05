@@ -1,0 +1,213 @@
+{
+  "board_id": "barbie",
+  "candidate_lines": [
+    {
+      "line": "GO space, collect a200 from",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Immediately move your token to the In Jail",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "Do not collect a200 for passing",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "collect rent, bid during auctions, buy",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay a50 at the start of your next turn, then roll and",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Use a Get Out of Jail Free card at the start of your",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "deck, then roll and move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Use the roll to move, and that’s the end of your turn.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "roll doubles by your third turn in Jail, pay a50, and use",
+      "tags": [
+        "pay",
+        "jail"
+      ]
+    },
+    {
+      "line": "your last roll to move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "If you already have two Dream Career or Dream Closet cards and you draw another one,",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "you may exchange one of the cards you already have for the new card, or simply return",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "However, if you draw a Dream",
+      "tags": []
+    },
+    {
+      "line": "space, you may move to any",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Pay the Bank the cost on the Title Deed card, and place a DreamHouse on the street.",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "Streets can be traded for cash, other streets, and/or Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "If you owe money and can’t pay, try to raise money by selling DreamHouses or",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Collect rent from the Bank for each of your streets.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "collect rent for DreamHouses!",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Then move as normal.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Move around the board buying as many",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "more rent you’ll be able to collect from",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Move your token clockwise",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "tells you to move differently.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "and take another turn.",
+      "tags": []
+    },
+    {
+      "line": "a row, you must immediately go to Jail!",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay the price on the board space, and take the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If they do, you must pay.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "before the next player rolls the dice, you don’t have to pay!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "roll to move, if you roll",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "move and take your turn as normal.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "will change the way you move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "that is the case, move according to",
+      "tags": [
+        "movement"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/barbie.txt"
+}

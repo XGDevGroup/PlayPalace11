@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-f6167",
+  "board_id": "disney_star_wars_dark_side",
+  "extraction_mode": "pypdf",
+  "family": "disney",
+  "filename": "F6167UE21_INST_MN_Darkside_FAR.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-disney-star-wars-dark-side-edition-board-game-for-families-games-for-kids-star-wars-gift",
+  "page_count": 55,
+  "pdf_sha256": "681c249e63b6ee0e1784e972a606af8af132f7a732661c12a132dd44c891c013",
+  "pdf_size_bytes": 61707425,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/3d6636e6-fdb4-4b48-9303-d3d02ba9765a/F6167UE21_INST_MN_Darkside_FAR.pdf",
+  "preferred_text_char_count": 334217,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/disney_star_wars_dark_side.txt",
+  "preferred_text_sha256": "0a890afe4b528e1fe7764e99b9bbb2ccb1f10af2dd2047ed677129b72e03c8f7",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 334217,
+  "text_path": "server/games/monopoly/manual_rules/extracted/disney_star_wars_dark_side.txt",
+  "text_sha256": "0a890afe4b528e1fe7764e99b9bbb2ccb1f10af2dd2047ed677129b72e03c8f7",
+  "zlib_limit_used": 120000000
+}

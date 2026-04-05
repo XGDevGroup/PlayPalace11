@@ -1,0 +1,22 @@
+{
+  "curated_editions_count": 168,
+  "curated_manual_variants_count": 1370,
+  "generated_at": "2026-02-25T21:31:27+00:00",
+  "input_editions_count": 169,
+  "input_manual_variants_count": 1376,
+  "merged_duplicate_sets": [
+    {
+      "merge_key": [
+        "1790",
+        "monopoly-city",
+        "monopoly city"
+      ],
+      "merged_edition_ids": [
+        "monopoly-1790",
+        "monopoly-01790"
+      ],
+      "primary_edition_id": "monopoly-1790"
+    }
+  ],
+  "merged_duplicate_sets_count": 1
+}

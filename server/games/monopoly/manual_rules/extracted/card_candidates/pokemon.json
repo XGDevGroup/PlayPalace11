@@ -1,0 +1,293 @@
+{
+  "board_id": "pokemon",
+  "candidate_lines": [
+    {
+      "line": "Locations and wild Pokémon can be traded for Poké Balls, other locations, other wild Pokémon, and/or Get Out of Jail",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "If you owe Poké Balls and can’t pay, try to earn Poké Balls by selling locations back to the Bank for the amount",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Give them all your wild Pokémon and any Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Return all your wild Pokémon to their matching sections next to the board.",
+      "tags": []
+    },
+    {
+      "line": "Return any Get Out of Jail Free cards to the bottom of the Adventure deck.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "to collect at least one of each type of wild Pokémon to complete their",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "different types of wild Pokémon to add to your Pokémon tracker mat, and battle rival Trainers to collect Poké Balls!",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Pay the amount on the board space",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "to the Bank and take the Location",
+      "tags": []
+    },
+    {
+      "line": "If you can’t pay, auction it.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Collect one Pokémon type for that",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "No You may pay x 1 to the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay them the exploration cost",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "location, you must take control of it.",
+      "tags": []
+    },
+    {
+      "line": "To do so, pay the amount on the board",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "space, and take the Location card from",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Collect color sets to protect locations!",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "You pay nothing to explore a location that you control.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "to explore a location that a rival Trainer controls, you must pay",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Collect one Pokémon type for that location from next to the",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "end your turn or pay 1 Poké Ball to the Bank and re-roll.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "the GO space, collect 2 Poké",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay 1 Poké Ball at the star",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "then roll and move as normal.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Use a Get Out of Jail Free card",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Adventure deck, then roll and move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Use the roll to move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "in Jail, pay 1 Poké Ball, and",
+      "tags": [
+        "pay",
+        "jail"
+      ]
+    },
+    {
+      "line": "use your last roll to move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Move your token to the In Jail",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "collect exploration costs, battle",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "rival Trainers and collect battle",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "you may move to any space between",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "don’t want to move at all, you can",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "If you pass GO, collect",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "means you might avoid having to pay the Trainer for landing on",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "a location they control—and you might also be able to take that",
+      "tags": []
+    },
+    {
+      "line": "• If you win, you pay the rival Trainer",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "nothing and you take the Loca",
+      "tags": []
+    },
+    {
+      "line": "must pay them the battle fee",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "wins, and you must pay them the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Take the top card from the",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "return them to the bottom of the",
+      "tags": []
+    },
+    {
+      "line": "Trainers, take a Reference card",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Take your token’s matching Pokémon tracker",
+      "tags": []
+    },
+    {
+      "line": "Take control of locations, catch",
+      "tags": []
+    },
+    {
+      "line": "do, you may take a wild Pokémon for that",
+      "tags": []
+    },
+    {
+      "line": "winner, you’ll take over control of that location",
+      "tags": []
+    },
+    {
+      "line": "controls, you must pay them to explore that location",
+      "tags": [
+        "pay"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/pokemon.txt"
+}

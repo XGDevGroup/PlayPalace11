@@ -1,0 +1,239 @@
+{
+  "board_id": "disney_legacy",
+  "candidate_lines": [
+    {
+      "line": "On your turn, roll the dice and move that",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "u Pay rent (if the property is owned by",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "u Draw a Show Time or Magic",
+      "tags": []
+    },
+    {
+      "line": "property to pay off your creditors.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "cannot raise enough money to pay rent,",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If you roll a double, take your turn as",
+      "tags": []
+    },
+    {
+      "line": "in one turn and you go to jail!",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "choose to take on this role only.",
+      "tags": []
+    },
+    {
+      "line": "If anyone rolls a double, also move",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "to buy, pay the banker the price stated on",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Owning a property entitles you to collect",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "group and collect more rent!",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "unowned property but didn’t want to pay",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "another player , you must pay rent (unless the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "You can still collect double rent for the sites",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "If you land on an owned special power, pay",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "pay ten times the amount of your dice roll.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "mode of transport, pay",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "a castle and pay the banker the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "wait for other players to return theirs before",
+      "tags": []
+    },
+    {
+      "line": "The banker will pay half the price of the castle",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "property and no other player can pay",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "You must pay the original mortgage amount",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "or pay 10% interest but retain the mortgage.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If a card instructs you to move to another",
+      "tags": [
+        "mentions_card",
+        "movement"
+      ]
+    },
+    {
+      "line": "space, move there in the direction of the",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "If you pass GO on the way, collect",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "You can collect a200 twice",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "onto the jail space and do not collect a200,",
+      "tags": [
+        "collect",
+        "jail"
+      ]
+    },
+    {
+      "line": "While in jail you can collect rent on properties",
+      "tags": [
+        "collect",
+        "jail"
+      ]
+    },
+    {
+      "line": "You can get out of jail by:",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "u Using a “Get out of jail free” card.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "turns, pay the banker a50 before moving",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Return your Title Deed cards to the banker",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Return any “Get out of jail free” cards to",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "“Get out of jail free” cards you own.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "When you land on one of these spaces, take",
+      "tags": []
+    },
+    {
+      "line": "If you pick a “Get out of jail free” card,",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Players immediately pay the",
+      "tags": [
+        "pay"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/disney_legacy.txt"
+}

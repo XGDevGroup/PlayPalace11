@@ -1,0 +1,213 @@
+{
+  "board_id": "star_wars_complete_saga",
+  "candidate_lines": [
+    {
+      "line": "Pay the Bank the cost on the Title Deed card, and",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "If you owe credits and can’t pay, try to raise",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "facedown, and collect the mortgage value on",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "To repay a mortgage, pay the unmortgage",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "and any Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "The new owner may repay the mortgage (pay",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Return all your properties to the Bank.",
+      "tags": []
+    },
+    {
+      "line": "Return any Get Out of Jail Free cards to the",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "color set, you can pay to upgrade to an X-Wing.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the X-Wing cost on the Title Deed card, return",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "(pay the Bank the unmortgage cost)",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "has 1 droid, pay 5x the amount rolled.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If the owner has 2 droids, pay",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the rent shown on the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the price on the board space, and take the Title Deed card",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "If they don’t ask before the next player rolls the dice, you don’t have to pay!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay 50 credits at the start of your next turn,",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "then roll and move as normal.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Use a Get Out of Jail Free card at the",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Use the roll to move, and that’s the",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "pay 50 credits, and use your last roll to move.",
+      "tags": [
+        "pay",
+        "movement"
+      ]
+    },
+    {
+      "line": "Move around the board buying as many",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "more rent you’ll be able to collect from other",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Move your token clockwise that number",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "and take another turn.",
+      "tags": []
+    },
+    {
+      "line": "row, you must immediately go to Jail!",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "collect 20 credits from",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Move your token to the In",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Do not collect 20 credits",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "collect rent, bid during",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Pay the Bank the amount",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Take the top card from",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Return it to the bottom",
+      "tags": []
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/star_wars_complete_saga.txt"
+}

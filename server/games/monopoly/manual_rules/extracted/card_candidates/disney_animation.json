@@ -1,0 +1,238 @@
+{
+  "board_id": "disney_animation",
+  "candidate_lines": [
+    {
+      "line": "Pay the Bank the cost price on the Title Deed card",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "set, you can pay to upgrade to a",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the Hotel cost price on the Title Deed card,",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "return all 4 Houses to the Bank, and put a Hotel",
+      "tags": []
+    },
+    {
+      "line": "Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Repay the mortgage (pay the Bank the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Or keep the mortgage (just pay the Bank 10%",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Give them any Get Out of Jail Free cards",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Or keep the mortgage (just pay the Bank",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Return all your properties to the Bank.",
+      "tags": []
+    },
+    {
+      "line": "Get Out of Jail Free cards to the",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "If you owe money and can’t pay, try to",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "facedown and collect the mortgage value on",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "To repay a mortgage, pay the unmortgage",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "1 Pay b50 at the start of your next turn, then roll and move as normal.",
+      "tags": [
+        "pay",
+        "movement"
+      ]
+    },
+    {
+      "line": "2 Use a Get Out of Jail Free card at the start of your next turn if you",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "of the pile, then roll and move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "move, and that’s the end of your turn.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "If you don’t throw a double by your third turn In Jail, pay",
+      "tags": [
+        "pay",
+        "jail"
+      ]
+    },
+    {
+      "line": "A50 and use your last roll to move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Move around the board buying as many properties",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "2 Move forward that number of spaces.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "and take another turn.",
+      "tags": []
+    },
+    {
+      "line": "you must Go To Jail!",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay the price on the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "board space and take",
+      "tags": []
+    },
+    {
+      "line": "pay them the rent shown on the Disney Movie’s Title Deed card.",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "Collect color sets to build Houses!",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "If your move took you onto or past the",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "GO space, collect A200 from the Bank.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Pay the Bank the amount shown on the space.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Take the top card from the matching pile and",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Move your token to the In Jail space immediately!",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "Do not collect A200 for passing GO.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "You can still collect rent, auction, buy Houses",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "When you land on a Vehicle that someone else owns, pay them rent.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If they don’t ask, you don’t have to pay!",
+      "tags": [
+        "pay"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/disney_animation.txt"
+}

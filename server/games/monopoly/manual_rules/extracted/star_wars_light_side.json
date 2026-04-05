@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-f8383",
+  "board_id": "star_wars_light_side",
+  "extraction_mode": "pypdf",
+  "family": "star",
+  "filename": "F83830000_INST_MN_LightSide_F23.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-star-wars-light-side-edition-board-game-for-families-games-for-kids-8",
+  "page_count": 2,
+  "pdf_sha256": "29a34681bb3ad8bdb9ebd5df34eac94965d54090fe48e317da653b6d9441be20",
+  "pdf_size_bytes": 101402699,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/780fb8b3-bac2-41bd-8246-1a6b4dc47f52/F83830000_INST_MN_LightSide_F23.pdf",
+  "preferred_text_char_count": 20226,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/star_wars_light_side.txt",
+  "preferred_text_sha256": "d3209d74e5afc0dadb55cdcd744d9f1ee6de5db891dfbdfbf898daf5015392d3",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 20226,
+  "text_path": "server/games/monopoly/manual_rules/extracted/star_wars_light_side.txt",
+  "text_sha256": "d3209d74e5afc0dadb55cdcd744d9f1ee6de5db891dfbdfbf898daf5015392d3",
+  "zlib_limit_used": 120000000
+}

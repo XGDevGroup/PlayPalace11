@@ -1,0 +1,215 @@
+{
+  "board_id": "marvel_flip",
+  "candidate_lines": [
+    {
+      "line": "If you win the battle, flip the tile, and move both tokens to the -",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Move to any Battle Space, and follow the .",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "activate an ability on your ANl porate s e e can be kept until you are ready to use them, Trade or take locations that are part of a complete set.",
+      "tags": []
+    },
+    {
+      "line": "iziu};*;*c £ Ay, You flip the tile and move both tokens to the Battle Space.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "If you already have two Team-Up cards and you draw another one, you i ‘—J?",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "bef / simply return the new card to the bottom of the Team-Up deck.",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "ey yqu you draw a Team-Up card that must be used immediately, you must do so, .",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "move to the Flip space (the other player stays on their location).",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Return your highest value secured location to the board, even if it is part of a complete set.",
+      "tags": []
+    },
+    {
+      "line": "Return any Team-Up cards you have to the bottom of that deck.",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Collect 10 BP from the Bank.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Then pay off any debts and get back into action!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "You may - Collect the End Game Value shown at the bottom of any Location cards you have from the Bank.",
+      "tags": [
+        "mentions_card",
+        "collect"
+      ]
+    },
+    {
+      "line": "o Collect an extra 20 BP for each color set you have.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "collect 1 BP from the Bank.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "HERE’S AN EXAMPLE: * Collect the End Game Value shown at the bottom of any Event cards you have from the Bank.",
+      "tags": [
+        "mentions_card",
+        "collect"
+      ]
+    },
+    {
+      "line": ") For example, if you have the Mjolnir Event card, you collect 30 BP!",
+      "tags": [
+        "mentions_card",
+        "collect"
+      ]
+    },
+    {
+      "line": "pay 2 BP to the Bank.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "take the top card from the A W e _ A ] / Q= s e e i —tt",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "— J ' , C— , — locations, teaming up with other Super UNSECURED LOCATIONS You may still take part in Super Villain battles if another",
+      "tags": []
+    },
+    {
+      "line": "The player with the most BP after all the ~ AveNaers YOU must secure it To do so, pay the amount on the o there even if you have moves left.",
+      "tags": [
+        "pay",
+        "movement"
+      ]
+    },
+    {
+      "line": "card that allows you to collect BP or requires you to pay",
+      "tags": [
+        "mentions_card",
+        "collect",
+        "pay"
+      ]
+    },
+    {
+      "line": "et P board space, and take the Location card.",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "E'“'n Collect 2 BP from the Bank.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "U //; 7 gSup?rV://Irlllam is fellcegp, it IsBoncT sgperSIzed Battle : — Note: If a Super Villain is faceup on a location, it is a \\ take the top card from the Event You may not:",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Return the card to the bottom - Use any Team-Up cards you have to help yourself",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Zs &y you flip the location tile, and collect a reward.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "y— N HOW DO 1 GET OUT OF JAIL?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Roll both dice, and do the following in COLLECT COLOR SETS!",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "f - you’ll also take its matching character mat.",
+      "tags": []
+    },
+    {
+      "line": "Then roll both dice, and take your turn",
+      "tags": []
+    },
+    {
+      "line": "Move your token clockwise the number one of those locations, they must pay you y %@% JUST VISITING both dice, and take your turr",
+      "tags": [
+        "pay",
+        "movement"
+      ]
+    },
+    {
+      "line": "owever, you pay t em @‘\\é 8 !",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "special ability might allow you to move further around \"‘“ - Y P N .",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "always good—it might force you to pay BP!",
+      "tags": [
+        "pay"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-03-01T23:20:02.352077+00:00",
+  "preferred_text_source": "ocr_sidecar",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/marvel_flip.ocr.txt"
+}

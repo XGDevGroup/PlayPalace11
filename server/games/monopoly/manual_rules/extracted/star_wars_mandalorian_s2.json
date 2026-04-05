@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-f4257",
+  "board_id": "star_wars_mandalorian_s2",
+  "extraction_mode": "pypdf",
+  "family": "star",
+  "filename": "F42570000_INST_MN_Mandolorian_F21.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-star-wars-the-mandalorian-edition-board-game",
+  "page_count": 2,
+  "pdf_sha256": "f879ad110abe1d8036ead1bd94f91c359627e2ff88be2cd60bbf670b8b8eb7f2",
+  "pdf_size_bytes": 49129069,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/aa74c338-e1d2-4ddf-aa9b-5cb55067561d/F42570000_INST_MN_Mandolorian_F21.pdf",
+  "preferred_text_char_count": 15322,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/star_wars_mandalorian_s2.txt",
+  "preferred_text_sha256": "6fa793889fe009a7a790f1922555209f504185adc40ac81022fdf0cf951004d5",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 15322,
+  "text_path": "server/games/monopoly/manual_rules/extracted/star_wars_mandalorian_s2.txt",
+  "text_sha256": "6fa793889fe009a7a790f1922555209f504185adc40ac81022fdf0cf951004d5",
+  "zlib_limit_used": 120000000
+}

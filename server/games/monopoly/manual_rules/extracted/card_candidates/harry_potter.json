@@ -1,0 +1,139 @@
+{
+  "board_id": "harry_potter",
+  "candidate_lines": [
+    {
+      "line": "Return house crests to the Bank and/or mortgage properties",
+      "tags": []
+    },
+    {
+      "line": "Return house crests to the Bank for their cost.",
+      "tags": []
+    },
+    {
+      "line": "T o mortgage a property, you must first return all house",
+      "tags": []
+    },
+    {
+      "line": "Return all your properties to the Bank.",
+      "tags": []
+    },
+    {
+      "line": "Return any Get Out of Jail Free cards to the bottom of",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Y ou must return all house crests on a colour set to the",
+      "tags": []
+    },
+    {
+      "line": "property, and/or Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "They take the Prefect Badge.",
+      "tags": []
+    },
+    {
+      "line": "T ravel through your favourite Hogwarts™ locations: take",
+      "tags": []
+    },
+    {
+      "line": "Move your token clockwise that number of spaces.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Roll the dice again, and take",
+      "tags": []
+    },
+    {
+      "line": "must immediately go to Jail!",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "take the Title Deed card.",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "next turn, then roll and move as normal.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Use a Get Out of Jail Free card at the start of your next",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "giving them house points in return).",
+      "tags": []
+    },
+    {
+      "line": "bottom of the deck, then roll and move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Use the roll to move, and that’s the end of your turn.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "points to the Bank, and use your last roll to move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Move your token immediately",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Return it to the bottom",
+      "tags": []
+    },
+    {
+      "line": "you may take that Title Deed",
+      "tags": []
+    },
+    {
+      "line": "your house points, collect colour sets",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Post space, you’ll draw a card from the owl",
+      "tags": [
+        "mentions_card"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/harry_potter.txt"
+}

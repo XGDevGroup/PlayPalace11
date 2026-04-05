@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-f5270",
+  "board_id": "marvel_super_villains",
+  "extraction_mode": "pypdf",
+  "family": "marvel",
+  "filename": "F52700000_INST_MONOPOLY_MARVEL_VILLAINS_F22.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-marvel-super-villains-edition-board-game-for-families-and-kids-ages-8-and-up",
+  "page_count": 2,
+  "pdf_sha256": "5557222bfd03e11c92399c5382af16c75b90872086ea5573d73bf199321d86fb",
+  "pdf_size_bytes": 101489368,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/6451f6d5-0087-4cc9-85e6-eb3d13e92ae8/F52700000_INST_MONOPOLY_MARVEL_VILLAINS_F22.pdf",
+  "preferred_text_char_count": 18669,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/marvel_super_villains.txt",
+  "preferred_text_sha256": "d9c33aa3e5b788af4dafffa441ffbc0570bb9e5cbd2927f2992cc6ab3fd767ee",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 18669,
+  "text_path": "server/games/monopoly/manual_rules/extracted/marvel_super_villains.txt",
+  "text_sha256": "d9c33aa3e5b788af4dafffa441ffbc0570bb9e5cbd2927f2992cc6ab3fd767ee",
+  "zlib_limit_used": 120000000
+}

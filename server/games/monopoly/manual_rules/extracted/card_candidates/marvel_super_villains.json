@@ -1,0 +1,293 @@
+{
+  "board_id": "marvel_super_villains",
+  "candidate_lines": [
+    {
+      "line": "COLLECT 4 COSMIC ENERGY UNITS AS YOU PASS",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "business to take care of.” business to take care of.”",
+      "tags": []
+    },
+    {
+      "line": "Pay the Bank the cost on the contract card,",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "IF YOU CAN’T PAY…IF YOU CAN’T PAY…",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "contract and can’t pay, try to raise Cosmic Energy",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "the Universe or Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "If you still owe the Bank, return one contract to",
+      "tags": []
+    },
+    {
+      "line": "Get Out of Jail Free cards you have.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Return any Reshape the Universe and/or Get Out",
+      "tags": []
+    },
+    {
+      "line": "in a color set, you can pay for Bio Upgrades.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the Bio Upgrade cost on the contract card,",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "return all 4 Stolen Tech to the Bank, and put",
+      "tags": []
+    },
+    {
+      "line": "Take the top card from the matching",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Return it to the bottom of the",
+      "tags": []
+    },
+    {
+      "line": "When you land on a Lair space, move to any contract on",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "If you pass the GO space, do not collect 4 Cosmic Energy",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Units from the Bank or take the Power Cosmic.",
+      "tags": []
+    },
+    {
+      "line": "Immediately move your token to",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Cosmic Energy Units or take the",
+      "tags": []
+    },
+    {
+      "line": "You may still collect",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay 1 Cosmic Energy Unit at the start of your",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "next turn, then roll and move as normal.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Use a Get Out of Jail Free card at the start of",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "the appropriate deck, then roll and move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "move, and that’s the end of your",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "in Jail, pay 1 Cosmic",
+      "tags": [
+        "pay",
+        "jail"
+      ]
+    },
+    {
+      "line": "pay you an extra 2 Cosmic",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "space, collect 2 Cosmic",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "on a Chance space, collect",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "collect 4 Cosmic Energy Units from the",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Contracts can be traded for other contracts and/or Reshape the Universe and Get Out of Jail Free",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Move around the board, recruiting as many Move around the board, recruiting as many",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Cosmic Energy Units you’ll be able to collect from Cosmic Energy Units you’ll be able to collect from",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Move around the board recruiting as many Super",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "collect from other players.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Move your token clockwise that number of spaces.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Pay the price on the board space, and take that Super Villain’s contract card.",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "If you can’t afford to pay, try to raise Cosmic Energy Units by selling",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "If you still can’t pay, then you are bankrupt and out of the game!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Return any of your Reshape the Universe and/or Get Out of",
+      "tags": []
+    },
+    {
+      "line": "If they do, you must pay.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If they don’t ask before the next player rolls the die, you don’t have to pay!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the amount shown",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "• Collect twice the payment for those Super Villains!",
+      "tags": [
+        "collect",
+        "pay"
+      ]
+    },
+    {
+      "line": "When you land on a Lair space, you may move to any",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "draw a Reshape the Universe card.",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Are you ready to take",
+      "tags": []
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/marvel_super_villains.txt"
+}

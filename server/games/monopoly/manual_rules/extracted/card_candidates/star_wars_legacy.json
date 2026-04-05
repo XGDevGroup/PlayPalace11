@@ -1,0 +1,193 @@
+{
+  "board_id": "star_wars_legacy",
+  "candidate_lines": [
+    {
+      "line": "Move to any unowned planet space between you and the next",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "If you pass GO while in Hyperdrive, do not collect 200 Credits.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Take one of your Bases from the Bank and use it to either:",
+      "tags": []
+    },
+    {
+      "line": "• Take over an unowned planet space; or",
+      "tags": []
+    },
+    {
+      "line": "Take a load off and recharge your power couplings.",
+      "tags": []
+    },
+    {
+      "line": "Move your token to the In Jail space immediately.",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "Do not collect 200 Credits.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "You cannot collect any rent or",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "take part in auctions while you’re In Jail.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "So, how do you get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "• Pay 100 Credits to the Bank at the start of your next turn, then roll and",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "• Use a Get Out of Jail Free card.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "roll a double by your third turn in Jail, pay 100 Credits and use your last",
+      "tags": [
+        "pay",
+        "jail"
+      ]
+    },
+    {
+      "line": "roll to move as normal.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Pay 200 Credits to the Bank.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "• In case of a draw, the winner is the player who owns the highest-placed Base.",
+      "tags": []
+    },
+    {
+      "line": "• To buy it, pay the price shown on the outer board space , then put one of",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "You must pay the owner rent.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "the owned hexagonal Base space , but the amount you have to pay",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "• If the owner is an enemy, you must pay the full rent.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "• If an ally, you only pay half the rent!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "• Out of money to pay the rent?",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Every time you land on or pass the GO space, collect 200 Credits (except",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "pick up a matching card and take a closer look...",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Rebel players each take three Rebel Force cards, and",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Empire players each take three Empire Force cards.",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Move your token forward that number of",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "If you rolled a double, move, then roll and",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "in the same turn, you must Go To Jail!",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Take a closer look...",
+      "tags": []
+    },
+    {
+      "line": "pick up a matching card and take a closer look…",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "No one goes bankrupt in MONOPOLY Star Wars, but if you can’t pay the rent,",
+      "tags": [
+        "pay"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/star_wars_legacy.txt"
+}

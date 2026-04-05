@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-f2546",
+  "board_id": "fortnite_collectors",
+  "extraction_mode": "pypdf",
+  "family": "fortnite",
+  "filename": "F25460000_INST_MONOPOLY_FORTNITE_COLLECTORS_S21.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-fortnite-collectors-edition-board-game-inspired-by-fortnite-video-game",
+  "page_count": 2,
+  "pdf_sha256": "3478d1bc5bc7dd2784de7de7161ab11e27e7ea4cf6a8ec812a2f59120d3903d0",
+  "pdf_size_bytes": 20041361,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/99ccc867-d091-4495-a85b-d31e90270b4f/F25460000_INST_MONOPOLY_FORTNITE_COLLECTORS_S21.pdf",
+  "preferred_text_char_count": 11404,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/fortnite_collectors.txt",
+  "preferred_text_sha256": "f801bc2a78a3453ca3f21ddc50c61cacee71d3994e6d3059cfcfdc4ece9b1e97",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 11404,
+  "text_path": "server/games/monopoly/manual_rules/extracted/fortnite_collectors.txt",
+  "text_sha256": "f801bc2a78a3453ca3f21ddc50c61cacee71d3994e6d3059cfcfdc4ece9b1e97",
+  "zlib_limit_used": 120000000
+}

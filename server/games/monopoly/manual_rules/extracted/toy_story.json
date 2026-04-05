@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-e5065",
+  "board_id": "toy_story",
+  "extraction_mode": "pypdf",
+  "family": "toy",
+  "filename": "E50650920_405491_MN_ToyStory_I_FAR.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-toy-story-board-game",
+  "page_count": 4,
+  "pdf_sha256": "f41ffbe1858b9fa24c429f62db0c7832fd9e865c4e14713968f9052c2ef37bab",
+  "pdf_size_bytes": 17886676,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/b530f969-9e1c-42b7-a90f-5b9de1a44423/E50650920_405491_MN_ToyStory_I_FAR.pdf",
+  "preferred_text_char_count": 21276,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/toy_story.txt",
+  "preferred_text_sha256": "5a5e6a6558341dcbce5c685ce6876b4ccfa8ad7b9efeebc3b5696eb11626dabb",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 21276,
+  "text_path": "server/games/monopoly/manual_rules/extracted/toy_story.txt",
+  "text_sha256": "5a5e6a6558341dcbce5c685ce6876b4ccfa8ad7b9efeebc3b5696eb11626dabb",
+  "zlib_limit_used": 120000000
+}

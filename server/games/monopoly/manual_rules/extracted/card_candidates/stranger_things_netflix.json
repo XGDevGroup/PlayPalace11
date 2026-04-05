@@ -1,0 +1,330 @@
+{
+  "board_id": "stranger_things_netflix",
+  "candidate_lines": [
+    {
+      "line": "You can’t collect rent on",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "a location that you own if it is in the Upside Down—you must pay to",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Move around the board buying as many properties",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "locations in the Upside Down, you can pay",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Move your token clockwise the number of spaces",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Roll the dice again, and take",
+      "tags": []
+    },
+    {
+      "line": "immediately go to Jail!",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay the rent shown on the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay rent based on the number of",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "But you can’t collect rent on",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "that property until you pay to close its Gate.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the price on the board space, and take the Title Deed card.",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "If they do, you must pay.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "they don’t ask before the next player rolls the dice, you don’t have to pay!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "pay to close that Gate, no rent",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Gate at that location before they can collect rent on",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "pay the Close Gate cost on the Title Deed card to",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "You can pay to close Gates at any locations that you",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "To add a cassette tape, pay the Bank the cost on",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "If you owe money and can’t pay, try to raise money by",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Any new owner may pay to close those Gates any time",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Give them all your properties and any Get Out of Jail Free",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "The new owner may pay to close those Gates any time",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Return all your properties to the Bank by placing the",
+      "tags": []
+    },
+    {
+      "line": "Return any Get Out of Jail Free cards to the bottom of",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay b50 at the start of your next turn, then roll and move as normal.",
+      "tags": [
+        "pay",
+        "movement"
+      ]
+    },
+    {
+      "line": "Use a Get Out of Jail Free card at the start of your next turn if you have one (or buy one from",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Put the card at the bottom of the appropriate deck, then roll and move.",
+      "tags": [
+        "mentions_card",
+        "movement"
+      ]
+    },
+    {
+      "line": "Use the roll to move, and that’s the end",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "turn in Jail, pay a50, and use your last roll to move.",
+      "tags": [
+        "pay",
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "When you pass or land on the GO space, collect a200 from the Bank.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Take the top card from the matching deck, and immediately do what it",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Return it to the bottom of the deck when done.",
+      "tags": []
+    },
+    {
+      "line": "Move your token to the In Jail space immediately!",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "Do not collect a200 for",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "You can still pay to close Gates at any",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "locations that you own, collect rent, bid during auctions, buy cassette tapes,",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Pay the Bank the amount shown on the space.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "O jogador move-se pelo tabuleiro comprando o máximo",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "O jogador move o peão no sentido horário o número",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "não move o peão e vai",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "і/або картки Get Out of Jail Free.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Поверніть усі картки Get Out of Jail Free вниз",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Скористатися карткою Get Out of Jail Free на початку наступного ходу, якщо вона у вас є",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "\"Get Out of Jail Free\" kaartide vastu.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Anna neile kõik oma kinnisvarad ja Get Out of Jail Free",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pane kaardid Get Out of Jail Free vastava kaardipaki",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Kasuta oma järgmise korra alguses Get Out of Jail Free (vanglast pääsemise) kaarti",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "īpašumu un/vai pret \"Get Out of Jail Free\" kartītēm.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Noliec \"Get Out of Jail Free\" kartītes attiecīgās kavas",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Kad atkal pienāk tava kārta, izmanto kartīti\"Get Out of Jail Free\",, ja tā ir tavā rīcībā (vari",
+      "tags": [
+        "jail"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/stranger_things_netflix.txt"
+}

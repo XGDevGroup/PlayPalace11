@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-f6818",
+  "board_id": "mario_movie",
+  "extraction_mode": "pypdf",
+  "family": "mario",
+  "filename": "F68180000_INST_MONOPOLY_SUPER_MARIO_MOVIE_S23.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-the-super-mario-bros-movie-edition-kids-board-game-includes-bowser-token-family-games-ages-8",
+  "page_count": 2,
+  "pdf_sha256": "eaed985139d1c235c54129a3f8a927e7f634ae29aadc2514fb096c0c55ac8278",
+  "pdf_size_bytes": 34210074,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/6d0c863f-5c00-4c9d-8b5b-edcfd9136558/F68180000_INST_MONOPOLY_SUPER_MARIO_MOVIE_S23.pdf",
+  "preferred_text_char_count": 29564,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/mario_movie.txt",
+  "preferred_text_sha256": "86c861d968b83de6492b23ea81c8fdde46a693a13af29e0b63dba0f8cadc57cb",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 29564,
+  "text_path": "server/games/monopoly/manual_rules/extracted/mario_movie.txt",
+  "text_sha256": "86c861d968b83de6492b23ea81c8fdde46a693a13af29e0b63dba0f8cadc57cb",
+  "zlib_limit_used": 120000000
+}

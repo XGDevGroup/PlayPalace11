@@ -1,0 +1,244 @@
+{
+  "board_id": "ghostbusters",
+  "candidate_lines": [
+    {
+      "line": "Pay the Bank the cost on the Contract card, and place a",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "If you owe money and can’t pay, try to raise money",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "and any Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Repay the mortgage (pay the Bank the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Or keep the mortgage (just pay the Bank",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "or Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "(pay the Bank the unmortgage",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "(just pay the Bank 10% of the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "collect the mortgage value on the back from the Bank.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "To repay a mortgage, pay the unmortgage cost",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "you can pay to upgrade to a Containment Unit.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the Containment Unit cost on the Contract card, return",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "interference, move it away from other electrical equipment.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Return all your Contract cards to the Bank.",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Place any Get Out of Jail Free cards faceup",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Move your token clockwise that number of spaces.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "collect a200 from the Bank.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Take the top card from the deck, and",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Move your token to the In Jail",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "collect a200 for passing GO.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "still collect ghostbusting fees,",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "may pay the Bank a50 to advance to any",
+      "tags": [
+        "pay",
+        "movement"
+      ]
+    },
+    {
+      "line": "move to, then end your turn.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "move at all, you can stay where you landed",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "initially, pay nothing, and end your turn.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "you win the battle and both collect the",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "low, you lose and must both pay the petty",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If they do, you must pay.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If they don’t ask before the next player rolls the dice, you don’t have to pay!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the price on the board space, and take the Contract card from the Bank.",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the fee shown on the Contract",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Roll the dice again, and take another turn.",
+      "tags": []
+    },
+    {
+      "line": "in a row, you must immediately go to Jail!",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay a50 at the start of your next turn, then roll",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Use a Get Out of Jail Free card at the start of",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Use the roll to move, and that’s the end of",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "pay a50, and use your last roll to move.",
+      "tags": [
+        "pay",
+        "movement"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/ghostbusters.txt"
+}

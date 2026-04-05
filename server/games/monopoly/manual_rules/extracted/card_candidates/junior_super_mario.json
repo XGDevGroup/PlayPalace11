@@ -1,0 +1,128 @@
+{
+  "board_id": "junior_super_mario",
+  "candidate_lines": [
+    {
+      "line": "the GO space, collect",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Take the top card from the",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "If the card tells you to pay",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "coins to pay in full, pay",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If you have coins, move",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "You can still collect rent while",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Then roll both dice and take",
+      "tags": []
+    },
+    {
+      "line": "• If you don’t have enough coins to pay rent or a Chance card",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "fee in full, pay what you can in coins, then:",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "• If you still can’t pay, then you are bankrupt and the game ends.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "On your turn, roll both dice, and move your token according to",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Should this product cause, or be affected by, local electrical interference, move it away from other electrical equipment.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Move your token clockwise the number",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "you hear, and collect that",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Move around the board exploring",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Pay the Bank the amount shown on the space.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If you land on a property someone else owns, pay that player the amount shown",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If you don’t have enough coins to pay the rent in full, pay them what you can!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Collect more coins with color sets!",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "If you own both properties of the same color, collect two times the rent whenever",
+      "tags": [
+        "collect"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/junior_super_mario.txt"
+}

@@ -1,0 +1,234 @@
+{
+  "board_id": "star_wars_boba_fett",
+  "candidate_lines": [
+    {
+      "line": "If you owe credits and can’t pay, try to raise",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "card facedown, and collect the inactive value on",
+      "tags": [
+        "mentions_card",
+        "collect"
+      ]
+    },
+    {
+      "line": "To reinstate a property, pay the reinstate cost",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Reinstate the property (pay the Depository",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Or keep the property inactive (just pay the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Return all your properties to the Depository.",
+      "tags": []
+    },
+    {
+      "line": "Return any Get Out of Jail Free cards to the bottom",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Reinstate the property (pay the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "(just pay the Depository 10% of",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the Depository the cost on the Title Deed card,",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "you can pay to upgrade to a Skull.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the Skull cost on the Title Deed card, return all 4",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "Always auction when someone doesn’t want to collect the property they’ve landed on.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Move around the board as legendary bounty hunter",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "The more property you collect,",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Move your token clockwise that number of spaces.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "and take another turn.",
+      "tags": []
+    },
+    {
+      "line": "row, you must immediately go to Jail!",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "When you land on an uncollected property, you must collect it or auction it.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Pay the price on the board space, and take the Title Deed card from the Depository.",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "Don’t want to collect it?",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "• You can collect twice as many credits for those characters!",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "If they don’t ask before the next player rolls the dice, you don’t have to pay!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "on the GO space, collect",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Take the top card from",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Return it to the bottom of",
+      "tags": []
+    },
+    {
+      "line": "Move your token to the In Jail space",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "You can still collect payments,",
+      "tags": [
+        "collect",
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the Depository the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay 50 at the start of your next turn, then roll",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Use a Get Out of Jail Free card at the start of",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "appropriate deck, then roll and move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Use the roll to move, and that’s the end of",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "don’t roll doubles by your third turn in Jail, pay",
+      "tags": [
+        "pay",
+        "jail"
+      ]
+    },
+    {
+      "line": "50, and use your last roll to move.",
+      "tags": [
+        "movement"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/star_wars_boba_fett.txt"
+}

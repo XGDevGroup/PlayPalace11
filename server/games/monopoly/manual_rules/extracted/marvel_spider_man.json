@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-f3968",
+  "board_id": "marvel_spider_man",
+  "extraction_mode": "pypdf",
+  "family": "marvel",
+  "filename": "F39680000_INST_MONOPOLY_SPIDERMAN_F21%282%29.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-marvel-spider-man-edition-board-game-play-as-a-spider-hero-fun-game-to-play-for-kids-ages-8-and-up",
+  "page_count": 2,
+  "pdf_sha256": "9a2a039ede525761dad0feef66b3c21552cc50972eec95c3c1ba9af8320fdf82",
+  "pdf_size_bytes": 3800839,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/adde3774-7e15-4cb4-85f7-29b5f3615753/F39680000_INST_MONOPOLY_SPIDERMAN_F21%282%29.pdf",
+  "preferred_text_char_count": 11212,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/marvel_spider_man.txt",
+  "preferred_text_sha256": "9da3582fb9bcb74212a698f53408b1230f4d25b6b6050a78a867645493b294ee",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 11212,
+  "text_path": "server/games/monopoly/manual_rules/extracted/marvel_spider_man.txt",
+  "text_sha256": "9da3582fb9bcb74212a698f53408b1230f4d25b6b6050a78a867645493b294ee",
+  "zlib_limit_used": 120000000
+}

@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-c2116",
+  "board_id": "disney_animation",
+  "extraction_mode": "pypdf",
+  "family": "disney",
+  "filename": "C21160000_WDA_Monopoly_17_INST.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-disney-animation-edition",
+  "page_count": 2,
+  "pdf_sha256": "0c435677d0675ed1563ce7456288fd2b85496d68839bb91829af44c14b44e70b",
+  "pdf_size_bytes": 4327949,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/3d8d3901-a07d-42ed-9284-ae26c66a6575/C21160000_WDA_Monopoly_17_INST.pdf",
+  "preferred_text_char_count": 10323,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/disney_animation.txt",
+  "preferred_text_sha256": "348dd5edc1dc69acae848768dc557dc9b7c0d18116eeb255cacf15f0f69395da",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 10323,
+  "text_path": "server/games/monopoly/manual_rules/extracted/disney_animation.txt",
+  "text_sha256": "348dd5edc1dc69acae848768dc557dc9b7c0d18116eeb255cacf15f0f69395da",
+  "zlib_limit_used": 120000000
+}

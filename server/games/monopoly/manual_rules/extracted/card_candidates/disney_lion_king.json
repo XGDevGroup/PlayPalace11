@@ -1,0 +1,224 @@
+{
+  "board_id": "disney_lion_king",
+  "candidate_lines": [
+    {
+      "line": "any Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "repay the mortgage (pay the Bank the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "keep the mortgage (just pay the Bank 10%",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If you owe money and can’t pay, try to",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "face down and collect the mortgage value",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "To repay a mortgage, pay the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Return all your properties to the Bank.",
+      "tags": []
+    },
+    {
+      "line": "Return any Get Out of Jail Free cards to the",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "colour set, you can pay to upgrade to a Beetle.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the Beetle cost shown on the Title Deed",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "card, return all 4 Grubs to the Bank and put a",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Pay the Bank the amount shown on the Title",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "or Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "repay the mortgage (pay",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "(just pay the Bank 10% of the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Should this product cause, or be affected by, local electrical interference, move it away from other electrical equipment.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Move your token clockwise that number",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "again and take another turn.",
+      "tags": []
+    },
+    {
+      "line": "row, you must immediately Go to Jail!",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay b50 at the beginning of your next",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "turn, then roll and move as normal.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Use a Get Out of Jail Free card at the",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "deck, then roll and move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "move, and that’s the end of your turn.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "third turn in Jail, pay a 50, and use your",
+      "tags": [
+        "pay",
+        "jail"
+      ]
+    },
+    {
+      "line": "Move around the board buying as many",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "you’ll be able to collect from other players.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "on the GO space, collect",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Return it to the back",
+      "tags": []
+    },
+    {
+      "line": "Pay the Bank the amount",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Move your token to the",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Do not collect a200 for",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "collect rent, bid during",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "If they don’t ask before the next player rolls the dice, you don’t have to pay!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the price shown on the board space and take the Title Deed card from the Bank.",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/disney_lion_king.txt"
+}

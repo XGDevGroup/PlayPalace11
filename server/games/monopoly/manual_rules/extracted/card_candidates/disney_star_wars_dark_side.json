@@ -1,0 +1,448 @@
+{
+  "board_id": "disney_star_wars_dark_side",
+  "candidate_lines": [
+    {
+      "line": "figures in a colour set, you can add TIE Fighters to those contracts, and collect more",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Move around the board recruiting as many notorious",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "payments you’ll be able to collect from other players.",
+      "tags": [
+        "collect",
+        "pay"
+      ]
+    },
+    {
+      "line": "Move your piece (and the Ring of Force Lightning",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Immediately take the Ring of Force Lightning",
+      "tags": []
+    },
+    {
+      "line": "and place it on your playing piece You will move",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Take the top card from the matching deck.",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Return the card to the bottom of the",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "space, collect 40 from the Bank, and",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "immediately take the Ring of Force",
+      "tags": []
+    },
+    {
+      "line": "spaces, pay the Bank the amount",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "move to any notorious figure between that",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "If you don’t want to move at all, you",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "collect 40 or take the",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Pay the price on the board space,",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "and take that notorious figure’s contract card.",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "If you can’t afford to pay, try to raise credits by selling TIE Fighters back to the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Bank, or by selling The Dark Side cards and/or Get Out of Jail Free cards to",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "If you still can’t pay, then you are bankrupt and out of the game!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "of your Dark Side cards and/or Get Out of Jail Free cards to the bottom of the",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "• Collect twice the payment for those contracts!",
+      "tags": [
+        "collect",
+        "pay"
+      ]
+    },
+    {
+      "line": "If they do, you must pay the amount",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "die, you don’t have to pay!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "When you pass or land on the GO space, take the",
+      "tags": []
+    },
+    {
+      "line": "which means you can move to any notorious figure between",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "you do not collect credits or take the Ring of Force Lightning",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "When you land on one of The Dark Side spaces, draw a",
+      "tags": []
+    },
+    {
+      "line": "These cards may allow you to take the Ring",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "can’t pay, try to raise credits by selling TIE Fighters back to the Bank, or by selling The Dark Side",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "cards and/or Get Out of Jail Free cards to other players for an agreed-upon price.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "If you still owe the Bank, return one contract to the",
+      "tags": []
+    },
+    {
+      "line": "Give them any Dark Side cards and/or Get Out of Jail Free cards you have.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Return any Dark Side cards and/or Get Out of Jail Free cards you have to the bottom of the",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "To add a TIE Fighter, pay the Bank the cost on the contract card, and place a TIE Fighter on that",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "Whenever you pass or land on GO, immediately take the Ring of Force",
+      "tags": []
+    },
+    {
+      "line": "Contracts can be traded for other contracts and/or The Dark Side cards and Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Move your piece to the In",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "collect 40 or take the Ring of",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "You can still collect payments,",
+      "tags": [
+        "collect",
+        "pay"
+      ]
+    },
+    {
+      "line": "HOW DO I GET OUT OF JAIL?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay 10 at the start of your next turn,",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "then roll and move as normal.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Use a Get Out of Jail Free card at the start",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "of the appropriate deck, then roll and move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Use the roll to move, and that’s",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "pay 10, and use your last roll to move.",
+      "tags": [
+        "pay",
+        "movement"
+      ]
+    },
+    {
+      "line": "collect 10 from the Bank!",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Move o teu peão (e o anel Raio da Força caso",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "tilbage til banken eller ved at sælge The Dark Side-kort og/eller Get Out of Jail",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "The Dark Side-kort og/eller Get Out of Jail Free-kort, du måtte have, nederst i",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "tilbage til banken eller ved at sælge The Dark Side-kort og/eller Get Out of Jail Free-kort til andre",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Giv dem et hvilket som helst The Dark Side-kort og/eller Get Out of Jail Free-kort, du måtte have.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Læg alle The Dark Side-kort og/eller Get Out of Jail Free-kort, du måtte have, nederst i den",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Kontrakter kan byttes for andre kontrakter og/eller The Dark Side-kort og Get Out of Jail Free-kort.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Brug et Get Out of Jail Free-kort, næste",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "и (или) Get Out of Jail Free другим игрокам по договорной цене.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "«Темная сторона» и (или) Get Out of Jail Free под соответствующую колоду.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "продав карточки «Темная сторона» и (или) Get Out of Jail Free другим игрокам по договорной цене.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Отдайте ему все имеющиеся у вас карточки «Темная сторона» и (или) Get Out of Jail Free.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Верните все имеющиеся у вас карточки «Темная сторона» и (или) Get Out of Jail Free под",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Если у вас есть карточка Get Out of Jail",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "та/або картки Get Out of Jail Free іншим гравцям за договірною ціною.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Поверніть усі картки «Темна сторона» та/або картки Get Out of Jail",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "продавши винищувачі TIE назад у Банк чи картки «Темна сторона» та/або картки Get Out of Jail",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Віддайте йому ваші картки «Темна сторона» та/або картки Get Out of Jail Free card.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Поверніть ваші картки «Темна сторона» та/або картки Get Out of Jail Free card вниз",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Скористатися карткою Get Out of Jail Free",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "tagasi või müües The Dark Side kaarte ja/või Get Out of Jail Free kaarte teistele",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "oma Dark Side kaardid ja/või Get Out of Jail Free kaardid vastava paki alla.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "mängijatele The Dark Side'i kaarte ja/või Get Out of Jail Free kaardid kokkulepitud hinna eest.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Anna talle kõik Dark Side'i kaardid ja/või Get Out of Jail Free kaardid, mis sul on.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Tagasta kõik Dark Side'i kaardid ja/või Get Out of Jail Free kaardid, mis sul on, vastava paki alla.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Lepinguid saab vahetada teiste lepingute ja/või The Dark Side kaartide ja Get Out of Jail Free kaartide",
+      "tags": [
+        "jail"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/disney_star_wars_dark_side.txt"
+}

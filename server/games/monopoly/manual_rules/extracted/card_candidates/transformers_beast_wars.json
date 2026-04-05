@@ -1,0 +1,343 @@
+{
+  "board_id": "transformers_beast_wars",
+  "candidate_lines": [
+    {
+      "line": "You pay higher energy fees.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "You pay lower energy fees.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "You may immediately take the Golden Disk if you pass or land on its space.",
+      "tags": []
+    },
+    {
+      "line": "Always auction when someone doesn’t want to take control of the property they’ve landed on.",
+      "tags": []
+    },
+    {
+      "line": "Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "restore power (pay the Bank the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "pay energy fees to another",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "player, do so after you take",
+      "tags": []
+    },
+    {
+      "line": "You can also take the Golden Disk",
+      "tags": []
+    },
+    {
+      "line": "when you draw a Maximal or Predacon",
+      "tags": []
+    },
+    {
+      "line": "Note: You may not take the Golden Disk",
+      "tags": []
+    },
+    {
+      "line": "you’ll move it around the board with",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "• Collect 4 more Energon when",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "you draw a card that tells you",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "• You are sent to Jail or draw a",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "If you owe Energon and can’t pay, try to raise",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Deed card facedown, and collect the power-drained",
+      "tags": [
+        "mentions_card",
+        "collect"
+      ]
+    },
+    {
+      "line": "To restore power to a property, pay the restore",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "drained of power, any Get Out of Jail Free",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "The new owner may immediately pay to",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Return all your properties to the Bank.",
+      "tags": []
+    },
+    {
+      "line": "Return any Get Out of Jail Free cards and",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "To add a Stasis Pod, pay the Bank the cost on the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "You may collect 4 more Energon if you pass or land on GO, or you draw a card",
+      "tags": [
+        "mentions_card",
+        "collect"
+      ]
+    },
+    {
+      "line": "that tells you to collect.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "draw a card that tells you to surrender the Disk.",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "You may immediately take the Golden",
+      "tags": []
+    },
+    {
+      "line": "player’s token or not), they immediately take the Golden Disk!",
+      "tags": []
+    },
+    {
+      "line": "able to charge more energy fees (rent) and collect more",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Energon when you pass or land on the GO space or draw",
+      "tags": []
+    },
+    {
+      "line": "(owns), you pay a higher energy fee than you would in alt",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "take control of key locations and powerful",
+      "tags": []
+    },
+    {
+      "line": "Move your token (and the Golden Disk",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "You will move it around",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Golden Disk and must go to Jail,",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "you must take control of it or auction it.",
+      "tags": []
+    },
+    {
+      "line": "Want to take control of it?",
+      "tags": []
+    },
+    {
+      "line": "Pay the price on the board space, and take the Title Deed",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Don’t want to take control of it?",
+      "tags": []
+    },
+    {
+      "line": "If they do, you must pay.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If they don’t ask before the next player rolls the die, you don’t have to pay!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "GO space, collect 4 Energon",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "you can collect more!",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Disk, you might have to pay",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Move your token to the In Jail",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "collect any Energon for passing",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "collect energy fees, bid during",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "collect Energon from the Bank,",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay 1 Energon at the start of your next turn,",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "then roll and move as normal.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Use a Get Out of Jail Free card at the start of",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "appropriate deck, then roll and move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Use the roll to move, and that’s the end of your turn.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "don’t roll a 6 by your third turn in Jail, pay",
+      "tags": [
+        "pay",
+        "jail"
+      ]
+    },
+    {
+      "line": "1 Energon, and use your last roll to move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "leave Jail, you may not take it.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "or land on this space, take the",
+      "tags": []
+    },
+    {
+      "line": "immediately return it to the Free",
+      "tags": []
+    },
+    {
+      "line": "spaces, take the top card from the",
+      "tags": [
+        "mentions_card"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/transformers_beast_wars.txt"
+}

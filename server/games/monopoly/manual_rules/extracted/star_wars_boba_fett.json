@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-f5394",
+  "board_id": "star_wars_boba_fett",
+  "extraction_mode": "pypdf",
+  "family": "star",
+  "filename": "F53940000_INST_MN_BobaFett_S22.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-star-wars-boba-fett-edition-board-game-for-kids-ages-8-and-up",
+  "page_count": 2,
+  "pdf_sha256": "aa0a2b22184bfd1f5dae4e0a72c5dd424cd153b4d7c505918409be1bb999c438",
+  "pdf_size_bytes": 61087979,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/5f60d31e-704b-481c-8af2-d59b2a4eb8e2/F53940000_INST_MN_BobaFett_S22.pdf",
+  "preferred_text_char_count": 18930,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/star_wars_boba_fett.txt",
+  "preferred_text_sha256": "671bc14ef31ff27dca0aeeebab9992ef2c50543482b0fc754400bec6a2795cf8",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 18930,
+  "text_path": "server/games/monopoly/manual_rules/extracted/star_wars_boba_fett.txt",
+  "text_sha256": "671bc14ef31ff27dca0aeeebab9992ef2c50543482b0fc754400bec6a2795cf8",
+  "zlib_limit_used": 120000000
+}

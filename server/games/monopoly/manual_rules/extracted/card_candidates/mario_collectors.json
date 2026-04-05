@@ -1,0 +1,237 @@
+{
+  "board_id": "mario_collectors",
+  "candidate_lines": [
+    {
+      "line": "Get Out of Jail Free card if you have (or can buy)",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "do so, pay the 50 on the same turn.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "after the Bank and take charge of auctions.",
+      "tags": []
+    },
+    {
+      "line": "Collect groups of properties to",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Move your token clockwise around",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "You will need to take action depending",
+      "tags": []
+    },
+    {
+      "line": "dice again and take another",
+      "tags": []
+    },
+    {
+      "line": "When you finish your move and",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "u Pay whatever money you were able to raise.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "mortgaged properties and any Get Out of Jail Free",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "The player must pay 10% interest on each",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "mortgaged property, even if they don’t want to pay",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the Bank, then take the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If you don’t want to pay the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If you land on another player’s property you must pay rent to",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "You do not pay rent if",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If they forget to ask, you don’t have to pay!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "4 – this is the rent you must pay.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Take the top card from the appropriate pile,",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "return it face down to the bottom of the pile.",
+      "tags": []
+    },
+    {
+      "line": "If it is a Get Out of Jail Free card, keep it until you",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "If you land on one of these spaces, you must pay",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If you land on this space, you must move",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Important: You do not collect",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "card that tells you to Go to Jail.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Q: How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "i Pay 50 at the start of your next turn, then roll and",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "ii Use a Get Out of Jail Free card if you have one or buy",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "the appropriate pile, then roll and move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "get a double, move out of Jail and around the board",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "50 to the Bank, then move the",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "move on the Jail space, nothing",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "If you’re low on cash or don’t have enough to pay",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "and collect the listed value (shown on the back of the card)",
+      "tags": [
+        "mentions_card",
+        "collect"
+      ]
+    },
+    {
+      "line": "To repay a mortgage, pay the listed value",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "pay 10% of the listed value and keep the card face down;",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "will have to pay the 10% fee again.",
+      "tags": [
+        "pay"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/mario_collectors.txt"
+}

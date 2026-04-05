@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-e6707",
+  "board_id": "disney_lion_king",
+  "extraction_mode": "pypdf",
+  "family": "disney",
+  "filename": "E67071020_414632_MN_LIONKING_I_P1_1_FAR.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-game-disney-the-lion-king-edition",
+  "page_count": 2,
+  "pdf_sha256": "4dc8686ae1ccc26d9b7f1bb2ff1c1ec01d201e7bc7f8b165ac41f93fac13eb71",
+  "pdf_size_bytes": 45623154,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/1ee5130c-2151-43c7-b1a8-6faa2368d829/E67071020_414632_MN_LIONKING_I_P1_1_FAR.pdf",
+  "preferred_text_char_count": 11203,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/disney_lion_king.txt",
+  "preferred_text_sha256": "19a8fd8c90bc653462e9f65d98d534d4458a447498d23bfaed8c0d06f240d0da",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 11203,
+  "text_path": "server/games/monopoly/manual_rules/extracted/disney_lion_king.txt",
+  "text_sha256": "19a8fd8c90bc653462e9f65d98d534d4458a447498d23bfaed8c0d06f240d0da",
+  "zlib_limit_used": 120000000
+}

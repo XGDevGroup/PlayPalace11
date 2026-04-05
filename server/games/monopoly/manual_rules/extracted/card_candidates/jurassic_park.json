@@ -1,0 +1,259 @@
+{
+  "board_id": "jurassic_park",
+  "candidate_lines": [
+    {
+      "line": "can collect rent on it.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "To repair a property, the owner must pay the repair cost on",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "You can only pay to repair properties at the start of your turn—",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the Bank the cost on the Title Deed",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Property can be traded for cash, other property, and/or Get Out of Jail",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "If you owe money and can’t pay, try to raise money by selling Fences",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Give them all your properties and any Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "(pay the Bank the repair cost) or do so at the start of any future turn.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Return all your properties to the Bank by placing the Title Deed cards",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Return any Get Out of Jail Free cards to the bottom of the",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "moves, and you must always move",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "If they are swallowed, promptly see a doctor and have the doctor phone (202) 625-3333 collect.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Should this product cause, or be affected by, local electrical interference, move it away from other electrical equipment.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "You must pay a50 to the Bank.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Rex, you pay nothing.)",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Move around the board buying as many properties",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "collect from other players.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "If you have any properties, you can pay to repair",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Move your token clockwise the number of spaces",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "If they don’t ask before the next player rolls the dice, you don’t have to pay!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the price on the board space, and take the Title Deed card.",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "but you’ll also move the T.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "as your token, you must pay a50 to the Bank.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "theme song, you may collect a200 from the",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "But if you hear a dinosaur roar, you collect",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "again—and move the T.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "theme song, collect a200 from",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "of a dinosaur, collect only a100.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Take the top card from the matching",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Return it to the bottom of the deck",
+      "tags": []
+    },
+    {
+      "line": "Pay the Bank the amount",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Move your token to the In Jail space",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "You can still collect rent,",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Jail, you do not have to pay a50.",
+      "tags": [
+        "pay",
+        "jail"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay a50 at the start of your next turn, then roll and",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Use a Get Out of Jail Free card at the start",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "appropriate deck, then roll and move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Use the roll to move, and that’s the end of your turn.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "roll doubles by your third turn in Jail, pay a50, and use",
+      "tags": [
+        "pay",
+        "jail"
+      ]
+    },
+    {
+      "line": "your last roll to move.",
+      "tags": [
+        "movement"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/jurassic_park.txt"
+}

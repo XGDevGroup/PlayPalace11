@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-e6603",
+  "board_id": "fortnite",
+  "extraction_mode": "pypdf",
+  "family": "fortnite",
+  "filename": "a787ce279869d17cf69c10cf00591d95.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/Monopoly--Fortnite-Edition-Board-Game",
+  "page_count": 2,
+  "pdf_sha256": "dec6382e8b1f52b316b13403a1b499c4cff359544b1d74d7ba61f47a4a9b8aa4",
+  "pdf_size_bytes": 35067756,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/da8ade22-e44d-4090-8bb3-211720328e5e/a787ce279869d17cf69c10cf00591d95.pdf",
+  "preferred_text_char_count": 14231,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/fortnite.txt",
+  "preferred_text_sha256": "411112ad8f2f79bc5e14fa51dba5a5a76502a97c4a4bcedbca454b30274e155e",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 14231,
+  "text_path": "server/games/monopoly/manual_rules/extracted/fortnite.txt",
+  "text_sha256": "411112ad8f2f79bc5e14fa51dba5a5a76502a97c4a4bcedbca454b30274e155e",
+  "zlib_limit_used": 120000000
+}

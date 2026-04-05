@@ -1,0 +1,336 @@
+{
+  "board_id": "star_wars_mandalorian_s2",
+  "candidate_lines": [
+    {
+      "line": "Grogu’s space, take him,",
+      "tags": []
+    },
+    {
+      "line": "You’ll move the Grogu",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "would pass an Imperial enemy, end your move",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "• All players collect rent from the",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "For hideouts in a set, collect",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "they collect 100 from the Bank.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "space to advance and get away!",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Take the top card from the matching Imperial",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "pay, try to raise money by selling",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If you owe the Bank, return any",
+      "tags": []
+    },
+    {
+      "line": "the board, move that enemy",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Move the enemy token to",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "immediately go to Jail.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "you may collect 100 from the Bank.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "on a Signet space, draw two",
+      "tags": []
+    },
+    {
+      "line": "collect 70 instead of 20.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "to pay rent, subtract 30 from",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "can collect increased rent",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Pay the price on the board space, and",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "take the hideout card from the Bank.",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "must pay the rent shown",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If an enemy would move",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "its move in an Imperial",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "ability might allow you to pay less rent,",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "draw two cards instead of one, re-roll",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "when battling an enemy, or collect extra",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "silver die to move, and you may use your",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "move these tokens around the board",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "must draw an Imperial Enemy card",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "the GO space, collect 20",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "space, draw two cards.",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "use one, and return the other to",
+      "tags": []
+    },
+    {
+      "line": "collect 50 instead of 20.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "When you need to pay rent,",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay 50 at the start of your next turn,",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "then roll and move as normal.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Use the roll to move, and that’s the end of your turn.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "a 6 by your third turn in Jail, move your token to the",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "If you do not have Grogu, take him and place",
+      "tags": []
+    },
+    {
+      "line": "pass or land on this space, take Grogu and place",
+      "tags": []
+    },
+    {
+      "line": "may not take Grogu if you pass him while using an",
+      "tags": []
+    },
+    {
+      "line": "Unexpected Ally space to advance.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Move your token to the In Jail space immediately!",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "not collect 20 for passing GO.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "any hideouts, leave Grogu on the Go to Jail space.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "can still collect rent, bid during auctions, and trade",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "the silver die, and move",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "first move to move to the",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Imperial Advance space and",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Move the Moff Gideon token",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Move around the board buying as many",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "the more rent you’ll be able to collect",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Move your token (and Grogu if you",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "take Grogu with you.",
+      "tags": []
+    },
+    {
+      "line": "Take the top card from",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Collect 30 from the Bank.",
+      "tags": [
+        "collect"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/star_wars_mandalorian_s2.txt"
+}

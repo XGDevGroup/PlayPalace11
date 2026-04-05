@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-f1661",
+  "board_id": "animal_crossing",
+  "extraction_mode": "pypdf",
+  "family": "animal",
+  "filename": "F16610920_INST_EN_MN_Animal_Crossing_F21_RC_FAR.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-animal-crossing-new-horizons-edition-board-game",
+  "page_count": 2,
+  "pdf_sha256": "933ac0cfb18f9aae4526da0dc12c7730cb01f1fb65f58e5d99d99ebf710ae467",
+  "pdf_size_bytes": 20766388,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/79598b24-05c7-4400-93c3-f189cb87b4ed/F16610920_INST_EN_MN_Animal_Crossing_F21_RC_FAR.pdf",
+  "preferred_text_char_count": 12007,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/animal_crossing.txt",
+  "preferred_text_sha256": "d31d291db5f9c5a21a2d1a96cf30352f15e8f1b90f77abfecba69a227596ce8b",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 12007,
+  "text_path": "server/games/monopoly/manual_rules/extracted/animal_crossing.txt",
+  "text_sha256": "d31d291db5f9c5a21a2d1a96cf30352f15e8f1b90f77abfecba69a227596ce8b",
+  "zlib_limit_used": 120000000
+}

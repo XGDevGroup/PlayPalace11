@@ -1,0 +1,556 @@
+[
+  {
+    "board_id": "animal_crossing",
+    "family": "animal",
+    "rule_pack_id": "animal_crossing",
+    "anchor_edition_id": "monopoly-f1661",
+    "canonical_manual_edition_id": "monopoly-f1661",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "barbie",
+    "family": "barbie",
+    "rule_pack_id": "barbie",
+    "anchor_edition_id": "monopoly-g0038",
+    "canonical_manual_edition_id": "monopoly-g0038",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "black_panther",
+    "family": "black",
+    "rule_pack_id": "black_panther",
+    "anchor_edition_id": "monopoly-e5797",
+    "canonical_manual_edition_id": "monopoly-e5797",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "deadpool_collectors",
+    "family": "deadpool",
+    "rule_pack_id": "deadpool_collectors",
+    "anchor_edition_id": "monopoly-e4833",
+    "canonical_manual_edition_id": "monopoly-e4833",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "disney_animation",
+    "family": "disney",
+    "rule_pack_id": "disney_animation",
+    "anchor_edition_id": "monopoly-c2116",
+    "canonical_manual_edition_id": "monopoly-c2116",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "disney_legacy",
+    "family": "disney",
+    "rule_pack_id": "disney_legacy",
+    "anchor_edition_id": "monopoly-19643",
+    "canonical_manual_edition_id": "monopoly-19643",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "disney_lightyear",
+    "family": "disney",
+    "rule_pack_id": "disney_lightyear",
+    "anchor_edition_id": "monopoly-f8046",
+    "canonical_manual_edition_id": "monopoly-f8046",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "disney_lion_king",
+    "family": "disney",
+    "rule_pack_id": "disney_lion_king",
+    "anchor_edition_id": "monopoly-e6707",
+    "canonical_manual_edition_id": "monopoly-e6707",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "disney_mickey_friends",
+    "family": "disney",
+    "rule_pack_id": "disney_mickey_friends",
+    "anchor_edition_id": "monopoly-f5267",
+    "canonical_manual_edition_id": "monopoly-f5267",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "disney_princesses",
+    "family": "disney",
+    "rule_pack_id": "disney_princesses",
+    "anchor_edition_id": "monopoly-b4644",
+    "canonical_manual_edition_id": "monopoly-b4644",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "disney_star_wars_dark_side",
+    "family": "disney",
+    "rule_pack_id": "disney_star_wars_dark_side",
+    "anchor_edition_id": "monopoly-f6167",
+    "canonical_manual_edition_id": "monopoly-f6167",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "disney_the_edition",
+    "family": "disney",
+    "rule_pack_id": "disney_the_edition",
+    "anchor_edition_id": "monopoly-40224",
+    "canonical_manual_edition_id": "monopoly-40224",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "disney_villains",
+    "family": "disney",
+    "rule_pack_id": "disney_villains",
+    "anchor_edition_id": "monopoly-f0091",
+    "canonical_manual_edition_id": "monopoly-f0091",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "fortnite",
+    "family": "fortnite",
+    "rule_pack_id": "fortnite",
+    "anchor_edition_id": "monopoly-e6603",
+    "canonical_manual_edition_id": "monopoly-e6603",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "fortnite_collectors",
+    "family": "fortnite",
+    "rule_pack_id": "fortnite_collectors",
+    "anchor_edition_id": "monopoly-f2546",
+    "canonical_manual_edition_id": "monopoly-f2546",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "fortnite_flip",
+    "family": "fortnite",
+    "rule_pack_id": "fortnite_flip",
+    "anchor_edition_id": "monopoly-f7774",
+    "canonical_manual_edition_id": "monopoly-f7774",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "game_of_thrones",
+    "family": "game",
+    "rule_pack_id": "game_of_thrones",
+    "anchor_edition_id": "monopoly-e3278",
+    "canonical_manual_edition_id": "monopoly-e3278",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "ghostbusters",
+    "family": "ghostbusters",
+    "rule_pack_id": "ghostbusters",
+    "anchor_edition_id": "monopoly-e9479",
+    "canonical_manual_edition_id": "monopoly-e9479",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "harry_potter",
+    "family": "harry",
+    "rule_pack_id": "harry_potter",
+    "anchor_edition_id": "monopoly-f9422",
+    "canonical_manual_edition_id": "monopoly-f9422",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "junior_super_mario",
+    "family": "junior",
+    "rule_pack_id": "junior_super_mario",
+    "anchor_edition_id": "monopoly-f4817",
+    "canonical_manual_edition_id": "monopoly-f4817",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": [
+      "junior_powerup_sound_ready"
+    ]
+  },
+  {
+    "board_id": "jurassic_park",
+    "family": "jurassic",
+    "rule_pack_id": "jurassic_park",
+    "anchor_edition_id": "monopoly-f1662",
+    "canonical_manual_edition_id": "monopoly-f1662",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "lord_of_the_rings",
+    "family": "lord",
+    "rule_pack_id": "lord_of_the_rings",
+    "anchor_edition_id": "monopoly-f1663",
+    "canonical_manual_edition_id": "monopoly-f1663",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "lord_of_the_rings_trilogy",
+    "family": "lord",
+    "rule_pack_id": "lord_of_the_rings_trilogy",
+    "anchor_edition_id": "monopoly-41603",
+    "canonical_manual_edition_id": "monopoly-41603",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "mario_celebration",
+    "family": "mario",
+    "rule_pack_id": "mario_celebration",
+    "anchor_edition_id": "monopoly-e9517",
+    "canonical_manual_edition_id": "monopoly-e9517",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "mario_collectors",
+    "family": "mario",
+    "rule_pack_id": "mario_collectors",
+    "anchor_edition_id": "monopoly-c4382",
+    "canonical_manual_edition_id": "monopoly-c4382",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "mario_kart",
+    "family": "mario",
+    "rule_pack_id": "mario_kart",
+    "anchor_edition_id": "monopoly-e1870",
+    "canonical_manual_edition_id": "monopoly-e1870",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "mario_movie",
+    "family": "mario",
+    "rule_pack_id": "mario_movie",
+    "anchor_edition_id": "monopoly-f6818",
+    "canonical_manual_edition_id": "monopoly-f6818",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "marvel_80_years",
+    "family": "marvel",
+    "rule_pack_id": "marvel_80_years",
+    "anchor_edition_id": "monopoly-e7866",
+    "canonical_manual_edition_id": "monopoly-e7866",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "marvel_avengers",
+    "family": "marvel",
+    "rule_pack_id": "marvel_avengers",
+    "anchor_edition_id": "monopoly-e6504",
+    "canonical_manual_edition_id": "monopoly-e6504",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "marvel_avengers_legacy",
+    "family": "marvel",
+    "rule_pack_id": "marvel_avengers_legacy",
+    "anchor_edition_id": "monopoly-b0323",
+    "canonical_manual_edition_id": "monopoly-b0323",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "marvel_black_panther_wf",
+    "family": "marvel",
+    "rule_pack_id": "marvel_black_panther_wf",
+    "anchor_edition_id": "monopoly-f5405",
+    "canonical_manual_edition_id": "monopoly-f5405",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "marvel_deadpool",
+    "family": "marvel",
+    "rule_pack_id": "marvel_deadpool",
+    "anchor_edition_id": "monopoly-e2033",
+    "canonical_manual_edition_id": "monopoly-e2033",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "marvel_eternals",
+    "family": "marvel",
+    "rule_pack_id": "marvel_eternals",
+    "anchor_edition_id": "monopoly-f1659",
+    "canonical_manual_edition_id": "monopoly-f1659",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "marvel_falcon_winter_soldier",
+    "family": "marvel",
+    "rule_pack_id": "marvel_falcon_winter_soldier",
+    "anchor_edition_id": "monopoly-f5851",
+    "canonical_manual_edition_id": "monopoly-f5851",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "marvel_flip",
+    "family": "marvel",
+    "rule_pack_id": "marvel_flip",
+    "anchor_edition_id": "monopoly-f9931",
+    "canonical_manual_edition_id": "monopoly-f9931",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "marvel_spider_man",
+    "family": "marvel",
+    "rule_pack_id": "marvel_spider_man",
+    "anchor_edition_id": "monopoly-f3968",
+    "canonical_manual_edition_id": "monopoly-f3968",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "marvel_super_villains",
+    "family": "marvel",
+    "rule_pack_id": "marvel_super_villains",
+    "anchor_edition_id": "monopoly-f5270",
+    "canonical_manual_edition_id": "monopoly-f5270",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "pokemon",
+    "family": "pokemon",
+    "rule_pack_id": "pokemon",
+    "anchor_edition_id": "monopoly-g0716",
+    "canonical_manual_edition_id": "monopoly-g0716",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "star_wars_40th",
+    "family": "star",
+    "rule_pack_id": "star_wars_40th",
+    "anchor_edition_id": "monopoly-c1990",
+    "canonical_manual_edition_id": "monopoly-c1990",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "star_wars_boba_fett",
+    "family": "star",
+    "rule_pack_id": "star_wars_boba_fett",
+    "anchor_edition_id": "monopoly-f5394",
+    "canonical_manual_edition_id": "monopoly-f5394",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "star_wars_classic_edition",
+    "family": "star",
+    "rule_pack_id": "star_wars_classic_edition",
+    "anchor_edition_id": "monopoly-b8613",
+    "canonical_manual_edition_id": "monopoly-b8613",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "star_wars_complete_saga",
+    "family": "star",
+    "rule_pack_id": "star_wars_complete_saga",
+    "anchor_edition_id": "monopoly-e8066",
+    "canonical_manual_edition_id": "monopoly-e8066",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "star_wars_legacy",
+    "family": "star",
+    "rule_pack_id": "star_wars_legacy",
+    "anchor_edition_id": "monopoly-b0324",
+    "canonical_manual_edition_id": "monopoly-b0324",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "star_wars_light_side",
+    "family": "star",
+    "rule_pack_id": "star_wars_light_side",
+    "anchor_edition_id": "monopoly-f8383",
+    "canonical_manual_edition_id": "monopoly-f8383",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "star_wars_mandalorian",
+    "family": "star",
+    "rule_pack_id": "star_wars_mandalorian",
+    "anchor_edition_id": "monopoly-f1276",
+    "canonical_manual_edition_id": "monopoly-f1276",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": [
+      "audio_theme_event"
+    ]
+  },
+  {
+    "board_id": "star_wars_mandalorian_s2",
+    "family": "star",
+    "rule_pack_id": "star_wars_mandalorian_s2",
+    "anchor_edition_id": "monopoly-f4257",
+    "canonical_manual_edition_id": "monopoly-f4257",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "star_wars_saga",
+    "family": "star",
+    "rule_pack_id": "star_wars_saga",
+    "anchor_edition_id": "monopoly-42452",
+    "canonical_manual_edition_id": "monopoly-42452",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "star_wars_solo",
+    "family": "star",
+    "rule_pack_id": "star_wars_solo",
+    "anchor_edition_id": "monopoly-e1702",
+    "canonical_manual_edition_id": "monopoly-e1702",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "star_wars_the_child",
+    "family": "star",
+    "rule_pack_id": "star_wars_the_child",
+    "anchor_edition_id": "monopoly-f2013",
+    "canonical_manual_edition_id": "monopoly-f2013",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "stranger_things",
+    "family": "stranger",
+    "rule_pack_id": "stranger_things",
+    "anchor_edition_id": "monopoly-c4550",
+    "canonical_manual_edition_id": "monopoly-c4550",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "stranger_things_collectors",
+    "family": "stranger",
+    "rule_pack_id": "stranger_things_collectors",
+    "anchor_edition_id": "monopoly-e8194",
+    "canonical_manual_edition_id": "monopoly-e8194",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "stranger_things_netflix",
+    "family": "stranger",
+    "rule_pack_id": "stranger_things_netflix",
+    "anchor_edition_id": "monopoly-f2544",
+    "canonical_manual_edition_id": "monopoly-f2544",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "toy_story",
+    "family": "toy",
+    "rule_pack_id": "toy_story",
+    "anchor_edition_id": "monopoly-e5065",
+    "canonical_manual_edition_id": "monopoly-e5065",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "transformers",
+    "family": "transformers",
+    "rule_pack_id": "transformers",
+    "anchor_edition_id": "monopoly-f1660",
+    "canonical_manual_edition_id": "monopoly-f1660",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  },
+  {
+    "board_id": "transformers_beast_wars",
+    "family": "transformers",
+    "rule_pack_id": "transformers_beast_wars",
+    "anchor_edition_id": "monopoly-f5269",
+    "canonical_manual_edition_id": "monopoly-f5269",
+    "fidelity_status": "manual_core",
+    "deck_mode": "board_specific",
+    "hardware_capability_ids": []
+  }
+]

@@ -1,0 +1,216 @@
+{
+  "board_id": "marvel_falcon_winter_soldier",
+  "candidate_lines": [
+    {
+      "line": "HH Always auction when someone doesn’t want to take",
+      "tags": []
+    },
+    {
+      "line": "If you owe money and can’t pay, try to",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "face down, and collect the mortgage value",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "To repay a mortgage, pay the unmortgage",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "any Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Repay the mortgage (pay the Bank the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Or keep the mortgage (just pay the Bank",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Return all your properties",
+      "tags": []
+    },
+    {
+      "line": "Repay the mortgage (pay the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Or keep the mortgage (just pay",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the Bank the cost on the Title Deed card, and",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "set, you can pay to upgrade to a Shield.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the Shield cost on the Title Deed card, return",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "Move around the board taking control of events as a",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "the more rent you’ll be able to collect from other players.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Move your piece clockwise that number of spaces.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "and take another turn.",
+      "tags": []
+    },
+    {
+      "line": "in a row, you must immediately go to Jail!",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "When you land on an uncontrolled property, you must take control of it or auction it.",
+      "tags": []
+    },
+    {
+      "line": "Want to take control of it?",
+      "tags": []
+    },
+    {
+      "line": "Pay the price shown on the board space, and take the Title Deed card from the Bank.",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "Don’t want to take control of it?",
+      "tags": []
+    },
+    {
+      "line": "If they don’t ask before the next player rolls the dice, you don’t have to pay!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "on the GO space, collect",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Take the top card from",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Return it to the bottom of the",
+      "tags": []
+    },
+    {
+      "line": "Move your piece to the",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Do not collect a200 for",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "collect rent, bid during",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Pay the Bank the amount",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay b50 at the start of your next turn, then",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "roll and move as normal.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Use a Get Out of Jail Free card at the start",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Use the roll to move, and that’s",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "third turn in Jail, pay a50 and use your last",
+      "tags": [
+        "pay",
+        "jail"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/marvel_falcon_winter_soldier.txt"
+}

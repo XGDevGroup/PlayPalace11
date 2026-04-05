@@ -1,0 +1,300 @@
+{
+  "board_id": "star_wars_mandalorian",
+  "candidate_lines": [
+    {
+      "line": "Child’s space, take it and",
+      "tags": []
+    },
+    {
+      "line": "will move The Child token",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "take The Child if you pass",
+      "tags": []
+    },
+    {
+      "line": "Imperial Enemy, end your move on its",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "• All players collect rent from the Bank for",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "set, collect double rent.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "they collect 100 from the Bank.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Take the top card from the matching",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "can’t pay, try to raise money",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "owe the Bank, return any unsold",
+      "tags": []
+    },
+    {
+      "line": "type on the gameboard, move",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "immediately go to Jail.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "you may collect 100 Imperial credits from",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "move your token and The",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "GO, collect 70 instead of 20.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "need to pay rent, subtract 30",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "you can collect increased",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Pay the price shown on the gameboard",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "space and take the hideout card from",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "must pay the rent shown",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "you don’t have to pay!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If an Enemy would move",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "its move in an Imperial",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "power in battle or collect extra",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "die to move instead of the silver",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "must draw an Imperial Enemy card",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "When you need to pay rent,",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay 50 at the beginning of your next turn,",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "then roll and move as normal.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Use the roll to move and that’s the end of your turn.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "roll a 6 by your third turn in Jail, move your token",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "If you do not have The Child, take it and",
+      "tags": []
+    },
+    {
+      "line": "on this space, take The Child and place",
+      "tags": []
+    },
+    {
+      "line": "Remember, you may not take",
+      "tags": []
+    },
+    {
+      "line": "Move your token to the In Jail space",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "Do not collect 20 for",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "the Go to Jail space.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "still collect rent, bid during auctions and",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "the silver die and move the",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "first move to move to the",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Imperial Advance space and",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Move the Moff Gideon token",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Move around the gameboard buying as",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "own, the more rent you’ll be able to collect",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Move your token (and The Child if",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "take The Child with you.",
+      "tags": []
+    },
+    {
+      "line": "move it with your token.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Take the top card from",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "hideouts, move to the next",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Child, you may not take it.",
+      "tags": []
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/star_wars_mandalorian.txt"
+}

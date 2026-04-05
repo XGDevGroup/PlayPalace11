@@ -1,0 +1,314 @@
+{
+  "board_id": "marvel_eternals",
+  "candidate_lines": [
+    {
+      "line": "Pay the Reserve the cost on the Title Deed card",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "colour set, you can pay to upgrade to a Palace.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the Palace cost on the Title Deed card,",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "return all four Villages to the Reserve and put",
+      "tags": []
+    },
+    {
+      "line": "If you owe cosmic energy units and can’t pay, try to",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "and collect the mortgage value on the back from",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "To repay a mortgage, pay the unmortgage cost",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Repay the mortgage (pay the Reserve the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Or keep the mortgage (just pay the Reserve 10%",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Return all your properties to the Reserve.",
+      "tags": []
+    },
+    {
+      "line": "Return any Get Out of Jail Free cards to the bottom of",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "units, other property, and/or Get Out of Jail",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Repay the mortgage (pay the Reserve",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Or keep the mortgage (just pay the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "and collect rent from fellow Eternals in the form of cosmic energy units.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Pay the price on the board space and take the Title Deed card from the Reserve.",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "If they do, you must pay.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "the next player rolls the dice, you don’t have to pay!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Take the top card from",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Return it to the bottom of the",
+      "tags": []
+    },
+    {
+      "line": "Move your piece to the In Jail",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "You can still collect rent,",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "the GO space, collect 200",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay 50 at the start of your next turn, then roll and",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Use a Get Out of Jail Free card at the start of",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "deck, then roll and move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Use the roll to move, and that’s the end of your turn.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "don’t roll a double by your third turn in Jail, pay 50, and",
+      "tags": [
+        "pay",
+        "jail"
+      ]
+    },
+    {
+      "line": "use your last roll to move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Pay the Reserve the amount",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "on GO, and take that character’s card.",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "When you roll to move, if you roll , activate your ability!",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "dice to move and take your turn as normal.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "will change the way you move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "When that is the case, move according to",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Ikaris – Draw three Uni-Mind cards.",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Ajak – Draw three Arishem’s Judgement cards.",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Druig – Move to the next Arishem’s Judgement space.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Do not move according to the two white dice.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Gilgamesh – Move to the next Uni-Mind space.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Take the top card and",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "dice and move again (as long as you are not in Jail)!",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "On your fourth time rolling , go to Jail.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "to a and move eight spaces.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Sprite – Move any other player to Free Parking.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Move around the board safeguarding as",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "to collect in the form of cosmic energy",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Move your piece clockwise the number",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "that ability tells you to move differently.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "you do not take another turn when",
+      "tags": []
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/marvel_eternals.txt"
+}

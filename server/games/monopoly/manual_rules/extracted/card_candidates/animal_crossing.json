@@ -1,0 +1,180 @@
+{
+  "board_id": "animal_crossing",
+  "candidate_lines": [
+    {
+      "line": "ONCE YOU PAY , FLIP THIS CARD OVER",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "you may advance to any",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "can still collect and",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "If you have no resources and you still can’t pay,",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "roll and move as normal.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Re-roll the dice, and take your turn",
+      "tags": []
+    },
+    {
+      "line": "Then roll both dice, and take your",
+      "tags": []
+    },
+    {
+      "line": "take the top card from",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "to pay Bells in order to",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "island, collect 2 resources!",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "island, collect 3 resources!",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "at Nook’s Cranny, collect an extra",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Move your token clockwise the",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Then take one of the resource chips from that island, and place it in",
+      "tags": []
+    },
+    {
+      "line": "and that player may each take one resource from that island.",
+      "tags": []
+    },
+    {
+      "line": "have to pay anything!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If you land on an island you discovered, take two resources!",
+      "tags": []
+    },
+    {
+      "line": "There are two ways to use the resources you collect:",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "After you move your token, you may sell any number of your",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Skills let you do things like collect",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Chance cards and Nook Miles cards let you collect",
+      "tags": [
+        "mentions_card",
+        "collect"
+      ]
+    },
+    {
+      "line": "you how many spaces to move, and the Nook’s",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Visit islands and collect resources!",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "discover islands and collect bugs, fish, fossils, and",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Then, collect the resource",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "one of your discovered islands, you both collect that",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Then draw three, and",
+      "tags": []
+    },
+    {
+      "line": "Take a look at the decorations available in the",
+      "tags": []
+    },
+    {
+      "line": "If you would like to buy a decoration, pay",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "there are no decorations left, draw from the",
+      "tags": []
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/animal_crossing.txt"
+}

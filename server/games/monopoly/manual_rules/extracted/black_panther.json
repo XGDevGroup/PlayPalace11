@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-e5797",
+  "board_id": "black_panther",
+  "extraction_mode": "pypdf",
+  "family": "black",
+  "filename": "E57970000_360315_MONOPOLY_BLACK_PANTHER_INST_FAR.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-game-black-panther-edition",
+  "page_count": 2,
+  "pdf_sha256": "edc6643c2344eecdbab485f4c6194b42a8f3d0a92345f4c312eead2e78d36c73",
+  "pdf_size_bytes": 126569991,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/f48ad177-fe8e-4956-9fc6-bb2316b5a605/E57970000_360315_MONOPOLY_BLACK_PANTHER_INST_FAR.pdf",
+  "preferred_text_char_count": 11624,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/black_panther.txt",
+  "preferred_text_sha256": "dce8448c23beba19990195050a7ab49ce3534e9b34f9fdda9625a3413c585c76",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 11624,
+  "text_path": "server/games/monopoly/manual_rules/extracted/black_panther.txt",
+  "text_sha256": "dce8448c23beba19990195050a7ab49ce3534e9b34f9fdda9625a3413c585c76",
+  "zlib_limit_used": 120000000
+}

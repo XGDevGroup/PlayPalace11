@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-f8046",
+  "board_id": "disney_lightyear",
+  "extraction_mode": "pypdf",
+  "family": "disney",
+  "filename": "F8046UE82_INST_MN_LIGHTYEAR_F22_RC_FAR.pdf",
+  "instruction_url": "https://instructions.hasbro.com/it-it/instruction/monopoly-disney-and-pixar-s-lightyear-edition-board-game-for-families-and-kids-family-board-games-gifts-for-kids",
+  "page_count": 55,
+  "pdf_sha256": "7affd8e3b1d5683d53526e55b5f434f34f723b9a51be9707f90f66c07d05676b",
+  "pdf_size_bytes": 56176397,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/f83613fc-74e0-4061-9498-271a833e392f/F8046UE82_INST_MN_LIGHTYEAR_F22_RC_FAR.pdf",
+  "preferred_text_char_count": 278325,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/disney_lightyear.txt",
+  "preferred_text_sha256": "53f02203cb89c05c7b4b86d7c618266c749f8944c369819f5ad8e0dfd39f3f88",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 278325,
+  "text_path": "server/games/monopoly/manual_rules/extracted/disney_lightyear.txt",
+  "text_sha256": "53f02203cb89c05c7b4b86d7c618266c749f8944c369819f5ad8e0dfd39f3f88",
+  "zlib_limit_used": 120000000
+}

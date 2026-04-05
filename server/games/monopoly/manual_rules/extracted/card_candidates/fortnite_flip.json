@@ -1,0 +1,240 @@
+{
+  "board_id": "fortnite_flip",
+  "candidate_lines": [
+    {
+      "line": "2 You move first and land on Free Parking—a space that",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "that player must pay a total of 9 HP to the Bank!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "space must pay 5 HP to the Bank!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "line of sight to pay 1 HP",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "pay 1 HP to the Bank.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Surge, take the top card",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "You will take the top card from You will take the top card from",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "pass or land on GO, you will draw two",
+      "tags": []
+    },
+    {
+      "line": "numbered die and pay that amount of",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "collect 2 HP from the Bank—",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Take the Location card.",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "space, collect 2 HP from the Bank.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Instead, pay 2 HP to the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "to do things like reroll the numbered die and move",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "differently, or force another player to pay you or",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "at the beginning of the game, players take turns",
+      "tags": []
+    },
+    {
+      "line": "you’ll move AND you’ll activate an action such as",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "You’ll draw from this deck every time you pass GO",
+      "tags": []
+    },
+    {
+      "line": "tell you to do things like move to a different space",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "action requires you to collect more,",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Storm, you must pay the number of HP shown",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "else has claimed, pay the number of HP",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "you may collect 2 HP from the Bank.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "collect 1 HP from the Bank.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "When you land here, pay the number of",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "When you land here, draw a Loot Chest card.",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "wall and complete your move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "HOW DO I GET OUT OF JAIL?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "then roll and move as normal.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Roll both dice, and take your turn as normal.",
+      "tags": []
+    },
+    {
+      "line": "your third turn in Jail, get out of Jail for free, and use",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "your last roll to move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Move your character to the In Jail Move your character to the In Jail",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "Do not collect 2 HP.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Draw a Game Mode cardDraw a Game Mode card and do",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Note:Note: If you move to Jail and the",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "you do not draw a Game Mode",
+      "tags": []
+    },
+    {
+      "line": "Roll and move as normal on",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "move as normal on your next turn.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "• Move your character Move your character clockwise",
+      "tags": [
+        "movement"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/fortnite_flip.txt"
+}

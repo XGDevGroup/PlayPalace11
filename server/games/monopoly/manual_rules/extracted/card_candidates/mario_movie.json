@@ -1,0 +1,321 @@
+{
+  "board_id": "mario_movie",
+  "candidate_lines": [
+    {
+      "line": "ROLL + COLLECT ROLL + COLLECT",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "ROLL + PAY ROLL + PAY",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Move your token to the In Jail space",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "Do not collect 2 coins for",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "still collect rent, CONTINUE properties, bid",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "pay 1 coin to the Bank if Bowser passes you.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Use the roll to move, and that’s the",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "pay 1 coin, and use your last roll to move.",
+      "tags": [
+        "pay",
+        "movement"
+      ]
+    },
+    {
+      "line": "Use a Get Out of Jail Free card at the",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Draw Bowser’s Fury and Question Block cards, earn coins, and",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Take the top card from the matching",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Return it to the bottom of the",
+      "tags": []
+    },
+    {
+      "line": "Roll the red die, and collect that",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Roll the red die, and pay that many",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Move to the next Warp Pipe, and stop",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "If you pass GO, collect 2 coins",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "space, collect 2 coins from the Bank.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Return all your properties to the Bank.",
+      "tags": []
+    },
+    {
+      "line": "Return any Get Out of Jail Free cards to",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "OVER mode (pay the Bank the CONTINUE",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If you owe coins and can’t pay, try to raise coins",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "rampaging Bowser is successful in his quest to take over the Mushroom Kingdom,",
+      "tags": []
+    },
+    {
+      "line": "On your turn, you’ll use the black die to move",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Bowser, and then both dice to move your",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Bowser passes you, pay 1 coin to the Bank.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "In order to collect rent, the",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "owner must pay the CONTINUE",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "CONTINUE it in order to collect",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "cannot be collected on that location until you pay",
+      "tags": [
+        "collect",
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the price on the board space, and take the Title Deed card.",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "If they do, you must pay.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "rolls the dice, you don’t have to pay!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Move around the board buying as many properties as",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "you’ll be able to collect from other players.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Roll the dice again, and take",
+      "tags": []
+    },
+    {
+      "line": "immediately go to Jail!",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "• You and your teammate each collect 2 coins from",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "• If Bowser passes you, you must pay 1 coin to the Bank.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the CONTINUE cost on the Title Deed card to the Bank.",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "You can only pay to CONTINUE a location at the start of",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If you have any properties, you may pay to",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Move Bowser clockwise the number of spaces shown",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "They must pay 1 coin to the Bank!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Move your token clockwise the number of spaces",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "To CONTINUE a location in GAME OVER mode, pay the Bank the CONTINUE cost on the Title Deed card at the start",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "Each time you roll the dice to move your own token,",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "• Always move Bowser according to the black die.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "• Always move Bowser first, then move your own token.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "collect rent on a location in",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "it before they can collect rent.",
+      "tags": [
+        "collect"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/mario_movie.txt"
+}

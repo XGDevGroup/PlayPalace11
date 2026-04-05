@@ -1,0 +1,7 @@
+{
+  "board_id": "fortnite",
+  "candidate_lines": [],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/fortnite.txt"
+}

@@ -1,0 +1,288 @@
+{
+  "board_id": "disney_mickey_friends",
+  "candidate_lines": [
+    {
+      "line": "Markers and Big Mickey Markers to collect more rent!",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "time you roll to move your token, you’ll roll the blue Pete die",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "to move his token, too.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "If you fail, you’ll have to pay A50!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Move around the board buying as many properties as you can.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "own, the more rent you’ll be able to collect from other players.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Move Pete the number of spaces shown on the blue die.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Move your token the number of spaces shown on the two white dice.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Roll the dice again, and take another turn.",
+      "tags": []
+    },
+    {
+      "line": "Pay rent based on the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "COLLECT B200 SALARY AS YOU PASS",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "If Pete ever ends his move on the same space as your token, or if you end your move on the same space as Pete,",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "• If Pete is on the Go to Jail space and you land there, do not confront him.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Immediately go to Jail.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "You and that player each collect A25 from the Bank!",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "You pay the Bank A50.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the price on the board space, and take the Title Deed card from the Bank.",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "If they do, you must pay.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If they don’t ask before the next player rolls the dice, you don’t have to pay!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "GO space, collect A200 from",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Take the top card from",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Return it to the bottom of the",
+      "tags": []
+    },
+    {
+      "line": "Pay the Bank the amount",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Move your token to the In Jail",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "collect A200 for passing GO.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "still collect rent, bid during",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay b50 at the start of your next turn, then roll",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Use a Get Out of Jail Free card at the start of",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "appropriate deck, then roll and move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Use the roll to move, and that’s the end of",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "pay A50, and use your last roll to move.",
+      "tags": [
+        "pay",
+        "movement"
+      ]
+    },
+    {
+      "line": "Pay the Bank the cost on the Title Deed card,",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "in a color set, you can pay to upgrade to a Big Mickey",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the Big Mickey Marker cost on the Title Deed card,",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "return all 4 Little Mickey Markers to the Bank, and put a",
+      "tags": []
+    },
+    {
+      "line": "Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "(pay the Bank the unmortgage cost).",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "(just pay the Bank 10% of the mortgage value now).",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If you owe money and can’t pay, try to raise",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "facedown, and collect the mortgage value on",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "To repay a mortgage, pay the unmortgage",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "any Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "(just pay the Bank 10% of the mortgage value",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Return all your properties to the",
+      "tags": []
+    },
+    {
+      "line": "Return any Get Out of Jail Free",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "\"He he he ha ha ha!\" \"Take that!\"",
+      "tags": []
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/disney_mickey_friends.txt"
+}

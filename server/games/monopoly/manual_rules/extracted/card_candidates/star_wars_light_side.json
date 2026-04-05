@@ -1,0 +1,284 @@
+{
+  "board_id": "star_wars_light_side",
+  "candidate_lines": [
+    {
+      "line": "collect from other players.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "To add a Jedi Starfighter, pay the Bank the cost on the alliance",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Whenever you pass or land on GO, immediately take Yoda",
+      "tags": []
+    },
+    {
+      "line": "rolls a 1, COLLECT 30",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "may move to any heroic",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "and Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "with and can’t pay, try to raise credits by selling Jedi Starfighters",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If you still owe the Bank, return one",
+      "tags": []
+    },
+    {
+      "line": "Give them any The Force cards and/or Get Out of Jail Free cards",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Return any The Force cards and/or Get Out of Jail Free cards you",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "do not collect any credits from them—a Jedi always",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Move around the board forming alliances with as many heroic",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "payments you’ll be able to collect from other players.",
+      "tags": [
+        "collect",
+        "pay"
+      ]
+    },
+    {
+      "line": "Move your token (and Yoda if you have him) clockwise",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "strengthen those alliances by adding Jedi Starfighters to those spaces, and collect more",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "take Yoda (in addition to collecting credits), and place",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "hyperspace, which means you can move to any",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "If you pass GO, you do not collect credits",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "collect additional credits, or cancel a",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "take a break from your Jedi training.",
+      "tags": []
+    },
+    {
+      "line": "Take the top card from the matching deck.",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Return the card to the bottom of",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Move your token to the In Jail space immediately!",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "Do not collect 40 or place Yoda at your side for",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "You can still collect",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay 10 at the start of your next turn, then roll and move",
+      "tags": [
+        "pay",
+        "movement"
+      ]
+    },
+    {
+      "line": "Use a Get Out of Jail Free card at the start of your next turn if",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "bottom of the appropriate deck, then roll and move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "move, and that’s the end of your turn.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "by your third turn in Jail, pay 10, and use your last roll to move.",
+      "tags": [
+        "pay",
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "When you pass or land on the GO space, collect",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "pay the Bank the amount shown on",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "When you land on a Ship space, you may move",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "to move at all, you can stay where you are, and",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "collect 40 or take Yoda.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Pay the price on the board",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "space, and take that heroic figure’s alliance card.",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "If you can’t afford to pay, try to raise credits by selling Jedi",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If you still can’t pay, then you are bankrupt and out of the game!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Return any of your The Force cards and/or Get Out of Jail Free cards to",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "• Collect twice the payment for",
+      "tags": [
+        "collect",
+        "pay"
+      ]
+    },
+    {
+      "line": "collect even more credits!",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "do, you must pay the amount shown on the alliance card.",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "ask before the next player rolls the die, you don’t have to pay!",
+      "tags": [
+        "pay"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/star_wars_light_side.txt"
+}

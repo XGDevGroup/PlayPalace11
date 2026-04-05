@@ -1,0 +1,218 @@
+{
+  "board_id": "fortnite_collectors",
+  "candidate_lines": [
+    {
+      "line": "At the end of your turn, draw the top Storm",
+      "tags": []
+    },
+    {
+      "line": "Storm, you must pay the number of HP",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "taken by the Storm, you must pay 2 HP to",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "your line of sight to pay 1 HP to the Bank.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "pay 1 HP to the Bank, and all walls are destroyed.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "When you roll stone, move, and complete the",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "collect 2 HP from the Bank.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "destroy the wall, move her full roll of 6, and collect",
+      "tags": [
+        "collect",
+        "movement"
+      ]
+    },
+    {
+      "line": "Take your character off the board.",
+      "tags": []
+    },
+    {
+      "line": "When you land here, collect 1 HP",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "When you land here, pay 1 HP",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "When you land here, draw a Loot Chest card.",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "If you land here, advance to the next",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Instead, you get out of Jail for",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Roll and move as normal on your next turn.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "HOW DO I GET OUT OF JAIL?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay 2 HP at the start of your next turn, then",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "roll and move as normal.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Roll both dice, and take your turn as",
+      "tags": []
+    },
+    {
+      "line": "roll a 6 by your third turn in Jail, get out of Jail for",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "free, and use your last roll to move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "don’t need to pay anything.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Take the location card.",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "else has claimed, pay the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "pay the number of HP shown",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Note that you pay more HP",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Move your character to the In Jail",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "move normally on your next turn.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Draw a Storm card, and cover the",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "You may not collect 2 HP for passing GO.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "of the game, players take turns placing",
+      "tags": []
+    },
+    {
+      "line": "On your turn, you’ll move AND you’ll",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "must draw a Storm card.",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "· Move your character that number of spaces.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "requires you to collect more, do",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "no longer collect 2 HP",
+      "tags": [
+        "collect"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/fortnite_collectors.txt"
+}

@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-f1659",
+  "board_id": "marvel_eternals",
+  "extraction_mode": "pypdf",
+  "family": "marvel",
+  "filename": "F16592842_INST_Monopoly_Eternals_FAR.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-marvel-studios-eternals-edition-board-game-for-marvel-fans",
+  "page_count": 2,
+  "pdf_sha256": "812613ffd2cd6e530a6c9a855ea2d2ea9f704948fc7c4c45762bdace1c53ef33",
+  "pdf_size_bytes": 704380052,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/a476b058-0585-4591-8553-af7cb0f49bd4/F16592842_INST_Monopoly_Eternals_FAR.pdf",
+  "preferred_text_char_count": 13195,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/marvel_eternals.txt",
+  "preferred_text_sha256": "fdef7d0e587ce4826fc761a6c0566a8f949c687f0ccee71453f8971e07ed03f4",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 13195,
+  "text_path": "server/games/monopoly/manual_rules/extracted/marvel_eternals.txt",
+  "text_sha256": "fdef7d0e587ce4826fc761a6c0566a8f949c687f0ccee71453f8971e07ed03f4",
+  "zlib_limit_used": 120000000
+}

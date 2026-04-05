@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-f1663",
+  "board_id": "lord_of_the_rings",
+  "extraction_mode": "pypdf",
+  "family": "lord",
+  "filename": "F16630952_INST_MN_LOTR_S21.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-the-lord-of-the-rings-edition-board-game-for-kids",
+  "page_count": 2,
+  "pdf_sha256": "2988da9be0aaea68d6a553ae9b2c54f199c998a84132e20b78a6b9b27e0e3c85",
+  "pdf_size_bytes": 30051703,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/fccca138-8478-45cc-9ab8-b46538ec4d86/F16630952_INST_MN_LOTR_S21.pdf",
+  "preferred_text_char_count": 16863,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/lord_of_the_rings.txt",
+  "preferred_text_sha256": "1a69d915dc030c3768193c4d0239fe0b50ca1e14b6463163dd8384e0a037564b",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 16863,
+  "text_path": "server/games/monopoly/manual_rules/extracted/lord_of_the_rings.txt",
+  "text_sha256": "1a69d915dc030c3768193c4d0239fe0b50ca1e14b6463163dd8384e0a037564b",
+  "zlib_limit_used": 120000000
+}

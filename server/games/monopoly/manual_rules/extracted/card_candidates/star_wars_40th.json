@@ -1,0 +1,259 @@
+{
+  "board_id": "star_wars_40th",
+  "candidate_lines": [
+    {
+      "line": "• Pay the Bank the Fleet cost price on the Title Deed",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "in a color set, you can pay to upgrade",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "• Pay the Bank the Base cost price on the Title Deed",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "card, return all 4 Fleets to the Bank, and put a Base",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "or Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Repay the mortgage (pay the Bank the unmortgage",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Or keep the mortgage (just pay the Bank 10%",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Get Out of Jail Free cards and all your",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Repay the mortgage (pay the Bank the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Or keep the mortgage (just pay the Bank 10% of",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Return all your properties to the Bank.",
+      "tags": []
+    },
+    {
+      "line": "Return any Get Out of Jail Free cards to the bottom",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "If you owe money and can’t pay, try to raise money",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "collect the mortgage value on the back from the Bank.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "To repay a mortgage, pay the unmortgage cost to",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Move around the board buying as many",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "The more you own, the more rent you’ll collect!",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "2 Move forward that number of spaces.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Follow steps 2 and 3, then take another turn—",
+      "tags": []
+    },
+    {
+      "line": "the Empire will take action by sending you directly",
+      "tags": []
+    },
+    {
+      "line": "Collect memorable scenes and iconic ships",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Pay the price on the board",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "space and take the Title",
+      "tags": []
+    },
+    {
+      "line": "When you land on a Scene that someone else owns, pay them the rent shown",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Collect color sets to build Fleets!",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "If they don’t ask, you don’t have to pay!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "When you land on a Ship that someone else owns, pay them rent.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "When you land on a Power Source that someone else owns, pay them rent.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If your move took you onto or past the GO space, collect A 200",
+      "tags": [
+        "collect",
+        "movement"
+      ]
+    },
+    {
+      "line": "Take the top card from the matching pile and immediately do",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Return it to the bottom of the pile when done.",
+      "tags": []
+    },
+    {
+      "line": "Pay the Bank the amount shown on the space.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Just wait until your next turn, then roll and move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Move your token to the In Jail",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "Do not collect A200 for passing GO.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "You can still collect rent, auction, buy Fleets",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "1 Pay b50 at the start of your next turn, then roll and move as normal.",
+      "tags": [
+        "pay",
+        "movement"
+      ]
+    },
+    {
+      "line": "2 Use a Get Out of Jail Free card at the start of your next turn if you have",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "appropriate pile, then roll and move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Use the roll to move, and that’s the end of your turn.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "turn In Jail, pay A50 and use your last roll to move.",
+      "tags": [
+        "pay",
+        "jail",
+        "movement"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/star_wars_40th.txt"
+}

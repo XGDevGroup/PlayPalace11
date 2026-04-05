@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-e7866",
+  "board_id": "marvel_80_years",
+  "extraction_mode": "pypdf",
+  "family": "marvel",
+  "filename": "E78660000_412423_MN_MARVEL_80TH_F19_INST.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-marvel-80-years-edition-board-game",
+  "page_count": 2,
+  "pdf_sha256": "e728ec0e4828e3d806cd9e9ce82fe54a002824a0ac279ab517700fc83ca93b0f",
+  "pdf_size_bytes": 19639810,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/170756fd-3be7-407f-a07e-4ebed07f83dd/E78660000_412423_MN_MARVEL_80TH_F19_INST.pdf",
+  "preferred_text_char_count": 9114,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/marvel_80_years.txt",
+  "preferred_text_sha256": "0001d8724ef9b889e4b9095294e2ccdd3a279727447f1cfbdf531d2f1111a9dd",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 9114,
+  "text_path": "server/games/monopoly/manual_rules/extracted/marvel_80_years.txt",
+  "text_sha256": "0001d8724ef9b889e4b9095294e2ccdd3a279727447f1cfbdf531d2f1111a9dd",
+  "zlib_limit_used": 120000000
+}

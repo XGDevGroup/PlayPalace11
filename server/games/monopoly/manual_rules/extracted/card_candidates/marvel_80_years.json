@@ -1,0 +1,211 @@
+{
+  "board_id": "marvel_80_years",
+  "candidate_lines": [
+    {
+      "line": "Pay the Bank the cost on the Title Deed card,",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "If you owe money and can’t pay, try to raise money",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Repay the mortgage (pay the Bank the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Or keep the mortgage (just pay the Bank 10%",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Return all your properties to the Bank.",
+      "tags": []
+    },
+    {
+      "line": "Return any Get Out of Jail Free",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "or Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Repay the mortgage (pay the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "pay the Bank 10% of the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "and collect the mortgage value on the back from",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "To repay a mortgage, pay the unmortgage cost",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "can pay to upgrade to an Omnibus.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the Omnibus cost on the Title Deed card, return all",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "Move around the board collecting as many iconic",
+      "tags": [
+        "collect",
+        "movement"
+      ]
+    },
+    {
+      "line": "The more you collect,",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "the GO space, collect 200",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Take the top card from",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Pay the Bank the amount",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Move your token to the In Jail",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "You can still collect",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "If they don’t ask before the next player rolls the dice, you don’t have to pay!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the price on the board space, and take the Title Deed card from the Bank.",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "Move your token clockwise that number of",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Roll the dice again, and take another turn.",
+      "tags": []
+    },
+    {
+      "line": "row, you must immediately go to Jail!",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay 50 at the start of your next turn, then roll",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Use a Get Out of Jail Free card at the start",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "of the deck, then roll and move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Use the roll to move, and that’s the end of",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "pay 50, and use your last roll to move.",
+      "tags": [
+        "pay",
+        "movement"
+      ]
+    },
+    {
+      "line": "Pay rent based on the number of",
+      "tags": [
+        "pay"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/marvel_80_years.txt"
+}

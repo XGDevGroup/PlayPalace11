@@ -1,0 +1,207 @@
+{
+  "board_id": "star_wars_the_child",
+  "candidate_lines": [
+    {
+      "line": "Pay the Bank the cost on the Title Deed card, and place",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "If you owe money and can’t pay, try to raise money",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Repay the mortgage (pay the Bank the unmortgage",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Or keep the mortgage (just pay the Bank 10% of the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Return all your properties to the Bank.",
+      "tags": []
+    },
+    {
+      "line": "Return any Get Out of Jail Free",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "or Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "(just pay the Bank 10% of the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "and collect the mortgage value on the back from the",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "To repay a mortgage, pay the unmortgage cost to",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "set, you can pay to upgrade to a Common House.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the Common House cost on the Title Deed card,",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "return all 4 Hideouts to the Bank, and put a Common",
+      "tags": []
+    },
+    {
+      "line": "Move your token clockwise that number of",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Move around the board buying as many properties",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "be able to collect from other players.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "GO space, collect 200 from",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Move your token to the In Jail",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "collect 200 for passing GO.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "collect rent, bid during auctions,",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Pay the Bank the amount",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Take the top card from the",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "If they don’t ask before the next player rolls the dice, you don’t have to pay!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the price on the board space, and take the Title Deed card from the Bank.",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the rent shown on the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Roll the dice again, and take another turn.",
+      "tags": []
+    },
+    {
+      "line": "row, you must immediately go to Jail!",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay 50 at the start of your next turn, then roll",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Use a Get Out of Jail Free card at the start of",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "appropriate deck, then roll and move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Use the roll to move, and that’s the end of",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "pay 50, and use your last roll to move.",
+      "tags": [
+        "pay",
+        "movement"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/star_wars_the_child.txt"
+}

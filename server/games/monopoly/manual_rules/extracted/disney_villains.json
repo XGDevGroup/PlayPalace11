@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-f0091",
+  "board_id": "disney_villains",
+  "extraction_mode": "pypdf",
+  "family": "disney",
+  "filename": "7491d7b4aa4e803852e76d1fc74bd50f.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-disney-villains-edition-board-game-for-ages-8-and-up",
+  "page_count": 2,
+  "pdf_sha256": "6e943b34785c06a15ada83139fc9e6d2a3585975fea137dd765a2ffd9cbd9319",
+  "pdf_size_bytes": 83220838,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/24f8e419-7ae0-4c98-ae4e-12f928f7e94b/7491d7b4aa4e803852e76d1fc74bd50f.pdf",
+  "preferred_text_char_count": 10850,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/disney_villains.txt",
+  "preferred_text_sha256": "1c15a4884e94e13bbc06ade10c475b0310bab31d487821947436cae5e5c840c8",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 10850,
+  "text_path": "server/games/monopoly/manual_rules/extracted/disney_villains.txt",
+  "text_sha256": "1c15a4884e94e13bbc06ade10c475b0310bab31d487821947436cae5e5c840c8",
+  "zlib_limit_used": 120000000
+}

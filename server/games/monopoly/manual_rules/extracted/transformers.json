@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-f1660",
+  "board_id": "transformers",
+  "extraction_mode": "pypdf",
+  "family": "transformers",
+  "filename": "F16600000_INST_Monopoly_Transformers_S21.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-transformers-edition-board-game",
+  "page_count": 2,
+  "pdf_sha256": "8db55ee4eb184b9ce815f50ab93450488baf363fb7ed36109ff4cb66bf2385bb",
+  "pdf_size_bytes": 64691322,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/ac9fa551-cfe4-4971-ace4-e7576ab8d671/F16600000_INST_Monopoly_Transformers_S21.pdf",
+  "preferred_text_char_count": 11941,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/transformers.txt",
+  "preferred_text_sha256": "773c0bdedd0da7d1f090c2d132e291f9628c84ce7ad0a98cc6a88a0be3945861",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 11941,
+  "text_path": "server/games/monopoly/manual_rules/extracted/transformers.txt",
+  "text_sha256": "773c0bdedd0da7d1f090c2d132e291f9628c84ce7ad0a98cc6a88a0be3945861",
+  "zlib_limit_used": 120000000
+}

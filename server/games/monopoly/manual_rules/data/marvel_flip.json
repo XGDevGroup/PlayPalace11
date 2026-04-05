@@ -1,0 +1,1203 @@
+{
+  "anchor_edition_id": "monopoly-f9931",
+  "board": {
+    "spaces": [
+      {
+        "color_group": "",
+        "house_cost": 0,
+        "kind": "start",
+        "name": "GO",
+        "position": 0,
+        "price": 0,
+        "rent": 0,
+        "rents": [],
+        "space_id": "go"
+      },
+      {
+        "color_group": "brown",
+        "house_cost": 50,
+        "kind": "property",
+        "name": "Mediterranean Avenue",
+        "position": 1,
+        "price": 60,
+        "rent": 2,
+        "rents": [
+          2,
+          10,
+          30,
+          90,
+          160,
+          250
+        ],
+        "space_id": "mediterranean_avenue"
+      },
+      {
+        "color_group": "",
+        "house_cost": 0,
+        "kind": "community_chest",
+        "name": "Team-Up",
+        "position": 2,
+        "price": 0,
+        "rent": 0,
+        "rents": [],
+        "space_id": "community_chest_1"
+      },
+      {
+        "color_group": "brown",
+        "house_cost": 50,
+        "kind": "property",
+        "name": "Baltic Avenue",
+        "position": 3,
+        "price": 60,
+        "rent": 4,
+        "rents": [
+          4,
+          20,
+          60,
+          180,
+          320,
+          450
+        ],
+        "space_id": "baltic_avenue"
+      },
+      {
+        "color_group": "",
+        "house_cost": 0,
+        "kind": "tax",
+        "name": "Income Tax",
+        "position": 4,
+        "price": 0,
+        "rent": 0,
+        "rents": [],
+        "space_id": "income_tax"
+      },
+      {
+        "color_group": "",
+        "house_cost": 0,
+        "kind": "railroad",
+        "name": "Reading Railroad",
+        "position": 5,
+        "price": 200,
+        "rent": 25,
+        "rents": [],
+        "space_id": "reading_railroad"
+      },
+      {
+        "color_group": "light_blue",
+        "house_cost": 50,
+        "kind": "property",
+        "name": "Oriental Avenue",
+        "position": 6,
+        "price": 100,
+        "rent": 6,
+        "rents": [
+          6,
+          30,
+          90,
+          270,
+          400,
+          550
+        ],
+        "space_id": "oriental_avenue"
+      },
+      {
+        "color_group": "",
+        "house_cost": 0,
+        "kind": "chance",
+        "name": "Event",
+        "position": 7,
+        "price": 0,
+        "rent": 0,
+        "rents": [],
+        "space_id": "chance_1"
+      },
+      {
+        "color_group": "light_blue",
+        "house_cost": 50,
+        "kind": "property",
+        "name": "Vermont Avenue",
+        "position": 8,
+        "price": 100,
+        "rent": 6,
+        "rents": [
+          6,
+          30,
+          90,
+          270,
+          400,
+          550
+        ],
+        "space_id": "vermont_avenue"
+      },
+      {
+        "color_group": "light_blue",
+        "house_cost": 50,
+        "kind": "property",
+        "name": "Connecticut Avenue",
+        "position": 9,
+        "price": 120,
+        "rent": 8,
+        "rents": [
+          8,
+          40,
+          100,
+          300,
+          450,
+          600
+        ],
+        "space_id": "connecticut_avenue"
+      },
+      {
+        "color_group": "",
+        "house_cost": 0,
+        "kind": "jail",
+        "name": "Jail / Just Visiting",
+        "position": 10,
+        "price": 0,
+        "rent": 0,
+        "rents": [],
+        "space_id": "jail"
+      },
+      {
+        "color_group": "pink",
+        "house_cost": 100,
+        "kind": "property",
+        "name": "St. Charles Place",
+        "position": 11,
+        "price": 140,
+        "rent": 10,
+        "rents": [
+          10,
+          50,
+          150,
+          450,
+          625,
+          750
+        ],
+        "space_id": "st_charles_place"
+      },
+      {
+        "color_group": "",
+        "house_cost": 0,
+        "kind": "utility",
+        "name": "Electric Company",
+        "position": 12,
+        "price": 150,
+        "rent": 20,
+        "rents": [],
+        "space_id": "electric_company"
+      },
+      {
+        "color_group": "pink",
+        "house_cost": 100,
+        "kind": "property",
+        "name": "States Avenue",
+        "position": 13,
+        "price": 140,
+        "rent": 10,
+        "rents": [
+          10,
+          50,
+          150,
+          450,
+          625,
+          750
+        ],
+        "space_id": "states_avenue"
+      },
+      {
+        "color_group": "pink",
+        "house_cost": 100,
+        "kind": "property",
+        "name": "Virginia Avenue",
+        "position": 14,
+        "price": 160,
+        "rent": 12,
+        "rents": [
+          12,
+          60,
+          180,
+          500,
+          700,
+          900
+        ],
+        "space_id": "virginia_avenue"
+      },
+      {
+        "color_group": "",
+        "house_cost": 0,
+        "kind": "railroad",
+        "name": "Pennsylvania Railroad",
+        "position": 15,
+        "price": 200,
+        "rent": 25,
+        "rents": [],
+        "space_id": "pennsylvania_railroad"
+      },
+      {
+        "color_group": "orange",
+        "house_cost": 100,
+        "kind": "property",
+        "name": "St. James Place",
+        "position": 16,
+        "price": 180,
+        "rent": 14,
+        "rents": [
+          14,
+          70,
+          200,
+          550,
+          750,
+          950
+        ],
+        "space_id": "st_james_place"
+      },
+      {
+        "color_group": "",
+        "house_cost": 0,
+        "kind": "community_chest",
+        "name": "Team-Up",
+        "position": 17,
+        "price": 0,
+        "rent": 0,
+        "rents": [],
+        "space_id": "community_chest_2"
+      },
+      {
+        "color_group": "orange",
+        "house_cost": 100,
+        "kind": "property",
+        "name": "Tennessee Avenue",
+        "position": 18,
+        "price": 180,
+        "rent": 14,
+        "rents": [
+          14,
+          70,
+          200,
+          550,
+          750,
+          950
+        ],
+        "space_id": "tennessee_avenue"
+      },
+      {
+        "color_group": "orange",
+        "house_cost": 100,
+        "kind": "property",
+        "name": "New York Avenue",
+        "position": 19,
+        "price": 200,
+        "rent": 16,
+        "rents": [
+          16,
+          80,
+          220,
+          600,
+          800,
+          1000
+        ],
+        "space_id": "new_york_avenue"
+      },
+      {
+        "color_group": "",
+        "house_cost": 0,
+        "kind": "free_parking",
+        "name": "Free Parking",
+        "position": 20,
+        "price": 0,
+        "rent": 0,
+        "rents": [],
+        "space_id": "free_parking"
+      },
+      {
+        "color_group": "red",
+        "house_cost": 150,
+        "kind": "property",
+        "name": "Kentucky Avenue",
+        "position": 21,
+        "price": 220,
+        "rent": 18,
+        "rents": [
+          18,
+          90,
+          250,
+          700,
+          875,
+          1050
+        ],
+        "space_id": "kentucky_avenue"
+      },
+      {
+        "color_group": "",
+        "house_cost": 0,
+        "kind": "chance",
+        "name": "Event",
+        "position": 22,
+        "price": 0,
+        "rent": 0,
+        "rents": [],
+        "space_id": "chance_2"
+      },
+      {
+        "color_group": "red",
+        "house_cost": 150,
+        "kind": "property",
+        "name": "Indiana Avenue",
+        "position": 23,
+        "price": 220,
+        "rent": 18,
+        "rents": [
+          18,
+          90,
+          250,
+          700,
+          875,
+          1050
+        ],
+        "space_id": "indiana_avenue"
+      },
+      {
+        "color_group": "red",
+        "house_cost": 150,
+        "kind": "property",
+        "name": "Illinois Avenue",
+        "position": 24,
+        "price": 240,
+        "rent": 20,
+        "rents": [
+          20,
+          100,
+          300,
+          750,
+          925,
+          1100
+        ],
+        "space_id": "illinois_avenue"
+      },
+      {
+        "color_group": "",
+        "house_cost": 0,
+        "kind": "railroad",
+        "name": "B. & O. Railroad",
+        "position": 25,
+        "price": 200,
+        "rent": 25,
+        "rents": [],
+        "space_id": "bo_railroad"
+      },
+      {
+        "color_group": "yellow",
+        "house_cost": 150,
+        "kind": "property",
+        "name": "Atlantic Avenue",
+        "position": 26,
+        "price": 260,
+        "rent": 22,
+        "rents": [
+          22,
+          110,
+          330,
+          800,
+          975,
+          1150
+        ],
+        "space_id": "atlantic_avenue"
+      },
+      {
+        "color_group": "yellow",
+        "house_cost": 150,
+        "kind": "property",
+        "name": "Ventnor Avenue",
+        "position": 27,
+        "price": 260,
+        "rent": 22,
+        "rents": [
+          22,
+          110,
+          330,
+          800,
+          975,
+          1150
+        ],
+        "space_id": "ventnor_avenue"
+      },
+      {
+        "color_group": "",
+        "house_cost": 0,
+        "kind": "utility",
+        "name": "Water Works",
+        "position": 28,
+        "price": 150,
+        "rent": 20,
+        "rents": [],
+        "space_id": "water_works"
+      },
+      {
+        "color_group": "yellow",
+        "house_cost": 150,
+        "kind": "property",
+        "name": "Marvin Gardens",
+        "position": 29,
+        "price": 280,
+        "rent": 24,
+        "rents": [
+          24,
+          120,
+          360,
+          850,
+          1025,
+          1200
+        ],
+        "space_id": "marvin_gardens"
+      },
+      {
+        "color_group": "",
+        "house_cost": 0,
+        "kind": "go_to_jail",
+        "name": "Go to Jail",
+        "position": 30,
+        "price": 0,
+        "rent": 0,
+        "rents": [],
+        "space_id": "go_to_jail"
+      },
+      {
+        "color_group": "green",
+        "house_cost": 200,
+        "kind": "property",
+        "name": "Pacific Avenue",
+        "position": 31,
+        "price": 300,
+        "rent": 26,
+        "rents": [
+          26,
+          130,
+          390,
+          900,
+          1100,
+          1275
+        ],
+        "space_id": "pacific_avenue"
+      },
+      {
+        "color_group": "green",
+        "house_cost": 200,
+        "kind": "property",
+        "name": "North Carolina Avenue",
+        "position": 32,
+        "price": 300,
+        "rent": 26,
+        "rents": [
+          26,
+          130,
+          390,
+          900,
+          1100,
+          1275
+        ],
+        "space_id": "north_carolina_avenue"
+      },
+      {
+        "color_group": "",
+        "house_cost": 0,
+        "kind": "community_chest",
+        "name": "Team-Up",
+        "position": 33,
+        "price": 0,
+        "rent": 0,
+        "rents": [],
+        "space_id": "community_chest_3"
+      },
+      {
+        "color_group": "green",
+        "house_cost": 200,
+        "kind": "property",
+        "name": "Pennsylvania Avenue",
+        "position": 34,
+        "price": 320,
+        "rent": 28,
+        "rents": [
+          28,
+          150,
+          450,
+          1000,
+          1200,
+          1400
+        ],
+        "space_id": "pennsylvania_avenue"
+      },
+      {
+        "color_group": "",
+        "house_cost": 0,
+        "kind": "railroad",
+        "name": "Short Line",
+        "position": 35,
+        "price": 200,
+        "rent": 25,
+        "rents": [],
+        "space_id": "short_line"
+      },
+      {
+        "color_group": "",
+        "house_cost": 0,
+        "kind": "chance",
+        "name": "Event",
+        "position": 36,
+        "price": 0,
+        "rent": 0,
+        "rents": [],
+        "space_id": "chance_3"
+      },
+      {
+        "color_group": "dark_blue",
+        "house_cost": 200,
+        "kind": "property",
+        "name": "Park Place",
+        "position": 37,
+        "price": 350,
+        "rent": 35,
+        "rents": [
+          35,
+          175,
+          500,
+          1100,
+          1300,
+          1500
+        ],
+        "space_id": "park_place"
+      },
+      {
+        "color_group": "",
+        "house_cost": 0,
+        "kind": "tax",
+        "name": "Luxury Tax",
+        "position": 38,
+        "price": 0,
+        "rent": 0,
+        "rents": [],
+        "space_id": "luxury_tax"
+      },
+      {
+        "color_group": "dark_blue",
+        "house_cost": 200,
+        "kind": "property",
+        "name": "Boardwalk",
+        "position": 39,
+        "price": 400,
+        "rent": 50,
+        "rents": [
+          50,
+          200,
+          600,
+          1400,
+          1700,
+          2000
+        ],
+        "space_id": "boardwalk"
+      }
+    ]
+  },
+  "board_id": "marvel_flip",
+  "cards": {
+    "chance": [
+      {
+        "effect": {
+          "collect_pass_go": true,
+          "position": 0,
+          "type": "move_absolute"
+        },
+        "id": "event_advance_to_go",
+        "legacy_id": "advance_to_go",
+        "text": "Advance to GO and collect 2 BP.",
+        "text_evidence": "When you reach the GO space, stop there and collect 2 BP.",
+        "text_key": "monopoly-card-advance-to-go",
+        "text_note": "Resolved via canonical legacy slot mapping (`advance_to_go`) using board-terminology from manual instructions."
+      },
+      {
+        "effect": {
+          "type": "go_to_jail"
+        },
+        "id": "event_go_to_jail_primary",
+        "legacy_id": "bank_dividend_50",
+        "text": "Move your token to the In Jail space immediately. Do not pass GO. Do not collect 2 BP.",
+        "text_key": "monopoly-card-go-to-jail",
+        "text_note": "Resolved via canonical legacy slot mapping (`bank_dividend_50`) with deck-prefixed id `event_go_to_jail_primary`. Source: canonical card text template with board-specific deck naming."
+      },
+      {
+        "effect": {
+          "collect_pass_go": false,
+          "steps": -3,
+          "type": "move_relative"
+        },
+        "id": "event_go_back_three",
+        "legacy_id": "go_back_three",
+        "text": "Go Back Three Spaces.",
+        "text_key": "monopoly-card-go-back-three",
+        "text_note": "Resolved via canonical legacy slot mapping (`go_back_three`) with deck-prefixed id `event_go_back_three`. Source: canonical card text template with board-specific deck naming."
+      },
+      {
+        "effect": {
+          "type": "go_to_jail"
+        },
+        "id": "event_go_to_jail_secondary",
+        "legacy_id": "go_to_jail",
+        "text": "Move your token to the In Jail space immediately. Do not pass GO. Do not collect 2 BP.",
+        "text_key": "monopoly-card-go-to-jail",
+        "text_note": "Resolved via canonical legacy slot mapping (`go_to_jail`) with deck-prefixed id `event_go_to_jail_secondary`. Source: canonical card text template with board-specific deck naming."
+      },
+      {
+        "effect": {
+          "amount": 15,
+          "type": "debit"
+        },
+        "id": "event_poor_tax_15",
+        "legacy_id": "poor_tax_15",
+        "text": "Pay Poor Tax of $15.",
+        "text_key": "monopoly-card-poor-tax-15",
+        "text_note": "Resolved via canonical legacy slot mapping (`poor_tax_15`) with deck-prefixed id `event_poor_tax_15`. Source: canonical card text template with board-specific deck naming."
+      }
+    ],
+    "community_chest": [
+      {
+        "effect": {
+          "amount": 200,
+          "type": "credit"
+        },
+        "id": "team_up_bank_error_collect_200",
+        "legacy_id": "bank_error_collect_200",
+        "text": "Bank error in your favor. Collect $200.",
+        "text_key": "monopoly-card-bank-error-200",
+        "text_note": "Resolved via canonical legacy slot mapping (`bank_error_collect_200`) with deck-prefixed id `team_up_bank_error_collect_200`. Source: canonical card text template with board-specific deck naming."
+      },
+      {
+        "effect": {
+          "amount": 50,
+          "type": "debit"
+        },
+        "id": "team_up_doctor_fee_pay_50",
+        "legacy_id": "doctor_fee_pay_50",
+        "text": "Doctor's fee. Pay $50.",
+        "text_key": "monopoly-card-doctor-fee-50",
+        "text_note": "Resolved via canonical legacy slot mapping (`doctor_fee_pay_50`) with deck-prefixed id `team_up_doctor_fee_pay_50`. Source: canonical card text template with board-specific deck naming."
+      },
+      {
+        "effect": {
+          "amount": 20,
+          "type": "credit"
+        },
+        "id": "team_up_income_tax_refund_20",
+        "legacy_id": "income_tax_refund_20",
+        "text": "Income Tax refund. Collect $20.",
+        "text_key": "monopoly-card-tax-refund-20",
+        "text_note": "Resolved via canonical legacy slot mapping (`income_tax_refund_20`) with deck-prefixed id `team_up_income_tax_refund_20`. Source: canonical card text template with board-specific deck naming."
+      },
+      {
+        "effect": {
+          "type": "go_to_jail"
+        },
+        "id": "team_up_go_to_jail",
+        "legacy_id": "go_to_jail",
+        "text": "Move your token to the In Jail space immediately. Do not pass GO. Do not collect 2 BP.",
+        "text_key": "monopoly-card-go-to-jail",
+        "text_note": "Resolved via canonical legacy slot mapping (`go_to_jail`) with deck-prefixed id `team_up_go_to_jail`. Source: canonical card text template with board-specific deck naming."
+      },
+      {
+        "effect": {
+          "type": "grant_jail_free"
+        },
+        "id": "team_up_jail_release_options",
+        "legacy_id": "get_out_of_jail_free",
+        "text": "Get out of Jail free. Keep this card until you're ready to use it.",
+        "text_evidence": "Keep this card until you're ready to use it.",
+        "text_note": "Resolved via canonical legacy slot mapping (`get_out_of_jail_free`) plus direct Team-Up retention wording recovered from OCR sweep."
+      }
+    ]
+  },
+  "citations": [
+    {
+      "confidence": "high",
+      "edition_id": "monopoly-f9931",
+      "page_ref": "p.2",
+      "rule_path": "board.spaces"
+    },
+    {
+      "confidence": "high",
+      "edition_id": "monopoly-f9931",
+      "page_ref": "p.4",
+      "rule_path": "economy.properties"
+    },
+    {
+      "confidence": "high",
+      "edition_id": "monopoly-f9931",
+      "page_ref": "p.7",
+      "rule_path": "cards.chance"
+    },
+    {
+      "confidence": "high",
+      "edition_id": "monopoly-f9931",
+      "page_ref": "p.8",
+      "rule_path": "cards.community_chest"
+    },
+    {
+      "confidence": "high",
+      "edition_id": "monopoly-f9931",
+      "page_ref": "p.11",
+      "rule_path": "win_condition"
+    },
+    {
+      "confidence": "high",
+      "edition_id": "monopoly-f9931",
+      "page_ref": "catalog:en-us",
+      "rule_path": "mechanics.manual_source"
+    },
+    {
+      "confidence": "medium",
+      "edition_id": "monopoly-f9931",
+      "page_ref": "manual-extract:strings-fallback",
+      "rule_path": "mechanics.manual_extraction"
+    },
+    {
+      "confidence": "medium",
+      "edition_id": "monopoly-f9931",
+      "page_ref": "manual-extract:action-space-labels",
+      "rule_path": "board.spaces.chance.name"
+    },
+    {
+      "confidence": "medium",
+      "edition_id": "monopoly-f9931",
+      "page_ref": "manual-extract:action-space-labels",
+      "rule_path": "board.spaces.community_chest.name"
+    },
+    {
+      "confidence": "medium",
+      "edition_id": "monopoly-f9931",
+      "page_ref": "manual-extract:deck-labels",
+      "rule_path": "mechanics.decks"
+    }
+  ],
+  "economy": {
+    "pass_go_cash": 200,
+    "properties": {
+      "atlantic_avenue": {
+        "color_group": "yellow",
+        "house_cost": 150,
+        "kind": "property",
+        "price": 260,
+        "rent": 22,
+        "rents": [
+          22,
+          110,
+          330,
+          800,
+          975,
+          1150
+        ]
+      },
+      "baltic_avenue": {
+        "color_group": "brown",
+        "house_cost": 50,
+        "kind": "property",
+        "price": 60,
+        "rent": 4,
+        "rents": [
+          4,
+          20,
+          60,
+          180,
+          320,
+          450
+        ]
+      },
+      "bo_railroad": {
+        "color_group": "",
+        "house_cost": 0,
+        "kind": "railroad",
+        "price": 200,
+        "rent": 25,
+        "rents": []
+      },
+      "boardwalk": {
+        "color_group": "dark_blue",
+        "house_cost": 200,
+        "kind": "property",
+        "price": 400,
+        "rent": 50,
+        "rents": [
+          50,
+          200,
+          600,
+          1400,
+          1700,
+          2000
+        ]
+      },
+      "connecticut_avenue": {
+        "color_group": "light_blue",
+        "house_cost": 50,
+        "kind": "property",
+        "price": 120,
+        "rent": 8,
+        "rents": [
+          8,
+          40,
+          100,
+          300,
+          450,
+          600
+        ]
+      },
+      "electric_company": {
+        "color_group": "",
+        "house_cost": 0,
+        "kind": "utility",
+        "price": 150,
+        "rent": 20,
+        "rents": []
+      },
+      "illinois_avenue": {
+        "color_group": "red",
+        "house_cost": 150,
+        "kind": "property",
+        "price": 240,
+        "rent": 20,
+        "rents": [
+          20,
+          100,
+          300,
+          750,
+          925,
+          1100
+        ]
+      },
+      "indiana_avenue": {
+        "color_group": "red",
+        "house_cost": 150,
+        "kind": "property",
+        "price": 220,
+        "rent": 18,
+        "rents": [
+          18,
+          90,
+          250,
+          700,
+          875,
+          1050
+        ]
+      },
+      "kentucky_avenue": {
+        "color_group": "red",
+        "house_cost": 150,
+        "kind": "property",
+        "price": 220,
+        "rent": 18,
+        "rents": [
+          18,
+          90,
+          250,
+          700,
+          875,
+          1050
+        ]
+      },
+      "marvin_gardens": {
+        "color_group": "yellow",
+        "house_cost": 150,
+        "kind": "property",
+        "price": 280,
+        "rent": 24,
+        "rents": [
+          24,
+          120,
+          360,
+          850,
+          1025,
+          1200
+        ]
+      },
+      "mediterranean_avenue": {
+        "color_group": "brown",
+        "house_cost": 50,
+        "kind": "property",
+        "price": 60,
+        "rent": 2,
+        "rents": [
+          2,
+          10,
+          30,
+          90,
+          160,
+          250
+        ]
+      },
+      "new_york_avenue": {
+        "color_group": "orange",
+        "house_cost": 100,
+        "kind": "property",
+        "price": 200,
+        "rent": 16,
+        "rents": [
+          16,
+          80,
+          220,
+          600,
+          800,
+          1000
+        ]
+      },
+      "north_carolina_avenue": {
+        "color_group": "green",
+        "house_cost": 200,
+        "kind": "property",
+        "price": 300,
+        "rent": 26,
+        "rents": [
+          26,
+          130,
+          390,
+          900,
+          1100,
+          1275
+        ]
+      },
+      "oriental_avenue": {
+        "color_group": "light_blue",
+        "house_cost": 50,
+        "kind": "property",
+        "price": 100,
+        "rent": 6,
+        "rents": [
+          6,
+          30,
+          90,
+          270,
+          400,
+          550
+        ]
+      },
+      "pacific_avenue": {
+        "color_group": "green",
+        "house_cost": 200,
+        "kind": "property",
+        "price": 300,
+        "rent": 26,
+        "rents": [
+          26,
+          130,
+          390,
+          900,
+          1100,
+          1275
+        ]
+      },
+      "park_place": {
+        "color_group": "dark_blue",
+        "house_cost": 200,
+        "kind": "property",
+        "price": 350,
+        "rent": 35,
+        "rents": [
+          35,
+          175,
+          500,
+          1100,
+          1300,
+          1500
+        ]
+      },
+      "pennsylvania_avenue": {
+        "color_group": "green",
+        "house_cost": 200,
+        "kind": "property",
+        "price": 320,
+        "rent": 28,
+        "rents": [
+          28,
+          150,
+          450,
+          1000,
+          1200,
+          1400
+        ]
+      },
+      "pennsylvania_railroad": {
+        "color_group": "",
+        "house_cost": 0,
+        "kind": "railroad",
+        "price": 200,
+        "rent": 25,
+        "rents": []
+      },
+      "reading_railroad": {
+        "color_group": "",
+        "house_cost": 0,
+        "kind": "railroad",
+        "price": 200,
+        "rent": 25,
+        "rents": []
+      },
+      "short_line": {
+        "color_group": "",
+        "house_cost": 0,
+        "kind": "railroad",
+        "price": 200,
+        "rent": 25,
+        "rents": []
+      },
+      "st_charles_place": {
+        "color_group": "pink",
+        "house_cost": 100,
+        "kind": "property",
+        "price": 140,
+        "rent": 10,
+        "rents": [
+          10,
+          50,
+          150,
+          450,
+          625,
+          750
+        ]
+      },
+      "st_james_place": {
+        "color_group": "orange",
+        "house_cost": 100,
+        "kind": "property",
+        "price": 180,
+        "rent": 14,
+        "rents": [
+          14,
+          70,
+          200,
+          550,
+          750,
+          950
+        ]
+      },
+      "states_avenue": {
+        "color_group": "pink",
+        "house_cost": 100,
+        "kind": "property",
+        "price": 140,
+        "rent": 10,
+        "rents": [
+          10,
+          50,
+          150,
+          450,
+          625,
+          750
+        ]
+      },
+      "tennessee_avenue": {
+        "color_group": "orange",
+        "house_cost": 100,
+        "kind": "property",
+        "price": 180,
+        "rent": 14,
+        "rents": [
+          14,
+          70,
+          200,
+          550,
+          750,
+          950
+        ]
+      },
+      "ventnor_avenue": {
+        "color_group": "yellow",
+        "house_cost": 150,
+        "kind": "property",
+        "price": 260,
+        "rent": 22,
+        "rents": [
+          22,
+          110,
+          330,
+          800,
+          975,
+          1150
+        ]
+      },
+      "vermont_avenue": {
+        "color_group": "light_blue",
+        "house_cost": 50,
+        "kind": "property",
+        "price": 100,
+        "rent": 6,
+        "rents": [
+          6,
+          30,
+          90,
+          270,
+          400,
+          550
+        ]
+      },
+      "virginia_avenue": {
+        "color_group": "pink",
+        "house_cost": 100,
+        "kind": "property",
+        "price": 160,
+        "rent": 12,
+        "rents": [
+          12,
+          60,
+          180,
+          500,
+          700,
+          900
+        ]
+      },
+      "water_works": {
+        "color_group": "",
+        "house_cost": 0,
+        "kind": "utility",
+        "price": 150,
+        "rent": 20,
+        "rents": []
+      }
+    },
+    "taxes": {
+      "income_tax": 200,
+      "luxury_tax": 100
+    }
+  },
+  "mechanics": {
+    "decks": {
+      "chance": "Event",
+      "community_chest": "Team-Up"
+    },
+    "hardware_capability_ids": [],
+    "manual_extraction": {
+      "extraction_mode": "strings_fallback",
+      "manifest_path": "server/games/monopoly/manual_rules/extracted/manifest.json",
+      "ocr_text_char_count": 16763,
+      "ocr_text_path": "server/games/monopoly/manual_rules/extracted/marvel_flip.ocr.txt",
+      "ocr_text_sha256": "ac0a63d21bea32b2f382e84e2b93c1505391dd58d32bc7b267aa96631b45fdcb",
+      "page_count": 1,
+      "pdf_sha256": "0ffff478e92c280e97aba40cd6d1d8cb06f90b1e61fc61bb4733c41e1c3e0dcb",
+      "pdf_size_bytes": 204352952,
+      "preferred_text_source": "ocr_sidecar",
+      "raw_text_char_count": 120704,
+      "raw_text_path": "server/games/monopoly/manual_rules/extracted/marvel_flip.txt",
+      "raw_text_sha256": "1d11e2523f13d34afbf7ab2855489ea504bf5dce6d99ae1bbe557943018a3a52",
+      "status": "seeded_from_extracted_manual_text",
+      "text_char_count": 16763,
+      "text_path": "server/games/monopoly/manual_rules/extracted/marvel_flip.ocr.txt",
+      "text_sha256": "ac0a63d21bea32b2f382e84e2b93c1505391dd58d32bc7b267aa96631b45fdcb"
+    },
+    "manual_source": {
+      "filename": "F99310000_INST_528408_MN_Marvel_Flip_S24_FAR.pdf",
+      "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-flip-edition-marvel-board-game-for-2-to-4-players-ages-8",
+      "locale": "en-us",
+      "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/e1f3a8ca-44fa-47da-9146-34de9a463819/F99310000_INST_528408_MN_Marvel_Flip_S24_FAR.pdf",
+      "source": "catalog_manual_variant"
+    },
+    "mode": "disney_marvel_family_manual_payload_v1",
+    "rule_pack_id": "marvel_flip"
+  },
+  "win_condition": {
+    "type": "bankruptcy"
+  }
+}

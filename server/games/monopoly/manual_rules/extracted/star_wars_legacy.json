@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-b0324",
+  "board_id": "star_wars_legacy",
+  "extraction_mode": "pypdf",
+  "family": "star",
+  "filename": "B03240790_SW_Monopoly_16_INST.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-game-star-wars",
+  "page_count": 6,
+  "pdf_sha256": "9b283609c30984cc5f5cfa18db4b7ee701f0f73e5349bf0cf472f8bda46c2dd3",
+  "pdf_size_bytes": 12085144,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/ee56ac79-b238-48e1-a5b9-560abf1491a8/B03240790_SW_Monopoly_16_INST.pdf",
+  "preferred_text_char_count": 13140,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/star_wars_legacy.txt",
+  "preferred_text_sha256": "c2d2af5d241e81abd00a633a01783c9501be4400d2707174c068fe9c45b54eda",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 13140,
+  "text_path": "server/games/monopoly/manual_rules/extracted/star_wars_legacy.txt",
+  "text_sha256": "c2d2af5d241e81abd00a633a01783c9501be4400d2707174c068fe9c45b54eda",
+  "zlib_limit_used": 120000000
+}

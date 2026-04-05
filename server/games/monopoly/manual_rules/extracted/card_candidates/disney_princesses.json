@@ -1,0 +1,38 @@
+{
+  "board_id": "disney_princesses",
+  "candidate_lines": [
+    {
+      "line": "Move o peão para um espaço sem proprietário qualquer.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Move para um espaço sem",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "1 Lança os dados e move o peão de princesa o número de espaços",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Move o peão para uma propriedade sem proprietário",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Move o teu peão de imediato para a Prisão!",
+      "tags": [
+        "movement"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/disney_princesses.txt"
+}

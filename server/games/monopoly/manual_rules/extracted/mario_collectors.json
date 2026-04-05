@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-c4382",
+  "board_id": "mario_collectors",
+  "extraction_mode": "pypdf",
+  "family": "mario",
+  "filename": "Monopoly%20Super%20Mario%20Bros.%20Collector%27s%20Edition%20%281%29.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-super-mario-bros-collector-s-edition-board-game-ages-8-and-up",
+  "page_count": 2,
+  "pdf_sha256": "910a0be0ffe4536b5ab1796cd46676a28a777e970a07319f5cf036858d32604c",
+  "pdf_size_bytes": 7382013,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/0855c1af-ad39-4304-8895-92f61228f71f/Monopoly%20Super%20Mario%20Bros.%20Collector%27s%20Edition%20%281%29.pdf",
+  "preferred_text_char_count": 19416,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/mario_collectors.txt",
+  "preferred_text_sha256": "49711a6985cd1bc4ef1320913d1259bae710db0dd4bd4f2d8bf39b03647dc6a7",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 19416,
+  "text_path": "server/games/monopoly/manual_rules/extracted/mario_collectors.txt",
+  "text_sha256": "49711a6985cd1bc4ef1320913d1259bae710db0dd4bd4f2d8bf39b03647dc6a7",
+  "zlib_limit_used": 120000000
+}

@@ -1,0 +1,226 @@
+{
+  "board_id": "star_wars_saga",
+  "candidate_lines": [
+    {
+      "line": "After completing your move, you then",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Sith cards replace the classic Chance cards i doubles to get out of Jail, you may not roll again or use the Force.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Collect 50 Republic Credits fro ery player.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "buy a property -- or be obliged to pay rent, pay penalties, draw a Sith",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Retaining the dice, roll again and move your",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Banker who plays i?\\ t%/e game must keep his/hegr persorL:aI IRer::fSélic the Sith space, and you draw a Jump o hyp erspace!",
+      "tags": []
+    },
+    {
+      "line": "When more than five people to GO” card, you collect 200 Republic credits for passing GO tSe first ‘\\",
+      "tags": [
+        "mentions_card",
+        "collect"
+      ]
+    },
+    {
+      "line": "marked “GO,” roll the two dice and move your token, in the direction of :",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "the spaces occupied and proceed from that point on the player’s next , o , a",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Temple and Coruscant Senate) because the owner may then charge You get out of Jail by ...",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "This rule turns; if you succeed in doing this you immediately move forward the",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "doubles, you do not take another turn.",
+      "tags": []
+    },
+    {
+      "line": "It is even more advantageous to have buildings on properties because card if you have one; (3) purchasing a “Get Out of Jail free” card from",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "The owner may not collect the rent if he/she fails to ask for it before the Oefore you roll the diice on either O.f your next two turms.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": ") If you don't roll doubles by your third turn, you must pay the fine of",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "You then get out of Jail and immediately move",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "When you land on either a Jedi or Sith space, take the top card L .",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "‘ rom the deck indicated, follow the instructions and return the card to other players, buy or sell buildings and collect rents",
+      "tags": [
+        "mentions_card",
+        "collect"
+      ]
+    },
+    {
+      "line": "The “Get Out of Jail Free” cards are held until used and then retumed .",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "If the players who draw these do not wish A player landing on this place receives no Republic credits, properties",
+      "tags": []
+    },
+    {
+      "line": "at 200 Republic credits and pay the Bank, or you may pay 10% of your If you buy one settlement, you may place it on any one of those properties.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "The price you must pay the Bank for each settlement is shown on your",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "You must decide which option you will take before you add up your Title Deed card for the property on which you place the settlement.",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "“Go to Jail”: (2) you draw a card marked “You are captured by many settlements as your judgment and Republic credits will allow.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "~ When you are sent to Jail you cannot collect your salary of 200 placed one settlement on every property of that group.",
+      "tags": [
+        "collect",
+        "jail"
+      ]
+    },
+    {
+      "line": "Republic credits in that move since, regardless of where your token is [ begin on the second row of settlements, and so on, up to a limit of",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "on the board, you must move it directly into Jail.",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "that space, you are “Just Visiting,” you incur no penalty, and you move As you place evenly, you must also break down evenly if you sell",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "CITIES ~ Inorder to lift the mortgage, the owner must pay the Bank the amount",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "You return the four settlements from that property , buildings at full price.",
+      "tags": []
+    },
+    {
+      "line": "to the Bank and pay the value of the city as shown on the Title Deed .",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If the mortgage is not lifted at once, you must pay",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Unimproved properties, Capital Ships, the Death Star and the Death ' You are declared bankrupt if you owe more than you can pay either",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "' option, pay the principal or hold the property until some later tumn,",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "“Get Out of Jail Free” card if you have (or can buy) one; (2) rolling A Tril Ue ve Wes Xes",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "rules, you may try to roll doubles and, failing to do so, pay the 50 : E —— I'I",
+      "tags": [
+        "pay"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-03-01T23:20:02.352077+00:00",
+  "preferred_text_source": "ocr_sidecar",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/star_wars_saga.ocr.txt"
+}

@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-e2033",
+  "board_id": "marvel_deadpool",
+  "extraction_mode": "pypdf",
+  "family": "marvel",
+  "filename": "ead2fa609cfb904c8e40be5eda95adb2.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/Monopoly-Game--Marvel-Deadpool-Edition",
+  "page_count": 2,
+  "pdf_sha256": "930c80c7d6ff2caf2e15d6c1a2f8b2006c9c2bf3bc2c1d6a5926faf6d6df4ec1",
+  "pdf_size_bytes": 1437325,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/0a9e2647-68f0-443e-914d-12e3621392a5/ead2fa609cfb904c8e40be5eda95adb2.pdf",
+  "preferred_text_char_count": 12738,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/marvel_deadpool.txt",
+  "preferred_text_sha256": "1c51c0d74ff4b14cac91a9365f511ed2fac641955504f23b68f4e12516272535",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 12738,
+  "text_path": "server/games/monopoly/manual_rules/extracted/marvel_deadpool.txt",
+  "text_sha256": "1c51c0d74ff4b14cac91a9365f511ed2fac641955504f23b68f4e12516272535",
+  "zlib_limit_used": 120000000
+}

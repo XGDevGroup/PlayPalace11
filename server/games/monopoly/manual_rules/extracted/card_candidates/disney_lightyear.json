@@ -1,0 +1,345 @@
+{
+  "board_id": "disney_lightyear",
+  "candidate_lines": [
+    {
+      "line": "Move around the board buying as many",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "collect from other players.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Move your piece clockwise that",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "dice again, and take another turn.",
+      "tags": []
+    },
+    {
+      "line": "immediately go to Jail!",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay the price on the board space and take the Title Deed card from the Bank.",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "If they don’t ask before the next player rolls the dice, you don’t have to pay!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay rent based on the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If you owe money and can’t pay, try to raise",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "down, and collect the mortgage value on the",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "To repay a mortgage,To repay a mortgage, pay the unmortgage cost",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "any Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Repay the mortgageRepay the mortgage (pay the Bank the unmortgage",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Or keep the mortgageOr keep the mortgage (just pay the Bank 10% of",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Return all your properties to the Bank.",
+      "tags": []
+    },
+    {
+      "line": "Return any Get Out of Jail Free cards to the bottom",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Repay the mortgage (pay the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Or keep the mortgage (just pay",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the Bank the cost on the Title Deed card",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "colour set, you can pay to upgrade to a Base.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the Base cost on the Title Deed card,",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "return all four Towers to the Bank and put a",
+      "tags": []
+    },
+    {
+      "line": "collect a200 from the Bank.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Take the top card from the matching",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Return it to the bottom of the deck",
+      "tags": []
+    },
+    {
+      "line": "Move your piece to the In Jail space",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "Do not collect a200 for",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "can still collect rent, bid during auctions,",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Pay the Bank the amount shown",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay Pay bb5050 at the start of your next turn, then roll and move as normal.",
+      "tags": [
+        "pay",
+        "movement"
+      ]
+    },
+    {
+      "line": "Use a Get Out of Jail Free cardUse a Get Out of Jail Free card at the start of your next turn if you have",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "appropriate deck, then roll and move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "move, and that’s the end of your turn.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "If you don’t roll a double by your third turn in Jail, pay a50",
+      "tags": [
+        "pay",
+        "jail"
+      ]
+    },
+    {
+      "line": "and use your last roll to move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "(„to unmortgage, pay“) an die Bank",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "karty Get Out of Jail Free.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Vraťte všechny karty Get Out of Jail Free dospod",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Použijte kartu Get Out of Jail FreePoužijte kartu Get Out of Jail Free na začátku vašeho příštího tahu,",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "a karty Get Out of Jail Free.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Vráťte všetky karty Get Out of Jail Free na spodok",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "alebo kartu Get Out of Jail Free.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Použite kartu Get Out of Jail FreePoužite kartu Get Out of Jail Free na začiatku svojho ďalšieho ťahu.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "и карточки Get Out of Jail Free.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Положите все свои карточки Get Out of Jail Free",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Get Out of Jail Free.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Если у вас есть карточка Get Out of Jail FreeЕсли у вас есть карточка Get Out of Jail Free, воспользуйтесь ею",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Vratite sve kartice Get Out of Jail Free na dno",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "kartice Get Out of Jail Free.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Upotrijebite karticu Get Out of Jail FreeUpotrijebite karticu Get Out of Jail Free na početku svog sljedećeg",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Morebitne kartice Get Out of Jail Free vrni na dno",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "під заставою, і всі картки Get Out of Jail Free.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Поверн іть усі картки Get Out of Jail Free вниз",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "картки Get Out of Jail Free.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Скористатися карткою Get Out of Jail FreeСкористатися карткою Get Out of Jail Free на по чатку наступного",
+      "tags": [
+        "jail"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/disney_lightyear.txt"
+}

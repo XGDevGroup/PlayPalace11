@@ -1,0 +1,216 @@
+{
+  "board_id": "disney_villains",
+  "candidate_lines": [
+    {
+      "line": "GO space, collect a2 from the",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Bank, and immediately take the",
+      "tags": []
+    },
+    {
+      "line": "Pay the Bank the cost on the contract card,",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "If you owe money and can’t pay, try to raise",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If you still owe the Bank, return one property",
+      "tags": []
+    },
+    {
+      "line": "a color set, you can pay to upgrade to a Lair.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the Lair cost on the contract card, return",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "Return any Poison Apple and/or Get Out",
+      "tags": []
+    },
+    {
+      "line": "Move around the board hiring",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "be able to collect from",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Take the top card from",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Return cards to the bottom of",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "space, you may choose to move",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "GO space, DO NOT collect",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "a 2 from the Bank or take the",
+      "tags": []
+    },
+    {
+      "line": "Move your token to the In Jail",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "collect a2 for passing GO.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "collect rent, bid during auctions,",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay b5 at the start of your next turn, then",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "roll and move as normal.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Use a Get Out of Jail Free card at the start",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Use the roll to move, and that’s the end",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "pay a5, and use your last roll to move.",
+      "tags": [
+        "pay",
+        "movement"
+      ]
+    },
+    {
+      "line": "Pay the price on the board space, and take that contract card.",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "you can’t afford to pay, you are bankrupt and out of the game!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Return any cards to the bottom of the appropriate deck.",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Pay the price on the board space, and take that utility",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If you can’t afford to pay, you are bankrupt and",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Return any cards to the bottom of",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "If they do, you must pay.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "before the next player rolls the die, you don’t have to pay!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "you may move to any property",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "space, draw a Poison Apple card.",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Move your token clockwise that number",
+      "tags": [
+        "movement"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/disney_villains.txt"
+}

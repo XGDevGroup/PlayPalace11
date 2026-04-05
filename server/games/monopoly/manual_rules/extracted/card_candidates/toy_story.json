@@ -1,0 +1,199 @@
+{
+  "board_id": "toy_story",
+  "candidate_lines": [
+    {
+      "line": "color set, you can pay to upgrade to a Hotel.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the Hotel cost on the Title Deed card,",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "return all 4 Houses to the Bank, and put a Hotel",
+      "tags": []
+    },
+    {
+      "line": "Pay the Bank the cost on the Title Deed",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If you owe money and can’t pay, try to",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "and any Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Repay the mortgage (pay the Bank the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Or keep the mortgage (just pay the Bank",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Return all your properties to the Bank.",
+      "tags": []
+    },
+    {
+      "line": "Return any Get Out of Jail",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "or Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Repay the mortgage (pay",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "(just pay the Bank 10% of the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "facedown, and collect the mortgage value",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "To repay a mortgage, pay the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "The more properties you own, the more rent you can collect.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Move your token clockwise that",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay b50 at the start of your next turn;",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "then, roll and move as normal.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Use a Get Out of Jail Free card at",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "appropriate deck; then, roll and move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "on the GO space, collect",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Take the top card from",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Pay the Bank the amount",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Vehicle space, you get to take",
+      "tags": []
+    },
+    {
+      "line": "Roll one die, and move",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Move your token to the",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Do not collect b200 for",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "collect rent, bid during",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "If they don’t ask before the next Toy rolls a die, you don’t have to pay!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the price on the board space, and take the Title Deed card from the Bank.",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/toy_story.txt"
+}

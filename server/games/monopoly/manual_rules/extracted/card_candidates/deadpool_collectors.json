@@ -1,0 +1,214 @@
+{
+  "board_id": "deadpool_collectors",
+  "candidate_lines": [
+    {
+      "line": "Move around the board hiring as many",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "2 Move forward that number of spaces.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "in a row, you must Go To Jail!",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "pay that player the rent shown on the Mercenary’s Contract card.",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "Collect color sets to build Headquarters!",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "If they don’t ask, you don’t gotta pay!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "When you land on the Cheap Shot space, take A 100 from the player",
+      "tags": []
+    },
+    {
+      "line": "take it from whichever tied player you want.",
+      "tags": []
+    },
+    {
+      "line": "If your move took you onto or past the GO space, collect A200 from",
+      "tags": [
+        "collect",
+        "movement"
+      ]
+    },
+    {
+      "line": "Take the top card from the matching pile and immediately do what it says.",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Return it to the bottom of the pile when done.",
+      "tags": []
+    },
+    {
+      "line": "If you land here by exact count, instantly collect all the sweet, sweet",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Move your token to the In Jail space immediately.",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "Do not collect A200 for",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "You can still collect rent, auction, buy",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Pay the price on the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "board space and take the",
+      "tags": []
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "1 Pay b50 at the start of your next turn, then roll and move as normal.",
+      "tags": [
+        "pay",
+        "movement"
+      ]
+    },
+    {
+      "line": "2 Use a Get Out of Jail Free card at the start of your next turn if you have one",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Use the roll to move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "turn In Jail, pay A50 and use your last roll to move.",
+      "tags": [
+        "pay",
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "When you land on a Sweet Ride that someone else owns, pay them rent.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the Bank the cost price on the Contract card and place a Headquarters",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "you can pay to upgrade to a D-Mansion.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the D-Mansion cost price on the Contract card, return all 4",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "Rides, and/or Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Or keep it out-of-commission (just pay the Bank 10% of the out-of-commission",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Give them any Get Out of Jail Free cards and all your out-of-commission",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Return all of your Mercenaries and Sweet Rides to the Bank.",
+      "tags": []
+    },
+    {
+      "line": "Get Out of Jail Free cards to the bottom of the pile.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "If you owe money and can’t pay, try to raise money by selling buildings and/or",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "collect the out-of-commission value on the back from the Bank.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "To put something back in commission, pay the back-in-commission cost to the",
+      "tags": [
+        "pay"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/deadpool_collectors.txt"
+}

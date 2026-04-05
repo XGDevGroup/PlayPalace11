@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-b4644",
+  "board_id": "disney_princesses",
+  "extraction_mode": "pypdf",
+  "family": "disney",
+  "filename": "B46441900%20Disney%20Princess%20INST_16.pdf",
+  "instruction_url": "https://instructions.hasbro.com/pt-br/instruction/jogo-monopoly-edicao-princesas-da-disney",
+  "page_count": 4,
+  "pdf_sha256": "6ca88cb5d12c50d0fb91624a151bad42f2ac80f3eeb9d6729ef9a980e2973fb2",
+  "pdf_size_bytes": 30980660,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/27063549-2914-4b50-90fa-7682010a8668/B46441900%20Disney%20Princess%20INST_16.pdf",
+  "preferred_text_char_count": 8915,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/disney_princesses.txt",
+  "preferred_text_sha256": "ebb6322e361252cdb52f9fa060ac4560b6ecf953a0e0777ccf274e9a3035ef28",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 8915,
+  "text_path": "server/games/monopoly/manual_rules/extracted/disney_princesses.txt",
+  "text_sha256": "ebb6322e361252cdb52f9fa060ac4560b6ecf953a0e0777ccf274e9a3035ef28",
+  "zlib_limit_used": 120000000
+}

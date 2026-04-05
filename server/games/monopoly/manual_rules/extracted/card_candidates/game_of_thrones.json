@@ -1,0 +1,228 @@
+{
+  "board_id": "game_of_thrones",
+  "candidate_lines": [
+    {
+      "line": "Pay the Royal Treasury the cost on the Title Deed",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If you owe money and can’t pay, try to raise",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "or Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "(pay the Royal Treasury the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "facedown, and collect the mortgage value on",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "To repay a mortgage, pay the unmortgage",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "set, you can pay to upgrade to a Castle.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the Castle cost on the Title Deed card, return all 4",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "any Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "(pay the Royal Treasury the unmortgage cost)",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Return all your properties to the Royal Treasury.",
+      "tags": []
+    },
+    {
+      "line": "Return any Get Out of Jail Free cards to the bottom",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Should this product cause, or be affected by, local electrical interference, move it away from other electrical",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Move your token clockwise that number of",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Move around the board buying as many properties",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "be able to collect from other players.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "the GO space, collect",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Move your token to the In",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "You can still collect rent,",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Take the top card from the",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Return it to the pile when done.",
+      "tags": []
+    },
+    {
+      "line": "return it to the pile.",
+      "tags": []
+    },
+    {
+      "line": "Pay the Royal Treasury the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "dice, you don’t have to pay!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the price on the board space, and take the Title Deed card from the Royal Treasury.",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the rent shown on the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "owner has 1 Order, pay half the amount",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "has 2 Orders, pay the amount rolled.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "and take another turn.",
+      "tags": []
+    },
+    {
+      "line": "row, you must immediately Go To Jail!",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay rent based on the number of Faiths the owner has.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay 5 at the start of your next turn; then,",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "roll and move as normal.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Use a Get Out of Jail Free card at the start",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Use the roll to move, and that’s the",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "5, and use your last roll to move.",
+      "tags": [
+        "movement"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/game_of_thrones.txt"
+}

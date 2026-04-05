@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-f1662",
+  "board_id": "jurassic_park",
+  "extraction_mode": "pypdf",
+  "family": "jurassic",
+  "filename": "F16620000_INST_MN_JP_S21.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-jurassic-park-edition-board-game-for-kids",
+  "page_count": 2,
+  "pdf_sha256": "738d5adc3ebe0a3cd36c3ed6983c9c1547edf37c19246f43555056d17bcf201c",
+  "pdf_size_bytes": 56741135,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/370b9e57-3520-43f4-a127-b20dc4e0cf94/F16620000_INST_MN_JP_S21.pdf",
+  "preferred_text_char_count": 16917,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/jurassic_park.txt",
+  "preferred_text_sha256": "cfa62964571b06cd6a990c304153d54ccf8159a73737c872cc8dd283e02ab76c",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 16917,
+  "text_path": "server/games/monopoly/manual_rules/extracted/jurassic_park.txt",
+  "text_sha256": "cfa62964571b06cd6a990c304153d54ccf8159a73737c872cc8dd283e02ab76c",
+  "zlib_limit_used": 120000000
+}

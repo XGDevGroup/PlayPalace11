@@ -1,0 +1,197 @@
+{
+  "board_id": "marvel_avengers",
+  "candidate_lines": [
+    {
+      "line": "Pay the Bank the cost on the hero card, and place a Base",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "If you owe money and can’t pay, try to raise money",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Reactivate the hero (pay the Bank the cost",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Or keep them sidelined (just pay the Bank 10%",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Return all your heroes to the Bank.",
+      "tags": []
+    },
+    {
+      "line": "Return any Get Out of Jail Free",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "(pay the Bank the cost shown",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "(just pay the Bank 10% of that",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "collect the sideline value on the back from the",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "To reactivate a hero, pay the Bank the cost",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "money you can collect, and the more powerful you’ll be when you battle the Children of Thanos.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Pay the Headquarters cost on the hero card, return all",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "Move your token clockwise that number of",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Move around the board drafting heroes and collecting",
+      "tags": [
+        "collect",
+        "movement"
+      ]
+    },
+    {
+      "line": "the GO space, collect 200",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Move your token to the Jail space",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "You can still collect",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Take the top card from the",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Pay 200 to the Bank.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the Bank the amount",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If they don’t ask before the next player rolls the dice, you don’t have to pay!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the price on the board space, and take the hero card from the Bank.",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "Roll the dice again, and take another turn.",
+      "tags": []
+    },
+    {
+      "line": "row, you must immediately Go To Jail!",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "• You can collect twice as much money for those heroes!",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay 50 at the start of your next turn; then, roll",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Use a Get Out of Jail Free card at the start of",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "appropriate deck; then, roll and move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Use the roll to move, and that’s the end of",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "pay 50, and use your last roll to move.",
+      "tags": [
+        "pay",
+        "movement"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/marvel_avengers.txt"
+}

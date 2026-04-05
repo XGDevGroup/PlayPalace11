@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-c1990",
+  "board_id": "star_wars_40th",
+  "extraction_mode": "pypdf",
+  "family": "star",
+  "filename": "d6f44573d8c8028f5a8c27d574728f2f.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/Monopoly-Game--Star-Wars-40th-Anniversary-Special-Edition",
+  "page_count": 2,
+  "pdf_sha256": "33ef6b9ef36da16aee04cd3c52d6a4d7966bccbaef3a2a598e69b9259b98b291",
+  "pdf_size_bytes": 12630418,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/852f5a59-df1f-486e-838a-1e8b9bd7bedf/d6f44573d8c8028f5a8c27d574728f2f.pdf",
+  "preferred_text_char_count": 14316,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/star_wars_40th.txt",
+  "preferred_text_sha256": "e3c1d936c2b7637d0049036499343fe032a1d10294376cef580c76650c145315",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 14316,
+  "text_path": "server/games/monopoly/manual_rules/extracted/star_wars_40th.txt",
+  "text_sha256": "e3c1d936c2b7637d0049036499343fe032a1d10294376cef580c76650c145315",
+  "zlib_limit_used": 120000000
+}

@@ -1,0 +1,7 @@
+{
+  "board_id": "disney_the_edition",
+  "candidate_lines": [],
+  "generated_at_utc": "2026-03-01T23:20:02.352077+00:00",
+  "preferred_text_source": "ocr_sidecar",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/disney_the_edition.ocr.txt"
+}

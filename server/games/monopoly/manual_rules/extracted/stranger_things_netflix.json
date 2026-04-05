@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-f2544",
+  "board_id": "stranger_things_netflix",
+  "extraction_mode": "pypdf",
+  "family": "stranger",
+  "filename": "F2544UE21_INST_MN_ST4_S22_FAR.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-netflix-stranger-things-edition-board-game-for-adults-and-teens-ages-14-game-for-2-6-players",
+  "page_count": 55,
+  "pdf_sha256": "ff2cd852dfe655c14d1a1369a891dcd176ffa63957834cbffcd997971ebdeb50",
+  "pdf_size_bytes": 53577831,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/b7ff4faa-0924-409a-8009-57640770791d/F2544UE21_INST_MN_ST4_S22_FAR.pdf",
+  "preferred_text_char_count": 360122,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/stranger_things_netflix.txt",
+  "preferred_text_sha256": "52d846bd1ec2b6499da7632b28e795ad4f1b2befe6bbc47689ecd48b6154ccc0",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 360122,
+  "text_path": "server/games/monopoly/manual_rules/extracted/stranger_things_netflix.txt",
+  "text_sha256": "52d846bd1ec2b6499da7632b28e795ad4f1b2befe6bbc47689ecd48b6154ccc0",
+  "zlib_limit_used": 120000000
+}

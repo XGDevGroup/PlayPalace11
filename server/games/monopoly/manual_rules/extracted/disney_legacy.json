@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-19643",
+  "board_id": "disney_legacy",
+  "extraction_mode": "pypdf",
+  "family": "disney",
+  "filename": "c1c4b02bf4673e267ae823235d249ebc.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-disney-edition",
+  "page_count": 8,
+  "pdf_sha256": "427a65ab9d2a4f2624e1e64b0561e3422981a07bc350f5f58f13d5d86abc9fce",
+  "pdf_size_bytes": 11625762,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/6c06eb8c-21e9-4725-9609-f90e8853b6bf/c1c4b02bf4673e267ae823235d249ebc.pdf",
+  "preferred_text_char_count": 17373,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/disney_legacy.txt",
+  "preferred_text_sha256": "9ca96a822a93a77836161ec88e30b51ef26951943dd239d01ab68469f2721ead",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 17373,
+  "text_path": "server/games/monopoly/manual_rules/extracted/disney_legacy.txt",
+  "text_sha256": "9ca96a822a93a77836161ec88e30b51ef26951943dd239d01ab68469f2721ead",
+  "zlib_limit_used": 120000000
+}

@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-g0038",
+  "board_id": "barbie",
+  "extraction_mode": "pypdf",
+  "family": "barbie",
+  "filename": "G00380000_INST_Monopoly_Barbie_528487_F23.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-barbie-edition-board-game-family-games-for-2-6-players-ages-8",
+  "page_count": 2,
+  "pdf_sha256": "a98e506ba93eb01951f9a79857e9fc06051651c76791c57e13cf4ca6b4258f72",
+  "pdf_size_bytes": 161901983,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/1669cc17-48aa-4922-b922-44aba50eb72d/G00380000_INST_Monopoly_Barbie_528487_F23.pdf",
+  "preferred_text_char_count": 16702,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/barbie.txt",
+  "preferred_text_sha256": "ac2306598d79169647eccc5c1b25427b4783e09f941a8c7115bb3697a4a82352",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 16702,
+  "text_path": "server/games/monopoly/manual_rules/extracted/barbie.txt",
+  "text_sha256": "ac2306598d79169647eccc5c1b25427b4783e09f941a8c7115bb3697a4a82352",
+  "zlib_limit_used": 120000000
+}

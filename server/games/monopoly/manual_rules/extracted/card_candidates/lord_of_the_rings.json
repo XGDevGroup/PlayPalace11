@@ -1,0 +1,421 @@
+{
+  "board_id": "lord_of_the_rings",
+  "candidate_lines": [
+    {
+      "line": "Every turn you start with the Ring, before you roll, move the Ring Tracker one circle closer to Mount Doom.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "If you ever give away or lose the Ring, move the Tracker back to Start.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "pay the amount shown on the Tracker’s current circle.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "land on GO, collect a4 instead of a2!",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "have the Ring, collect a15!",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Pay the Bank the cost on the Title Deed",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "can pay to upgrade to a Fortress.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the Fortress cost on the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Title Deed card, return all 4 Outposts to the",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "and any Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "(pay the Bank the unmortgage cost).",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Return all your properties to the Bank.",
+      "tags": []
+    },
+    {
+      "line": "Return any Get Out of Jail Free cards",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "If you owe money and can’t pay, try to raise",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "facedown, and collect the mortgage value",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "To repay a mortgage, pay the unmortgage",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "The Two Towers, The Lord of the Rings: The Return of the King and the names of the characters, items, events and places",
+      "tags": []
+    },
+    {
+      "line": "Whenever you take the Ring, place it on your",
+      "tags": []
+    },
+    {
+      "line": "character token, then move the Ring Tracker back",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "will move with your token around the board.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "• You won’t have to pay rent if you",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "• You won’t have to pay the Bank if you",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "• You won’t have to go to Jail if you land",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "on the Go to Jail space.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "token landed and pay the Bank the amount shown",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If you offer them the Ring, they must take it and place it on their",
+      "tags": []
+    },
+    {
+      "line": "Only move the Ring Tracker back to the Start circle if the Ring",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "battle, end your move on their space.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Only move the Ring Tracker back to the Start",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "that space, you must take the Ring with you!",
+      "tags": []
+    },
+    {
+      "line": "• All players collect rent from the Bank for each of their properties:",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "° For properties in a color set, collect double rent.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "° For properties with Outposts, collect rent",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "° For properties with a Fortress, collect rent",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "property, and/or Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Move around the board buying as many properties as you can, and take",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "the more rent you’ll be able to collect from other players.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "is the first Ring-bearer, and the Ring will move with their token around",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "If you have the Ring, move the Ring Tracker one circle closer",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Move your token (and the Ring if you have it) clockwise that",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "If you have the Ring, drop it where you landed and pay the Bank",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Roll the dice again, and take another turn.",
+      "tags": []
+    },
+    {
+      "line": "immediately go to Jail!",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "have the Ring, you’re safe and can take your third turn.)",
+      "tags": []
+    },
+    {
+      "line": "the Ring will move with your token",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "won’t pay rent or go to Jail!",
+      "tags": [
+        "pay",
+        "jail"
+      ]
+    },
+    {
+      "line": "be able to charge more rent and collect",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "line of circles the Tracker will move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "reach Mount Doom and collect a reward.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Pay the price on the board space, and take the Title Deed card from the Bank.",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "the dice, you don’t have to pay!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If you have the Ring, pay nothing!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Take the top card from the deck, and",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "card tells you to pay money or go to Jail,",
+      "tags": [
+        "mentions_card",
+        "pay",
+        "jail"
+      ]
+    },
+    {
+      "line": "If you have to go to Jail,",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "drop the Ring on the Quest space, move",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "and move your token to the In Jail space.",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "Move your token to the In Jail space",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "Do not collect a 2 for",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "You can still collect rent, bid during",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Go to Jail space, and end your turn.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "space, collect a2 from the Bank.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay b5 at the start of your next turn, then roll and move as normal.",
+      "tags": [
+        "pay",
+        "movement"
+      ]
+    },
+    {
+      "line": "Use a Get Out of Jail Free card at the start of your next turn if you",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "of the Quest deck, then roll and move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "roll to move, and that’s the end of your turn.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "by your third turn in Jail, pay a 5, and use your last roll to move.Free Parking",
+      "tags": [
+        "pay",
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "Pay the Bank the amount shown",
+      "tags": [
+        "pay"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/lord_of_the_rings.txt"
+}

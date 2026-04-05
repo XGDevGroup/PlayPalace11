@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-b8613",
+  "board_id": "star_wars_classic_edition",
+  "extraction_mode": "pypdf",
+  "family": "star",
+  "filename": "B86130000_SW_Monopoly_16_INST.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-game-star-wars-edition",
+  "page_count": 2,
+  "pdf_sha256": "8213af17d6ed57297ea81afe04f0cc979e29b4825718de7385f72b2a55273b56",
+  "pdf_size_bytes": 7945788,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/7af012c1-2546-49af-8c58-1d38473bb943/B86130000_SW_Monopoly_16_INST.pdf",
+  "preferred_text_char_count": 7954,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/star_wars_classic_edition.txt",
+  "preferred_text_sha256": "ad0cc2e224ed37f8a195a99dccadf43d89f4448782a4a71614ca6c319ee8f114",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 7954,
+  "text_path": "server/games/monopoly/manual_rules/extracted/star_wars_classic_edition.txt",
+  "text_sha256": "ad0cc2e224ed37f8a195a99dccadf43d89f4448782a4a71614ca6c319ee8f114",
+  "zlib_limit_used": 120000000
+}

@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-e6504",
+  "board_id": "marvel_avengers",
+  "extraction_mode": "pypdf",
+  "family": "marvel",
+  "filename": "5e16b4739f4b719fa2efb43871de904d.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/Monopoly--Marvel-Avengers-Edition-Board-Game",
+  "page_count": 2,
+  "pdf_sha256": "fd9d5213371993b18a9b05898695343418e1b16a9393c0f00bd4f23557eeb486",
+  "pdf_size_bytes": 31254830,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/4aac2075-d55d-480a-ac6e-a12d20d43eea/5e16b4739f4b719fa2efb43871de904d.pdf",
+  "preferred_text_char_count": 10538,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/marvel_avengers.txt",
+  "preferred_text_sha256": "cf0f70402e133e676bee4dfe3878d22b1e542e9629f68e8dadca85f458808dc9",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 10538,
+  "text_path": "server/games/monopoly/manual_rules/extracted/marvel_avengers.txt",
+  "text_sha256": "cf0f70402e133e676bee4dfe3878d22b1e542e9629f68e8dadca85f458808dc9",
+  "zlib_limit_used": 120000000
+}

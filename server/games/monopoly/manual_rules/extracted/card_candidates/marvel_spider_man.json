@@ -1,0 +1,192 @@
+{
+  "board_id": "marvel_spider_man",
+  "candidate_lines": [
+    {
+      "line": "Pay the Bank the cost on the super villain card,",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "If you owe webs and can’t pay, try to make",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If you still owe the Bank, return one property to",
+      "tags": []
+    },
+    {
+      "line": "villains in a color set, you can pay to upgrade",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the Spider-Bot cost on the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "super villain card, return all 4 Spider-Tracers to",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Return any Daily Bugle and/or Get Out of Jail",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "to collect from other",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Take the top card from",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Return cards to the bottom of",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "space, you may choose to move to",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "DO NOT collect a2 from the",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Bank or take the Symbol of Great",
+      "tags": []
+    },
+    {
+      "line": "Move your token to the In Jail",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "You may still collect",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay b5 at the start of your next turn, then",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "roll and move as normal.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Use a Get Out of Jail Free card at the start",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Use the roll to move, and that’s",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "third turn in Jail, pay a5, then roll again and",
+      "tags": [
+        "pay",
+        "jail"
+      ]
+    },
+    {
+      "line": "space, collect a2 from the Bank,",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "and immediately take the Symbol of",
+      "tags": []
+    },
+    {
+      "line": "Pay the price on the board space, and take the super",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If they do, you must pay.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If they don’t ask before the next player rolls the dice, you don’t have to pay!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Take the subway for shortcuts!",
+      "tags": []
+    },
+    {
+      "line": "move to any property space on the board!",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "When you land on a Daily Bugle space, draw a",
+      "tags": []
+    },
+    {
+      "line": "Move your token clockwise that number",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Roll the dice again, and take",
+      "tags": []
+    },
+    {
+      "line": "must immediately go to Jail!",
+      "tags": [
+        "jail"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/marvel_spider_man.txt"
+}

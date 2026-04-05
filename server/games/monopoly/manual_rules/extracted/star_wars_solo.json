@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-e1702",
+  "board_id": "star_wars_solo",
+  "extraction_mode": "pypdf",
+  "family": "star",
+  "filename": "E17020000_SW_Han_Solo_MN_18_INST.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-game-star-wars-edition",
+  "page_count": 2,
+  "pdf_sha256": "fe05f08f8915687091ae0dcb0250c7a71b9adfb2ea0351c687397149ec65afab",
+  "pdf_size_bytes": 8165156,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/82bc2f11-520c-4e56-bb3d-df34a2fb88be/E17020000_SW_Han_Solo_MN_18_INST.pdf",
+  "preferred_text_char_count": 11035,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/star_wars_solo.txt",
+  "preferred_text_sha256": "e081f4fd5fb41493b10c30d9eb1195858a6f4a8b597c1c435bf2398e56b2b34f",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 11035,
+  "text_path": "server/games/monopoly/manual_rules/extracted/star_wars_solo.txt",
+  "text_sha256": "e081f4fd5fb41493b10c30d9eb1195858a6f4a8b597c1c435bf2398e56b2b34f",
+  "zlib_limit_used": 120000000
+}

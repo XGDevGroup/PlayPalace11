@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-f4817",
+  "board_id": "junior_super_mario",
+  "extraction_mode": "pypdf",
+  "family": "junior",
+  "filename": "F48170000_INST_MN_Jr_SuperMario_I.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-junior-super-mario-edition-board-game-ages-5-explore-the-mushroom-kingdom-as-mario-peach-yoshi-or-luigi",
+  "page_count": 2,
+  "pdf_sha256": "ca71f0c31f8f31cfedecb59aacbf6194e506cf9da022579538a2b9213d950083",
+  "pdf_size_bytes": 93910302,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/5b7fac09-cdf9-4f63-9efe-9483c26b33a1/F48170000_INST_MN_Jr_SuperMario_I.pdf",
+  "preferred_text_char_count": 10672,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/junior_super_mario.txt",
+  "preferred_text_sha256": "8ee72fa2a1d0079a745b46ef2fbff0a9341b99248df70c90006bb0d026c14983",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 10672,
+  "text_path": "server/games/monopoly/manual_rules/extracted/junior_super_mario.txt",
+  "text_sha256": "8ee72fa2a1d0079a745b46ef2fbff0a9341b99248df70c90006bb0d026c14983",
+  "zlib_limit_used": 120000000
+}

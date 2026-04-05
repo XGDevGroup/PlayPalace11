@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-e8194",
+  "board_id": "stranger_things_collectors",
+  "extraction_mode": "pypdf",
+  "family": "stranger",
+  "filename": "E81940000_413781_MN_STCE_F19_INST.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-stranger-things-collectors-edition-board-game",
+  "page_count": 2,
+  "pdf_sha256": "91d01ecdc9541f9616ddca5ee9e3d1645845b364d2e028bbffda0d2169ed67ec",
+  "pdf_size_bytes": 65969567,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/c53b6dae-cd0c-49c3-a6f0-a542db281662/E81940000_413781_MN_STCE_F19_INST.pdf",
+  "preferred_text_char_count": 10217,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/stranger_things_collectors.txt",
+  "preferred_text_sha256": "c3a2572da46d64bb672ec618a4ca2298264680ccf00303ad096ec38c63be2863",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 10217,
+  "text_path": "server/games/monopoly/manual_rules/extracted/stranger_things_collectors.txt",
+  "text_sha256": "c3a2572da46d64bb672ec618a4ca2298264680ccf00303ad096ec38c63be2863",
+  "zlib_limit_used": 120000000
+}

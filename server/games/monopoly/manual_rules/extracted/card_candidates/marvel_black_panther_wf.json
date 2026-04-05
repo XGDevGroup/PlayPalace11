@@ -1,0 +1,214 @@
+{
+  "board_id": "marvel_black_panther_wf",
+  "candidate_lines": [
+    {
+      "line": "pay the Bank the cost on the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If you owe Vibranium and can’t pay, try",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "facedown, and collect the mortgage value",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "To repay a mortgage, pay the unmortgage",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Get Out of Jail Free cards, and any other cards",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Return all your properties to the Bank.",
+      "tags": []
+    },
+    {
+      "line": "Return any Get Out of Jail Free cards and any",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "(pay the Bank the unmortgage",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Always auction when someone doesn’t want to take control of the property they’ve landed on.",
+      "tags": []
+    },
+    {
+      "line": "Move around the board taking control of as",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Vibranium you’ll be able to collect from other",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Move your token clockwise that",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay 1 Vibranium at the start of your next turn,",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "then roll and move as normal.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Use a Get Out of Jail Free card at the start of your",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "deck, then roll and move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Use the roll to move, and that’s the end of your turn.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "roll a 6 by your third turn in Jail, pay 1 Vibranium,",
+      "tags": [
+        "pay",
+        "jail"
+      ]
+    },
+    {
+      "line": "and use your last roll to move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "GO space, collect 4 Vibranium",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "spaces, you may move to any",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "If you pass GO, collect 4",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "don’t want to move at all, you",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Move your token to the In Jail space",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "Do not collect 4 Vibranium",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "You can still collect rent, bid during",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "spaces, take the top card from",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "you must take control of it or auction it.",
+      "tags": []
+    },
+    {
+      "line": "Want to take control of it?",
+      "tags": []
+    },
+    {
+      "line": "Pay the price on the board space, and take",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Don’t want to take control of it?",
+      "tags": []
+    },
+    {
+      "line": "If they do, you must pay.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If they don’t ask before the next player rolls the die, you don’t have to pay!",
+      "tags": [
+        "pay"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/marvel_black_panther_wf.txt"
+}

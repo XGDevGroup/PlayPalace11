@@ -1,0 +1,1278 @@
+{
+  "board_id": "jurassic_park",
+  "anchor_edition_id": "monopoly-f1662",
+  "board": {
+    "note": "Property names use classic Monopoly placeholders. Actual Jurassic Park board space names require Title Deed card photos to transcribe accurately.",
+    "spaces": [
+      {
+        "position": 0,
+        "space_id": "go",
+        "name": "GO",
+        "kind": "start",
+        "subtype": "",
+        "price": 0,
+        "rent": 0,
+        "color_group": "",
+        "house_cost": 0,
+        "fence_cost": 0,
+        "repair_cost": 0,
+        "rents": [],
+        "fenced_rent": 0
+      },
+      {
+        "position": 1,
+        "space_id": "mediterranean_avenue",
+        "name": "Mediterranean Avenue",
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 60,
+        "rent": 2,
+        "color_group": "brown",
+        "house_cost": 0,
+        "fence_cost": 50,
+        "repair_cost": 25,
+        "rents": [2, 10],
+        "fenced_rent": 10
+      },
+      {
+        "position": 2,
+        "space_id": "community_chest_1",
+        "name": "Cold Storage",
+        "kind": "community_chest",
+        "subtype": "",
+        "price": 0,
+        "rent": 0,
+        "color_group": "",
+        "house_cost": 0,
+        "fence_cost": 0,
+        "repair_cost": 0,
+        "rents": [],
+        "fenced_rent": 0
+      },
+      {
+        "position": 3,
+        "space_id": "baltic_avenue",
+        "name": "Baltic Avenue",
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 60,
+        "rent": 4,
+        "color_group": "brown",
+        "house_cost": 0,
+        "fence_cost": 50,
+        "repair_cost": 25,
+        "rents": [4, 20],
+        "fenced_rent": 20
+      },
+      {
+        "position": 4,
+        "space_id": "security_breach",
+        "name": "Security Breach",
+        "kind": "penalty",
+        "subtype": "",
+        "price": 0,
+        "rent": 0,
+        "color_group": "",
+        "house_cost": 0,
+        "fence_cost": 0,
+        "repair_cost": 0,
+        "rents": [],
+        "fenced_rent": 0,
+        "penalty_amount": 200
+      },
+      {
+        "position": 5,
+        "space_id": "park_road_1",
+        "name": "Park Road",
+        "kind": "property",
+        "subtype": "park_road",
+        "price": 200,
+        "rent": 25,
+        "color_group": "park_road",
+        "house_cost": 0,
+        "fence_cost": 0,
+        "repair_cost": 100,
+        "rents": [25, 50, 100, 200],
+        "fenced_rent": 0
+      },
+      {
+        "position": 6,
+        "space_id": "oriental_avenue",
+        "name": "Oriental Avenue",
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 100,
+        "rent": 6,
+        "color_group": "light_blue",
+        "house_cost": 0,
+        "fence_cost": 50,
+        "repair_cost": 50,
+        "rents": [6, 30],
+        "fenced_rent": 30
+      },
+      {
+        "position": 7,
+        "space_id": "chance_1",
+        "name": "Impact Tremor",
+        "kind": "chance",
+        "subtype": "",
+        "price": 0,
+        "rent": 0,
+        "color_group": "",
+        "house_cost": 0,
+        "fence_cost": 0,
+        "repair_cost": 0,
+        "rents": [],
+        "fenced_rent": 0
+      },
+      {
+        "position": 8,
+        "space_id": "vermont_avenue",
+        "name": "Vermont Avenue",
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 100,
+        "rent": 6,
+        "color_group": "light_blue",
+        "house_cost": 0,
+        "fence_cost": 50,
+        "repair_cost": 50,
+        "rents": [6, 30],
+        "fenced_rent": 30
+      },
+      {
+        "position": 9,
+        "space_id": "connecticut_avenue",
+        "name": "Connecticut Avenue",
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 120,
+        "rent": 8,
+        "color_group": "light_blue",
+        "house_cost": 0,
+        "fence_cost": 50,
+        "repair_cost": 50,
+        "rents": [8, 40],
+        "fenced_rent": 40
+      },
+      {
+        "position": 10,
+        "space_id": "jail",
+        "name": "Jail / Just Visiting",
+        "kind": "jail",
+        "subtype": "",
+        "price": 0,
+        "rent": 0,
+        "color_group": "",
+        "house_cost": 0,
+        "fence_cost": 0,
+        "repair_cost": 0,
+        "rents": [],
+        "fenced_rent": 0
+      },
+      {
+        "position": 11,
+        "space_id": "st_charles_place",
+        "name": "St. Charles Place",
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 140,
+        "rent": 10,
+        "color_group": "pink",
+        "house_cost": 0,
+        "fence_cost": 100,
+        "repair_cost": 70,
+        "rents": [10, 50],
+        "fenced_rent": 50
+      },
+      {
+        "position": 12,
+        "space_id": "control_room",
+        "name": "Control Room",
+        "kind": "property",
+        "subtype": "utility",
+        "price": 150,
+        "rent": 0,
+        "color_group": "utility",
+        "house_cost": 0,
+        "fence_cost": 0,
+        "repair_cost": 75,
+        "rents": [],
+        "fenced_rent": 0,
+        "utility_multiplier_one": 4,
+        "utility_multiplier_both": 10
+      },
+      {
+        "position": 13,
+        "space_id": "states_avenue",
+        "name": "States Avenue",
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 140,
+        "rent": 10,
+        "color_group": "pink",
+        "house_cost": 0,
+        "fence_cost": 100,
+        "repair_cost": 70,
+        "rents": [10, 50],
+        "fenced_rent": 50
+      },
+      {
+        "position": 14,
+        "space_id": "virginia_avenue",
+        "name": "Virginia Avenue",
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 160,
+        "rent": 12,
+        "color_group": "pink",
+        "house_cost": 0,
+        "fence_cost": 100,
+        "repair_cost": 80,
+        "rents": [12, 60],
+        "fenced_rent": 60
+      },
+      {
+        "position": 15,
+        "space_id": "park_road_2",
+        "name": "Park Road",
+        "kind": "property",
+        "subtype": "park_road",
+        "price": 200,
+        "rent": 25,
+        "color_group": "park_road",
+        "house_cost": 0,
+        "fence_cost": 0,
+        "repair_cost": 100,
+        "rents": [25, 50, 100, 200],
+        "fenced_rent": 0
+      },
+      {
+        "position": 16,
+        "space_id": "st_james_place",
+        "name": "St. James Place",
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 180,
+        "rent": 14,
+        "color_group": "orange",
+        "house_cost": 0,
+        "fence_cost": 100,
+        "repair_cost": 90,
+        "rents": [14, 70],
+        "fenced_rent": 70
+      },
+      {
+        "position": 17,
+        "space_id": "community_chest_2",
+        "name": "Cold Storage",
+        "kind": "community_chest",
+        "subtype": "",
+        "price": 0,
+        "rent": 0,
+        "color_group": "",
+        "house_cost": 0,
+        "fence_cost": 0,
+        "repair_cost": 0,
+        "rents": [],
+        "fenced_rent": 0
+      },
+      {
+        "position": 18,
+        "space_id": "tennessee_avenue",
+        "name": "Tennessee Avenue",
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 180,
+        "rent": 14,
+        "color_group": "orange",
+        "house_cost": 0,
+        "fence_cost": 100,
+        "repair_cost": 90,
+        "rents": [14, 70],
+        "fenced_rent": 70
+      },
+      {
+        "position": 19,
+        "space_id": "new_york_avenue",
+        "name": "New York Avenue",
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 200,
+        "rent": 16,
+        "color_group": "orange",
+        "house_cost": 0,
+        "fence_cost": 100,
+        "repair_cost": 100,
+        "rents": [16, 80],
+        "fenced_rent": 80
+      },
+      {
+        "position": 20,
+        "space_id": "free_parking",
+        "name": "Free Parking",
+        "kind": "free_parking",
+        "subtype": "",
+        "price": 0,
+        "rent": 0,
+        "color_group": "",
+        "house_cost": 0,
+        "fence_cost": 0,
+        "repair_cost": 0,
+        "rents": [],
+        "fenced_rent": 0
+      },
+      {
+        "position": 21,
+        "space_id": "kentucky_avenue",
+        "name": "Kentucky Avenue",
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 220,
+        "rent": 18,
+        "color_group": "red",
+        "house_cost": 0,
+        "fence_cost": 150,
+        "repair_cost": 110,
+        "rents": [18, 90],
+        "fenced_rent": 90
+      },
+      {
+        "position": 22,
+        "space_id": "chance_2",
+        "name": "Impact Tremor",
+        "kind": "chance",
+        "subtype": "",
+        "price": 0,
+        "rent": 0,
+        "color_group": "",
+        "house_cost": 0,
+        "fence_cost": 0,
+        "repair_cost": 0,
+        "rents": [],
+        "fenced_rent": 0
+      },
+      {
+        "position": 23,
+        "space_id": "indiana_avenue",
+        "name": "Indiana Avenue",
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 220,
+        "rent": 18,
+        "color_group": "red",
+        "house_cost": 0,
+        "fence_cost": 150,
+        "repair_cost": 110,
+        "rents": [18, 90],
+        "fenced_rent": 90
+      },
+      {
+        "position": 24,
+        "space_id": "illinois_avenue",
+        "name": "Illinois Avenue",
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 240,
+        "rent": 20,
+        "color_group": "red",
+        "house_cost": 0,
+        "fence_cost": 150,
+        "repair_cost": 120,
+        "rents": [20, 100],
+        "fenced_rent": 100
+      },
+      {
+        "position": 25,
+        "space_id": "park_road_3",
+        "name": "Park Road",
+        "kind": "property",
+        "subtype": "park_road",
+        "price": 200,
+        "rent": 25,
+        "color_group": "park_road",
+        "house_cost": 0,
+        "fence_cost": 0,
+        "repair_cost": 100,
+        "rents": [25, 50, 100, 200],
+        "fenced_rent": 0
+      },
+      {
+        "position": 26,
+        "space_id": "atlantic_avenue",
+        "name": "Atlantic Avenue",
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 260,
+        "rent": 22,
+        "color_group": "yellow",
+        "house_cost": 0,
+        "fence_cost": 150,
+        "repair_cost": 130,
+        "rents": [22, 110],
+        "fenced_rent": 110
+      },
+      {
+        "position": 27,
+        "space_id": "ventnor_avenue",
+        "name": "Ventnor Avenue",
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 260,
+        "rent": 22,
+        "color_group": "yellow",
+        "house_cost": 0,
+        "fence_cost": 150,
+        "repair_cost": 130,
+        "rents": [22, 110],
+        "fenced_rent": 110
+      },
+      {
+        "position": 28,
+        "space_id": "maintenance_shed",
+        "name": "Maintenance Shed",
+        "kind": "property",
+        "subtype": "utility",
+        "price": 150,
+        "rent": 0,
+        "color_group": "utility",
+        "house_cost": 0,
+        "fence_cost": 0,
+        "repair_cost": 75,
+        "rents": [],
+        "fenced_rent": 0,
+        "utility_multiplier_one": 4,
+        "utility_multiplier_both": 10
+      },
+      {
+        "position": 29,
+        "space_id": "marvin_gardens",
+        "name": "Marvin Gardens",
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 280,
+        "rent": 24,
+        "color_group": "yellow",
+        "house_cost": 0,
+        "fence_cost": 150,
+        "repair_cost": 140,
+        "rents": [24, 120],
+        "fenced_rent": 120
+      },
+      {
+        "position": 30,
+        "space_id": "go_to_jail",
+        "name": "Go to Jail",
+        "kind": "go_to_jail",
+        "subtype": "",
+        "price": 0,
+        "rent": 0,
+        "color_group": "",
+        "house_cost": 0,
+        "fence_cost": 0,
+        "repair_cost": 0,
+        "rents": [],
+        "fenced_rent": 0
+      },
+      {
+        "position": 31,
+        "space_id": "pacific_avenue",
+        "name": "Pacific Avenue",
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 300,
+        "rent": 26,
+        "color_group": "green",
+        "house_cost": 0,
+        "fence_cost": 200,
+        "repair_cost": 150,
+        "rents": [26, 130],
+        "fenced_rent": 130
+      },
+      {
+        "position": 32,
+        "space_id": "north_carolina_avenue",
+        "name": "North Carolina Avenue",
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 300,
+        "rent": 26,
+        "color_group": "green",
+        "house_cost": 0,
+        "fence_cost": 200,
+        "repair_cost": 150,
+        "rents": [26, 130],
+        "fenced_rent": 130
+      },
+      {
+        "position": 33,
+        "space_id": "community_chest_3",
+        "name": "Cold Storage",
+        "kind": "community_chest",
+        "subtype": "",
+        "price": 0,
+        "rent": 0,
+        "color_group": "",
+        "house_cost": 0,
+        "fence_cost": 0,
+        "repair_cost": 0,
+        "rents": [],
+        "fenced_rent": 0
+      },
+      {
+        "position": 34,
+        "space_id": "pennsylvania_avenue",
+        "name": "Pennsylvania Avenue",
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 320,
+        "rent": 28,
+        "color_group": "green",
+        "house_cost": 0,
+        "fence_cost": 200,
+        "repair_cost": 160,
+        "rents": [28, 150],
+        "fenced_rent": 150
+      },
+      {
+        "position": 35,
+        "space_id": "park_road_4",
+        "name": "Park Road",
+        "kind": "property",
+        "subtype": "park_road",
+        "price": 200,
+        "rent": 25,
+        "color_group": "park_road",
+        "house_cost": 0,
+        "fence_cost": 0,
+        "repair_cost": 100,
+        "rents": [25, 50, 100, 200],
+        "fenced_rent": 0
+      },
+      {
+        "position": 36,
+        "space_id": "chance_3",
+        "name": "Impact Tremor",
+        "kind": "chance",
+        "subtype": "",
+        "price": 0,
+        "rent": 0,
+        "color_group": "",
+        "house_cost": 0,
+        "fence_cost": 0,
+        "repair_cost": 0,
+        "rents": [],
+        "fenced_rent": 0
+      },
+      {
+        "position": 37,
+        "space_id": "park_place",
+        "name": "Park Place",
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 350,
+        "rent": 35,
+        "color_group": "dark_blue",
+        "house_cost": 0,
+        "fence_cost": 200,
+        "repair_cost": 175,
+        "rents": [35, 175],
+        "fenced_rent": 175
+      },
+      {
+        "position": 38,
+        "space_id": "kitchen_attack",
+        "name": "Kitchen Attack",
+        "kind": "penalty",
+        "subtype": "",
+        "price": 0,
+        "rent": 0,
+        "color_group": "",
+        "house_cost": 0,
+        "fence_cost": 0,
+        "repair_cost": 0,
+        "rents": [],
+        "fenced_rent": 0,
+        "penalty_amount": 100
+      },
+      {
+        "position": 39,
+        "space_id": "boardwalk",
+        "name": "Boardwalk",
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 400,
+        "rent": 50,
+        "color_group": "dark_blue",
+        "house_cost": 0,
+        "fence_cost": 200,
+        "repair_cost": 200,
+        "rents": [50, 200],
+        "fenced_rent": 200
+      }
+    ]
+  },
+  "economy": {
+    "starting_cash": 1500,
+    "pass_go_cash_theme": 200,
+    "pass_go_cash_roar": 100,
+    "jail_bail": 50,
+    "trex_fee": 50,
+    "auction_minimum": 10,
+    "total_fences": 24,
+    "properties": {
+      "mediterranean_avenue": {
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 60,
+        "rent": 2,
+        "fence_cost": 50,
+        "repair_cost": 25,
+        "rents": [2, 10],
+        "fenced_rent": 10,
+        "color_group": "brown"
+      },
+      "baltic_avenue": {
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 60,
+        "rent": 4,
+        "fence_cost": 50,
+        "repair_cost": 25,
+        "rents": [4, 20],
+        "fenced_rent": 20,
+        "color_group": "brown"
+      },
+      "park_road_1": {
+        "kind": "property",
+        "subtype": "park_road",
+        "price": 200,
+        "rent": 25,
+        "fence_cost": 0,
+        "repair_cost": 100,
+        "rents": [25, 50, 100, 200],
+        "fenced_rent": 0,
+        "color_group": "park_road"
+      },
+      "oriental_avenue": {
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 100,
+        "rent": 6,
+        "fence_cost": 50,
+        "repair_cost": 50,
+        "rents": [6, 30],
+        "fenced_rent": 30,
+        "color_group": "light_blue"
+      },
+      "vermont_avenue": {
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 100,
+        "rent": 6,
+        "fence_cost": 50,
+        "repair_cost": 50,
+        "rents": [6, 30],
+        "fenced_rent": 30,
+        "color_group": "light_blue"
+      },
+      "connecticut_avenue": {
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 120,
+        "rent": 8,
+        "fence_cost": 50,
+        "repair_cost": 50,
+        "rents": [8, 40],
+        "fenced_rent": 40,
+        "color_group": "light_blue"
+      },
+      "st_charles_place": {
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 140,
+        "rent": 10,
+        "fence_cost": 100,
+        "repair_cost": 70,
+        "rents": [10, 50],
+        "fenced_rent": 50,
+        "color_group": "pink"
+      },
+      "control_room": {
+        "kind": "property",
+        "subtype": "utility",
+        "price": 150,
+        "rent": 0,
+        "fence_cost": 0,
+        "repair_cost": 75,
+        "rents": [],
+        "fenced_rent": 0,
+        "color_group": "utility",
+        "utility_multiplier_one": 4,
+        "utility_multiplier_both": 10
+      },
+      "states_avenue": {
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 140,
+        "rent": 10,
+        "fence_cost": 100,
+        "repair_cost": 70,
+        "rents": [10, 50],
+        "fenced_rent": 50,
+        "color_group": "pink"
+      },
+      "virginia_avenue": {
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 160,
+        "rent": 12,
+        "fence_cost": 100,
+        "repair_cost": 80,
+        "rents": [12, 60],
+        "fenced_rent": 60,
+        "color_group": "pink"
+      },
+      "park_road_2": {
+        "kind": "property",
+        "subtype": "park_road",
+        "price": 200,
+        "rent": 25,
+        "fence_cost": 0,
+        "repair_cost": 100,
+        "rents": [25, 50, 100, 200],
+        "fenced_rent": 0,
+        "color_group": "park_road"
+      },
+      "st_james_place": {
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 180,
+        "rent": 14,
+        "fence_cost": 100,
+        "repair_cost": 90,
+        "rents": [14, 70],
+        "fenced_rent": 70,
+        "color_group": "orange"
+      },
+      "tennessee_avenue": {
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 180,
+        "rent": 14,
+        "fence_cost": 100,
+        "repair_cost": 90,
+        "rents": [14, 70],
+        "fenced_rent": 70,
+        "color_group": "orange"
+      },
+      "new_york_avenue": {
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 200,
+        "rent": 16,
+        "fence_cost": 100,
+        "repair_cost": 100,
+        "rents": [16, 80],
+        "fenced_rent": 80,
+        "color_group": "orange"
+      },
+      "kentucky_avenue": {
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 220,
+        "rent": 18,
+        "fence_cost": 150,
+        "repair_cost": 110,
+        "rents": [18, 90],
+        "fenced_rent": 90,
+        "color_group": "red"
+      },
+      "indiana_avenue": {
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 220,
+        "rent": 18,
+        "fence_cost": 150,
+        "repair_cost": 110,
+        "rents": [18, 90],
+        "fenced_rent": 90,
+        "color_group": "red"
+      },
+      "illinois_avenue": {
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 240,
+        "rent": 20,
+        "fence_cost": 150,
+        "repair_cost": 120,
+        "rents": [20, 100],
+        "fenced_rent": 100,
+        "color_group": "red"
+      },
+      "park_road_3": {
+        "kind": "property",
+        "subtype": "park_road",
+        "price": 200,
+        "rent": 25,
+        "fence_cost": 0,
+        "repair_cost": 100,
+        "rents": [25, 50, 100, 200],
+        "fenced_rent": 0,
+        "color_group": "park_road"
+      },
+      "atlantic_avenue": {
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 260,
+        "rent": 22,
+        "fence_cost": 150,
+        "repair_cost": 130,
+        "rents": [22, 110],
+        "fenced_rent": 110,
+        "color_group": "yellow"
+      },
+      "ventnor_avenue": {
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 260,
+        "rent": 22,
+        "fence_cost": 150,
+        "repair_cost": 130,
+        "rents": [22, 110],
+        "fenced_rent": 110,
+        "color_group": "yellow"
+      },
+      "maintenance_shed": {
+        "kind": "property",
+        "subtype": "utility",
+        "price": 150,
+        "rent": 0,
+        "fence_cost": 0,
+        "repair_cost": 75,
+        "rents": [],
+        "fenced_rent": 0,
+        "color_group": "utility",
+        "utility_multiplier_one": 4,
+        "utility_multiplier_both": 10
+      },
+      "marvin_gardens": {
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 280,
+        "rent": 24,
+        "fence_cost": 150,
+        "repair_cost": 140,
+        "rents": [24, 120],
+        "fenced_rent": 120,
+        "color_group": "yellow"
+      },
+      "pacific_avenue": {
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 300,
+        "rent": 26,
+        "fence_cost": 200,
+        "repair_cost": 150,
+        "rents": [26, 130],
+        "fenced_rent": 130,
+        "color_group": "green"
+      },
+      "north_carolina_avenue": {
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 300,
+        "rent": 26,
+        "fence_cost": 200,
+        "repair_cost": 150,
+        "rents": [26, 130],
+        "fenced_rent": 130,
+        "color_group": "green"
+      },
+      "pennsylvania_avenue": {
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 320,
+        "rent": 28,
+        "fence_cost": 200,
+        "repair_cost": 160,
+        "rents": [28, 150],
+        "fenced_rent": 150,
+        "color_group": "green"
+      },
+      "park_road_4": {
+        "kind": "property",
+        "subtype": "park_road",
+        "price": 200,
+        "rent": 25,
+        "fence_cost": 0,
+        "repair_cost": 100,
+        "rents": [25, 50, 100, 200],
+        "fenced_rent": 0,
+        "color_group": "park_road"
+      },
+      "park_place": {
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 350,
+        "rent": 35,
+        "fence_cost": 200,
+        "repair_cost": 175,
+        "rents": [35, 175],
+        "fenced_rent": 175,
+        "color_group": "dark_blue"
+      },
+      "boardwalk": {
+        "kind": "property",
+        "subtype": "dino_paddock",
+        "price": 400,
+        "rent": 50,
+        "fence_cost": 200,
+        "repair_cost": 200,
+        "rents": [50, 200],
+        "fenced_rent": 200,
+        "color_group": "dark_blue"
+      }
+    },
+    "color_groups": {
+      "brown": ["mediterranean_avenue", "baltic_avenue"],
+      "light_blue": ["oriental_avenue", "vermont_avenue", "connecticut_avenue"],
+      "pink": ["st_charles_place", "states_avenue", "virginia_avenue"],
+      "orange": ["st_james_place", "tennessee_avenue", "new_york_avenue"],
+      "red": ["kentucky_avenue", "indiana_avenue", "illinois_avenue"],
+      "yellow": ["atlantic_avenue", "ventnor_avenue", "marvin_gardens"],
+      "green": ["pacific_avenue", "north_carolina_avenue", "pennsylvania_avenue"],
+      "dark_blue": ["park_place", "boardwalk"],
+      "park_road": ["park_road_1", "park_road_2", "park_road_3", "park_road_4"],
+      "utility": ["control_room", "maintenance_shed"]
+    }
+  },
+  "cards": {
+    "chance": [
+      {
+        "id": "advance_to_go",
+        "text_key": "monopoly-jp-card-advance-to-go",
+        "effect": {
+          "type": "move_absolute",
+          "position": 0,
+          "collect_pass_go": true
+        },
+        "text": "Advance to GO. Activate the gate.",
+        "text_note": "Source: Jurassic Park manual, Impact Tremor deck."
+      },
+      {
+        "id": "go_back_three",
+        "text_key": "monopoly-card-go-back-three",
+        "effect": {
+          "type": "move_relative",
+          "steps": -3,
+          "collect_pass_go": false
+        },
+        "text": "Go Back Three Spaces.",
+        "text_note": "Source: canonical card text template."
+      },
+      {
+        "id": "go_to_jail",
+        "text_key": "monopoly-card-go-to-jail",
+        "effect": {
+          "type": "go_to_jail"
+        },
+        "text": "Move your token to the In Jail space immediately. Do not activate the gate for passing GO.",
+        "text_note": "Source: Jurassic Park manual."
+      },
+      {
+        "id": "trex_moves_again",
+        "text_key": "monopoly-jp-card-trex-moves-again",
+        "effect": {
+          "type": "trex_roll",
+          "amber_die": true
+        },
+        "text": "The T. Rex is on the move! Roll the amber die and move the T. Rex again.",
+        "text_note": "Source: Jurassic Park manual mentions cards that move T. Rex."
+      },
+      {
+        "id": "bank_dividend_50",
+        "text_key": "monopoly-card-bank-dividend-50",
+        "effect": {
+          "type": "credit",
+          "amount": 50
+        },
+        "text": "Bank pays you dividend of $50.",
+        "text_note": "Source: canonical card text template."
+      },
+      {
+        "id": "poor_tax_15",
+        "text_key": "monopoly-card-poor-tax-15",
+        "effect": {
+          "type": "debit",
+          "amount": 15
+        },
+        "text": "Pay Poor Tax of $15.",
+        "text_note": "Source: canonical card text template."
+      },
+      {
+        "id": "get_out_of_jail_free_chance",
+        "text_key": "monopoly-card-get-out-of-jail",
+        "effect": {
+          "type": "get_out_of_jail_free",
+          "deck": "chance"
+        },
+        "text": "Get Out of Jail Free. Keep this card until needed or traded.",
+        "text_note": "Source: universal card."
+      }
+    ],
+    "community_chest": [
+      {
+        "id": "bank_error_collect_200",
+        "text_key": "monopoly-card-bank-error-200",
+        "effect": {
+          "type": "credit",
+          "amount": 200
+        },
+        "text": "Bank error in your favor. Collect $200.",
+        "text_note": "Source: canonical card text template."
+      },
+      {
+        "id": "doctor_fee_pay_50",
+        "text_key": "monopoly-card-doctor-fee-50",
+        "effect": {
+          "type": "debit",
+          "amount": 50
+        },
+        "text": "Doctor's fee. Pay $50.",
+        "text_note": "Source: canonical card text template."
+      },
+      {
+        "id": "income_tax_refund_20",
+        "text_key": "monopoly-card-tax-refund-20",
+        "effect": {
+          "type": "credit",
+          "amount": 20
+        },
+        "text": "Income Tax refund. Collect $20.",
+        "text_note": "Source: canonical card text template."
+      },
+      {
+        "id": "go_to_jail",
+        "text_key": "monopoly-card-go-to-jail",
+        "effect": {
+          "type": "go_to_jail"
+        },
+        "text": "Move your token to the In Jail space immediately. Do not activate the gate for passing GO.",
+        "text_note": "Source: Jurassic Park manual."
+      },
+      {
+        "id": "get_out_of_jail_free_cc",
+        "text_key": "monopoly-card-get-out-of-jail",
+        "effect": {
+          "type": "get_out_of_jail_free",
+          "deck": "community_chest"
+        },
+        "text": "Get Out of Jail Free. Keep this card until needed or traded.",
+        "text_note": "Source: universal card."
+      },
+      {
+        "id": "activate_gate",
+        "text_key": "monopoly-jp-card-activate-gate",
+        "effect": {
+          "type": "activate_gate"
+        },
+        "text": "Activate the Jurassic Park gate! Collect $200 or $100 depending on the sound.",
+        "text_note": "Source: Jurassic Park manual mentions cards that activate the gate."
+      }
+    ],
+    "note": "Card decks are incomplete. Full 16-card Cold Storage and 16-card Impact Tremor decks require Title Deed card photos to transcribe accurately. Cards above are confirmed or inferred from the manual text."
+  },
+  "mechanics": {
+    "mode": "jurassic_park_v1",
+    "rule_pack_id": "jurassic_park",
+    "hardware_capability_ids": [
+      "electronic_gate_sound_unit"
+    ],
+    "manual_source": {
+      "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-jurassic-park-edition-board-game-for-kids",
+      "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/370b9e57-3520-43f4-a127-b20dc4e0cf94/F16620000_INST_MN_JP_S21.pdf",
+      "locale": "en-us",
+      "filename": "F16620000_INST_MN_JP_S21.pdf",
+      "source": "catalog_manual_variant"
+    },
+    "manual_extraction": {
+      "status": "seeded_from_extracted_manual_text",
+      "extraction_mode": "pypdf",
+      "manifest_path": "server/games/monopoly/manual_rules/extracted/manifest.json",
+      "text_path": "server/games/monopoly/manual_rules/extracted/jurassic_park.txt",
+      "text_sha256": "cfa62964571b06cd6a990c304153d54ccf8159a73737c872cc8dd283e02ab76c",
+      "text_char_count": 16917,
+      "pdf_sha256": "738d5adc3ebe0a3cd36c3ed6983c9c1547edf37c19246f43555056d17bcf201c",
+      "pdf_size_bytes": 56741135,
+      "page_count": 2,
+      "preferred_text_source": "pypdf",
+      "raw_text_path": "server/games/monopoly/manual_rules/extracted/jurassic_park.txt",
+      "raw_text_sha256": "cfa62964571b06cd6a990c304153d54ccf8159a73737c872cc8dd283e02ab76c",
+      "raw_text_char_count": 16917,
+      "ocr_text_path": null,
+      "ocr_text_sha256": null,
+      "ocr_text_char_count": null
+    },
+    "decks": {
+      "chance": "Impact Tremor",
+      "community_chest": "Cold Storage"
+    },
+    "trex": {
+      "start_position": 20,
+      "fee_when_passed_or_landed": 50,
+      "damages_unowned": true,
+      "damages_owned_no_fence": true,
+      "destroys_fence_on_fenced": true,
+      "blocked_by_complete_set": true,
+      "no_fee_while_in_jail": true,
+      "does_not_follow_space_rules": true
+    },
+    "fences": {
+      "total_supply": 24,
+      "max_per_paddock": 1,
+      "allowed_on_park_roads": false,
+      "allowed_on_utilities": false,
+      "requires_full_color_set": false,
+      "requires_owning_one_in_set": true,
+      "sell_back_rate": 0.5,
+      "stay_on_trade": true,
+      "cannot_trade_separately": true
+    },
+    "gate": {
+      "theme_song_payout": 200,
+      "roar_payout": 100,
+      "no_sound_fallback": "amber_die",
+      "amber_die_theme_range": [1, 2, 3],
+      "amber_die_roar_range": [4, 5, 6]
+    },
+    "complete_sets": {
+      "immune_to_trex": true,
+      "auto_repair_on_completion": true,
+      "does_not_increase_rent": true
+    },
+    "mortgages": {
+      "enabled": false,
+      "note": "Mortgages are not mentioned in the Jurassic Park rulebook. Players raise money by selling fences back to the Bank for half cost."
+    },
+    "turn_order": [
+      "repair_phase",
+      "build_fence_phase",
+      "roll_dice",
+      "move_trex",
+      "check_trex_player_fee",
+      "check_trex_property_damage",
+      "move_player",
+      "resolve_space",
+      "doubles_check"
+    ],
+    "tokens": [
+      "Dr. Alan Grant",
+      "Dr. Ian Malcolm",
+      "Dr. Ellie Sattler",
+      "John Hammond",
+      "Lex Murphy",
+      "Tim Murphy"
+    ]
+  },
+  "win_condition": {
+    "type": "last_standing_or_all_damaged",
+    "last_standing": "Last player with money wins.",
+    "all_damaged": "If all properties are damaged, no one wins."
+  },
+  "citations": [
+    {
+      "rule_path": "board.spaces",
+      "edition_id": "monopoly-f1662",
+      "page_ref": "p.2",
+      "confidence": "medium",
+      "note": "Property names are classic placeholders; actual JP board names need Title Deed photos."
+    },
+    {
+      "rule_path": "economy",
+      "edition_id": "monopoly-f1662",
+      "page_ref": "p.1-2",
+      "confidence": "high"
+    },
+    {
+      "rule_path": "mechanics.trex",
+      "edition_id": "monopoly-f1662",
+      "page_ref": "p.1",
+      "confidence": "high"
+    },
+    {
+      "rule_path": "mechanics.fences",
+      "edition_id": "monopoly-f1662",
+      "page_ref": "p.1",
+      "confidence": "high"
+    },
+    {
+      "rule_path": "mechanics.gate",
+      "edition_id": "monopoly-f1662",
+      "page_ref": "p.2",
+      "confidence": "high"
+    },
+    {
+      "rule_path": "mechanics.complete_sets",
+      "edition_id": "monopoly-f1662",
+      "page_ref": "p.1-2",
+      "confidence": "high"
+    },
+    {
+      "rule_path": "mechanics.mortgages",
+      "edition_id": "monopoly-f1662",
+      "page_ref": "p.1",
+      "confidence": "high",
+      "note": "Manual does not mention mortgages; only fence sell-back for raising money."
+    },
+    {
+      "rule_path": "win_condition",
+      "edition_id": "monopoly-f1662",
+      "page_ref": "p.1",
+      "confidence": "high"
+    },
+    {
+      "rule_path": "cards",
+      "edition_id": "monopoly-f1662",
+      "page_ref": "p.1-2",
+      "confidence": "medium",
+      "note": "Card decks are incomplete; only confirmed/inferred cards included."
+    },
+    {
+      "rule_path": "mechanics.manual_source",
+      "edition_id": "monopoly-f1662",
+      "page_ref": "catalog:en-us",
+      "confidence": "high"
+    },
+    {
+      "rule_path": "mechanics.manual_extraction",
+      "edition_id": "monopoly-f1662",
+      "page_ref": "manual-extract:pypdf",
+      "confidence": "high"
+    },
+    {
+      "rule_path": "board.spaces.chance.name",
+      "edition_id": "monopoly-f1662",
+      "page_ref": "manual-extract:action-space-labels",
+      "confidence": "high"
+    },
+    {
+      "rule_path": "board.spaces.community_chest.name",
+      "edition_id": "monopoly-f1662",
+      "page_ref": "manual-extract:action-space-labels",
+      "confidence": "high"
+    },
+    {
+      "rule_path": "board.spaces.penalty.name",
+      "edition_id": "monopoly-f1662",
+      "page_ref": "manual-extract:action-space-labels",
+      "confidence": "high"
+    },
+    {
+      "rule_path": "mechanics.decks",
+      "edition_id": "monopoly-f1662",
+      "page_ref": "manual-extract:deck-labels",
+      "confidence": "high"
+    }
+  ]
+}

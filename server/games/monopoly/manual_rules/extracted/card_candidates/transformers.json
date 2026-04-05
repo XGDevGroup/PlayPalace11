@@ -1,0 +1,227 @@
+{
+  "board_id": "transformers",
+  "candidate_lines": [
+    {
+      "line": "in a color set, you can pay to upgrade to an",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the Energon Bunker cost on the Title Deed card,",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "return all 4 Energon Cubes to the Bank, and put an",
+      "tags": []
+    },
+    {
+      "line": "of power and any Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "(pay the Bank the restore power cost).",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "(just pay the Bank 10% of the power-drained",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Return all your properties to the Bank.",
+      "tags": []
+    },
+    {
+      "line": "Return any Get Out of Jail Free cards to the bottom",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "property, and/or Get Out of Jail Free cards.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Restore power to the property (pay",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "power (just pay the Bank 10% of the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the Bank the Energon Cube cost on the Title",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If you owe money and can’t pay, try to raise money by",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Deed card facedown, and collect the power-drained",
+      "tags": [
+        "mentions_card",
+        "collect"
+      ]
+    },
+    {
+      "line": "To restore power to a property, pay the restore",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Move your token to the In Jail",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "collect a200 for passing GO.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "still collect energy fees, bid",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "collect money from the Bank,",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "the GO space, collect",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay b50 at the start of your next turn, then roll and",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Use a Get Out of Jail Free card at the start of",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "deck, then roll and move.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Use the roll to move, and that’s the end of your turn.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "roll doubles by your third turn in Jail, pay a50, then roll",
+      "tags": [
+        "pay",
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay the Bank the amount",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Pay the price on the board space, and take the Title Deed card from the Bank.",
+      "tags": [
+        "mentions_card",
+        "pay"
+      ]
+    },
+    {
+      "line": "Move your token clockwise that number of spaces.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "When you land on a property that someone else owns, the owner must ask you to pay the energy fee.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If they don’t ask before the next player rolls the dice, you don’t have to pay!",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "and take another turn.",
+      "tags": []
+    },
+    {
+      "line": "row, you must immediately go to Jail!",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Take the top card from the",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Then do what it says at the bottom of the card, and return",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "collect even more fees!",
+      "tags": [
+        "collect"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/transformers.txt"
+}

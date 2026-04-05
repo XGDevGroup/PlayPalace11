@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-c4550",
+  "board_id": "stranger_things",
+  "extraction_mode": "pypdf",
+  "family": "stranger",
+  "filename": "C45500000_ST_Monopoly_17_INST.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-stranger-things-edition",
+  "page_count": 2,
+  "pdf_sha256": "b9cfb79f7c53ed4d5d84c99053765d2b2563dd09de09914271936489724d6164",
+  "pdf_size_bytes": 5924630,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/4232cb02-58bd-4fe4-a1d3-845f52f60dbb/C45500000_ST_Monopoly_17_INST.pdf",
+  "preferred_text_char_count": 10537,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/stranger_things.txt",
+  "preferred_text_sha256": "c1d198c443f6553268768e4913d2892ffacb5332e496effc2c7655d97c59b05f",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 10537,
+  "text_path": "server/games/monopoly/manual_rules/extracted/stranger_things.txt",
+  "text_sha256": "c1d198c443f6553268768e4913d2892ffacb5332e496effc2c7655d97c59b05f",
+  "zlib_limit_used": 120000000
+}

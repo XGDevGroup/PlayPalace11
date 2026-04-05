@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-f5267",
+  "board_id": "disney_mickey_friends",
+  "extraction_mode": "pypdf",
+  "family": "disney",
+  "filename": "F5267UK10_INST_MONOPOLY_MICKEY_MOUSE_COLLECTORS_F22_FAR.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-disney-mickey-and-friends-edition-board-game-ages-8-for-disney-fans-exclusive-disney-pins",
+  "page_count": 11,
+  "pdf_sha256": "24009d89884b77646419c0a960c0c1802696ea586d3d282329484f23d227f5fd",
+  "pdf_size_bytes": 31348246,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/e9380710-5880-48d1-bbd1-0f755b083574/F5267UK10_INST_MONOPOLY_MICKEY_MOUSE_COLLECTORS_F22_FAR.pdf",
+  "preferred_text_char_count": 24264,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/disney_mickey_friends.txt",
+  "preferred_text_sha256": "f0ce17a1fb008896f69efd639cdb22762f8b424c2cbf50bd2a17299202a74f2e",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 24264,
+  "text_path": "server/games/monopoly/manual_rules/extracted/disney_mickey_friends.txt",
+  "text_sha256": "f0ce17a1fb008896f69efd639cdb22762f8b424c2cbf50bd2a17299202a74f2e",
+  "zlib_limit_used": 120000000
+}

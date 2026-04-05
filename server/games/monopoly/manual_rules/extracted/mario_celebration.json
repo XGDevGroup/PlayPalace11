@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-e9517",
+  "board_id": "mario_celebration",
+  "extraction_mode": "pypdf",
+  "family": "mario",
+  "filename": "E95170000_INST_MN_SuperMario_F20_P1_FFR.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-super-mario-celebration-edition-board-game-instructions",
+  "page_count": 2,
+  "pdf_sha256": "3f35cdec4bf69cfd5cf99f0033c081c05ef582a5dbdceb64386aef9e326710e9",
+  "pdf_size_bytes": 15156529,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/6583f8cd-113c-461f-9f7f-92ac10c3a579/E95170000_INST_MN_SuperMario_F20_P1_FFR.pdf",
+  "preferred_text_char_count": 12374,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/mario_celebration.txt",
+  "preferred_text_sha256": "73836538dc306644732d4435c5181c1cc55128efa6a9a21a732f44d40a8c5573",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 12374,
+  "text_path": "server/games/monopoly/manual_rules/extracted/mario_celebration.txt",
+  "text_sha256": "73836538dc306644732d4435c5181c1cc55128efa6a9a21a732f44d40a8c5573",
+  "zlib_limit_used": 120000000
+}

@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-e1870",
+  "board_id": "mario_kart",
+  "extraction_mode": "pypdf",
+  "family": "mario",
+  "filename": "E18700000_MN_Gamer_Kart_INST.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/Monopoly-Gamer-Mario-Kart",
+  "page_count": 2,
+  "pdf_sha256": "72ebb15fdd42975e5415020e5ff69b78b9fa2ecf3da1cc26ad6ef08554557138",
+  "pdf_size_bytes": 10421782,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/6fa72e6d-38e2-4036-8cc4-e65aa8e81abc/E18700000_MN_Gamer_Kart_INST.pdf",
+  "preferred_text_char_count": 13853,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/mario_kart.txt",
+  "preferred_text_sha256": "9bad9146f34f43b3f5c035e30028e6ea2615625757ecd44fa583c7b8bed3a459",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 13853,
+  "text_path": "server/games/monopoly/manual_rules/extracted/mario_kart.txt",
+  "text_sha256": "9bad9146f34f43b3f5c035e30028e6ea2615625757ecd44fa583c7b8bed3a459",
+  "zlib_limit_used": 120000000
+}

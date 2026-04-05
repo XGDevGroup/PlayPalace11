@@ -1,0 +1,213 @@
+{
+  "board_id": "star_wars_classic_edition",
+  "candidate_lines": [
+    {
+      "line": "• Try bargaining with the Get Out of Jail Free card, if you have it.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "• Sell them your properties to pay off the debt.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If you still cannot pay, you must give all your properties to the player you owe.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Sell your properties to the Bank to pay off your debt.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If you still cannot pay the Bank…",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Return the Get Out of Jail Free card to the bottom of the Chance pile, if you have it.",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "HOW DO I GET OUT OF JAIL?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "immediately move forward the number",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "get to take another turn.",
+      "tags": []
+    },
+    {
+      "line": "Use the Get Out of Jail Free card at the",
+      "tags": [
+        "mentions_card",
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay a fine of A50 before your turn.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "You may then roll the dice and take",
+      "tags": []
+    },
+    {
+      "line": "turn, you must pay the A50 fine.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "get out of jail immediately and move",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "Move your token to the “In Jail” space",
+      "tags": [
+        "jail",
+        "movement"
+      ]
+    },
+    {
+      "line": "Do not collect A200 for passing",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "You may still collect",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Pay the price on the board space and",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "If another player owns it, pay the RENT amount shown on the space to the owner.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Every time you pass or land on GO, collect A200 from the Bank.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Immediately move to the next unowned property.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Pay the amount shown on the space to the Bank.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Nothing happens here, just take a break!",
+      "tags": []
+    },
+    {
+      "line": "• Take the top Chance card, read it out loud,",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "• Return used cards to the bottom of the pile.",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "Roll both dice and move your ship token that number of spaces",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Always move forward, never backward.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "If you roll a double, move, then roll the dice again, and take another turn.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "If you roll a double three times in the same turn, you must go to jail!",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Force Stealth: Move to any unowned space and purchase this space for free.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "collect A200 for passing GO.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Do not collect A200 for passing GO.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Force Pull: Move any player to one of your owned properties and collect rent.",
+      "tags": [
+        "collect",
+        "movement"
+      ]
+    },
+    {
+      "line": "Force Dash: Move directly to GO and collect A200.",
+      "tags": [
+        "collect",
+        "movement"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/star_wars_classic_edition.txt"
+}

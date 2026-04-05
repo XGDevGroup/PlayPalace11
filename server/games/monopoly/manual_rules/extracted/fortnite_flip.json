@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-f7774",
+  "board_id": "fortnite_flip",
+  "extraction_mode": "pypdf",
+  "family": "fortnite",
+  "filename": "F77740000_INST_MN_Fortnite_Flip_F23.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-flip-edition-fortnite-board-game-monopoly-game-inspired-by-fortnite-ages-13",
+  "page_count": 2,
+  "pdf_sha256": "468f3b1ddf0fb9ac10ffa4bcbc30fb2dbfff181f18930373da3ed3369af6cb85",
+  "pdf_size_bytes": 58788278,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/869cf28f-f23f-4878-9f28-f7d800793b24/F77740000_INST_MN_Fortnite_Flip_F23.pdf",
+  "preferred_text_char_count": 17025,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/fortnite_flip.txt",
+  "preferred_text_sha256": "0cfe5254cd4328704414f3eb8533114e878b186aae0c30d6ccebf4a0c2f22b6d",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 17025,
+  "text_path": "server/games/monopoly/manual_rules/extracted/fortnite_flip.txt",
+  "text_sha256": "0cfe5254cd4328704414f3eb8533114e878b186aae0c30d6ccebf4a0c2f22b6d",
+  "zlib_limit_used": 120000000
+}

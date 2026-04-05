@@ -1,0 +1,202 @@
+{
+  "board_id": "mario_kart",
+  "candidate_lines": [
+    {
+      "line": "Move around the MONOPOLY board as your favorite Nintendo characters!",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "All players who wish to race and can afford to pay the",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Take turns rolling the numbered die starting with the player",
+      "tags": []
+    },
+    {
+      "line": "Turns move to the left.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "All players may take part in the rematch and",
+      "tags": []
+    },
+    {
+      "line": "choose one Character to take your turn with.",
+      "tags": []
+    },
+    {
+      "line": "you must decide whether to pay or roll to get that",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "scoop up Coins as they move",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Pay the price on the space, and",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "take the Title Deed card.",
+      "tags": [
+        "mentions_card"
+      ]
+    },
+    {
+      "line": "that someone else owns, pay",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "in a color set, pay them double",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "you to pay rent before the next",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "you’ll move AND you’ll activate",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "you need to pay rent, you must do so.",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "When you roll Coins, collect 3 Coins from the Bank.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "If you’re Mario and you roll this, collect 3 Coins OR",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "When you roll a Banana, move, and complete the",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "• Move your Character forward the number",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Collect any Coins on the",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "and move forward that many spaces.",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "If you land on or pass GO, collect 2",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "Move your Character Token to the In",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "Coins for passing GO, and do not collect",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "You may not take part in Races while In Jail.",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "You may still collect rent, take part in auctions, and trade.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "How do I get out of Jail?",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Pay 5 Coins to the Bank before you roll the dice for your",
+      "tags": [
+        "pay"
+      ]
+    },
+    {
+      "line": "Then roll both dice, and take your turn as normal.",
+      "tags": []
+    },
+    {
+      "line": "If you get a 6, get out of Jail for",
+      "tags": [
+        "jail"
+      ]
+    },
+    {
+      "line": "Roll both dice, and take your turn as normal.",
+      "tags": []
+    },
+    {
+      "line": "and collect that many Coins from the Bank.",
+      "tags": [
+        "collect"
+      ]
+    },
+    {
+      "line": "You may move to the least expensive",
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "line": "You may drop up to 5 Coins and move",
+      "tags": [
+        "movement"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-27T00:58:06.259458+00:00",
+  "preferred_text_source": "pypdf",
+  "source_text_path": "server/games/monopoly/manual_rules/extracted/mario_kart.txt"
+}

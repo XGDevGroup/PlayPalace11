@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-f5269",
+  "board_id": "transformers_beast_wars",
+  "extraction_mode": "pypdf",
+  "family": "transformers",
+  "filename": "F52690000_INST_Monopoly_Transformers_Collectors_I.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/monopoly-transformers-beast-wars-edition-board-game-for-kids-ages-8-and-up",
+  "page_count": 2,
+  "pdf_sha256": "588e5c371b1715ef521ee0a423e3802ac16c156c221a38d92673917e6f255a39",
+  "pdf_size_bytes": 65757000,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/1e0e3913-e873-4fc3-85e3-f4eca090b968/F52690000_INST_Monopoly_Transformers_Collectors_I.pdf",
+  "preferred_text_char_count": 17844,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/transformers_beast_wars.txt",
+  "preferred_text_sha256": "c952b5f9887dc71bf9fba5684915a1820e2680268f5ac8602aa73d57f8d44d2f",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 17844,
+  "text_path": "server/games/monopoly/manual_rules/extracted/transformers_beast_wars.txt",
+  "text_sha256": "c952b5f9887dc71bf9fba5684915a1820e2680268f5ac8602aa73d57f8d44d2f",
+  "zlib_limit_used": 120000000
+}

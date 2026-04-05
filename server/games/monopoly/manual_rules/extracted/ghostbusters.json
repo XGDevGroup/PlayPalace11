@@ -1,0 +1,21 @@
+{
+  "anchor_edition_id": "monopoly-e9479",
+  "board_id": "ghostbusters",
+  "extraction_mode": "pypdf",
+  "family": "ghostbusters",
+  "filename": "054b25a959a47859f4c94f5818e287ab.pdf",
+  "instruction_url": "https://instructions.hasbro.com/en-us/instruction/Monopoly-Game--Ghostbusters-Edition-for-Kids-8-and-Up",
+  "page_count": 2,
+  "pdf_sha256": "a288a28ff6635361b4f0ab4cb946f19381f7a58b548b0195f5d2dae0c1b3d4ce",
+  "pdf_size_bytes": 12975114,
+  "pdf_url": "https://assets-us-01.kc-usercontent.com:443/500e0a65-283d-00ef-33b2-7f1f20488fe2/38a7046d-b771-49ec-a5c0-a6630fd4601b/054b25a959a47859f4c94f5818e287ab.pdf",
+  "preferred_text_char_count": 12957,
+  "preferred_text_path": "server/games/monopoly/manual_rules/extracted/ghostbusters.txt",
+  "preferred_text_sha256": "0ad4f2fa354af80e77e85cbf49ec7f3fc6c2f4f3d02ffa87d0458bd89fdb43d8",
+  "preferred_text_source": "pypdf",
+  "status": "ok",
+  "text_char_count": 12957,
+  "text_path": "server/games/monopoly/manual_rules/extracted/ghostbusters.txt",
+  "text_sha256": "0ad4f2fa354af80e77e85cbf49ec7f3fc6c2f4f3d02ffa87d0458bd89fdb43d8",
+  "zlib_limit_used": 120000000
+}
