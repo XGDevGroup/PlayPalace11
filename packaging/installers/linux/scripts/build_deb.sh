@@ -57,7 +57,7 @@ LAUNCH
 build_server() {
   local pkgdir="$BUILD_ROOT/playpalace-server"
   rm -rf "$pkgdir"
-  mkdir -p "$pkgdir/DEBIAN" "$pkgdir/opt/playpalace/server" "$pkgdir/usr/bin" "$pkgdir/lib/systemd/system"
+  mkdir -p "$pkgdir/DEBIAN" "$pkgdir/opt/playpalace/server" "$pkgdir/opt/playpalace/server/var/server" "$pkgdir/usr/bin" "$pkgdir/lib/systemd/system"
   cp "$ROOT/packaging/installers/linux/debian/server/control" "$pkgdir/DEBIAN/control"
   sed -i "s/^Version:.*/Version: $SERVER_VERSION/" "$pkgdir/DEBIAN/control"
   cp "$ROOT/packaging/installers/linux/debian/server/postinst" "$pkgdir/DEBIAN/postinst"

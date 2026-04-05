@@ -1,0 +1,18 @@
+pre_install() {
+  getent group playpalace >/dev/null || groupadd -r playpalace
+  getent passwd playpalace >/dev/null || \
+    useradd -r -g playpalace -s /usr/bin/nologin -d /opt/playpalace/server playpalace
+}
+
+post_install() {
+  chown -R playpalace:playpalace /opt/playpalace/server/var/server
+  systemctl daemon-reload
+}
+
+pre_upgrade() {
+  pre_install
+}
+
+post_upgrade() {
+  post_install
+}
