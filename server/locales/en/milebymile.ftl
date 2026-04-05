@@ -46,6 +46,7 @@ milebymile-no-matching-safety = You don't have the matching safety card!
 milebymile-cant-play = You can't play { $card } because { $reason }.
 milebymile-no-card-selected = No card selected to discard.
 milebymile-cant-discard-playable = You can't discard a card that can be played.
+milebymile-discard-confirm = Do you want to discard this card?
 milebymile-no-valid-targets = No valid targets for this hazard!
 milebymile-you-drew = You drew: { $card }
 milebymile-discards = { $player } discards a card.

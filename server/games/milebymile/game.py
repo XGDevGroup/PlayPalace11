@@ -999,6 +999,7 @@ class MileByMileGame(Game):
         """Show a yes/no confirmation to discard the unplayable card."""
         self._pending_discard_slot[player.id] = slot
         self._pending_actions[player.id] = "discard_confirm"
+        user.speak_l("milebymile-discard-confirm")
         items = [
             MenuItem(text=Localization.get(user.locale, "confirm-yes"), id="yes"),
             MenuItem(text=Localization.get(user.locale, "confirm-no"), id="no"),
