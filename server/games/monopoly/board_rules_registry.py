@@ -718,3 +718,17 @@ def get_card_cash_override(rule_pack_id: str, card_id: str) -> int | None:
     if isinstance(value, int):
         return max(0, value)
     return None
+
+
+def get_penalty_space_amount(rule_pack_id: str, space_id: str) -> int | None:
+    """Return one board-specific penalty-space amount when declared."""
+    module = RULE_PACK_MODULES.get(rule_pack_id)
+    if module is None:
+        return None
+    amounts = getattr(module, "PENALTY_SPACE_AMOUNTS", None)
+    if not isinstance(amounts, dict):
+        return None
+    value = amounts.get(space_id)
+    if isinstance(value, int):
+        return max(0, value)
+    return None

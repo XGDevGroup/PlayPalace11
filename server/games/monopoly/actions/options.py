@@ -178,6 +178,8 @@ def bot_select_auction_bid(game: MonopolyGame, player: Player, options: list[str
 
 def mortgage_space_ids(game: MonopolyGame, player: Player) -> list[str]:
     """Return unmortgaged owned property ids eligible for mortgaging."""
+    if not game._mortgages_enabled_for_active_board():
+        return []
     mono_player = player  # type: ignore[assignment]
     space_ids: list[str] = []
     for space_id in game._sorted_owned_space_ids(mono_player.id):
@@ -196,6 +198,8 @@ def mortgage_space_ids(game: MonopolyGame, player: Player) -> list[str]:
 
 def unmortgage_space_ids(game: MonopolyGame, player: Player) -> list[str]:
     """Return mortgaged owned property ids eligible for unmortgaging."""
+    if not game._mortgages_enabled_for_active_board():
+        return []
     mono_player = player  # type: ignore[assignment]
     return [
         space_id
@@ -249,6 +253,16 @@ def build_house_space_ids(game: MonopolyGame, player: Player) -> list[str]:
             continue
         if space_id in game.mortgaged_space_ids:
             continue
+        level = game._building_level(space_id)
+        if game._is_fence_building_space(space):
+            if level >= game._max_building_level_for_space(space):
+                continue
+            if not game._can_raise_building_level(space_id):
+                continue
+            if game._current_liquid_balance(mono_player) < game._building_cost(space):
+                continue
+            space_ids.append(space_id)
+            continue
         if game.rule_profile.require_full_set_for_build:
             if not game._owner_has_full_color_set(mono_player.id, space.color_group):
                 continue
@@ -259,8 +273,7 @@ def build_house_space_ids(game: MonopolyGame, player: Player) -> list[str]:
             if game._group_has_mortgage(space.color_group, owner_id=mono_player.id):
                 continue
             levels = game._group_levels(space.color_group, owner_id=mono_player.id)
-        level = game._building_level(space_id)
-        if level >= 5:
+        if level >= game._max_building_level_for_space(space):
             continue
         if not game._can_raise_building_level(space_id):
             continue
@@ -268,7 +281,7 @@ def build_house_space_ids(game: MonopolyGame, player: Player) -> list[str]:
             continue
         if game.rule_profile.builder_block_required_for_build and mono_player.builder_blocks <= 0:
             continue
-        if game._current_liquid_balance(mono_player) < space.house_cost:
+        if game._current_liquid_balance(mono_player) < game._building_cost(space):
             continue
         space_ids.append(space_id)
     return space_ids
@@ -282,10 +295,20 @@ def options_for_build_house(game: MonopolyGame, player: Player) -> list[str]:
     for space_id in build_house_space_ids(game, player):
         space = game.active_space_by_id[space_id]
         level = game._building_level(space_id)
+        if game._is_fence_building_space(space):
+            options.append(
+                Localization.get(
+                    locale,
+                    "monopoly-build-option-fence",
+                    property=game._space_label(space_id, locale=locale),
+                    amount=game._format_money(game._building_cost(space)),
+                )
+            )
+            continue
         house_word = "hotel" if level >= 4 else ("house" if level == 1 else "houses")
         options.append(
             f"{game._space_label(space_id, locale=locale)}, "
-            f"{level} {house_word}, price {game._format_money(space.house_cost)}"
+            f"{level} {house_word}, price {game._format_money(game._building_cost(space))}"
         )
     return options
 
@@ -302,6 +325,9 @@ def sell_house_space_ids(game: MonopolyGame, player: Player) -> list[str]:
             continue
         level = game._building_level(space_id)
         if level <= 0:
+            continue
+        if game._is_fence_building_space(space):
+            space_ids.append(space_id)
             continue
         if not game._can_lower_building_level(space_id):
             continue
@@ -320,10 +346,20 @@ def options_for_sell_house(game: MonopolyGame, player: Player) -> list[str]:
     for space_id in sell_house_space_ids(game, player):
         space = game.active_space_by_id[space_id]
         level = game._building_level(space_id)
+        if game._is_fence_building_space(space):
+            options.append(
+                Localization.get(
+                    locale,
+                    "monopoly-sell-option-fence",
+                    property=game._space_label(space_id, locale=locale),
+                    amount=game._format_money(max(0, game._building_cost(space) // 2)),
+                )
+            )
+            continue
         house_word = "hotel" if level >= 5 else ("house" if level == 1 else "houses")
         options.append(
             f"{game._space_label(space_id, locale=locale)}, "
-            f"{level} {house_word}, price {game._format_money(max(0, space.house_cost // 2))}"
+            f"{level} {house_word}, price {game._format_money(max(0, game._building_cost(space) // 2))}"
         )
     return options
 
@@ -378,13 +414,61 @@ def bot_select_build_house(game: MonopolyGame, player: Player, options: list[str
         level = game._building_level(space_id)
         if space.rents:
             current_rent = space.rents[min(level, len(space.rents) - 1)]
-            if level == 0 and game._owner_has_full_color_set(player.id, space.color_group):
+            if (
+                level == 0
+                and not game._is_fence_building_space(space)
+                and game._owner_has_full_color_set(player.id, space.color_group)
+            ):
                 current_rent = space.rents[0] * 2
             next_rent = space.rents[min(level + 1, len(space.rents) - 1)]
         else:
             current_rent = space.rent
             next_rent = space.rent
         gain = max(0, next_rent - current_rent)
-        return (gain, -space.house_cost, game._space_label(space_id))
+        return (gain, -game._building_cost(space), game._space_label(space_id))
 
     return max(pairs, key=lambda pair: _score(pair[1]))[0]
+
+
+def repair_property_space_ids(game: MonopolyGame, player: Player) -> list[str]:
+    """Return damaged Jurassic Park property ids the player can repair."""
+    if not game._is_jurassic_park_manual_core_active() or game.jurassic_park_engine is None:
+        return []
+    mono_player = player  # type: ignore[assignment]
+    return [
+        space_id
+        for space_id in game._sorted_owned_space_ids(mono_player.id)
+        if game.property_owners.get(space_id) == mono_player.id
+        and game._jurassic_park_is_damaged(space_id)
+        and game._current_liquid_balance(mono_player) >= game._jurassic_park_repair_cost(space_id)
+    ]
+
+
+def options_for_repair_property(game: MonopolyGame, player: Player) -> list[str]:
+    """Menu options for damaged Jurassic Park properties that can be repaired."""
+    user = game.get_user(player)
+    locale = user.locale if user else "en"
+    return [
+        encode_property_amount_option(
+            game,
+            space_id,
+            game._jurassic_park_repair_cost(space_id),
+            locale=locale,
+        )
+        for space_id in repair_property_space_ids(game, player)
+        if space_id in game.active_space_by_id
+    ]
+
+
+def bot_select_repair_property(game: MonopolyGame, player: Player, options: list[str]) -> str | None:
+    """Pick the cheapest affordable Jurassic Park repair first."""
+    pairs = list(zip(options, repair_property_space_ids(game, player), strict=False))
+    if not pairs:
+        return None
+    return min(
+        pairs,
+        key=lambda pair: (
+            game._jurassic_park_repair_cost(pair[1]),
+            game._space_label(pair[1]),
+        ),
+    )[0]

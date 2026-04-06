@@ -38,6 +38,7 @@ from .board_parity import get_board_parity_profile
 from .board_rules_registry import (
     get_card_cash_override,
     get_card_id_remap,
+    get_penalty_space_amount,
     get_pass_go_credit_override,
     get_rule_pack,
     supports_capability,
@@ -52,6 +53,8 @@ from .junior_rules import (
     get_junior_ruleset,
     is_junior_ruleset_preset,
 )
+from .jurassic_park_engine import JurassicParkEngine
+from .jurassic_park_profile import JurassicParkProfile, resolve_jurassic_park_profile
 from .voice_banking_profile import (
     VoiceBankingProfile,
     resolve_voice_banking_profile,
@@ -111,6 +114,7 @@ class MonopolySpace:
     color_group: str = ""
     house_cost: int = 0
     rents: tuple[int, ...] = ()
+    subtype: str = ""
 
 
 CLASSIC_STANDARD_BOARD = [
@@ -638,6 +642,8 @@ class MonopolyGame(ActionGuardMixin, Game):
     cheaters_engine: CheatersEngine | None = None
     city_profile: CityProfile | None = None
     city_engine: CityEngine | None = None
+    jurassic_park_profile: JurassicParkProfile | None = None
+    jurassic_park_engine: JurassicParkEngine | None = None
     voice_banking_profile: VoiceBankingProfile | None = None
     banking_profile: ElectronicBankingProfile | None = None
     banking_state: BankingState | None = None
@@ -768,6 +774,26 @@ class MonopolyGame(ActionGuardMixin, Game):
     def _add_turn_property_management_actions(
         self, action_set: ActionSet, locale: str
     ) -> None:
+        build_label_key = (
+            "monopoly-jp-build-fence"
+            if self._is_jurassic_park_manual_core_active()
+            else "monopoly-build-house"
+        )
+        build_prompt = (
+            "monopoly-jp-select-property-fence"
+            if self._is_jurassic_park_manual_core_active()
+            else "monopoly-select-property-build"
+        )
+        sell_label_key = (
+            "monopoly-jp-sell-fence"
+            if self._is_jurassic_park_manual_core_active()
+            else "monopoly-sell-house"
+        )
+        sell_prompt = (
+            "monopoly-jp-select-fence-sell"
+            if self._is_jurassic_park_manual_core_active()
+            else "monopoly-select-property-sell"
+        )
         action_set.add(
             Action(
                 id="mortgage_property",
@@ -799,12 +825,12 @@ class MonopolyGame(ActionGuardMixin, Game):
         action_set.add(
             Action(
                 id="build_house",
-                label=Localization.get(locale, "monopoly-build-house"),
+                label=Localization.get(locale, build_label_key),
                 handler="_action_build_house",
                 is_enabled="_is_build_house_enabled",
                 is_hidden="_is_build_house_hidden",
                 input_request=MenuInput(
-                    prompt="monopoly-select-property-build",
+                    prompt=build_prompt,
                     options="_options_for_build_house",
                     bot_select="_bot_select_build_house",
                 ),
@@ -813,13 +839,27 @@ class MonopolyGame(ActionGuardMixin, Game):
         action_set.add(
             Action(
                 id="sell_house",
-                label=Localization.get(locale, "monopoly-sell-house"),
+                label=Localization.get(locale, sell_label_key),
                 handler="_action_sell_house",
                 is_enabled="_is_sell_house_enabled",
                 is_hidden="_is_sell_house_hidden",
                 input_request=MenuInput(
-                    prompt="monopoly-select-property-sell",
+                    prompt=sell_prompt,
                     options="_options_for_sell_house",
+                ),
+            )
+        )
+        action_set.add(
+            Action(
+                id="repair_property",
+                label=Localization.get(locale, "monopoly-jp-repair-property"),
+                handler="_action_repair_property",
+                is_enabled="_is_repair_property_enabled",
+                is_hidden="_is_repair_property_hidden",
+                input_request=MenuInput(
+                    prompt="monopoly-jp-select-property-repair",
+                    options="_options_for_repair_property",
+                    bot_select="_bot_select_repair_property",
                 ),
             )
         )
@@ -1912,6 +1952,384 @@ class MonopolyGame(ActionGuardMixin, Game):
             return owner.name
         return self._monopoly_text(locale, "monopoly-owner-unknown", fallback="Unknown")
 
+    def _active_board_has_capability(self, capability_id: str) -> bool:
+        """Return True when the active board rule pack declares one capability."""
+        if not self.active_board_rule_pack_id:
+            return False
+        return supports_capability(self.active_board_rule_pack_id, capability_id)
+
+    def _is_jurassic_park_manual_core_active(self) -> bool:
+        """Return True when Jurassic Park board rules are active."""
+        return self.jurassic_park_engine is not None and self.active_board_id == "jurassic_park"
+
+    def _jurassic_park_property_entry(self, space_id: str) -> dict[str, object] | None:
+        """Return one Jurassic Park economy row for a property when available."""
+        if self.active_manual_rule_set is None:
+            return None
+        properties = self.active_manual_rule_set.economy.get("properties", {})
+        if not isinstance(properties, dict):
+            return None
+        row = properties.get(space_id)
+        if not isinstance(row, dict):
+            return None
+        return row
+
+    def _jurassic_park_repair_cost(self, space_id: str) -> int:
+        """Return the board-defined repair cost for one Jurassic Park property."""
+        row = self._jurassic_park_property_entry(space_id)
+        if row is None:
+            return 0
+        try:
+            return max(0, int(row.get("repair_cost", 0)))
+        except (TypeError, ValueError):
+            return 0
+
+    def _jurassic_park_fenced_rent(self, space: MonopolySpace) -> int:
+        """Return the rent value for a fenced Jurassic Park paddock."""
+        row = self._jurassic_park_property_entry(space.space_id)
+        if row is not None:
+            try:
+                return max(0, int(row.get("fenced_rent", 0)))
+            except (TypeError, ValueError):
+                pass
+        if len(space.rents) > 1:
+            return max(0, int(space.rents[1]))
+        return 0
+
+    def _jurassic_park_is_damaged(self, space_id: str) -> bool:
+        """Return True when the active Jurassic Park engine marks a property damaged."""
+        return bool(self.jurassic_park_engine and self.jurassic_park_engine.is_damaged(space_id))
+
+    def _jurassic_park_group_label(self, group: str, locale: str) -> str:
+        """Return one localized Jurassic Park collection label."""
+        if group in {"park_road", "utility"}:
+            return self._monopoly_text(
+                locale,
+                f"monopoly-jp-group-{group}",
+                fallback=group.replace("_", " ").title(),
+            )
+        return self._color_group_label(group, locale)
+
+    def _sync_jurassic_park_fences_to_engine(self) -> None:
+        """Mirror board fence state into the Jurassic Park engine."""
+        if self.jurassic_park_engine is None:
+            return
+        fenced_space_ids = {
+            space_id
+            for space_id, level in self.building_levels.items()
+            if level > 0 and self._is_fence_building_space(self.active_space_by_id.get(space_id))
+        }
+        self.jurassic_park_engine.state.fenced_space_ids = fenced_space_ids
+        self.jurassic_park_engine.state.fences_remaining = self._available_fences()
+
+    def _refresh_jurassic_park_complete_sets(self) -> list[object]:
+        """Refresh Jurassic Park complete-set tracking and apply auto-repairs."""
+        if self.jurassic_park_engine is None:
+            return []
+
+        current_groups: set[str] = set()
+        for group, members in self.jurassic_park_engine._color_groups.items():
+            if not members:
+                continue
+            owners = {self.property_owners.get(space_id, "") for space_id in members}
+            owners.discard("")
+            if len(owners) == 1 and len(members) == sum(
+                1 for space_id in members if self.property_owners.get(space_id)
+            ):
+                current_groups.add(group)
+
+        self.jurassic_park_engine.state.complete_set_groups.intersection_update(current_groups)
+        return list(self.jurassic_park_engine.check_complete_sets(self.property_owners))
+
+    def _broadcast_jurassic_park_complete_set_updates(
+        self,
+        player: MonopolyPlayer,
+        results: list[object],
+    ) -> None:
+        """Broadcast Jurassic Park complete-set immunity and free-repair updates."""
+        for result in results:
+            group = getattr(result, "set_group", "")
+            if not isinstance(group, str) or not group:
+                continue
+            group_label = self._jurassic_park_group_label(group, "en")
+            self._broadcast_monopoly_personal(
+                player,
+                personal_message_id="monopoly-jp-set-complete-you",
+                others_message_id="monopoly-jp-set-complete",
+                personal_fallback=(
+                    f"You complete the {group_label} set. Those properties are now immune to the T. Rex."
+                ),
+                others_fallback=(
+                    f"{player.name} completes the {group_label} set. Those properties are now immune to the T. Rex."
+                ),
+                player=player.name,
+                group=group_label,
+            )
+            for space_id in getattr(result, "auto_repaired", ()):
+                space = self._space_by_id_or_none(space_id)
+                if space is None:
+                    continue
+                self.broadcast_l(
+                    "monopoly-jp-set-auto-repair",
+                    property=space.name,
+                )
+
+    def _award_pass_go_credit(self, player: MonopolyPlayer, *, reason: str) -> int:
+        """Award pass-GO credit, including Jurassic Park gate behavior when active."""
+        pass_go_cash = max(0, self.rule_profile.pass_go_cash)
+        if self._is_electronic_banking_preset() and self.banking_profile:
+            pass_go_cash = max(0, self.banking_profile.pass_go_credit)
+        pass_go_cash = self._resolve_board_pass_go_credit(pass_go_cash)
+
+        gate_outcome = self._resolve_jurassic_park_gate_outcome()
+        if gate_outcome is not None:
+            gate_event_id, pass_go_cash = gate_outcome
+            self._emit_board_hardware_event(
+                gate_event_id,
+                payload={"pass_go_cash": pass_go_cash},
+            )
+            credited = self._credit_player(player, pass_go_cash, reason)
+            theme = gate_event_id.endswith("_theme")
+            self._broadcast_monopoly_personal(
+                player,
+                personal_message_id=(
+                    "monopoly-jp-gate-theme-you" if theme else "monopoly-jp-gate-roar-you"
+                ),
+                others_message_id=(
+                    "monopoly-jp-gate-theme-player"
+                    if theme
+                    else "monopoly-jp-gate-roar-player"
+                ),
+                personal_fallback=(
+                    f"You activate the gate and collect {self._format_money(credited)}."
+                ),
+                others_fallback=(
+                    f"{player.name} activates the gate and collects {self._format_money(credited)}."
+                ),
+                player=player.name,
+                amount=credited,
+                cash=player.cash,
+            )
+            return credited
+
+        credited = self._credit_player(player, pass_go_cash, reason)
+        pride_rock_event = self._resolve_pride_rock_celebration()
+        if pride_rock_event is not None:
+            self._emit_board_hardware_event(
+                pride_rock_event,
+                payload={"pass_go_cash": pass_go_cash},
+            )
+        self._broadcast_monopoly_personal(
+            player,
+            personal_message_id="monopoly-you-pass-go",
+            others_message_id="monopoly-player-pass-go",
+            personal_fallback=f"You passed GO and collected {self._format_money(credited)}.",
+            others_fallback=f"{player.name} passed GO and collected {self._format_money(credited)}.",
+            player=player.name,
+            amount=credited,
+            cash=player.cash,
+        )
+        return credited
+
+    def _finish_jurassic_park_all_damaged_game(self) -> None:
+        """End the match immediately when the T. Rex has ruined the whole park."""
+        if self.status != "playing":
+            return
+        self.status = "finished"
+        self.game_active = False
+        self.broadcast_l("monopoly-jp-all-damaged")
+
+    def _apply_jurassic_park_trex_fee(self, player: MonopolyPlayer, amount: int) -> int:
+        """Apply a T. Rex bank fee immediately, auto-liquidating if needed."""
+        if amount <= 0 or player.bankrupt:
+            return 0
+        if self._current_liquid_balance(player) < amount:
+            self._liquidate_assets_for_debt(player, amount)
+        paid = self._debit_player_to_bank(
+            player,
+            amount,
+            "jurassic_park_trex_fee",
+            allow_partial=True,
+        )
+        if paid < amount and not player.bankrupt:
+            self._declare_bankrupt(player, creditor_name="Bank")
+        return paid
+
+    def _move_jurassic_park_trex(self, amber_roll: int) -> bool:
+        """Move the T. Rex and apply Jurassic Park-specific side effects.
+
+        Returns False when the game ended during the T. Rex step.
+        """
+        if self.jurassic_park_engine is None:
+            return True
+
+        self._sync_jurassic_park_fences_to_engine()
+        player_positions = {
+            turn_player.id: turn_player.position
+            for turn_player in self.turn_players
+            if isinstance(turn_player, MonopolyPlayer) and not turn_player.bankrupt
+        }
+        in_jail = {
+            turn_player.id: turn_player.in_jail
+            for turn_player in self.turn_players
+            if isinstance(turn_player, MonopolyPlayer) and not turn_player.bankrupt
+        }
+        outcome = self.jurassic_park_engine.move_trex(
+            amber_roll,
+            player_positions=player_positions,
+            property_owners=self.property_owners,
+            in_jail=in_jail,
+        )
+        space = self._space_at(outcome.new_position)
+        self.broadcast_l(
+            "monopoly-jp-trex-moves",
+            spaces=amber_roll,
+            space=space.name,
+        )
+
+        for player_id in outcome.passed_players:
+            affected = self.get_player_by_id(player_id)
+            if not isinstance(affected, MonopolyPlayer):
+                continue
+            if player_id in outcome.fees_charged:
+                paid = self._apply_jurassic_park_trex_fee(affected, outcome.fees_charged[player_id])
+                self._broadcast_monopoly_personal(
+                    affected,
+                    personal_message_id="monopoly-jp-trex-passes-you",
+                    others_message_id="monopoly-jp-trex-passes-player",
+                    personal_fallback=f"The T. Rex passed your token. You pay {self._format_money(paid)}.",
+                    others_fallback=f"The T. Rex passed {affected.name}. {affected.name} pays {self._format_money(paid)}.",
+                    player=affected.name,
+                    amount=paid,
+                )
+            else:
+                self._broadcast_monopoly_personal(
+                    affected,
+                    personal_message_id="monopoly-jp-trex-in-jail-safe",
+                    others_message_id="monopoly-jp-trex-in-jail-safe",
+                    personal_fallback="The T. Rex passed your space, but you are safe in Jail.",
+                    others_fallback=f"The T. Rex passed {affected.name}, but {affected.name} is safe in Jail.",
+                    player=affected.name,
+                )
+
+        for player_id in outcome.landed_on_players:
+            affected = self.get_player_by_id(player_id)
+            if not isinstance(affected, MonopolyPlayer):
+                continue
+            if player_id in outcome.fees_charged:
+                paid = self._apply_jurassic_park_trex_fee(affected, outcome.fees_charged[player_id])
+                self._broadcast_monopoly_personal(
+                    affected,
+                    personal_message_id="monopoly-jp-trex-lands-on-you",
+                    others_message_id="monopoly-jp-trex-lands-on-player",
+                    personal_fallback=f"The T. Rex landed on your space. You pay {self._format_money(paid)}.",
+                    others_fallback=f"The T. Rex landed on {affected.name}. {affected.name} pays {self._format_money(paid)}.",
+                    player=affected.name,
+                    amount=paid,
+                )
+            else:
+                self._broadcast_monopoly_personal(
+                    affected,
+                    personal_message_id="monopoly-jp-trex-in-jail-safe",
+                    others_message_id="monopoly-jp-trex-in-jail-safe",
+                    personal_fallback="The T. Rex passed your space, but you are safe in Jail.",
+                    others_fallback=f"The T. Rex passed {affected.name}, but {affected.name} is safe in Jail.",
+                    player=affected.name,
+                )
+
+        if outcome.fence_destroyed:
+            self._set_building_level(outcome.fence_destroyed, 0)
+            damaged_space = self._space_by_id_or_none(outcome.fence_destroyed)
+            if damaged_space is not None:
+                self.broadcast_l(
+                    "monopoly-jp-trex-destroys-fence",
+                    property=damaged_space.name,
+                )
+        elif outcome.property_damaged:
+            damaged_space = self._space_by_id_or_none(outcome.property_damaged)
+            if damaged_space is not None:
+                if outcome.property_damaged in self.property_owners:
+                    self.broadcast_l(
+                        "monopoly-jp-trex-damages-property",
+                        property=damaged_space.name,
+                    )
+                else:
+                    self.broadcast_l(
+                        "monopoly-jp-trex-damages-unowned",
+                        property=damaged_space.name,
+                    )
+        elif outcome.blocked_by_set:
+            blocked_space = self._space_by_id_or_none(space.space_id)
+            if blocked_space is not None:
+                self.broadcast_l(
+                    "monopoly-jp-trex-blocked-by-set",
+                    property=blocked_space.name,
+                    group=self._jurassic_park_group_label(outcome.blocked_by_set, "en"),
+                )
+        elif outcome.already_damaged:
+            self.broadcast_l(
+                "monopoly-jp-trex-already-damaged",
+                property=space.name,
+            )
+        else:
+            self.broadcast_l(
+                "monopoly-jp-trex-no-property",
+                space=space.name,
+            )
+
+        if self.jurassic_park_engine.state.all_damaged_game_over:
+            self._finish_jurassic_park_all_damaged_game()
+            return False
+        return self.status == "playing"
+
+    def _is_fence_building_space(self, space: MonopolySpace | None) -> bool:
+        """Return True for Jurassic Park paddocks that use fences."""
+        if space is None:
+            return False
+        return (
+            self._active_board_has_capability("fence_building")
+            and space.kind == "property"
+            and space.subtype == "dino_paddock"
+        )
+
+    def _max_building_level_for_space(self, space: MonopolySpace | None) -> int:
+        """Return the maximum building level supported on one space."""
+        if self._is_fence_building_space(space):
+            return 1
+        return 5
+
+    def _building_cost(self, space: MonopolySpace) -> int:
+        """Return the active build cost for one space."""
+        return max(0, space.house_cost)
+
+    def _total_fence_supply(self) -> int:
+        """Return the active Jurassic Park fence supply."""
+        if self.active_manual_rule_set is not None:
+            raw_total = self.active_manual_rule_set.economy.get("total_fences", 24)
+            try:
+                return max(0, int(raw_total))
+            except (TypeError, ValueError):
+                pass
+        return 24
+
+    def _fence_supply_in_use(self) -> int:
+        """Return the number of Jurassic Park fences currently placed."""
+        used = 0
+        for space_id, level in self.building_levels.items():
+            if level <= 0:
+                continue
+            if self._is_fence_building_space(self.active_space_by_id.get(space_id)):
+                used += 1
+        return used
+
+    def _available_fences(self) -> int:
+        """Return the number of Jurassic Park fences remaining in supply."""
+        return max(0, self._total_fence_supply() - self._fence_supply_in_use())
+
+    def _mortgages_enabled_for_active_board(self) -> bool:
+        """Return False when the active board disables mortgages."""
+        return not self._active_board_has_capability("no_mortgages")
+
     def _building_status_text(self, space: MonopolySpace, locale: str) -> str:
         """Return compact building status text for property summaries."""
         if not self._is_street_property(space):
@@ -1919,6 +2337,12 @@ class MonopolyGame(ActionGuardMixin, Game):
         level = self._building_level(space.space_id)
         if level <= 0:
             return ""
+        if self._is_fence_building_space(space):
+            return self._monopoly_text(
+                locale,
+                "monopoly-building-status-fence",
+                fallback="with fence",
+            )
         if level >= 5:
             return self._monopoly_text(
                 locale,
@@ -1942,14 +2366,22 @@ class MonopolyGame(ActionGuardMixin, Game):
         """Build one concise menu label for deed browsing."""
         owner = self._owner_name_for_space(space.space_id, locale)
         building = self._building_status_text(space, locale)
+        damaged = ""
+        if self._jurassic_park_is_damaged(space.space_id):
+            damaged = self._monopoly_text(
+                locale,
+                "monopoly-jp-property-damaged-status",
+                fallback="damaged",
+                property=self._space_display_name(space, locale),
+            )
         mortgaged = ""
-        if self._is_space_mortgaged(space.space_id):
+        if self._mortgages_enabled_for_active_board() and self._is_space_mortgaged(space.space_id):
             mortgaged = self._monopoly_text(
                 locale,
                 "monopoly-mortgaged-short",
                 fallback="mortgaged",
             )
-        extras = ", ".join([part for part in (building, mortgaged) if part])
+        extras = ", ".join([part for part in (building, damaged, mortgaged) if part])
         property_name = self._space_display_name(space, locale)
         if extras:
             return self._monopoly_text(
@@ -2043,72 +2475,102 @@ class MonopolyGame(ActionGuardMixin, Game):
                     amount=base_rent,
                 )
             )
-            lines.append(
-                self._monopoly_text(
-                    locale,
-                    "monopoly-deed-full-set-rent",
-                    fallback=f"If owner has full color set: {self._format_money(base_rent * 2)}",
-                    amount=base_rent * 2,
-                )
-            )
-            if space.rents:
+            if self._is_fence_building_space(space):
                 if len(space.rents) > 1:
                     lines.append(
                         self._monopoly_text(
                             locale,
-                            "monopoly-deed-rent-one-house",
-                            fallback=f"With 1 house: {self._format_money(space.rents[1])}",
+                            "monopoly-deed-rent-fence",
+                            fallback=f"With fence: {self._format_money(space.rents[1])}",
                             amount=space.rents[1],
                         )
                     )
-                if len(space.rents) > 2:
+                if self._building_cost(space) > 0:
                     lines.append(
                         self._monopoly_text(
                             locale,
-                            "monopoly-deed-rent-houses",
-                            fallback=f"With 2 houses: {self._format_money(space.rents[2])}",
-                            count=2,
-                            amount=space.rents[2],
+                            "monopoly-deed-fence-cost",
+                            fallback=f"Fence cost: {self._format_money(self._building_cost(space))}",
+                            amount=self._building_cost(space),
                         )
                     )
-                if len(space.rents) > 3:
+                repair_cost = self._jurassic_park_repair_cost(space.space_id)
+                if repair_cost > 0:
                     lines.append(
                         self._monopoly_text(
                             locale,
-                            "monopoly-deed-rent-houses",
-                            fallback=f"With 3 houses: {self._format_money(space.rents[3])}",
-                            count=3,
-                            amount=space.rents[3],
+                            "monopoly-jp-deed-repair-cost",
+                            fallback=f"Repair cost: {self._format_money(repair_cost)}",
+                            amount=repair_cost,
                         )
                     )
-                if len(space.rents) > 4:
-                    lines.append(
-                        self._monopoly_text(
-                            locale,
-                            "monopoly-deed-rent-houses",
-                            fallback=f"With 4 houses: {self._format_money(space.rents[4])}",
-                            count=4,
-                            amount=space.rents[4],
-                        )
-                    )
-                if len(space.rents) > 5:
-                    lines.append(
-                        self._monopoly_text(
-                            locale,
-                            "monopoly-deed-rent-hotel",
-                            fallback=f"With hotel: {self._format_money(space.rents[5])}",
-                            amount=space.rents[5],
-                        )
-                    )
-            if space.house_cost > 0:
+            else:
                 lines.append(
                     self._monopoly_text(
                         locale,
-                        "monopoly-deed-house-cost",
-                        fallback=f"House cost: {self._format_money(space.house_cost)}",
-                        amount=space.house_cost,
+                        "monopoly-deed-full-set-rent",
+                        fallback=f"If owner has full color set: {self._format_money(base_rent * 2)}",
+                        amount=base_rent * 2,
                     )
                 )
+                if space.rents:
+                    if len(space.rents) > 1:
+                        lines.append(
+                            self._monopoly_text(
+                                locale,
+                                "monopoly-deed-rent-one-house",
+                                fallback=f"With 1 house: {self._format_money(space.rents[1])}",
+                                amount=space.rents[1],
+                            )
+                        )
+                    if len(space.rents) > 2:
+                        lines.append(
+                            self._monopoly_text(
+                                locale,
+                                "monopoly-deed-rent-houses",
+                                fallback=f"With 2 houses: {self._format_money(space.rents[2])}",
+                                count=2,
+                                amount=space.rents[2],
+                            )
+                        )
+                    if len(space.rents) > 3:
+                        lines.append(
+                            self._monopoly_text(
+                                locale,
+                                "monopoly-deed-rent-houses",
+                                fallback=f"With 3 houses: {self._format_money(space.rents[3])}",
+                                count=3,
+                                amount=space.rents[3],
+                            )
+                        )
+                    if len(space.rents) > 4:
+                        lines.append(
+                            self._monopoly_text(
+                                locale,
+                                "monopoly-deed-rent-houses",
+                                fallback=f"With 4 houses: {self._format_money(space.rents[4])}",
+                                count=4,
+                                amount=space.rents[4],
+                            )
+                        )
+                    if len(space.rents) > 5:
+                        lines.append(
+                            self._monopoly_text(
+                                locale,
+                                "monopoly-deed-rent-hotel",
+                                fallback=f"With hotel: {self._format_money(space.rents[5])}",
+                                amount=space.rents[5],
+                            )
+                        )
+                if self._building_cost(space) > 0:
+                    lines.append(
+                        self._monopoly_text(
+                            locale,
+                            "monopoly-deed-house-cost",
+                            fallback=f"House cost: {self._format_money(self._building_cost(space))}",
+                            amount=self._building_cost(space),
+                        )
+                    )
         elif space.kind == "railroad":
             lines.append(
                 self._monopoly_text(
@@ -2179,22 +2641,23 @@ class MonopolyGame(ActionGuardMixin, Game):
                 )
             )
 
-        lines.append(
-            self._monopoly_text(
-                locale,
-                "monopoly-deed-mortgage-value",
-                fallback=f"Mortgage value: {self._format_money(self._mortgage_value(space))}",
-                amount=self._mortgage_value(space),
+        if self._mortgages_enabled_for_active_board():
+            lines.append(
+                self._monopoly_text(
+                    locale,
+                    "monopoly-deed-mortgage-value",
+                    fallback=f"Mortgage value: {self._format_money(self._mortgage_value(space))}",
+                    amount=self._mortgage_value(space),
+                )
             )
-        )
-        lines.append(
-            self._monopoly_text(
-                locale,
-                "monopoly-deed-unmortgage-cost",
-                fallback=f"Unmortgage cost: {self._format_money(self._unmortgage_cost(space))}",
-                amount=self._unmortgage_cost(space),
+            lines.append(
+                self._monopoly_text(
+                    locale,
+                    "monopoly-deed-unmortgage-cost",
+                    fallback=f"Unmortgage cost: {self._format_money(self._unmortgage_cost(space))}",
+                    amount=self._unmortgage_cost(space),
+                )
             )
-        )
         owner = self._owner_name_for_space(space.space_id, locale)
         lines.append(
             self._monopoly_text(
@@ -2215,7 +2678,16 @@ class MonopolyGame(ActionGuardMixin, Game):
                     buildings=building,
                 )
             )
-        if self._is_space_mortgaged(space.space_id):
+        if self._jurassic_park_is_damaged(space.space_id):
+            lines.append(
+                self._monopoly_text(
+                    locale,
+                    "monopoly-jp-property-damaged-status",
+                    fallback=f"{self._space_display_name(space, locale)} is damaged and cannot collect rent.",
+                    property=self._space_display_name(space, locale),
+                )
+            )
+        if self._mortgages_enabled_for_active_board() and self._is_space_mortgaged(space.space_id):
             lines.append(
                 self._monopoly_text(
                     locale,
@@ -2598,11 +3070,21 @@ class MonopolyGame(ActionGuardMixin, Game):
         index = int(row.get("position", fallback_index))
         space_id = str(row.get("space_id", f"space_{index}"))
         name = str(row.get("name", space_id.replace("_", " ").title()))
-        kind = str(row.get("kind", "property"))
+        subtype = str(row.get("subtype", ""))
+        raw_kind = str(row.get("kind", "property"))
+        if raw_kind == "property" and subtype == "park_road":
+            kind = "railroad"
+        elif raw_kind == "property" and subtype == "utility":
+            kind = "utility"
+        else:
+            kind = raw_kind
         price = int(row.get("price", 0))
         rent = int(row.get("rent", 0))
         color_group = str(row.get("color_group", ""))
         house_cost = int(row.get("house_cost", 0))
+        fence_cost = int(row.get("fence_cost", 0))
+        if subtype == "dino_paddock" and house_cost <= 0 and fence_cost > 0:
+            house_cost = fence_cost
         rents_raw = row.get("rents", ())
         rents: tuple[int, ...]
         if isinstance(rents_raw, list):
@@ -2619,6 +3101,7 @@ class MonopolyGame(ActionGuardMixin, Game):
             color_group=color_group,
             house_cost=house_cost,
             rents=rents,
+            subtype=subtype,
         )
 
     def _resolve_active_board_structures(
@@ -2746,18 +3229,12 @@ class MonopolyGame(ActionGuardMixin, Game):
             player.position = destination % self.active_board_size
             collect_pass_go = bool(effect_spec.get("collect_pass_go", False))
             if collect_pass_go and player.position < old_position:
-                pass_go_cash = max(0, self.rule_profile.pass_go_cash)
-                credited = self._credit_player(player, pass_go_cash, "manual_card_move_absolute_pass_go")
-                self._broadcast_monopoly_personal(
+                credited = self._award_pass_go_credit(
                     player,
-                    personal_message_id="monopoly-you-pass-go",
-                    others_message_id="monopoly-player-pass-go",
-                    personal_fallback=f"You passed GO and collected {self._format_money(credited)}.",
-                    others_fallback=f"{player.name} passed GO and collected {self._format_money(credited)}.",
-                    amount=credited,
-                    player=player.name,
-                    cash=player.cash,
+                    reason="manual_card_move_absolute_pass_go",
                 )
+                if self.city_engine is not None and credited > 0:
+                    self.city_engine.record_progress(player.id, credited)
             landed_space = self._space_at(player.position)
             return self._resolve_space(player, landed_space, depth=depth + 1, dice_total=dice_total)
 
@@ -2771,6 +3248,19 @@ class MonopolyGame(ActionGuardMixin, Game):
                     else "get_out_of_jail_free_chance"
                 ),
             )
+
+        if effect_type == "trex_roll":
+            amber_roll = random.randint(1, 6)
+            if not self._move_jurassic_park_trex(amber_roll):
+                return "forced_end"
+            self._sync_cash_scores()
+            return "resolved"
+
+        if effect_type == "activate_gate":
+            credited = self._award_pass_go_credit(player, reason="manual_card_activate_gate")
+            if self.city_engine is not None and credited > 0:
+                self.city_engine.record_progress(player.id, credited)
+            return "resolved"
 
         return None
 
@@ -3279,7 +3769,17 @@ class MonopolyGame(ActionGuardMixin, Game):
             user.speak(self._space_display_name(space, user.locale))
             if self._is_street_property(space):
                 level = self._building_level(space.space_id)
-                if level >= 5:
+                if level <= 0:
+                    continue
+                if self._is_fence_building_space(space):
+                    user.speak(
+                        self._monopoly_text(
+                            user.locale,
+                            "monopoly-space-with-fence",
+                            fallback="With a fence.",
+                        )
+                    )
+                elif level >= 5:
                     user.speak(
                         self._monopoly_text(
                             user.locale,
@@ -3316,9 +3816,10 @@ class MonopolyGame(ActionGuardMixin, Game):
 
     def _set_building_level(self, space_id: str, level: int) -> None:
         """Set building level for a street property (0-5)."""
-        if space_id not in self.active_space_by_id:
+        space = self.active_space_by_id.get(space_id)
+        if space is None:
             return
-        clamped = max(0, min(5, level))
+        clamped = max(0, min(self._max_building_level_for_space(space), level))
         self.building_levels[space_id] = clamped
 
     def _is_street_property(self, space: MonopolySpace) -> bool:
@@ -3424,17 +3925,18 @@ class MonopolyGame(ActionGuardMixin, Game):
         owned_before: bool,
     ) -> None:
         """Announce one newly completed color set, railroad set, or utility set."""
-        if owned_before:
-            return
-        if self._is_street_property(space) and space.color_group:
-            if self._owner_has_full_color_set(player.id, space.color_group):
-                self._broadcast_completed_collection(player, color_group=space.color_group)
-            return
-        if space.kind == "railroad" and self._owns_all_of_kind(player.id, "railroad"):
-            self._broadcast_completed_collection(player, kind="railroad")
-            return
-        if space.kind == "utility" and self._owns_all_of_kind(player.id, "utility"):
-            self._broadcast_completed_collection(player, kind="utility")
+        if not owned_before:
+            if self._is_street_property(space) and space.color_group:
+                if self._owner_has_full_color_set(player.id, space.color_group):
+                    self._broadcast_completed_collection(player, color_group=space.color_group)
+            elif space.kind == "railroad" and self._owns_all_of_kind(player.id, "railroad"):
+                self._broadcast_completed_collection(player, kind="railroad")
+            elif space.kind == "utility" and self._owns_all_of_kind(player.id, "utility"):
+                self._broadcast_completed_collection(player, kind="utility")
+
+        jp_results = self._refresh_jurassic_park_complete_sets()
+        if jp_results:
+            self._broadcast_jurassic_park_complete_set_updates(player, jp_results)
 
     def _group_space_ids(self, color_group: str) -> list[str]:
         """Get all board space ids in one color group."""
@@ -3484,18 +3986,28 @@ class MonopolyGame(ActionGuardMixin, Game):
 
     def _can_raise_building_level(self, space_id: str) -> bool:
         """Check supply constraints for +1 building level."""
-        level = self._building_level(space_id)
-        if level < 0 or level >= 5:
+        space = self.active_space_by_id.get(space_id)
+        if space is None:
             return False
+        level = self._building_level(space_id)
+        if level < 0 or level >= self._max_building_level_for_space(space):
+            return False
+        if self._is_fence_building_space(space):
+            return self._available_fences() >= 1
         if level <= 3:
             return self._available_houses() >= 1
         return self._available_hotels() >= 1
 
     def _can_lower_building_level(self, space_id: str) -> bool:
         """Check supply constraints for -1 building level."""
+        space = self.active_space_by_id.get(space_id)
+        if space is None:
+            return False
         level = self._building_level(space_id)
         if level <= 0:
             return False
+        if self._is_fence_building_space(space):
+            return True
         if level <= 4:
             return True
         return self._available_houses() >= 4
@@ -3567,8 +4079,8 @@ class MonopolyGame(ActionGuardMixin, Game):
                 continue
             level = self._building_level(space_id)
             if self._is_street_property(space) and level > 0:
-                total += max(0, space.house_cost // 2) * level
-            if space_id not in self.mortgaged_space_ids:
+                total += max(0, self._building_cost(space) // 2) * level
+            if space_id not in self.mortgaged_space_ids and space_id in self._mortgage_space_ids(player):
                 total += self._mortgage_value(space)
         return total
 
@@ -3586,7 +4098,11 @@ class MonopolyGame(ActionGuardMixin, Game):
         space = self.active_space_by_id.get(space_id)
         if not space or space.kind not in PURCHASABLE_KINDS:
             return False
-        if self._is_street_property(space) and self._group_has_any_buildings(space.color_group):
+        if (
+            self._is_street_property(space)
+            and not self._is_fence_building_space(space)
+            and self._group_has_any_buildings(space.color_group)
+        ):
             return False
         return True
 
@@ -4233,14 +4749,20 @@ class MonopolyGame(ActionGuardMixin, Game):
         """Compute official-ish rent for a landed space."""
         if self._is_junior_preset():
             return self._calculate_junior_rent_due(space, owner_id, dice_total)
+        if self._jurassic_park_is_damaged(space.space_id):
+            return 0
         if self._is_street_property(space):
             level = self._building_level(space.space_id)
             if space.rents:
                 if level > 0:
+                    if self._is_fence_building_space(space):
+                        return self._jurassic_park_fenced_rent(space)
                     return space.rents[min(level, len(space.rents) - 1)]
                 base = space.rents[0]
             else:
                 base = space.rent
+            if self._is_fence_building_space(space):
+                return base
             if self._owner_has_full_color_set(owner_id, space.color_group):
                 return base * 2
             return base
@@ -5179,36 +5701,9 @@ class MonopolyGame(ActionGuardMixin, Game):
         player.position = absolute_position % self.active_board_size
 
         if collect_pass_go and absolute_position >= self.active_board_size:
-            pass_go_cash = max(0, self.rule_profile.pass_go_cash)
-            if self._is_electronic_banking_preset() and self.banking_profile:
-                pass_go_cash = max(0, self.banking_profile.pass_go_credit)
-            pass_go_cash = self._resolve_board_pass_go_credit(pass_go_cash)
-            gate_outcome = self._resolve_jurassic_park_gate_outcome()
-            if gate_outcome is not None:
-                gate_event_id, pass_go_cash = gate_outcome
-                self._emit_board_hardware_event(
-                    gate_event_id,
-                    payload={"pass_go_cash": pass_go_cash},
-                )
-            credited = self._credit_player(player, pass_go_cash, "pass_go")
+            credited = self._award_pass_go_credit(player, reason="pass_go")
             if self.city_engine is not None and credited > 0:
                 self.city_engine.record_progress(player.id, credited)
-            pride_rock_event = self._resolve_pride_rock_celebration()
-            if pride_rock_event is not None:
-                self._emit_board_hardware_event(
-                    pride_rock_event,
-                    payload={"pass_go_cash": pass_go_cash},
-                )
-            self._broadcast_monopoly_personal(
-                player,
-                personal_message_id="monopoly-you-pass-go",
-                others_message_id="monopoly-player-pass-go",
-                personal_fallback=f"You passed GO and collected {self._format_money(credited)}.",
-                others_fallback=f"{player.name} passed GO and collected {self._format_money(credited)}.",
-                player=player.name,
-                amount=credited,
-                cash=player.cash,
-            )
         return self._space_at(player.position)
 
     def _draw_card(self, deck_type: str) -> str:
@@ -5670,9 +6165,14 @@ class MonopolyGame(ActionGuardMixin, Game):
                     released_space_ids.append(space_id)
             if not creditor and space_id in self.mortgaged_space_ids:
                 self.mortgaged_space_ids.remove(space_id)
-            # Buildings are liquidated during bankruptcy transfer/release.
-            if space_id in self.building_levels:
+            # Classic buildings are liquidated. Jurassic Park fences stay with
+            # player-to-player transfers but return to the bank with releases.
+            if (
+                space_id in self.building_levels
+                and (not creditor or not self._is_fence_building_space(self._space_by_id_or_none(space_id)))
+            ):
                 self.building_levels[space_id] = 0
+        self._refresh_jurassic_park_complete_sets()
         return transferred_mortgaged_space_ids, released_space_ids
 
     def _clear_bankrupt_player_state(
@@ -5710,6 +6210,7 @@ class MonopolyGame(ActionGuardMixin, Game):
     def _finalize_turn_order_after_bankruptcy(self, player: MonopolyPlayer) -> None:
         """Finalize winner/turn-order state after one player is marked bankrupt."""
         ordered_before = self.turn_players
+        current_before = self.current_player
         try:
             old_index = ordered_before.index(player)
         except ValueError:
@@ -5731,6 +6232,16 @@ class MonopolyGame(ActionGuardMixin, Game):
             return
 
         self.set_turn_players(remaining, reset_index=False)
+        if (
+            isinstance(current_before, MonopolyPlayer)
+            and not current_before.bankrupt
+            and current_before.id != player.id
+        ):
+            try:
+                self.turn_index = remaining.index(current_before)
+            except ValueError:
+                self.turn_index = old_index % len(remaining)
+            return
         self.turn_index = old_index % len(remaining)
         self._reset_turn_state()
         self._start_cheaters_turn(self.current_player)
@@ -5925,20 +6436,9 @@ class MonopolyGame(ActionGuardMixin, Game):
 
     def _resolve_card_advance_to_go_effect(self, player: MonopolyPlayer) -> str:
         player.position = 0
-        pass_go_cash = max(0, self.rule_profile.pass_go_cash)
-        if self._is_electronic_banking_preset() and self.banking_profile:
-            pass_go_cash = max(0, self.banking_profile.pass_go_credit)
-        credited = self._credit_player(player, pass_go_cash, "chance_advance_to_go")
-        self._broadcast_monopoly_personal(
-            player,
-            personal_message_id="monopoly-you-pass-go",
-            others_message_id="monopoly-player-pass-go",
-            personal_fallback=f"You passed GO and collected {self._format_money(credited)}.",
-            others_fallback=f"{player.name} passed GO and collected {self._format_money(credited)}.",
-            player=player.name,
-            amount=credited,
-            cash=player.cash,
-        )
+        credited = self._award_pass_go_credit(player, reason="chance_advance_to_go")
+        if self.city_engine is not None and credited > 0:
+            self.city_engine.record_progress(player.id, credited)
         return "resolved"
 
     def _resolve_card_go_back_three_effect(
@@ -6283,6 +6783,12 @@ class MonopolyGame(ActionGuardMixin, Game):
                 property=landed_space.name,
             )
             return "resolved"
+        if self._jurassic_park_is_damaged(landed_space.space_id):
+            self.broadcast_l(
+                "monopoly-jp-property-no-rent-damaged",
+                property=landed_space.name,
+            )
+            return "resolved"
         return None
 
     def _pay_rent_to_owner_or_bank(
@@ -6438,9 +6944,17 @@ class MonopolyGame(ActionGuardMixin, Game):
         )
 
     def _resolve_tax_space(self, player: MonopolyPlayer, landed_space: MonopolySpace) -> str:
+        amount = TAX_AMOUNTS.get(landed_space.space_id)
+        if amount is None and self.active_board_rule_pack_id:
+            amount = get_penalty_space_amount(
+                self.active_board_rule_pack_id,
+                landed_space.space_id,
+            )
+        if amount is None:
+            return "resolved"
         if not self._apply_bank_payment(
             player,
-            TAX_AMOUNTS[landed_space.space_id],
+            amount,
             tax_name=landed_space.name,
         ):
             return "bankrupt"
@@ -6527,7 +7041,7 @@ class MonopolyGame(ActionGuardMixin, Game):
         if landed_space.kind in PURCHASABLE_KINDS:
             return self._resolve_purchasable_space(player, landed_space, dice_total)
 
-        if landed_space.space_id in TAX_AMOUNTS:
+        if landed_space.space_id in TAX_AMOUNTS or landed_space.kind == "penalty":
             return self._resolve_tax_space(player, landed_space)
 
         if landed_space.kind == "go_to_jail":
@@ -6662,6 +7176,20 @@ class MonopolyGame(ActionGuardMixin, Game):
         """Return sellable street-property ids in board order."""
         return action_options.sell_house_space_ids(self, player)
 
+    def _options_for_repair_property(self, player: Player) -> list[str]:
+        """Menu options for damaged Jurassic Park properties."""
+        return action_options.options_for_repair_property(self, player)
+
+    def _repair_property_space_ids(self, player: Player) -> list[str]:
+        """Return repairable Jurassic Park property ids in board order."""
+        return action_options.repair_property_space_ids(self, player)
+
+    def _bot_select_repair_property(
+        self, player: MonopolyPlayer, options: list[str]
+    ) -> str | None:
+        """Pick one Jurassic Park repair option for a bot."""
+        return action_options.bot_select_repair_property(self, player, options)
+
     def _is_mortgage_property_enabled(self, player: Player) -> str | None:
         """Enable mortgage action when player owns eligible properties."""
         return action_guards.is_mortgage_property_enabled(self, player)
@@ -6693,6 +7221,14 @@ class MonopolyGame(ActionGuardMixin, Game):
     def _is_sell_house_hidden(self, player: Player) -> Visibility:
         """Show sell action when options exist."""
         return action_guards.is_sell_house_hidden(self, player)
+
+    def _is_repair_property_enabled(self, player: Player) -> str | None:
+        """Enable Jurassic Park repair when options exist."""
+        return action_guards.is_repair_property_enabled(self, player)
+
+    def _is_repair_property_hidden(self, player: Player) -> Visibility:
+        """Show Jurassic Park repair only when options exist."""
+        return action_guards.is_repair_property_hidden(self, player)
 
     def _is_offer_trade_enabled(self, player: Player) -> str | None:
         """Enable trade offers for active players with at least one valid option."""
@@ -6851,6 +7387,10 @@ class MonopolyGame(ActionGuardMixin, Game):
         """Sell one house/hotel from an owned eligible street property."""
         action_handlers.action_sell_house(self, player, space_id, action_id)
 
+    def _action_repair_property(self, player: Player, space_id: str, action_id: str) -> None:
+        """Repair one damaged Jurassic Park property."""
+        action_handlers.action_repair_property(self, player, space_id, action_id)
+
     def _action_offer_trade(self, player: Player, option: str, action_id: str) -> None:
         """Create a pending trade offer for another player."""
         action_handlers.action_offer_trade(self, player, option, action_id)
@@ -6996,6 +7536,8 @@ class MonopolyGame(ActionGuardMixin, Game):
     def _bot_think_pre_roll_economy(self, player: MonopolyPlayer) -> str | None:
         if self.turn_has_rolled or self.turn_pending_purchase_space_id:
             return None
+        if self._options_for_repair_property(player):
+            return "repair_property"
         liquid_balance = self._current_liquid_balance(player)
         if liquid_balance < 100 and self._options_for_mortgage_property(player):
             return "mortgage_property"
@@ -7134,6 +7676,16 @@ class MonopolyGame(ActionGuardMixin, Game):
             if self.city_profile is not None
             else None
         )
+        self.jurassic_park_profile = resolve_jurassic_park_profile(self.active_board_id)
+        self.jurassic_park_engine = None
+        if self.jurassic_park_profile is not None and self.active_manual_rule_set is not None:
+            self.jurassic_park_engine = JurassicParkEngine(self.jurassic_park_profile)
+            self.jurassic_park_engine.init_from_board_data(
+                {
+                    "board": self.active_manual_rule_set.board,
+                    "economy": self.active_manual_rule_set.economy,
+                }
+            )
         self.voice_banking_profile = (
             resolve_voice_banking_profile(self.active_preset_id)
             if self.active_preset_id == "voice_banking"

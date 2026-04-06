@@ -195,6 +195,8 @@ def is_mortgage_property_enabled(game: MonopolyGame, player: Player) -> str | No
         return "monopoly-already-rolled"
     if game._is_junior_preset():
         return "monopoly-action-disabled-for-preset"
+    if not game._mortgages_enabled_for_active_board():
+        return "monopoly-action-disabled-for-preset"
     mono_player = player  # type: ignore[assignment]
     if mono_player.bankrupt:
         return "monopoly-bankrupt-player"
@@ -205,7 +207,7 @@ def is_mortgage_property_enabled(game: MonopolyGame, player: Player) -> str | No
 
 def is_mortgage_property_hidden(game: MonopolyGame, player: Player) -> Visibility:
     """Show mortgage action when options exist."""
-    if game._is_junior_preset():
+    if game._is_junior_preset() or not game._mortgages_enabled_for_active_board():
         return Visibility.HIDDEN
     return game.turn_action_visibility(
         player,
@@ -232,6 +234,8 @@ def is_unmortgage_property_enabled(game: MonopolyGame, player: Player) -> str | 
         return "monopoly-already-rolled"
     if game._is_junior_preset():
         return "monopoly-action-disabled-for-preset"
+    if not game._mortgages_enabled_for_active_board():
+        return "monopoly-action-disabled-for-preset"
     mono_player = player  # type: ignore[assignment]
     if mono_player.bankrupt:
         return "monopoly-bankrupt-player"
@@ -242,7 +246,7 @@ def is_unmortgage_property_enabled(game: MonopolyGame, player: Player) -> str | 
 
 def is_unmortgage_property_hidden(game: MonopolyGame, player: Player) -> Visibility:
     """Show unmortgage action only when options exist."""
-    if game._is_junior_preset():
+    if game._is_junior_preset() or not game._mortgages_enabled_for_active_board():
         return Visibility.HIDDEN
     return game.turn_action_visibility(
         player,
@@ -319,6 +323,35 @@ def is_sell_house_hidden(game: MonopolyGame, player: Player) -> Visibility:
             or game._is_auction_active()
         )
         and bool(game._options_for_sell_house(player)),
+    )
+
+
+def is_repair_property_enabled(game: MonopolyGame, player: Player) -> str | None:
+    """Enable Jurassic Park repair action when the player owns damaged property."""
+    error = game.guard_turn_action_enabled(player)
+    if error:
+        return error
+    if not game._is_jurassic_park_manual_core_active():
+        return "monopoly-action-disabled-for-preset"
+    if game.turn_has_rolled:
+        return "monopoly-already-rolled"
+    if game.turn_pending_purchase_space_id:
+        return "monopoly-resolve-property-first"
+    mono_player = player  # type: ignore[assignment]
+    if mono_player.bankrupt:
+        return "monopoly-bankrupt-player"
+    if not game._options_for_repair_property(player):
+        return "monopoly-action-disabled-for-preset"
+    return None
+
+
+def is_repair_property_hidden(game: MonopolyGame, player: Player) -> Visibility:
+    """Show repair only on Jurassic Park turns with at least one repair option."""
+    if not game._is_jurassic_park_manual_core_active():
+        return Visibility.HIDDEN
+    return game.turn_action_visibility(
+        player,
+        extra_condition=not game.turn_has_rolled and bool(game._options_for_repair_property(player)),
     )
 
 

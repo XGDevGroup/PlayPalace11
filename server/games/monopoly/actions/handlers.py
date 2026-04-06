@@ -631,7 +631,7 @@ def action_build_house(game: MonopolyGame, player: Player, space_id: str, action
     if not space or not game._is_street_property(space):
         return
 
-    cost = max(0, space.house_cost)
+    cost = game._building_cost(space)
     if game._current_liquid_balance(mono_player) < cost:
         return
     if game.rule_profile.builder_block_required_for_build and mono_player.builder_blocks <= 0:
@@ -651,7 +651,18 @@ def action_build_house(game: MonopolyGame, player: Player, space_id: str, action
             player=mono_player.name,
             blocks=mono_player.builder_blocks,
         )
-    if new_level >= 5:
+    if game._is_fence_building_space(space):
+        game._broadcast_monopoly_personal(
+            mono_player,
+            personal_message_id="monopoly-you-house-built-fence",
+            others_message_id="monopoly-player-house-built-fence",
+            personal_fallback=f"You built a fence on {space.name} for {game._format_money(paid)}.",
+            others_fallback=f"{mono_player.name} built a fence on {space.name} for {game._format_money(paid)}.",
+            player=mono_player.name,
+            property=space.name,
+            amount=paid,
+        )
+    elif new_level >= 5:
         game._broadcast_monopoly_personal(
             mono_player,
             personal_message_id="monopoly-you-house-built-hotel",
@@ -717,25 +728,37 @@ def action_sell_house(game: MonopolyGame, player: Player, space_id: str, action_
     if not game._can_lower_building_level(resolved_space_id):
         return
 
-    value = max(0, space.house_cost // 2)
+    value = max(0, game._building_cost(space) // 2)
     game._set_building_level(resolved_space_id, current_level - 1)
     new_level = game._building_level(resolved_space_id)
     credited = game._credit_player(mono_player, value, f"sell_building:{space.space_id}")
-    game._broadcast_monopoly_personal(
-        mono_player,
-        personal_message_id="monopoly-you-house-sold",
-        others_message_id="monopoly-player-house-sold",
-        personal_fallback=(
-            f"You sold a building on {space.name} for {game._format_money(credited)} (level: {new_level})."
-        ),
-        others_fallback=(
-            f"{mono_player.name} sold a building on {space.name} for {game._format_money(credited)} (level: {new_level})."
-        ),
-        player=mono_player.name,
-        property=space.name,
-        amount=credited,
-        level=new_level,
-    )
+    if game._is_fence_building_space(space):
+        game._broadcast_monopoly_personal(
+            mono_player,
+            personal_message_id="monopoly-you-house-sold-fence",
+            others_message_id="monopoly-player-house-sold-fence",
+            personal_fallback=f"You sold the fence on {space.name} for {game._format_money(credited)}.",
+            others_fallback=f"{mono_player.name} sold the fence on {space.name} for {game._format_money(credited)}.",
+            player=mono_player.name,
+            property=space.name,
+            amount=credited,
+        )
+    else:
+        game._broadcast_monopoly_personal(
+            mono_player,
+            personal_message_id="monopoly-you-house-sold",
+            others_message_id="monopoly-player-house-sold",
+            personal_fallback=(
+                f"You sold a building on {space.name} for {game._format_money(credited)} (level: {new_level})."
+            ),
+            others_fallback=(
+                f"{mono_player.name} sold a building on {space.name} for {game._format_money(credited)} (level: {new_level})."
+            ),
+            player=mono_player.name,
+            property=space.name,
+            amount=credited,
+            level=new_level,
+        )
 
     game._sync_cash_scores()
     game._try_resolve_pending_rent_payment(mono_player)
@@ -747,6 +770,61 @@ def action_sell_house(game: MonopolyGame, player: Player, space_id: str, action_
         game._reopen_action_options_menu(
             player,
             pending_action_id="sell_house",
+            options=remaining_options,
+        )
+        return
+    game.rebuild_all_menus()
+
+
+def action_repair_property(game: MonopolyGame, player: Player, space_id: str, action_id: str) -> None:
+    """Repair one damaged Jurassic Park property before rolling."""
+    _ = action_id
+    if not game._is_jurassic_park_manual_core_active() or game.jurassic_park_engine is None:
+        return
+    mono_player = player  # type: ignore[assignment]
+    repair_space_ids = game._repair_property_space_ids(player)
+    resolved_space_id = _resolve_property_amount_selection(
+        game,
+        player,
+        space_id,
+        option_builder="_options_for_repair_property",
+        space_ids=repair_space_ids,
+    )
+    if resolved_space_id not in repair_space_ids:
+        return
+    space = game.active_space_by_id.get(resolved_space_id)
+    if space is None:
+        return
+
+    cost = game._jurassic_park_repair_cost(resolved_space_id)
+    if cost <= 0 or game._current_liquid_balance(mono_player) < cost:
+        return
+
+    paid = game._debit_player_to_bank(
+        mono_player,
+        cost,
+        f"jurassic_park_repair:{resolved_space_id}",
+    )
+    if paid < cost:
+        return
+
+    game.jurassic_park_engine.free_repair(resolved_space_id)
+    game._broadcast_monopoly_personal(
+        mono_player,
+        personal_message_id="monopoly-jp-repair-success-you",
+        others_message_id="monopoly-jp-repair-success",
+        personal_fallback=f"You repair {space.name} for {game._format_money(paid)}.",
+        others_fallback=f"{mono_player.name} repairs {space.name} for {game._format_money(paid)}.",
+        player=mono_player.name,
+        property=space.name,
+        amount=paid,
+    )
+    game._sync_cash_scores()
+    remaining_options = game._options_for_repair_property(player)
+    if remaining_options:
+        game._reopen_action_options_menu(
+            player,
+            pending_action_id="repair_property",
             options=remaining_options,
         )
         return
@@ -985,6 +1063,19 @@ def action_roll_dice(game: MonopolyGame, player: Player, action_id: str) -> None
     game.turn_has_rolled = True
     game.turn_pending_purchase_space_id = ""
     game.play_standard_dice_roll_sound()
+    if game._is_jurassic_park_manual_core_active():
+        if not game._move_jurassic_park_trex(die_1):
+            game._sync_cash_scores()
+            game.rebuild_all_menus()
+            return
+        if game.status != "playing" or game.current_player is None or game.current_player.id != mono_player.id:
+            game._sync_cash_scores()
+            game.rebuild_all_menus()
+            return
+        if mono_player.bankrupt:
+            game._sync_cash_scores()
+            game.rebuild_all_menus()
+            return
     if mono_player.in_jail:
         if game._is_junior_super_mario_manual_core_active():
             if mono_player.get_out_of_jail_cards > 0:
