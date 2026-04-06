@@ -78,14 +78,18 @@ def _repo_root() -> Path:
     return Path(__file__).resolve().parents[3]
 
 
-def _client_sound_path(relative_asset: str) -> Path:
-    """Return absolute path to a client sound asset path."""
-    return _repo_root() / "client" / "sounds" / relative_asset
+def _client_sound_roots() -> tuple[Path, ...]:
+    """Return candidate client sound roots for source and legacy layouts."""
+    repo_root = _repo_root()
+    return (
+        repo_root / "clients" / "desktop" / "sounds",
+        repo_root / "client" / "sounds",
+    )
 
 
 def _sound_asset_exists(relative_asset: str) -> bool:
-    """Return True when an asset exists in client/sounds."""
-    return _client_sound_path(relative_asset).is_file()
+    """Return True when an asset exists in any supported client sound tree."""
+    return any((root / relative_asset).is_file() for root in _client_sound_roots())
 
 
 def resolve_hardware_sound_asset(event_id: str) -> tuple[str, str]:
