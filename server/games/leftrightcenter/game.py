@@ -18,6 +18,7 @@ from ...game_utils.bot_helper import BotHelper
 from ...game_utils.game_result import GameResult, PlayerResult
 from ...game_utils.options import IntOption, option_field
 from ...messages.localization import Localization
+from ...game_utils.game_status import GameStatus
 from server.core.ui.keybinds import KeybindState
 
 
@@ -164,7 +165,7 @@ class LeftRightCenterGame(ActionGuardMixin, Game):
     # ==========================================================================
 
     def on_start(self) -> None:
-        self.status = "playing"
+        self.status = GameStatus.PLAYING
         self.game_active = True
         self.round = 0
         self.center_pot = 0

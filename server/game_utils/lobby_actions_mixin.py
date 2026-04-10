@@ -2,6 +2,8 @@
 
 from typing import TYPE_CHECKING, Any
 
+from .game_status import GameStatus
+
 if TYPE_CHECKING:
     from ..games.base import Player
     from server.core.users.base import User
@@ -83,6 +85,7 @@ class LobbyActionsMixin:
 
         # Start the game (subclasses implement this)
         self.on_start()
+        self.validate_actions()
 
     def _bot_input_add_bot(self, player: "Player") -> str | None:
         """Get bot name for add_bot action."""
@@ -266,7 +269,7 @@ class LobbyActionsMixin:
     def initialize_lobby(self, host_name: str, host_user: "User") -> None:
         """Initialize the game in lobby mode with a host."""
         self.host = host_name
-        self.status = "waiting"
+        self.status = GameStatus.WAITING
         self.setup_keybinds()
         self.add_player(host_name, host_user)
         if hasattr(self, "_reset_transcripts"):
@@ -292,7 +295,7 @@ class LobbyActionsMixin:
 
     def add_player(self, name: str, user: "User") -> "Player":
         """Add a player to the game."""
-        is_bot = hasattr(user, "is_bot") and user.is_bot
+        is_bot = user.is_bot
         is_virtual_bot = getattr(user, "is_virtual_bot", False)
         player = self.create_player(user.uuid, name, is_bot=is_bot)
         player.is_virtual_bot = is_virtual_bot

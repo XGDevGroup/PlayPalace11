@@ -47,7 +47,7 @@ class RoundTransitionTimer:
             pause_message: Localization key for pause announcement.
         """
         self._game = game
-        self._delay_ticks = int(delay_seconds * 20)  # 20 ticks per second (50ms tick)
+        self._delay_ticks = int(delay_seconds * 20)  # assumes default tick rate
         self._pause_message = pause_message
 
     @property

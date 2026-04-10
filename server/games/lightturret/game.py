@@ -15,6 +15,7 @@ from ...game_utils.bot_helper import BotHelper
 from ...game_utils.game_result import GameResult, PlayerResult
 from ...game_utils.options import IntOption, option_field, GameOptions
 from ...messages.localization import Localization
+from ...game_utils.game_status import GameStatus
 from server.core.ui.keybinds import KeybindState
 
 
@@ -295,7 +296,7 @@ class LightTurretGame(Game):
 
     def on_start(self) -> None:
         """Called when the game starts."""
-        self.status = "playing"
+        self.status = GameStatus.PLAYING
         self.game_active = True
         self.round = 0
 
@@ -433,7 +434,7 @@ class LightTurretGame(Game):
         """End the game and announce results."""
         # Mark status as finished to disable turn actions, but keep game_active
         # True until sounds finish playing (so ticks continue)
-        self.status = "finished"
+        self.status = GameStatus.FINISHED
 
         self.broadcast_l("lightturret-game-over")
 

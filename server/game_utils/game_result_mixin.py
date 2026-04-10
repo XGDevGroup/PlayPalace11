@@ -2,6 +2,8 @@
 
 from typing import TYPE_CHECKING, Any
 
+from .game_status import GameStatus
+
 if TYPE_CHECKING:
     from ..games.base import Player
     from server.core.users.base import User
@@ -38,7 +40,7 @@ class GameResultMixin:
                              Set to False if you want to show it manually.
         """
         self.game_active = False
-        self.status = "finished"
+        self.status = GameStatus.FINISHED
 
         # Build and persist the game result
         result = self.build_game_result()

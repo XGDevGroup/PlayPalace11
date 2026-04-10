@@ -15,6 +15,7 @@ from ..registry import register_game
 from ...game_utils.bot_helper import BotHelper
 from ...game_utils.game_result import GameResult, PlayerResult
 from ...game_utils.actions import Action, ActionSet, Visibility
+from ...game_utils.game_status import GameStatus
 from server.core.ui.keybinds import KeybindState
 from ...messages.localization import Localization
 
@@ -334,7 +335,7 @@ class ChaosBearGame(Game):
 
     def on_start(self) -> None:
         """Called when the game starts."""
-        self.status = "playing"
+        self.status = GameStatus.PLAYING
         self.game_active = True
         self.round_number = 1
         self.players_moved_this_round = 0

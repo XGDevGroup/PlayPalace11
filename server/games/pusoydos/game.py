@@ -23,6 +23,7 @@ from ...game_utils.cards import Card, Deck, DeckFactory, card_name, read_cards
 from ...game_utils.turn_timer_mixin import TurnTimerMixin
 from ...game_utils.poker_timer import PokerTurnTimer
 from ...messages.localization import Localization
+from ...game_utils.game_status import GameStatus
 from server.core.ui.keybinds import KeybindState
 
 from .evaluator import Combo, evaluate_combo, detect_instant_win, sort_cards, card_value
@@ -321,7 +322,7 @@ class PusoyDosGame(Game, TurnTimerMixin):
     # ==========================================================================
 
     def on_start(self) -> None:
-        self.status = "playing"
+        self.status = GameStatus.PLAYING
         self._sync_table_status()
         self.game_active = True
         self.round = 0

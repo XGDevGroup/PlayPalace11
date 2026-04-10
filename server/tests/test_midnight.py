@@ -111,7 +111,7 @@ class TestMidnightGameUnit:
         game.players[0].round_wins = 2
         game.players[0].qualified = True
         game.players[0].dice.values = [1, 2, 3, 4, 5, 6]
-        game.players[0].dice.locked = [0, 3]
+        game.players[0].dice.locked = {0, 3}
         game.round = 3
 
         # Serialize
@@ -134,7 +134,7 @@ class TestMidnightGameUnit:
         assert loaded_game.players[0].round_wins == 2
         assert loaded_game.players[0].qualified is True
         assert loaded_game.players[0].dice.values == [1, 2, 3, 4, 5, 6]
-        assert loaded_game.players[0].dice.locked == [0, 3]
+        assert loaded_game.players[0].dice.locked == {0, 3}
 
 
 class TestMidnightGameActions:
@@ -222,7 +222,7 @@ class TestMidnightGameActions:
         """Test that having 1 and 4 qualifies the player."""
         # Manually set dice values to ensure we have 1 and 4
         self.player1.dice.values = [1, 4, 6, 6, 5, 3]
-        self.player1.dice.locked = [0, 1, 2, 3, 4, 5]  # All locked
+        self.player1.dice.locked = {0, 1, 2, 3, 4, 5}  # All locked
 
         self.game._score_turn(self.player1)
 
@@ -233,7 +233,7 @@ class TestMidnightGameActions:
     def test_disqualification_without_1(self):
         """Test that not having 1 disqualifies."""
         self.player1.dice.values = [2, 4, 6, 6, 5, 3]
-        self.player1.dice.locked = [0, 1, 2, 3, 4, 5]
+        self.player1.dice.locked = {0, 1, 2, 3, 4, 5}
 
         self.game._score_turn(self.player1)
 
@@ -243,7 +243,7 @@ class TestMidnightGameActions:
     def test_disqualification_without_4(self):
         """Test that not having 4 disqualifies."""
         self.player1.dice.values = [1, 2, 6, 6, 5, 3]
-        self.player1.dice.locked = [0, 1, 2, 3, 4, 5]
+        self.player1.dice.locked = {0, 1, 2, 3, 4, 5}
 
         self.game._score_turn(self.player1)
 
@@ -457,7 +457,7 @@ class TestMidnightPersistence:
         game.players[0].round_wins = 2
         game.players[0].qualified = True
         game.players[0].dice.values = [1, 4, 6, 5, 3, 2]
-        game.players[0].dice.locked = [0, 1, 2]
+        game.players[0].dice.locked = {0, 1, 2}
         game.players[1].round_score = 0
         game.players[1].round_wins = 3
         game.players[1].qualified = False
@@ -476,7 +476,7 @@ class TestMidnightPersistence:
         assert loaded.players[0].round_wins == 2
         assert loaded.players[0].qualified is True
         assert loaded.players[0].dice.values == [1, 4, 6, 5, 3, 2]
-        assert loaded.players[0].dice.locked == [0, 1, 2]
+        assert loaded.players[0].dice.locked == {0, 1, 2}
         assert loaded.players[1].round_score == 0
         assert loaded.players[1].round_wins == 3
         assert loaded.players[1].qualified is False

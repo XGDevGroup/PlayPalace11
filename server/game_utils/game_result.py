@@ -76,7 +76,7 @@ class GameResult(DataClassJSONMixin):
         )
 
     def get_duration_seconds(self) -> float:
-        """Get game duration in seconds (20 ticks = 1 second)."""
+        """Get game duration in seconds assuming default tick rate."""
         return self.duration_ticks / 20.0
 
     def get_duration_formatted(self) -> str:

@@ -105,7 +105,7 @@ class TestYahtzeePlayer:
         player = YahtzeePlayer(id="123", name="Test")
         assert player.dice.num_dice == 5
         assert player.dice.has_rolled is False
-        assert player.dice.kept == []
+        assert player.dice.kept == set()
         assert player.rolls_left == 3
         assert all(player.scores.get(cat) is None for cat in ALL_CATEGORIES)
         assert player.yahtzee_bonus_count == 0
@@ -216,8 +216,8 @@ class TestYahtzeeGameUnit:
 
         player.dice.values = [1, 2, 3, 4, 5]
         player.rolls_left = 2
-        player.dice.kept = [0, 1, 2, 3, 4]
-        player.dice.locked = []
+        player.dice.kept = {0, 1, 2, 3, 4}
+        player.dice.locked = set()
 
         visible_ids = [ra.action.id for ra in game.get_all_visible_actions(player)]
         assert "roll" not in visible_ids
@@ -289,13 +289,13 @@ class TestYahtzeeBotStrategy:
 
         player.dice.values = [6, 6, 6, 2, 3]
         player.rolls_left = 2
-        player.dice.kept = []
-        player.dice.locked = []
+        player.dice.kept = set()
+        player.dice.locked = set()
 
         first_action = game.bot_think(player)
         assert first_action == "toggle_die_0"
 
-        player.dice.kept = [0, 1, 2]
+        player.dice.kept = {0, 1, 2}
         second_action = game.bot_think(player)
         assert second_action == "roll"
 

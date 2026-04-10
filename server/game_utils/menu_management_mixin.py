@@ -23,6 +23,17 @@ class MenuManagementMixin:
         get_all_visible_actions(player) -> list[ResolvedAction].
     """
 
+    def _build_action_menu_items(self, player: "Player", user: "User") -> list[MenuItem]:
+        """Build menu items from visible actions for a player."""
+        items: list[MenuItem] = []
+        for resolved in self.get_all_visible_actions(player):
+            label = resolved.label
+            if not resolved.enabled and resolved.action.show_disabled_label:
+                unavailable = Localization.get(user.locale, "visibility-unavailable")
+                label = f"{label}; {unavailable}"
+            items.append(MenuItem(text=label, id=resolved.action.id, sound=resolved.sound))
+        return items
+
     def rebuild_player_menu(self, player: "Player", *, position: int | None = None) -> None:
         """Rebuild the turn menu for a player.
 
@@ -37,23 +48,16 @@ class MenuManagementMixin:
                 this.
         """
         if self._destroyed:
-            return  # Don't rebuild menus after game is destroyed
+            return
         if self.status == "finished":
-            return  # Don't rebuild turn menu after game has ended
+            return
         if player.id in self._status_box_open:
-            return  # Don't clobber status box with turn menu
+            return
         user = self.get_user(player)
         if not user:
             return
 
-        items: list[MenuItem] = []
-        for resolved in self.get_all_visible_actions(player):
-            label = resolved.label
-            if not resolved.enabled and resolved.action.show_disabled_label:
-                unavailable = Localization.get(user.locale, "visibility-unavailable")
-                label = f"{label}; {unavailable}"
-            items.append(MenuItem(text=label, id=resolved.action.id, sound=resolved.sound))
-
+        items = self._build_action_menu_items(player, user)
         user.show_menu(
             "turn_menu",
             items,
@@ -65,7 +69,7 @@ class MenuManagementMixin:
     def rebuild_all_menus(self) -> None:
         """Rebuild menus for all players."""
         if self._destroyed:
-            return  # Don't rebuild menus after game is destroyed
+            return
         for player in self.players:
             self.rebuild_player_menu(player)
 
@@ -81,19 +85,12 @@ class MenuManagementMixin:
         if self.status == "finished":
             return
         if player.id in self._status_box_open:
-            return  # Don't clobber status box with turn menu
+            return
         user = self.get_user(player)
         if not user:
             return
 
-        items: list[MenuItem] = []
-        for resolved in self.get_all_visible_actions(player):
-            label = resolved.label
-            if not resolved.enabled and resolved.action.show_disabled_label:
-                unavailable = Localization.get(user.locale, "visibility-unavailable")
-                label = f"{label}; {unavailable}"
-            items.append(MenuItem(text=label, id=resolved.action.id, sound=resolved.sound))
-
+        items = self._build_action_menu_items(player, user)
         user.update_menu(
             "turn_menu", items, selection_id=selection_id, play_selection_sound=play_selection_sound
         )

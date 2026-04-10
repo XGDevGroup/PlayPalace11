@@ -33,6 +33,7 @@ from ...game_utils.cards import (
 )
 from ...game_utils.options import BoolOption, IntOption, MenuOption, option_field
 from ...messages.localization import Localization
+from ...game_utils.game_status import GameStatus
 from server.core.ui.keybinds import KeybindState
 from .bot import bot_think as _bot_think, evaluate_count as _evaluate_count
 
@@ -520,7 +521,7 @@ class NinetyNineGame(Game):
 
     def on_start(self) -> None:
         """Called when the game starts."""
-        self.status = "playing"
+        self.status = GameStatus.PLAYING
         self.game_active = True
         self.round = 0
 

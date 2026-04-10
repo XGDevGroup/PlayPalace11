@@ -32,8 +32,8 @@ class DiceSet(DataClassJSONMixin):
     num_dice: int = 5
     sides: int = 6
     values: list[int] = field(default_factory=list)
-    kept: list[int] = field(default_factory=list)  # Indices marked to keep
-    locked: list[int] = field(default_factory=list)  # Indices that are locked (can't change)
+    kept: set[int] = field(default_factory=set)
+    locked: set[int] = field(default_factory=set)
 
     def __post_init__(self):
         """Initialize empty values if needed."""
@@ -67,8 +67,8 @@ class DiceSet(DataClassJSONMixin):
     def reset(self) -> None:
         """Reset all dice state for a new turn."""
         self.values = []
-        self.kept = []
-        self.locked = []
+        self.kept = set()
+        self.locked = set()
 
     def roll(self, lock_kept: bool = True, clear_kept: bool = True) -> list[int]:
         """
@@ -91,19 +91,14 @@ class DiceSet(DataClassJSONMixin):
             self.values = [random.randint(1, self.sides) for _ in range(self.num_dice)]  # nosec B311
         else:
             if lock_kept:
-                # Lock the kept dice
-                for i in self.kept:
-                    if i not in self.locked:
-                        self.locked.append(i)
+                self.locked |= self.kept
 
-            # Roll only dice that are neither locked nor kept
             for i in range(self.num_dice):
                 if i not in self.locked and i not in self.kept:
                     self.values[i] = random.randint(1, self.sides)  # nosec B311
 
             if clear_kept:
-                # Reset kept to just locked dice
-                self.kept = list(self.locked)
+                self.kept = set(self.locked)
 
         return self.values
 
@@ -124,8 +119,7 @@ class DiceSet(DataClassJSONMixin):
         """
         if index in self.locked:
             return False
-        if index not in self.kept:
-            self.kept.append(index)
+        self.kept.add(index)
         return True
 
     def unkeep(self, index: int) -> bool:
@@ -137,8 +131,7 @@ class DiceSet(DataClassJSONMixin):
         """
         if index in self.locked:
             return False
-        if index in self.kept:
-            self.kept.remove(index)
+        self.kept.discard(index)
         return True
 
     def toggle_keep(self, index: int) -> bool | None:
@@ -151,10 +144,10 @@ class DiceSet(DataClassJSONMixin):
         if index in self.locked:
             return None
         if index in self.kept:
-            self.kept.remove(index)
+            self.kept.discard(index)
             return False
         else:
-            self.kept.append(index)
+            self.kept.add(index)
             return True
 
     def get_value(self, index: int) -> int | None:
@@ -224,8 +217,8 @@ class DiceSet(DataClassJSONMixin):
             "num_dice": self.num_dice,
             "sides": self.sides,
             "values": self.values,
-            "kept": self.kept,
-            "locked": self.locked,
+            "kept": sorted(self.kept),
+            "locked": sorted(self.locked),
         }
 
     @classmethod
@@ -235,8 +228,8 @@ class DiceSet(DataClassJSONMixin):
             num_dice=data.get("num_dice", 5),
             sides=data.get("sides", 6),
             values=data.get("values", []),
-            kept=data.get("kept", []),
-            locked=data.get("locked", []),
+            kept=set(data.get("kept", [])),
+            locked=set(data.get("locked", [])),
         )
 
 

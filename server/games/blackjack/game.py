@@ -14,6 +14,7 @@ from ...game_utils.game_result import GameResult, PlayerResult
 from ...game_utils.options import BoolOption, IntOption, MenuOption, option_field
 from ...game_utils.poker_timer import PokerTurnTimer
 from ...messages.localization import Localization
+from ...game_utils.game_status import GameStatus
 from server.core.ui.keybinds import KeybindState
 from .bot import bot_think
 
@@ -823,7 +824,7 @@ class BlackjackGame(Game):
     # ======================================================================
 
     def on_start(self) -> None:
-        self.status = "playing"
+        self.status = GameStatus.PLAYING
         self.game_active = True
         self.phase = "settle"
         self.hand_number = 0

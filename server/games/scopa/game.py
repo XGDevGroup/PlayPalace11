@@ -31,6 +31,7 @@ from ...game_utils.options import (
 from ...game_utils.teams import TeamManager
 from ...game_utils.round_timer import RoundTransitionTimer
 from ...messages.localization import Localization
+from ...game_utils.game_status import GameStatus
 from server.core.ui.keybinds import KeybindState
 
 # Modular components
@@ -457,7 +458,7 @@ class ScopaGame(Game):
 
     def on_start(self) -> None:
         """Called when the game starts."""
-        self.status = "playing"
+        self.status = GameStatus.PLAYING
         self.game_active = True
         self.current_round = 0
 

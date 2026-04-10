@@ -8,7 +8,6 @@ from typing import Callable
 
 LOG = logging.getLogger("playpalace.tick")
 
-# Default tick interval
 DEFAULT_TICK_INTERVAL_MS = 50
 
 
@@ -32,10 +31,7 @@ def load_server_config(path: str | Path | None = None) -> dict:
     if not path.exists():
         return {}
 
-    try:
-        import tomllib
-    except ImportError:
-        import tomli as tomllib
+    import tomllib
 
     try:
         with open(path, "rb") as f:
@@ -73,7 +69,6 @@ class TickScheduler:
         self._running = False
         self._task: asyncio.Task | None = None
 
-        # Set tick interval
         if tick_interval_ms is None:
             tick_interval_ms = DEFAULT_TICK_INTERVAL_MS
         self.tick_interval_ms = tick_interval_ms
@@ -98,10 +93,8 @@ class TickScheduler:
         """Main tick loop."""
         while self._running:
             try:
-                # Call tick callback synchronously
                 self._on_tick()
             except Exception:
                 LOG.exception("Error in tick callback")
 
-            # Sleep for tick interval
             await asyncio.sleep(self.tick_interval_s)

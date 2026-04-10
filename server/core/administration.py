@@ -131,6 +131,24 @@ class AdministrationMixin:
         )
         self._user_states[user.username] = {"menu": "admin_menu"}
 
+    def _show_user_list_menu(
+        self, user: NetworkUser, menu_id: str, users, id_prefix: str
+    ) -> None:
+        """Show a menu built from a list of user records.
+
+        Args:
+            user: The admin viewing the menu.
+            menu_id: Menu identifier for the client.
+            users: Iterable of objects with a ``.username`` attribute.
+            id_prefix: Prefix for menu item IDs (e.g. ``"pending"``).
+        """
+        items = [MenuItem(text=u.username, id=f"{id_prefix}_{u.username}") for u in users]
+        items.append(MenuItem(text=Localization.get(user.locale, "back"), id="back"))
+        user.show_menu(
+            menu_id, items, multiletter=True, escape_behavior=EscapeBehavior.SELECT_LAST
+        )
+        self._user_states[user.username] = {"menu": menu_id}
+
     def _show_account_approval_menu(self, user: NetworkUser) -> None:
         """Show account approval menu with pending users."""
         pending = self._db.get_pending_users()
@@ -140,20 +158,7 @@ class AdministrationMixin:
             self._show_admin_menu(user)
             return
 
-        items = []
-        for pending_user in pending:
-            items.append(
-                MenuItem(text=pending_user.username, id=f"pending_{pending_user.username}")
-            )
-        items.append(MenuItem(text=Localization.get(user.locale, "back"), id="back"))
-
-        user.show_menu(
-            "account_approval_menu",
-            items,
-            multiletter=True,
-            escape_behavior=EscapeBehavior.SELECT_LAST,
-        )
-        self._user_states[user.username] = {"menu": "account_approval_menu"}
+        self._show_user_list_menu(user, "account_approval_menu", pending, "pending")
 
     def _show_pending_user_actions_menu(self, user: NetworkUser, pending_username: str) -> None:
         """Show actions for a pending user (approve, decline)."""
@@ -182,18 +187,7 @@ class AdministrationMixin:
             self._show_admin_menu(user)
             return
 
-        items = []
-        for non_admin in non_admins:
-            items.append(MenuItem(text=non_admin.username, id=f"promote_{non_admin.username}"))
-        items.append(MenuItem(text=Localization.get(user.locale, "back"), id="back"))
-
-        user.show_menu(
-            "promote_admin_menu",
-            items,
-            multiletter=True,
-            escape_behavior=EscapeBehavior.SELECT_LAST,
-        )
-        self._user_states[user.username] = {"menu": "promote_admin_menu"}
+        self._show_user_list_menu(user, "promote_admin_menu", non_admins, "promote")
 
     def _show_demote_admin_menu(self, user: NetworkUser) -> None:
         """Show demote admin menu with list of admin users."""
@@ -208,18 +202,7 @@ class AdministrationMixin:
             self._show_admin_menu(user)
             return
 
-        items = []
-        for admin in admins:
-            items.append(MenuItem(text=admin.username, id=f"demote_{admin.username}"))
-        items.append(MenuItem(text=Localization.get(user.locale, "back"), id="back"))
-
-        user.show_menu(
-            "demote_admin_menu",
-            items,
-            multiletter=True,
-            escape_behavior=EscapeBehavior.SELECT_LAST,
-        )
-        self._user_states[user.username] = {"menu": "demote_admin_menu"}
+        self._show_user_list_menu(user, "demote_admin_menu", admins, "demote")
 
     def _show_promote_confirm_menu(self, user: NetworkUser, target_username: str) -> None:
         """Show confirmation menu for promoting a user to admin."""
@@ -270,18 +253,7 @@ class AdministrationMixin:
             self._show_admin_menu(user)
             return
 
-        items = []
-        for admin in admins:
-            items.append(MenuItem(text=admin.username, id=f"transfer_{admin.username}"))
-        items.append(MenuItem(text=Localization.get(user.locale, "back"), id="back"))
-
-        user.show_menu(
-            "transfer_ownership_menu",
-            items,
-            multiletter=True,
-            escape_behavior=EscapeBehavior.SELECT_LAST,
-        )
-        self._user_states[user.username] = {"menu": "transfer_ownership_menu"}
+        self._show_user_list_menu(user, "transfer_ownership_menu", admins, "transfer")
 
     def _show_transfer_ownership_confirm_menu(
         self, user: NetworkUser, target_username: str
@@ -324,18 +296,7 @@ class AdministrationMixin:
             self._show_admin_menu(user)
             return
 
-        items = []
-        for bannable_user in bannable_users:
-            items.append(MenuItem(text=bannable_user.username, id=f"ban_{bannable_user.username}"))
-        items.append(MenuItem(text=Localization.get(user.locale, "back"), id="back"))
-
-        user.show_menu(
-            "ban_user_menu",
-            items,
-            multiletter=True,
-            escape_behavior=EscapeBehavior.SELECT_LAST,
-        )
-        self._user_states[user.username] = {"menu": "ban_user_menu"}
+        self._show_user_list_menu(user, "ban_user_menu", bannable_users, "ban")
 
     def _show_unban_user_menu(self, user: NetworkUser) -> None:
         """Show unban user menu with list of banned users."""
@@ -346,18 +307,7 @@ class AdministrationMixin:
             self._show_admin_menu(user)
             return
 
-        items = []
-        for banned_user in banned_users:
-            items.append(MenuItem(text=banned_user.username, id=f"unban_{banned_user.username}"))
-        items.append(MenuItem(text=Localization.get(user.locale, "back"), id="back"))
-
-        user.show_menu(
-            "unban_user_menu",
-            items,
-            multiletter=True,
-            escape_behavior=EscapeBehavior.SELECT_LAST,
-        )
-        self._user_states[user.username] = {"menu": "unban_user_menu"}
+        self._show_user_list_menu(user, "unban_user_menu", banned_users, "unban")
 
     def _show_ban_confirm_menu(self, user: NetworkUser, target_username: str) -> None:
         """Show confirmation menu for banning a user."""

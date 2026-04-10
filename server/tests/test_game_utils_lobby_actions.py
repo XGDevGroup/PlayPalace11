@@ -86,6 +86,7 @@ class DummyLobbyGame(LobbyActionsMixin):
         self.attached_users: list[tuple[str, StubUser]] = []
         self.on_start_called = False
         self._prestart_errors: list = []
+        self._keybinds: dict = {}
 
     # Helpers expected by mixin -------------------------------------------------
     def prestart_validate(self):
@@ -93,6 +94,9 @@ class DummyLobbyGame(LobbyActionsMixin):
 
     def on_start(self):
         self.on_start_called = True
+
+    def validate_actions(self):
+        pass
 
     def create_player(self, player_uuid: str, name: str, is_bot: bool = False):
         return Player(id=player_uuid, name=name, is_bot=is_bot)

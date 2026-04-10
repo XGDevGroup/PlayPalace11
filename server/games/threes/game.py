@@ -513,7 +513,7 @@ class ThreesGame(ActionGuardMixin, RoundBasedGameMixin, Game, DiceGameMixin):
         dice = player.dice
 
         # Clear current kept dice (except locked ones)
-        dice.kept = list(dice.locked)
+        dice.kept = set(dice.locked)
 
         # Group available dice by value
         available: dict[int, list[int]] = {}  # value -> list of indices

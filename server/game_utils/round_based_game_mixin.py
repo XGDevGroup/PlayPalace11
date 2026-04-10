@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from typing import ClassVar
 
+from server.game_utils.game_status import GameStatus
+
 
 class RoundBasedGameMixin:
     """Shared lifecycle for round-based turn-taking games.
@@ -68,7 +70,7 @@ class RoundBasedGameMixin:
 
     def on_start(self) -> None:
         """Initialize game state and start first round."""
-        self.status = "playing"
+        self.status = GameStatus.PLAYING
         self.game_active = True
         self.round = 0
 

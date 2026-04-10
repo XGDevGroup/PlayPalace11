@@ -10,6 +10,7 @@ from ...game_utils.actions import Action, ActionSet, Visibility
 from ...game_utils.bot_helper import BotHelper
 from ...game_utils.options import BoolOption, GameOptions, MenuOption, option_field
 from ...messages.localization import Localization
+from ...game_utils.game_status import GameStatus
 from server.core.ui.keybinds import KeybindState
 from .bot import choose_move
 from .moves import (
@@ -453,7 +454,7 @@ class SorryGame(Game):
 
     def _finish_game(self, winner: Player) -> None:
         self.game_active = False
-        self.status = "finished"
+        self.status = GameStatus.FINISHED
         self.play_sound("game_pig/wingame.ogg")
         self.broadcast_l("game-winner", player=winner.name)
         self.rebuild_all_menus()
@@ -822,7 +823,7 @@ class SorryGame(Game):
         """Start the game."""
         self._resolve_rules_profile_id()
         rules = self.get_rules_profile()
-        self.status = "playing"
+        self.status = GameStatus.PLAYING
         self.game_active = True
         self.round = 0
 

@@ -5,6 +5,7 @@ Provides Card, Deck, and DeckFactory classes that can be used by any card game.
 """
 
 from dataclasses import dataclass, field
+from enum import IntEnum
 import random
 
 from mashumaro.mixins.json import DataClassJSONMixin
@@ -12,20 +13,43 @@ from mashumaro.mixins.json import DataClassJSONMixin
 from ..messages.localization import Localization
 
 
-# Suit constants
-SUIT_NONE = 0  # For games with no suits (e.g., RS Games Ninety-Nine)
-SUIT_DIAMONDS = 1
-SUIT_CLUBS = 2
-SUIT_HEARTS = 3
-SUIT_SPADES = 4
+class Suit(IntEnum):
+    """Card suit constants.
 
-# RS Games special card ranks (for Ninety-Nine RS Games variant)
-RS_RANK_PLUS_10 = 14
-RS_RANK_MINUS_10 = 15
-RS_RANK_PASS = 16
-RS_RANK_REVERSE = 17
-RS_RANK_SKIP = 18
-RS_RANK_NINETY_NINE = 19
+    IntEnum preserves arithmetic and comparison with bare ints.
+    """
+
+    NONE = 0
+    DIAMONDS = 1
+    CLUBS = 2
+    HEARTS = 3
+    SPADES = 4
+
+
+class SpecialRank(IntEnum):
+    """RS Games special card ranks (for Ninety-Nine RS Games variant)."""
+
+    PLUS_10 = 14
+    MINUS_10 = 15
+    PASS = 16
+    REVERSE = 17
+    SKIP = 18
+    NINETY_NINE = 19
+
+
+# Backward-compatible aliases
+SUIT_NONE = Suit.NONE
+SUIT_DIAMONDS = Suit.DIAMONDS
+SUIT_CLUBS = Suit.CLUBS
+SUIT_HEARTS = Suit.HEARTS
+SUIT_SPADES = Suit.SPADES
+
+RS_RANK_PLUS_10 = SpecialRank.PLUS_10
+RS_RANK_MINUS_10 = SpecialRank.MINUS_10
+RS_RANK_PASS = SpecialRank.PASS
+RS_RANK_REVERSE = SpecialRank.REVERSE
+RS_RANK_SKIP = SpecialRank.SKIP
+RS_RANK_NINETY_NINE = SpecialRank.NINETY_NINE
 
 
 @dataclass

@@ -1,8 +1,9 @@
 """Base game class and player dataclass."""
 
 from dataclasses import dataclass, field
-from typing import Any, ClassVar
+from typing import Any, ClassVar, TYPE_CHECKING, Protocol, runtime_checkable
 from abc import ABC, abstractmethod
+import logging
 import threading
 
 from mashumaro.mixins.json import DataClassJSONMixin
@@ -31,6 +32,7 @@ from ..game_utils.event_handling_mixin import EventHandlingMixin
 from ..game_utils.action_set_creation_mixin import ActionSetCreationMixin
 from ..game_utils.action_execution_mixin import ActionExecutionMixin
 from ..game_utils.action_set_system_mixin import ActionSetSystemMixin
+from ..game_utils.game_status import GameStatus  # noqa: F401 - re-exported
 from server.core.ui.keybinds import Keybind
 
 
@@ -82,6 +84,35 @@ class Player(DataClassJSONMixin):
 GameOptions = DeclarativeGameOptions
 
 
+if TYPE_CHECKING:
+
+    @runtime_checkable
+    class GameProtocol(Protocol):
+        """Protocol documenting the interface that Game mixins expect.
+
+        This is a compile-time-only contract. Each mixin in the Game class
+        assumes these attributes and methods exist on ``self``. Defining them
+        here lets type-checkers verify that the concrete Game class (and its
+        subclasses) satisfy the contract.
+        """
+
+        players: list[Player]
+        status: str
+        game_active: bool
+        host: str
+        round: int
+        turn_index: int
+        turn_direction: int
+
+        def get_user(self, player: Player) -> User | None: ...
+        def broadcast_l(self, message_id: str, **kwargs: Any) -> None: ...
+        def broadcast_personal_l(
+            self, player: Player, message_id: str, **kwargs: Any
+        ) -> None: ...
+        def advance_turn(self) -> None: ...
+        def finish_game(self) -> None: ...
+
+
 @dataclass
 class Game(
     ABC,
@@ -131,7 +162,7 @@ class Game(
     players: list[Player] = field(default_factory=list)
     round: int = 0
     game_active: bool = False
-    status: str = "waiting"  # waiting, playing, finished
+    status: str = GameStatus.WAITING
     host: str = ""  # Username of the host
     current_music: str = ""  # Currently playing music track
     current_ambience: str = ""  # Currently playing ambience loop
@@ -189,6 +220,25 @@ class Game(
         they do not require rebuilding.
         """
         pass
+
+    def validate_actions(self) -> None:
+        """Verify all action handler/callback strings resolve to methods.
+
+        Logs warnings for any handler strings that cannot be found on the
+        game instance via ``getattr``.  Called after ``on_start()`` so that
+        typos in handler names are caught early during development.
+        """
+        _LOG = logging.getLogger("playpalace.actions")
+        for action_sets in self.player_action_sets.values():
+            for action_set in action_sets:
+                for action in action_set._actions.values():
+                    for attr_name in ("handler", "is_enabled", "is_hidden", "get_label", "get_sound"):
+                        method_name = getattr(action, attr_name, None)
+                        if method_name and getattr(self, method_name, None) is None:
+                            _LOG.warning(
+                                "Action '%s': %s='%s' does not resolve on %s",
+                                action.id, attr_name, method_name, type(self).__name__,
+                            )
 
     # Abstract methods games must implement
 

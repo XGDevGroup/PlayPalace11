@@ -26,6 +26,7 @@ from ...game_utils.dice_game_mixin import DiceGameMixin
 from ...game_utils.game_result import GameResult, PlayerResult
 from ...game_utils.options import IntOption, option_field
 from ...messages.localization import Localization
+from ...game_utils.game_status import GameStatus
 from server.core.ui.keybinds import KeybindState
 
 
@@ -614,7 +615,7 @@ class YahtzeeGame(ActionGuardMixin, Game, DiceGameMixin):
 
     def on_start(self) -> None:
         """Called when the game starts."""
-        self.status = "playing"
+        self.status = GameStatus.PLAYING
         self.game_active = True
         self.current_game = 0
         self.games_played = 0

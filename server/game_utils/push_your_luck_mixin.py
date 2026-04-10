@@ -20,14 +20,14 @@ class PushYourLuckBotMixin:
             return
 
         player = getattr(self, "current_player", None)
-        if player and getattr(player, "is_bot", False) and BotHelper.get_target(player) is None:
+        if player and player.is_bot and BotHelper.get_target(player) is None:
             self._set_push_bot_target(player)
 
         BotHelper.on_tick(self)
 
     def prepare_push_bot_turn(self, player) -> None:
         """Call at start of a bot's turn to (re)initialize its target."""
-        if player and getattr(player, "is_bot", False):
+        if player and player.is_bot:
             self._set_push_bot_target(player)
 
     # ------------------------------------------------------------------

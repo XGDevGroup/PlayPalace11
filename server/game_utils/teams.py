@@ -8,14 +8,9 @@ scoring, and elimination (for inverse game modes).
 from collections import OrderedDict
 from collections.abc import Mapping
 from dataclasses import dataclass, field
-from typing import TYPE_CHECKING
-
 from mashumaro.mixins.json import DataClassJSONMixin
 
 from ..messages.localization import Localization
-
-if TYPE_CHECKING:
-    pass
 
 
 @dataclass

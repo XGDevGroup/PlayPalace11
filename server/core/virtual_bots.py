@@ -42,7 +42,7 @@ class VirtualBotConfig:
 
     names: list[str] = field(default_factory=list)
 
-    # Timing (in ticks, 50ms each = 20 ticks/sec)
+    # Timing (in ticks; tick rate configured via server settings)
     min_idle_ticks: int = 100  # 5 sec minimum between actions when idle
     max_idle_ticks: int = 600  # 30 sec maximum between actions when idle
     min_online_ticks: int = 1200  # 1 min minimum online before considering going offline
@@ -188,10 +188,7 @@ class VirtualBotManager:
             print(f"Virtual bots config not found at {path}, using defaults")
             return
 
-        try:
-            import tomllib
-        except ImportError:
-            import tomli as tomllib
+        import tomllib
 
         with open(path, "rb") as f:
             data = tomllib.load(f)
@@ -211,31 +208,18 @@ class VirtualBotManager:
         except ValueError as exc:
             raise ValueError(f"Invalid allocation_mode '{allocation_mode}'") from exc
 
-        self._config = VirtualBotConfig(
-            names=vb_config.get("names", []),
-            min_idle_ticks=vb_config.get("min_idle_ticks", 100),
-            max_idle_ticks=vb_config.get("max_idle_ticks", 600),
-            min_online_ticks=vb_config.get("min_online_ticks", 1200),
-            max_online_ticks=vb_config.get("max_online_ticks", 6000),
-            min_offline_ticks=vb_config.get("min_offline_ticks", 600),
-            max_offline_ticks=vb_config.get("max_offline_ticks", 3000),
-            leave_game_delay_ticks=vb_config.get("leave_game_delay_ticks", 200),
-            start_game_delay_ticks=vb_config.get("start_game_delay_ticks", 400),
-            join_game_chance=vb_config.get("join_game_chance", 0.3),
-            create_game_chance=vb_config.get("create_game_chance", 0.1),
-            go_offline_chance=vb_config.get("go_offline_chance", 0.05),
-            logout_after_game_chance=vb_config.get("logout_after_game_chance", 0.33),
-            logout_after_game_min_ticks=vb_config.get("logout_after_game_min_ticks", 40),
-            logout_after_game_max_ticks=vb_config.get("logout_after_game_max_ticks", 100),
-            max_tables_per_game=vb_config.get("max_tables_per_game", 0),
-            min_bots_per_table=vb_config.get("min_bots_per_table", 0),
-            max_bots_per_table=vb_config.get("max_bots_per_table", 0),
-            waiting_min_ticks=vb_config.get("waiting_min_ticks", 40),
-            waiting_max_ticks=vb_config.get("waiting_max_ticks", 100),
-            fallback_behavior=fallback_enum,
-            default_profile=vb_config.get("default_profile", "default"),
-            allocation_mode=allocation_enum,
-        )
+        import dataclasses as _dc
+
+        _SKIP = {"fallback_behavior", "allocation_mode"}
+        kwargs: dict[str, Any] = {
+            "fallback_behavior": fallback_enum,
+            "allocation_mode": allocation_enum,
+        }
+        for f in _dc.fields(VirtualBotConfig):
+            if f.name in _SKIP or f.name not in vb_config:
+                continue
+            kwargs[f.name] = vb_config[f.name]
+        self._config = VirtualBotConfig(**kwargs)
 
         if not self._config.names:
             raise ValueError("virtual_bots.names must list at least one bot")

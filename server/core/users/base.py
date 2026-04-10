@@ -77,6 +77,11 @@ class User(ABC):
         ...
 
     @property
+    def is_bot(self) -> bool:
+        """Whether this user is a bot. Overridden by Bot subclass."""
+        return False
+
+    @property
     def trust_level(self) -> TrustLevel:
         """The user's trust level. Defaults to USER if not overridden."""
         return TrustLevel.USER

@@ -5,9 +5,14 @@ from typing import TYPE_CHECKING, Any
 
 from mashumaro.mixins.json import DataClassJSONMixin
 
+from server.game_utils.game_status import GameStatus
+
 if TYPE_CHECKING:
     from server.games.base import Game
     from server.core.users.base import User
+    from server.core.tables.manager import TableManager
+    from server.core.server import Server
+    from server.persistence.database import Database
 
 
 @dataclass
@@ -36,14 +41,14 @@ class Table(DataClassJSONMixin):
     host: str
     members: list[TableMember] = field(default_factory=list)
     game_json: str | None = None  # Serialized game state
-    status: str = "waiting"  # waiting, playing, finished
+    status: str = GameStatus.WAITING
 
     # Not serialized
     _game: "Game | None" = field(default=None, repr=False)
     _users: dict[str, "User"] = field(default_factory=dict, repr=False)
-    _manager: Any = field(default=None, repr=False)  # Reference to TableManager
-    _server: Any = field(default=None, repr=False)  # Reference to Server (for saves)
-    _db: Any = field(default=None, repr=False)  # Reference to Database (for ratings)
+    _manager: "TableManager | None" = field(default=None, repr=False)
+    _server: "Server | None" = field(default=None, repr=False)
+    _db: "Database | None" = field(default=None, repr=False)
 
     def __post_init__(self):
         """Initialize non-serialized runtime references."""

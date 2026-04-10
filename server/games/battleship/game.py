@@ -23,6 +23,7 @@ from ...game_utils.options import MenuOption, BoolOption, option_field
 from ...game_utils.poker_timer import PokerTurnTimer
 from ...game_utils.turn_timer_mixin import TurnTimerMixin
 from ...messages.localization import Localization
+from ...game_utils.game_status import GameStatus
 from server.core.ui.keybinds import KeybindState
 from server.core.users.base import MenuItem, EscapeBehavior
 from .bot import bot_think as _bot_think
@@ -521,7 +522,7 @@ class BattleshipGame(GridGameMixin, TurnTimerMixin, Game):
         size = int(self.options.grid_size)
         self.grid_rows = size
         self.grid_cols = size
-        self.status = "playing"
+        self.status = GameStatus.PLAYING
         self._sync_table_status()
         self.game_active = True
 

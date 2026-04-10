@@ -162,8 +162,8 @@ class TestActionIdPassing:
         user.preferences.dice_keeping_style = DiceKeepingStyle.QUENTIN_C
 
         player.dice.values = [1, 5, 2, 3, 6]
-        player.dice.kept = []
-        player.dice.locked = []
+        player.dice.kept = set()
+        player.dice.locked = set()
 
         game._handle_dice_key(player, 5)
         assert 1 in player.dice.kept
@@ -181,7 +181,7 @@ class TestActionIdPassing:
 
         game.execute_action(player, "roll")
         assert player.dice.has_rolled
-        assert player.dice.kept == list(player.dice.locked)
+        assert player.dice.kept == set(player.dice.locked)
 
     def test_dice_values_mode_key_stays_enabled_when_first_die_locked(self):
         """Values mode key checks should not depend on die index 0."""
@@ -193,8 +193,8 @@ class TestActionIdPassing:
 
         # Die 0 is locked; only index 2 is an available 5.
         player.dice.values = [2, 3, 5, 4, 6]
-        player.dice.locked = [0]
-        player.dice.kept = [0]
+        player.dice.locked = {0}
+        player.dice.kept = {0}
 
         reason = game._is_dice_key_enabled(player, action_id="dice_key_5")
         assert reason is None

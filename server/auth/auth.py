@@ -193,14 +193,14 @@ class AuthManager:
         if not record:
             return None
 
-        username = record["username"]
+        username = record.username
         if not self._db.user_exists(username):
             return None
 
         now = int(time.time())
-        if record["revoked_at"] is not None or record["replaced_by"]:
+        if record.revoked_at is not None or record.replaced_by:
             return None
-        if record["expires_at"] <= now:
+        if record.expires_at <= now:
             self._db.revoke_refresh_token(refresh_token, now)
             return None
 

@@ -93,8 +93,8 @@ class TestThreesGameUnit:
         game.on_start()
 
         player.dice.values = [1, 2, 3, 4, 5]
-        player.dice.kept = [0]
-        player.dice.locked = []
+        player.dice.kept = {0}
+        player.dice.locked = set()
         user.clear_messages()
 
         game.execute_action(player, "roll")
@@ -120,8 +120,8 @@ class TestThreesGameUnit:
         game.on_start()
 
         player.dice.values = [1, 2, 3, 4, 5]
-        player.dice.kept = [0, 1, 2, 3, 4]
-        player.dice.locked = []
+        player.dice.kept = {0, 1, 2, 3, 4}
+        player.dice.locked = set()
 
         visible_ids = [ra.action.id for ra in game.get_all_visible_actions(player)]
         assert "roll" not in visible_ids

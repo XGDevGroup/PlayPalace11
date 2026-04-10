@@ -18,6 +18,7 @@ from ...game_utils.dice import roll_dice
 from ...game_utils.game_result import GameResult, PlayerResult
 from ...game_utils.options import IntOption, option_field
 from ...messages.localization import Localization
+from ...game_utils.game_status import GameStatus
 from server.core.users.preferences import DiceKeepingStyle
 
 from .scoring import SET_DEFINITIONS, find_best_scoring
@@ -848,7 +849,7 @@ class TradeoffGame(Game):
     # Game flow
     def on_start(self) -> None:
         """Called when the game starts."""
-        self.status = "playing"
+        self.status = GameStatus.PLAYING
         self.game_active = True
         self.round = 0
 

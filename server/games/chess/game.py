@@ -12,6 +12,7 @@ from ...game_utils.options import MenuOption, BoolOption, option_field
 from ...game_utils.bot_helper import BotHelper
 from ...game_utils.poker_timer import PokerTurnTimer
 from ...messages.localization import Localization
+from ...game_utils.game_status import GameStatus
 from server.core.ui.keybinds import KeybindState
 from server.core.users.bot import Bot
 from server.core.users.base import User, MenuItem, EscapeBehavior
@@ -522,7 +523,7 @@ class ChessGame(Game):
     # ==========================================================================
 
     def on_start(self) -> None:
-        self.status = "playing"
+        self.status = GameStatus.PLAYING
         self.game_active = True
         self.round = 1
 

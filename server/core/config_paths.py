@@ -7,10 +7,7 @@ import platform
 from pathlib import Path
 from typing import Any
 
-try:  # Python 3.11+
-    import tomllib
-except ModuleNotFoundError:  # pragma: no cover - fallback for <3.11
-    import tomli as tomllib  # type: ignore
+import tomllib
 
 _MODULE_DIR = Path(__file__).resolve().parent.parent
 _WINDOWS_APP_DIR = "PlayPalace"
@@ -57,11 +54,21 @@ def ensure_default_config_dir() -> Path:
 
 
 def load_full_config(path: str | Path | None = None) -> dict[str, Any]:
-    """Load the full config.toml contents as a dictionary."""
+    """Load the full config.toml contents as a dictionary.
+
+    Returns an empty dict if the file is missing or unreadable.
+    """
     if path is None:
         path = get_default_config_path()
     path = Path(path)
     if not path.exists():
         return {}
-    with path.open("rb") as fh:
-        return tomllib.load(fh)
+    try:
+        with path.open("rb") as fh:
+            return tomllib.load(fh)
+    except (OSError, tomllib.TOMLDecodeError) as exc:
+        import logging
+        logging.getLogger("playpalace.config").error(
+            "Failed to load config from %s: %s", path, exc,
+        )
+        return {}
