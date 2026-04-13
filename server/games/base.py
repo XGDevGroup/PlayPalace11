@@ -147,6 +147,8 @@ class Game(
     # Sound scheduler state (serialized for persistence)
     scheduled_sounds: list = field(default_factory=list)  # [[tick, sound, vol, pan, pitch], ...]
     sound_scheduler_tick: int = 0  # Current tick counter
+    # Broadcast scheduler state (serialized for persistence)
+    scheduled_broadcasts: list = field(default_factory=list)  # see game_communication_mixin
     # Event queue state (serialized for persistence)
     event_queue: list[tuple[int, str, dict]] = field(
         default_factory=list
@@ -324,6 +326,7 @@ class Game(
         Subclasses should call super().on_tick() to ensure base functionality runs.
         """
         self.process_scheduled_sounds()
+        self.process_scheduled_broadcasts()
         # Check if duration estimation has completed
         self.check_estimate_completion()
 
