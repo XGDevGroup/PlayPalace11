@@ -76,17 +76,19 @@ phase10-deck-truly-empty = No cards remain to draw. Hand ends.
 # Lay down phase — action labels
 phase10-lay-down-action = Lay down Phase { $phase }
 phase10-confirm-group-action = Confirm group { $current } of { $total }
+phase10-check-req-action = Check requirement
+phase10-check-req-result = { $req }
 phase10-cancel-lay-down-action = Cancel lay-down
 
 # Lay down phase — flow messages
-phase10-lay-down-start = Laying down Phase { $phase }: { $description }. Select cards for group { $current } of { $total }: { $req }. Press Space to toggle a card, then Confirm.
-phase10-lay-down-next-group = Group { $prev } confirmed. Now select cards for group { $current } of { $total }: { $req }.
+phase10-lay-down-start = Laying down Phase { $phase }: { $description }. Group { $current } of { $total }: { $req }.
+phase10-lay-down-next-group = Group { $prev } confirmed. Group { $current } of { $total }: { $req }.
 phase10-lay-down-add = { $card } added. Group { $current } selection: { $cards }.
 phase10-lay-down-remove = { $card } removed. Group { $current } selection: { $cards }.
 phase10-lay-down-selection-empty = Group { $current } selection is empty.
 phase10-lay-down-confirmed-group = Group { $current } confirmed: { $cards }.
-phase10-lay-down-success = You lay down Phase { $phase }: { $description }.
-phase10-player-lays-down = { $player } lays down Phase { $phase }.
+phase10-lay-down-success = You lay down Phase { $phase } ({ $description }): { $details }.
+phase10-player-lays-down = { $player } lays down Phase { $phase } ({ $description }): { $details }.
 phase10-lay-down-cancel = Phase lay-down cancelled.
 phase10-hit-cancelled = Hit cancelled.
 
@@ -119,12 +121,19 @@ phase10-hit-no-groups = No phases have been laid down yet.
 phase10-hit-invalid-set = card does not match the group's number
 phase10-hit-invalid-run = card does not extend the run
 phase10-hit-invalid-color = card does not match the group's color
+phase10-hit-wild-choose = Wild on a run. Choose which end to extend.
+phase10-hit-wild-low = Extend low end to { $value }
+phase10-hit-wild-high = Extend high end to { $value }
 
 # Discard
+phase10-discard-action = Discard
+phase10-discard-confirm-action = Discard { $card }
+phase10-no-card-selected = No card selected. Navigate to a card and press Enter to select it, then Delete to discard.
 phase10-you-discard = You discard { $card }.
 phase10-player-discards = { $player } discards { $card }.
 
 # Skip — action labels
+phase10-skip-target-label = { $player }, Phase { $phase }
 phase10-skip-cancel-action = Cancel skip
 
 # Skip — flow messages
@@ -133,7 +142,7 @@ phase10-skip-cancelled = Skip cancelled.
 phase10-skip-played = You skip { $target }.
 phase10-player-skips = { $player } plays a Skip on { $target }.
 phase10-you-are-skipped = { $skipping_player } skips you. Your turn is lost.
-phase10-skip-already-used = { $player } has already been skipped this hand.
+phase10-skip-already-used = { $player } has already been skipped this round.
 phase10-skip-self = You cannot skip yourself.
 phase10-your-turn-skipped = Your turn has been skipped.
 
@@ -152,7 +161,7 @@ phase10-phase-status-header = Phase status:
 phase10-player-phase-entry = { $player }: Phase { $phase }{ $laid_down ->
     [true]  (laid down)
    *[other] }
-phase10-top-discard = Top of discard pile: { $card }.
+phase10-top-discard = { $card }.
 phase10-no-discard = The discard pile is empty.
 phase10-draw-pile-size = { $count } { $count ->
     [one] card
@@ -166,9 +175,30 @@ phase10-player-hand-count = { $player }: { $count } { $count ->
     [one] card
    *[other] cards
 }.
+phase10-deck-count = Draw pile: { $count } { $count ->
+    [one] card
+   *[other] cards
+} remaining.
+phase10-group-summary-set = { $count } { $rank ->
+    [1] ones
+    [2] twos
+    [3] threes
+    [4] fours
+    [5] fives
+    [6] sixes
+    [7] sevens
+    [8] eights
+    [9] nines
+    [10] tens
+    [11] elevens
+    [12] twelves
+   *[other] { $rank }s
+}
+phase10-group-summary-run = { $low } through { $high }
+phase10-group-summary-color = { $count } { $color }s
 phase10-no-table-groups = No phases have been laid down on the table yet.
 phase10-table-group-header = Table groups:
-phase10-table-group-entry = { $owner }'s group { $index } ({ $req }): { $cards }.
+phase10-table-group-entry = { $owner }: { $cards }.
 
 # Round end
 phase10-you-go-out = You go out! Hand { $round } over.
@@ -205,6 +235,13 @@ phase10-you-win = You win with { $score } penalty { $score ->
 phase10-tiebreaker = Scores are tied between { $players }! Replaying Phase { $phase }.
 phase10-tiebreaker-you = It's a tie! You replay Phase { $phase }.
 phase10-fixed-hands-over = 10 hands complete.
+
+# Hand sort
+phase10-sort-by-color-action = Sort hand by color
+phase10-sort-by-number-action = Sort hand by number
+phase10-sorted-by-color = Hand sorted by color.
+phase10-sorted-by-number-asc = Hand sorted by number, ascending.
+phase10-sorted-by-number-desc = Hand sorted by number, descending.
 
 # Score display (S key)
 phase10-score-header = Scores (lower is better):

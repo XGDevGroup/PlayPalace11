@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import random
 from dataclasses import dataclass, field
+from datetime import datetime
 
 from ..base import Game, Player, GameOptions
 from ..registry import register_game
@@ -27,12 +28,16 @@ from .state import (
     P10_RANK_WILD,
     P10_RANK_SKIP,
     EVEN_PHASES,
+    GROUP_RUN,
+    GROUP_COLOR,
+    P10_COLOR_NAMES,
 )
 from .evaluator import (
     is_wild,
     is_skip,
     p10_card_name,
     p10_cards_name,
+    resolve_run_order,
     req_description,
     phase_description,
     score_hand,
@@ -93,18 +98,23 @@ class Phase10Game(Game, ActionGuardMixin):
     # Hit mode state
     hit_active: bool = False
     hit_card_id: int | None = None        # card selected as the hit card (None = choosing card)
+    hit_wild_group_idx: int | None = None # set when choosing wild placement on a run
 
     # Skip discard state
     skip_discard_active: bool = False
     skip_pending_card_id: int | None = None
+
+    # Discard confirmation state
+    discard_pending_card_id: int | None = None
 
     # Round / game flow
     dealer_index: int = -1
     next_round_wait_ticks: int = 0
     intro_wait_ticks: int = 0
 
-    # Skip targets already used this hand (player IDs)
-    skip_targets_this_hand: list[str] = field(default_factory=list)
+    # Skip targets already used this round (player IDs). Resets each time turns
+    # wrap around — "round" per the official rules means once around the table.
+    skip_targets_this_round: list[str] = field(default_factory=list)
 
     # Tiebreaker (only players in this set take turns)
     tiebreaker_mode: bool = False
@@ -113,13 +123,18 @@ class Phase10Game(Game, ActionGuardMixin):
     # Fixed-hands countdown
     fixed_hands_remaining: int = 10
 
+    # Set when the game ends so build_game_result can include it
+    game_winner_id: str | None = None
+
     # Turn timer
     timer: PokerTurnTimer = field(default_factory=PokerTurnTimer)
     _timer_warning_played: bool = False
+    _suppress_keybind_rebuild_player_ids: set[str] = field(default_factory=set)
 
     def __post_init__(self) -> None:
         super().__post_init__()
         self._timer_warning_played = False
+        self._suppress_keybind_rebuild_player_ids = set()
 
     # =========================================================================
     # Metadata
@@ -162,6 +177,30 @@ class Phase10Game(Game, ActionGuardMixin):
         if self.current_player != p:
             return None
         return p
+
+    def _sorted_hand_for_menu(self, p: Phase10Player) -> list:
+        """Return the player's hand sorted for menu display.
+
+        During lay-down, already-staged cards (committed to a previous group)
+        are pushed to the bottom so the player sees available cards first.
+        Sort order is controlled by p.hand_sort.
+        """
+        staged_ids = {cid for group in self.lay_down_staged for cid in group}
+        staged = lambda c: c.id in staged_ids  # noqa: E731
+        if p.hand_sort == "color":
+            return sorted(p.hand, key=lambda c: (staged(c), c.suit, c.rank, c.id))
+        if p.hand_sort == "number_desc":
+            return sorted(p.hand, key=lambda c: (staged(c), -c.rank, c.suit, c.id))
+        # "default" and "number_asc" both sort ascending by rank
+        return sorted(p.hand, key=lambda c: (staged(c), c.rank, c.suit, c.id))
+
+    def _card_action_id(self, p: Phase10Player, card) -> str | None:
+        """Return the positional action ID for a card in the player's sorted hand."""
+        sorted_hand = self._sorted_hand_for_menu(p)
+        for i, c in enumerate(sorted_hand, 1):
+            if c.id == card.id:
+                return f"card_{i}"
+        return None
 
     def _player_locale(self, player: Player) -> str:
         user = self.get_user(player)
@@ -230,6 +269,28 @@ class Phase10Game(Game, ActionGuardMixin):
                 is_hidden="_is_playing_hidden",
                 include_spectators=True,
             ),
+            Action(
+                id="sort_by_color",
+                label=Localization.get(locale, "phase10-sort-by-color-action"),
+                handler="_action_sort_by_color",
+                is_enabled="_is_playing_enabled",
+                is_hidden="_is_playing_hidden",
+            ),
+            Action(
+                id="sort_by_number",
+                label=Localization.get(locale, "phase10-sort-by-number-action"),
+                handler="_action_sort_by_number",
+                is_enabled="_is_playing_enabled",
+                is_hidden="_is_playing_hidden",
+            ),
+            Action(
+                id="discard",
+                label=Localization.get(locale, "phase10-discard-action"),
+                handler="_action_do_discard",
+                is_enabled="_is_playing_enabled",
+                is_hidden="_is_playing_hidden",
+                get_label="_get_do_discard_label",
+            ),
         ]
         for action in reversed(local_actions):
             action_set.add(action)
@@ -241,20 +302,23 @@ class Phase10Game(Game, ActionGuardMixin):
     def setup_keybinds(self) -> None:
         super().setup_keybinds()
         # Draw
-        self.define_keybind("space", "Draw", ["draw_deck"], state=KeybindState.ACTIVE)
-        self.define_keybind("d", "Draw from discard", ["draw_discard"], state=KeybindState.ACTIVE)
+        self.define_keybind("space", "Draw from deck", ["draw_deck"], state=KeybindState.ACTIVE)
+        self.define_keybind("shift+d", "Draw from discard", ["draw_discard"], state=KeybindState.ACTIVE)
         # Phase / hit / skip actions
-        self.define_keybind("l", "Lay down phase", ["lay_down_phase"], state=KeybindState.ACTIVE)
+        self.define_keybind("n", "Lay down phase", ["lay_down_phase"], state=KeybindState.ACTIVE)
         self.define_keybind("enter", "Confirm group / select", ["confirm_group", "select_card_for_hit", "select_hit_group", "select_skip_target"], state=KeybindState.ACTIVE)
+        self.define_keybind("f", "Confirm group", ["confirm_group"], state=KeybindState.ACTIVE)
         self.define_keybind("escape", "Cancel mode", ["cancel_lay_down", "cancel_hit", "cancel_skip"], state=KeybindState.ACTIVE)
         self.define_keybind("h", "Hit", ["hit"], state=KeybindState.ACTIVE)
+        self.define_keybind("j", "Discard selected card", ["do_discard"], state=KeybindState.ACTIVE)
         # Info
-        self.define_keybind("r", "Read hand", ["read_hand"], state=KeybindState.ACTIVE)
-        self.define_keybind("c", "Read discard top", ["read_discard"], state=KeybindState.ACTIVE, include_spectators=True)
-        self.define_keybind("g", "Read table groups", ["read_table"], state=KeybindState.ACTIVE, include_spectators=True)
+        self.define_keybind("d", "Read top of discard", ["read_discard"], state=KeybindState.ACTIVE, include_spectators=True)
+        self.define_keybind("c", "Read table groups", ["read_table"], state=KeybindState.ACTIVE, include_spectators=True)
         self.define_keybind("p", "Check phase status", ["check_phase"], state=KeybindState.ACTIVE)
         self.define_keybind("e", "Read card counts", ["read_counts"], state=KeybindState.ACTIVE, include_spectators=True)
         self.define_keybind("shift+t", "Turn timer", ["check_turn_timer"], state=KeybindState.ACTIVE, include_spectators=True)
+        self.define_keybind("shift+c", "Sort hand by color", ["sort_by_color"], state=KeybindState.ACTIVE)
+        self.define_keybind("shift+h", "Sort hand by number", ["sort_by_number"], state=KeybindState.ACTIVE)
 
     # =========================================================================
     # Menu sync
@@ -273,6 +337,19 @@ class Phase10Game(Game, ActionGuardMixin):
             self._sync_turn_actions(player)
         super().rebuild_all_menus()
 
+    def _suppress_keybind_rebuild(self, player: Player) -> None:
+        """Call from read-only info actions to prevent the post-keybind menu rebuild."""
+        context = self.get_action_context(player)
+        if not context or not context.from_keybind:
+            return
+        self._suppress_keybind_rebuild_player_ids.add(player.id)
+
+    def _should_rebuild_after_keybind(self, player: Player, executed_any: bool) -> bool:
+        if player.id in self._suppress_keybind_rebuild_player_ids:
+            self._suppress_keybind_rebuild_player_ids.discard(player.id)
+            return False
+        return super()._should_rebuild_after_keybind(player, executed_any)
+
     def _sync_turn_actions(self, player: Player) -> None:  # noqa: C901
         p = self._get_p10_player(player)
         if not p:
@@ -287,9 +364,10 @@ class Phase10Game(Game, ActionGuardMixin):
         turn_set.remove_by_prefix("skip_target_")
         for action_id in [
             "draw_deck", "draw_discard",
-            "lay_down_phase", "confirm_group", "cancel_lay_down",
+            "lay_down_phase", "check_requirement", "confirm_group", "cancel_lay_down",
             "hit", "select_card_for_hit", "select_hit_group", "cancel_hit",
             "select_skip_target", "cancel_skip",
+            "do_discard",
         ]:
             turn_set.remove(action_id)
 
@@ -299,18 +377,22 @@ class Phase10Game(Game, ActionGuardMixin):
         is_current = self.current_player == p
         locale = self._player_locale(p)
 
-        # ---- Hand cards (always present; label reflects selection state) ----
-        sorted_hand = sorted(p.hand, key=lambda c: (c.rank, c.suit, c.id))
-        for card in sorted_hand:
-            turn_set.add(Action(
-                id=f"card_{card.id}",
-                label="",
-                handler="_action_card_selected",
-                is_enabled="_is_card_enabled",
-                is_hidden="_is_card_hidden",
-                get_label="_get_card_label",
-                show_in_actions_menu=False,
-            ))
+        # ---- Hand cards: shown in most modes; hidden during skip/group/wild-placement selection ----
+        current_in_group_select = is_current and self.hit_active and self.hit_card_id is not None
+        current_in_skip_select = is_current and self.skip_discard_active
+        current_in_wild_place = is_current and self.hit_wild_group_idx is not None
+        if not current_in_skip_select and not current_in_group_select and not current_in_wild_place:
+            sorted_hand = self._sorted_hand_for_menu(p)
+            for i, card in enumerate(sorted_hand, 1):
+                turn_set.add(Action(
+                    id=f"card_{i}",
+                    label="",
+                    handler="_action_card_selected",
+                    is_enabled="_is_card_enabled",
+                    is_hidden="_is_card_hidden",
+                    get_label="_get_card_label",
+                    show_in_actions_menu=False,
+                ))
 
         if not is_current:
             return
@@ -322,7 +404,8 @@ class Phase10Game(Game, ActionGuardMixin):
                 if other.id != p.id:
                     turn_set.add(Action(
                         id=f"skip_target_{other.id}",
-                        label=other.name,
+                        label=Localization.get(locale, "phase10-skip-target-label",
+                                               player=other.name, phase=other.current_phase),
                         handler="_action_select_skip_target",
                         is_enabled="_is_turn_action_enabled",
                         is_hidden="_is_turn_action_hidden",
@@ -336,11 +419,39 @@ class Phase10Game(Game, ActionGuardMixin):
             ))
             return
 
+        if self.hit_wild_group_idx is not None:
+            # Choosing which end of a run to place a wild
+            group = self.table_groups[self.hit_wild_group_idx]
+            ordered = resolve_run_order(group.cards)
+            low, high = ordered[0][1], ordered[-1][1]
+            if low > 1:
+                turn_set.add(Action(
+                    id="hit_wild_low",
+                    label=Localization.get(locale, "phase10-hit-wild-low", value=low - 1),
+                    handler="_action_place_wild",
+                    is_enabled="_is_turn_action_enabled",
+                    is_hidden="_is_turn_action_hidden",
+                ))
+            if high < 12:
+                turn_set.add(Action(
+                    id="hit_wild_high",
+                    label=Localization.get(locale, "phase10-hit-wild-high", value=high + 1),
+                    handler="_action_place_wild",
+                    is_enabled="_is_turn_action_enabled",
+                    is_hidden="_is_turn_action_hidden",
+                ))
+            turn_set.add(Action(
+                id="cancel_hit",
+                label=Localization.get(locale, "phase10-hit-cancel-action"),
+                handler="_action_cancel_hit",
+                is_enabled="_is_turn_action_enabled",
+                is_hidden="_is_turn_action_hidden",
+            ))
+            return
+
         if self.hit_active and self.hit_card_id is not None:
             # Choosing which group to hit onto
             for i, group in enumerate(self.table_groups):
-                owner = self.get_player_by_id(group.owner_id)
-                owner_name = owner.name if owner else "?"
                 turn_set.add(Action(
                     id=f"hit_group_{i}",
                     label="",
@@ -374,6 +485,13 @@ class Phase10Game(Game, ActionGuardMixin):
             total = len(reqs)
             current = self.lay_down_group_index + 1
             turn_set.add(Action(
+                id="check_requirement",
+                label=Localization.get(locale, "phase10-check-req-action"),
+                handler="_action_check_requirement",
+                is_enabled="_is_turn_action_enabled",
+                is_hidden="_is_turn_action_hidden",
+            ))
+            turn_set.add(Action(
                 id="confirm_group",
                 label=Localization.get(
                     locale, "phase10-confirm-group-action",
@@ -400,7 +518,7 @@ class Phase10Game(Game, ActionGuardMixin):
                 label=Localization.get(locale, "phase10-draw-deck-action"),
                 handler="_action_draw_deck",
                 is_enabled="_is_turn_action_enabled",
-                is_hidden="_is_turn_action_hidden",
+                is_hidden="_is_keybind_only_hidden",
             ))
             # Draw from discard (if top is not a Skip and pile is non-empty)
             if self.discard_pile and not is_skip(self.discard_pile[-1]):
@@ -410,7 +528,7 @@ class Phase10Game(Game, ActionGuardMixin):
                     label=Localization.get(locale, "phase10-draw-discard-action", card=top_name),
                     handler="_action_draw_discard",
                     is_enabled="_is_turn_action_enabled",
-                    is_hidden="_is_turn_action_hidden",
+                    is_hidden="_is_keybind_only_hidden",
                 ))
         else:
             # Lay down phase
@@ -422,7 +540,7 @@ class Phase10Game(Game, ActionGuardMixin):
                     label=Localization.get(locale, "phase10-lay-down-action", phase=p.current_phase),
                     handler="_action_start_lay_down",
                     is_enabled="_is_turn_action_enabled",
-                    is_hidden="_is_turn_action_hidden",
+                    is_hidden="_is_keybind_only_hidden",
                 ))
             # Hit (only if own phase is down and groups exist)
             if p.phase_laid_down and self.table_groups:
@@ -431,8 +549,18 @@ class Phase10Game(Game, ActionGuardMixin):
                     label=Localization.get(locale, "phase10-hit-action"),
                     handler="_action_start_hit",
                     is_enabled="_is_turn_action_enabled",
-                    is_hidden="_is_turn_action_hidden",
+                    is_hidden="_is_keybind_only_hidden",
                 ))
+            # Discard (Delete key; always present post-draw, hidden from actions menu)
+            turn_set.add(Action(
+                id="do_discard",
+                label="",
+                handler="_action_do_discard",
+                is_enabled="_is_turn_action_enabled",
+                is_hidden="_is_keybind_only_hidden",
+                get_label="_get_do_discard_label",
+                show_in_actions_menu=False,
+            ))
 
     # =========================================================================
     # Dynamic label helpers
@@ -443,17 +571,20 @@ class Phase10Game(Game, ActionGuardMixin):
         locale = self._player_locale(player)
         if not p:
             return action_id
-        card_id = int(action_id.split("_")[-1])
-        card = next((c for c in p.hand if c.id == card_id), None)
-        if not card:
+        index = int(action_id.split("_")[-1]) - 1
+        sorted_hand = self._sorted_hand_for_menu(p)
+        if index < 0 or index >= len(sorted_hand):
             return action_id
+        card = sorted_hand[index]
         name = p10_card_name(card, locale)
         if self.lay_down_active:
             staged_ids = {cid for group in self.lay_down_staged for cid in group}
-            if card_id in staged_ids:
+            if card.id in staged_ids:
                 return Localization.get(locale, "phase10-card-label-staged", card=name)
-            if card_id in self.lay_down_current:
+            if card.id in self.lay_down_current:
                 return Localization.get(locale, "phase10-card-label-selected", card=name)
+        elif self.discard_pending_card_id == card.id:
+            return Localization.get(locale, "phase10-card-label-selected", card=name)
         return name
 
     def _get_hit_group_label(self, player: Player, action_id: str) -> str:
@@ -464,15 +595,39 @@ class Phase10Game(Game, ActionGuardMixin):
         group = self.table_groups[idx]
         owner = self.get_player_by_id(group.owner_id)
         owner_name = owner.name if owner else "?"
-        cards_str = p10_cards_name(group.cards, locale)
-        req_str = req_description(group.requirement, locale)
+        cards_str = self._format_group_summary(group.cards, group.requirement, locale)
         return Localization.get(
             locale, "phase10-table-group-entry",
             owner=owner_name,
-            index=group.group_index + 1,
-            req=req_str,
             cards=cards_str,
         )
+
+    def _get_do_discard_label(self, player: Player, action_id: str) -> str:
+        p = self._get_p10_player(player)
+        locale = self._player_locale(player)
+        if p and self.discard_pending_card_id is not None:
+            card = next((c for c in p.hand if c.id == self.discard_pending_card_id), None)
+            if card:
+                return Localization.get(locale, "phase10-discard-confirm-action",
+                                        card=p10_card_name(card, locale))
+        return Localization.get(locale, "phase10-discard-action")
+
+    def _format_group_summary(self, cards: list[Card], req: PhaseRequirement, locale: str) -> str:
+        """Brief summary of a group's current contents."""
+        naturals = [c for c in cards if not is_wild(c)]
+        if req.kind == GROUP_RUN:
+            ordered = resolve_run_order(cards)
+            low = ordered[0][1]
+            high = ordered[-1][1]
+            return Localization.get(locale, "phase10-group-summary-run", low=low, high=high)
+        if req.kind == GROUP_COLOR:
+            color_key = P10_COLOR_NAMES.get(naturals[0].suit, "") if naturals else ""
+            color = Localization.get(locale, color_key) if color_key else "?"
+            return Localization.get(locale, "phase10-group-summary-color",
+                                    count=len(cards), color=color)
+        # SET
+        rank = naturals[0].rank if naturals else 0
+        return Localization.get(locale, "phase10-group-summary-set", count=len(cards), rank=rank)
 
     # =========================================================================
     # Visibility / enabled helpers
@@ -484,7 +639,7 @@ class Phase10Game(Game, ActionGuardMixin):
         return None
 
     def _is_playing_hidden(self, player: Player) -> Visibility:
-        return Visibility.VISIBLE if self.status == "playing" else Visibility.HIDDEN
+        return Visibility.HIDDEN
 
     def _is_card_enabled(self, player: Player, *, action_id: str | None = None) -> str | None:
         p = self._get_p10_player(player)
@@ -502,6 +657,10 @@ class Phase10Game(Game, ActionGuardMixin):
     def _is_turn_action_enabled(self, player: Player) -> str | None:
         """Always enabled — these actions are only added when the mode is active."""
         return None
+
+    def _is_keybind_only_hidden(self, player: Player) -> Visibility:
+        """Actions accessible via keybind; hide from turn menu."""
+        return Visibility.HIDDEN
 
     def _is_turn_action_hidden(self, player: Player) -> Visibility:
         """Always visible — these actions are only added when the mode is active."""
@@ -562,17 +721,7 @@ class Phase10Game(Game, ActionGuardMixin):
     def _start_new_hand(self) -> None:
         self.round += 1
         self.table_groups = []
-        self.skip_targets_this_hand = []
-
-        # Reset turn-level flags
-        self.turn_has_drawn = False
-        self.lay_down_active = False
-        self.lay_down_staged = []
-        self.lay_down_current = []
-        self.hit_active = False
-        self.hit_card_id = None
-        self.skip_discard_active = False
-        self.skip_pending_card_id = None
+        self.skip_targets_this_round = []
 
         # Deal
         self.deck, _ = DeckFactory.phase10_deck()
@@ -598,7 +747,10 @@ class Phase10Game(Game, ActionGuardMixin):
         if self.turn_player_ids:
             self.dealer_index = (self.dealer_index + 1) % len(self.turn_player_ids)
         else:
-            self.dealer_index = 0
+            # First hand: seat human players before bots so humans go first.
+            # Dealer is set to the last player so turn_index wraps to 0 (first human).
+            active = sorted(active, key=lambda p: p.is_bot)
+            self.dealer_index = len(active) - 1
 
         self.set_turn_players(active, reset_index=False)
         if self.turn_player_ids:
@@ -616,8 +768,6 @@ class Phase10Game(Game, ActionGuardMixin):
         self.broadcast_l("phase10-new-hand", round=self.round)
 
         if start_card:
-            locale = "en"
-            card_name = p10_card_name(start_card, locale)
             if is_skip(start_card):
                 first = self.current_player
                 first_name = first.name if first else "?"
@@ -628,7 +778,12 @@ class Phase10Game(Game, ActionGuardMixin):
                     if p10_first:
                         p10_first.skipped = True
             else:
-                self.broadcast_l("phase10-start-discard", card=card_name)
+                for p in self._active_players():
+                    user = self.get_user(p)
+                    if user:
+                        user.speak_l("phase10-start-discard",
+                                     card=p10_card_name(start_card, self._player_locale(p)),
+                                     buffer="table")
 
         self.play_sound(SOUND_ROUND_START)
         self.rebuild_all_menus()
@@ -647,8 +802,10 @@ class Phase10Game(Game, ActionGuardMixin):
         self.lay_down_current = []
         self.hit_active = False
         self.hit_card_id = None
+        self.hit_wild_group_idx = None
         self.skip_discard_active = False
         self.skip_pending_card_id = None
+        self.discard_pending_card_id = None
         self._timer_warning_played = False
 
         # Handle skip
@@ -673,7 +830,14 @@ class Phase10Game(Game, ActionGuardMixin):
                 self.rebuild_player_menu(other)
 
     def _advance_turn(self) -> None:
+        old_index = self.turn_index
         self.advance_turn(announce=False)
+        new_index = self.turn_index
+        # Detect wrap-around: when turn_index cycles back, a new round begins and
+        # skip targets reset (official rule: once per round = once around the table).
+        if (self.turn_direction >= 0 and new_index <= old_index) or \
+           (self.turn_direction < 0 and new_index >= old_index):
+            self.skip_targets_this_round = []
         self._start_turn()
 
     def _ensure_deck(self) -> None:
@@ -696,56 +860,48 @@ class Phase10Game(Game, ActionGuardMixin):
     # =========================================================================
 
     def _end_round(self, winner: Phase10Player | None) -> None:  # noqa: C901
-        self.game_active = False  # Pause ticking during scoring
+        self.game_active = False  # Pause ticking while computing state
 
-        if winner:
-            self.broadcast_personal_l(winner, "phase10-you-go-out", "phase10-player-goes-out",
-                                       round=self.round)
-            self.play_sound(SOUND_WIN_ROUND)
-
-        self.broadcast_l("phase10-round-scoring-header")
-
-        # In tiebreaker mode only the tied players participated this hand.
-        # Processing non-participants would advance their phases incorrectly.
+        # Determine active players
         if self.tiebreaker_mode:
             active = [p for p in self._active_players() if p.id in self.tiebreaker_player_ids]
         else:
             active = self._active_players()
 
-        # Score penalty points
+        # Announce who went out immediately — single clear message, rest follows
+        if winner:
+            self.broadcast_personal_l(winner, "phase10-you-go-out", "phase10-player-goes-out",
+                                       round=self.round)
+            self.play_sound(SOUND_WIN_ROUND)
+
+        # Compute scores (state only, no announces yet)
         round_penalties: dict[str, int] = {}
         for p in active:
-            if p is winner:
-                penalty = 0
-            else:
-                penalty = score_hand(p.hand)
+            penalty = 0 if p is winner else score_hand(p.hand)
             p.score += penalty
             round_penalties[p.id] = penalty
 
-            if p is winner:
-                self.broadcast_personal_l(p, "phase10-you-score-zero", "phase10-player-scores-zero")
-            else:
-                self.broadcast_personal_l(p, "phase10-you-score", "phase10-player-scores",
-                                           points=penalty, total=p.score)
-
-        # Advance phases
-        even_only = self.options.even_phases_only
+        # Clear hands now that scoring is done
         for p in active:
-            laid = p.phase_laid_down
+            p.hand = []
+
+        # Advance phases (state only, no announces yet)
+        even_only = self.options.even_phases_only
+        phase_announces: list[tuple] = []
+        for p in active:
             if self.options.fixed_hands:
-                # Everyone advances regardless
                 new_phase = next_phase(p.current_phase, even_only)
                 p.current_phase = min(new_phase, 11)
-                self.broadcast_personal_l(p, "phase10-you-fixed-hands-advance", "phase10-fixed-hands-advance",
-                                           next=p.current_phase)
-            elif laid:
+                phase_announces.append((p, "phase10-you-fixed-hands-advance", "phase10-fixed-hands-advance",
+                                        {"next": p.current_phase}))
+            elif p.phase_laid_down:
                 new_phase = next_phase(p.current_phase, even_only)
                 p.current_phase = new_phase
-                self.broadcast_personal_l(p, "phase10-you-advance", "phase10-player-advances",
-                                           next=p.current_phase)
+                phase_announces.append((p, "phase10-you-advance", "phase10-player-advances",
+                                        {"next": p.current_phase}))
             else:
-                self.broadcast_personal_l(p, "phase10-you-stay", "phase10-player-stays",
-                                           phase=p.current_phase)
+                phase_announces.append((p, "phase10-you-stay", "phase10-player-stays",
+                                        {"phase": p.current_phase}))
 
         # Update TeamManager scores (negate so higher = better internally)
         for p in active:
@@ -753,21 +909,53 @@ class Phase10Game(Game, ActionGuardMixin):
             if penalty > 0:
                 self._team_manager.add_to_team_score(p.name, -penalty)
 
-        # Check win condition
+        # If the game ends this round, fire all scoring/phase announces immediately
+        # (game-over announcement is the climax; per-round detail is secondary)
         if self._check_game_end(active):
+            self.broadcast_l("phase10-round-scoring-header")
+            for p in active:
+                if p is winner:
+                    self.broadcast_personal_l(p, "phase10-you-score-zero", "phase10-player-scores-zero")
+                else:
+                    self.broadcast_personal_l(p, "phase10-you-score", "phase10-player-scores",
+                                               points=round_penalties[p.id], total=p.score)
+            for p, personal_id, others_id, kwargs in phase_announces:
+                self.broadcast_personal_l(p, personal_id, others_id, **kwargs)
             return
 
-        # Continue
+        # Game continues: stagger scoring and phase announces so NVDA can read each one
+        STEP = 10  # ticks between messages (~500ms)
+        delay = STEP
+
+        self.schedule_broadcast_l("phase10-round-scoring-header", delay)
+        delay += STEP
+
+        for p in active:
+            if p is winner:
+                self.schedule_broadcast_personal_l(p, "phase10-you-score-zero", "phase10-player-scores-zero", delay)
+            else:
+                self.schedule_broadcast_personal_l(p, "phase10-you-score", "phase10-player-scores", delay,
+                                                    points=round_penalties[p.id], total=p.score)
+            delay += STEP
+
+        for p, personal_id, others_id, kwargs in phase_announces:
+            self.schedule_broadcast_personal_l(p, personal_id, others_id, delay, **kwargs)
+            delay += STEP
+
         self.game_active = True
-        ticks = 5 * 20
-        if self.options.fixed_hands:
+
+        if self.options.fixed_hands and not self.tiebreaker_mode:
             self.fixed_hands_remaining -= 1
             if self.fixed_hands_remaining <= 0:
-                self.broadcast_l("phase10-fixed-hands-over")
-                self._resolve_winner(active)
+                self.schedule_broadcast_l("phase10-fixed-hands-over", delay)
+                delay += STEP
+                # Defer _resolve_winner until after announces have fired via event
+                self.schedule_event("resolve_winner", {}, delay_ticks=delay)
+                self.next_round_wait_ticks = delay + STEP
                 return
 
-        self.next_round_wait_ticks = ticks
+        REST = 2 * 20  # 2 seconds breathing room after final announcement
+        self.next_round_wait_ticks = delay + REST
 
     def _check_game_end(self, active: list[Phase10Player]) -> bool:  # noqa: C901
         """Check whether any player has completed the target phase. Returns True if game ended."""
@@ -818,32 +1006,81 @@ class Phase10Game(Game, ActionGuardMixin):
         self.next_round_wait_ticks = 4 * 20
         return True
 
+    def on_game_event(self, event_type: str, data: dict) -> None:
+        if event_type == "resolve_winner":
+            active = self._active_players()
+            self._resolve_winner(active)
+
     def _resolve_winner(self, active: list[Phase10Player]) -> None:
-        """Resolve winner for fixed-hands mode (lowest score wins)."""
+        """Resolve winner for fixed-hands mode (lowest score wins). Ties enter a tiebreaker hand."""
         min_score = min(p.score for p in active)
         winners = [p for p in active if p.score == min_score]
-        self._declare_winner(winners[0], active)
+        if len(winners) == 1:
+            self._declare_winner(winners[0], active)
+            return
+        # Genuine score tie: enter a tiebreaker hand using the same infrastructure
+        # as _check_game_end. The fixed_hands countdown is suspended while tiebreaker_mode
+        # is active (see _end_round) so this cannot loop with _resolve_winner.
+        winning_phase = max(p.current_phase for p in winners)
+        tied_names = Localization.format_list_and("en", [p.name for p in winners])
+        self.broadcast_l("phase10-tiebreaker", players=tied_names, phase=winning_phase)
+        for p in winners:
+            user = self.get_user(p)
+            if user:
+                user.speak_l("phase10-tiebreaker-you", phase=winning_phase, buffer="table")
+            p.current_phase = winning_phase
+            p.phase_laid_down = False
+        self.tiebreaker_mode = True
+        self.tiebreaker_player_ids = [p.id for p in winners]
+        self.game_active = True
+        self.next_round_wait_ticks = 4 * 20
 
     def _declare_winner(self, winner: Phase10Player, active: list[Phase10Player]) -> None:
         self.play_sound(SOUND_WIN_GAME)
         self.broadcast_personal_l(winner, "phase10-you-win", "phase10-game-winner",
                                    score=winner.score)
+        self.game_winner_id = winner.id
+        self.finish_game()
 
-        result = GameResult(
-            winner_name=winner.name,
-            players=[
+    def build_game_result(self) -> GameResult:
+        active = self._active_players()
+        winner = next((p for p in active if p.id == self.game_winner_id), None)
+        final_scores = {
+            p.name: {"phase": p.current_phase, "score": p.score}
+            for p in active
+        }
+        return GameResult(
+            game_type=self.get_type(),
+            timestamp=datetime.now().isoformat(),
+            duration_ticks=self.sound_scheduler_tick,
+            player_results=[
                 PlayerResult(
                     player_id=p.id,
                     player_name=p.name,
-                    score=-p.score,
-                    is_winner=(p.id == winner.id),
                     is_bot=p.is_bot,
                     is_virtual_bot=p.is_virtual_bot,
                 )
                 for p in active
             ],
+            custom_data={
+                "winner_name": winner.name if winner else None,
+                "final_scores": final_scores,
+            },
         )
-        self.finish_game(result)
+
+    def format_end_screen(self, result: GameResult, locale: str) -> list[str]:
+        lines = [Localization.get(locale, "phase10-score-header")]
+        final_scores: dict = result.custom_data.get("final_scores", {})
+        # Sort by score ascending (lower is better)
+        sorted_entries = sorted(final_scores.items(), key=lambda kv: kv[1]["score"])
+        for player_name, data in sorted_entries:
+            lines.append(Localization.get(
+                locale, "phase10-score-entry",
+                player=player_name,
+                phase=data["phase"],
+                score=data["score"],
+            ))
+        return lines
 
     # =========================================================================
     # Draw actions
@@ -871,7 +1108,7 @@ class Phase10Game(Game, ActionGuardMixin):
         self._start_turn_timer()
         if p.is_bot:
             BotHelper.jolt_bot(p, ticks=random.randint(15, 25))
-        selection_id = f"card_{card.id}"
+        selection_id = self._card_action_id(p, card)
         self.update_player_menu(p, selection_id=selection_id)
         for other in self.players:
             if other.id != p.id:
@@ -902,7 +1139,7 @@ class Phase10Game(Game, ActionGuardMixin):
         self._start_turn_timer()
         if p.is_bot:
             BotHelper.jolt_bot(p, ticks=random.randint(15, 25))
-        selection_id = f"card_{card.id}"
+        selection_id = self._card_action_id(p, card)
         self.update_player_menu(p, selection_id=selection_id)
         for other in self.players:
             if other.id != p.id:
@@ -917,10 +1154,11 @@ class Phase10Game(Game, ActionGuardMixin):
         if not p:
             return
 
-        card_id = int(action_id.split("_")[-1])
-        card = next((c for c in p.hand if c.id == card_id), None)
-        if not card:
+        index = int(action_id.split("_")[-1]) - 1
+        sorted_hand = self._sorted_hand_for_menu(p)
+        if index < 0 or index >= len(sorted_hand):
             return
+        card = sorted_hand[index]
 
         if not self.turn_has_drawn and not self.lay_down_active and not self.hit_active:
             user = self.get_user(p)
@@ -938,11 +1176,29 @@ class Phase10Game(Game, ActionGuardMixin):
         elif self.skip_discard_active:
             pass  # Ignore; player should pick a skip target
         else:
-            # Normal action phase — discard this card
-            if is_skip(card):
-                self._start_skip_discard(p, card)
+            user = self.get_user(p)
+            if not p.phase_laid_down:
+                # Can't hit until own phase is laid down — say so, don't mark for discard.
+                if user:
+                    user.speak_l("phase10-hit-no-phase", buffer="table")
+                self.update_player_menu(p, selection_id=self._card_action_id(p, card))
+            elif not self.table_groups:
+                if user:
+                    user.speak_l("phase10-hit-no-groups", buffer="table")
+                self.update_player_menu(p, selection_id=self._card_action_id(p, card))
             else:
-                self._do_discard(p, card)
+                # Phase is laid down and groups exist — always enter hit mode with this
+                # card so the player can choose a group (even if no group accepts it).
+                self.discard_pending_card_id = card.id
+                self.hit_active = True
+                self.hit_card_id = card.id
+                locale = self._player_locale(p)
+                if user:
+                    user.speak_l("phase10-hit-choose-group",
+                                 card=p10_card_name(card, locale), buffer="table")
+                self.rebuild_player_menu(p, position=1)
+                if p.is_bot:
+                    BotHelper.jolt_bot(p, ticks=random.randint(5, 10))
 
     # =========================================================================
     # Lay-down mode
@@ -997,6 +1253,7 @@ class Phase10Game(Game, ActionGuardMixin):
             user = self.get_user(p)
             if user:
                 user.speak_l("phase10-lay-down-card-already-staged", card=card_name)
+            self.update_player_menu(p, selection_id=self._card_action_id(p, card))
             return
         else:
             self.lay_down_current.append(card.id)
@@ -1013,7 +1270,7 @@ class Phase10Game(Game, ActionGuardMixin):
             else:
                 user.speak_l("phase10-lay-down-selection-empty", current=current_num, buffer="table")
 
-        self.update_player_menu(p, selection_id=f"card_{card.id}")
+        self.update_player_menu(p, selection_id=self._card_action_id(p, card))
 
     def _action_confirm_lay_down_group(self, player: Player, action_id: str) -> None:
         p = self._require_current_player(player)
@@ -1036,11 +1293,13 @@ class Phase10Game(Game, ActionGuardMixin):
         # Validate
         ok, err_key = validate_group(selected, req)
         if not ok:
+            self.lay_down_current = []
             if user:
                 if err_key == "phase10-err-need-cards":
                     user.speak_l(err_key, count=req.count, buffer="table")
                 else:
                     user.speak_l(err_key, buffer="table")
+            self.rebuild_player_menu(p, position=1)
             return
 
         # Confirm this group
@@ -1079,6 +1338,7 @@ class Phase10Game(Game, ActionGuardMixin):
         reqs = self._current_phase_reqs(p)
         # Count existing groups for this player (for index offset)
         existing = sum(1 for g in self.table_groups if g.owner_id == p.id)
+        new_groups: list[TableGroup] = []
 
         for group_idx, group_ids in enumerate(self.lay_down_staged):
             cards = [c for c in p.hand if c.id in group_ids]
@@ -1090,6 +1350,7 @@ class Phase10Game(Game, ActionGuardMixin):
                 cards=cards,
             )
             self.table_groups.append(tg)
+            new_groups.append(tg)
 
         # Remove cards from hand
         p.hand = [c for c in p.hand if c.id not in all_staged_ids]
@@ -1102,9 +1363,22 @@ class Phase10Game(Game, ActionGuardMixin):
 
         locale = self._player_locale(p)
         desc = phase_description(p.current_phase, locale)
+
+        # Build per-group card detail strings for the announcement
+        group_detail_parts: list[str] = []
+        for tg in new_groups:
+            group_detail_parts.append(self._format_group_summary(tg.cards, tg.requirement, locale))
+        details = " and ".join(group_detail_parts)
+
         self.play_sound(random.choice(SOUND_LAY_DOWN))
-        self.broadcast_personal_l(p, "phase10-lay-down-success", "phase10-player-lays-down",
-                                   phase=p.current_phase, description=desc)
+        self.broadcast_personal_l(
+            p,
+            "phase10-lay-down-success",
+            "phase10-player-lays-down",
+            phase=p.current_phase,
+            description=desc,
+            details=details,
+        )
 
         if len(p.hand) == 0:
             self._end_round(p)
@@ -1128,6 +1402,19 @@ class Phase10Game(Game, ActionGuardMixin):
         if user:
             user.speak_l("phase10-lay-down-cancel", buffer="table")
         self.rebuild_player_menu(p, position=1)
+
+    def _action_check_requirement(self, player: Player, action_id: str) -> None:
+        p = self._require_current_player(player)
+        if not p or not self.lay_down_active:
+            return
+        reqs = self._current_phase_reqs(p)
+        if self.lay_down_group_index >= len(reqs):
+            return
+        req = reqs[self.lay_down_group_index]
+        locale = self._player_locale(p)
+        user = self.get_user(p)
+        if user:
+            user.speak_l("phase10-check-req-result", req=req_description(req, locale))
 
     # =========================================================================
     # Hit mode
@@ -1166,7 +1453,14 @@ class Phase10Game(Game, ActionGuardMixin):
         card_name = p10_card_name(card, locale)
         user = self.get_user(p)
         if user:
-            user.speak_l("phase10-hit-choose-group", card=card_name, buffer="table")
+            lines: list[str] = [Localization.get(locale, "phase10-hit-choose-group", card=card_name)]
+            for group in self.table_groups:
+                owner = self.get_player_by_id(group.owner_id)
+                owner_name = owner.name if owner else "?"
+                cards_str = self._format_group_summary(group.cards, group.requirement, locale)
+                lines.append(Localization.get(locale, "phase10-table-group-entry",
+                                              owner=owner_name, cards=cards_str))
+            self.status_box(p, lines)
         self.rebuild_player_menu(p, position=1)
 
     def _action_select_hit_group(self, player: Player, action_id: str) -> None:
@@ -1181,6 +1475,7 @@ class Phase10Game(Game, ActionGuardMixin):
         card = next((c for c in p.hand if c.id == self.hit_card_id), None)
         if not card:
             self.hit_card_id = None
+            self.hit_wild_group_idx = None
             return
 
         group = self.table_groups[group_idx]
@@ -1193,9 +1488,33 @@ class Phase10Game(Game, ActionGuardMixin):
             if user:
                 user.speak_l("phase10-hit-invalid", card=p10_card_name(card, locale),
                               reason=reason, buffer="table")
+            self.hit_active = False
+            self.hit_card_id = None
+            self.hit_wild_group_idx = None
+            self.rebuild_player_menu(p, position=1)
             return
 
-        # Apply hit
+        # Wild hitting a run: ask player which end to extend (if both ends open)
+        if is_wild(card) and group.requirement.kind == GROUP_RUN:
+            ordered = resolve_run_order(group.cards)
+            low, high = ordered[0][1], ordered[-1][1]
+            can_go_low = low > 1
+            can_go_high = high < 12
+            if can_go_low and can_go_high:
+                self.hit_wild_group_idx = group_idx
+                if user:
+                    user.speak_l("phase10-hit-wild-choose", buffer="table")
+                self.rebuild_player_menu(p, position=1)
+                return
+            # Only one end available — place automatically
+            # (can_hit_group already blocks the all-full case)
+
+        self._apply_hit(p, card, group_idx)
+
+    def _apply_hit(self, p: Phase10Player, card: Card, group_idx: int) -> None:
+        """Apply a hit and announce it."""
+        group = self.table_groups[group_idx]
+        locale = self._player_locale(p)
         group.cards.append(card)
         p.hand.remove(card)
         owner = self.get_player_by_id(group.owner_id)
@@ -1207,6 +1526,8 @@ class Phase10Game(Game, ActionGuardMixin):
 
         self.hit_active = False
         self.hit_card_id = None
+        self.hit_wild_group_idx = None
+        self.discard_pending_card_id = None
 
         if len(p.hand) == 0:
             self._end_round(p)
@@ -1217,16 +1538,73 @@ class Phase10Game(Game, ActionGuardMixin):
             if other.id != p.id:
                 self.rebuild_player_menu(other)
 
+    def _action_place_wild(self, player: Player, action_id: str) -> None:
+        """Place a wild on the low or high end of a run."""
+        p = self._require_current_player(player)
+        if not p or self.hit_wild_group_idx is None or self.hit_card_id is None:
+            return
+        card = next((c for c in p.hand if c.id == self.hit_card_id), None)
+        if not card:
+            self.hit_wild_group_idx = None
+            self.hit_card_id = None
+            return
+        self._apply_hit(p, card, self.hit_wild_group_idx)
+
     def _action_cancel_hit(self, player: Player, action_id: str) -> None:
         p = self._require_current_player(player)
         if not p:
             return
         self.hit_active = False
         self.hit_card_id = None
+        self.hit_wild_group_idx = None
         user = self.get_user(p)
         if user:
             user.speak_l("phase10-hit-cancelled", buffer="table")
         self.rebuild_player_menu(p, position=1)
+
+    # =========================================================================
+    # Discard (Delete key)
+    # =========================================================================
+
+    def _action_do_discard(self, player: Player, action_id: str) -> None:
+        """Discard the pending card, or the currently focused hand card if none is pending."""
+        p = self._require_current_player(player)
+        if not p:
+            return
+        if not self.turn_has_drawn:
+            user = self.get_user(p)
+            if user:
+                user.speak_l("phase10-must-draw-first")
+            return
+        card = None
+        if self.discard_pending_card_id is not None:
+            card = next((c for c in p.hand if c.id == self.discard_pending_card_id), None)
+            self.discard_pending_card_id = None
+        else:
+            # Fall back to whichever card is focused in the menu right now.
+            context = self.get_action_context(player)
+            mid = context.menu_item_id if context else None
+            if mid and mid.startswith("card_"):
+                try:
+                    idx = int(mid.split("_", 1)[1]) - 1
+                    sorted_hand = self._sorted_hand_for_menu(p)
+                    if 0 <= idx < len(sorted_hand):
+                        card = sorted_hand[idx]
+                except (ValueError, IndexError):
+                    pass
+        if card is None:
+            user = self.get_user(p)
+            if user:
+                user.speak_l("phase10-no-card-selected")
+            return
+        # Cancel any in-progress hit mode so the discard goes through cleanly.
+        self.hit_active = False
+        self.hit_card_id = None
+        self.hit_wild_group_idx = None
+        if is_skip(card):
+            self._start_skip_discard(p, card)
+        else:
+            self._do_discard(p, card)
 
     # =========================================================================
     # Discard
@@ -1252,6 +1630,17 @@ class Phase10Game(Game, ActionGuardMixin):
     # =========================================================================
 
     def _start_skip_discard(self, p: Phase10Player, card: Card) -> None:
+        # If all other players have already been skipped this hand, the skip
+        # card cannot be used — discard it normally instead of entering the
+        # target-selection flow (which would loop forever for bots).
+        eligible = [
+            other for other in self._active_players()
+            if other.id != p.id and other.id not in self.skip_targets_this_round
+        ]
+        if not eligible:
+            self._do_discard(p, card)
+            return
+
         self.skip_discard_active = True
         self.skip_pending_card_id = card.id
         user = self.get_user(p)
@@ -1272,7 +1661,7 @@ class Phase10Game(Game, ActionGuardMixin):
                 user.speak_l("phase10-skip-self")
             return
 
-        if target.id in self.skip_targets_this_hand:
+        if target.id in self.skip_targets_this_round:
             user = self.get_user(p)
             if user:
                 user.speak_l("phase10-skip-already-used", player=target.name)
@@ -1287,7 +1676,7 @@ class Phase10Game(Game, ActionGuardMixin):
 
         # Apply
         target.skipped = True
-        self.skip_targets_this_hand.append(target.id)
+        self.skip_targets_this_round.append(target.id)
         p.hand.remove(skip_card)
         self.discard_pile.append(skip_card)
 
@@ -1325,6 +1714,10 @@ class Phase10Game(Game, ActionGuardMixin):
     # Info / status actions
     # =========================================================================
 
+    def _action_whose_turn(self, player: Player, action_id: str) -> None:
+        self._suppress_keybind_rebuild(player)
+        super()._action_whose_turn(player, action_id)
+
     def _action_read_hand(self, player: Player, action_id: str) -> None:
         p = self._get_p10_player(player)
         if not p or p.is_spectator:
@@ -1332,6 +1725,7 @@ class Phase10Game(Game, ActionGuardMixin):
         user = self.get_user(p)
         if not user:
             return
+        self._suppress_keybind_rebuild(player)
         locale = user.locale
         cards_str = p10_cards_name(sorted(p.hand, key=lambda c: (c.rank, c.suit)), locale)
         user.speak_l("phase10-hand-contents", count=len(p.hand), cards=cards_str)
@@ -1340,6 +1734,7 @@ class Phase10Game(Game, ActionGuardMixin):
         user = self.get_user(player)
         if not user:
             return
+        self._suppress_keybind_rebuild(player)
         locale = user.locale
         if not self.discard_pile:
             user.speak_l("phase10-no-discard")
@@ -1351,6 +1746,7 @@ class Phase10Game(Game, ActionGuardMixin):
         user = self.get_user(player)
         if not user:
             return
+        self._suppress_keybind_rebuild(player)
         locale = user.locale
         if not self.table_groups:
             user.speak_l("phase10-no-table-groups")
@@ -1359,12 +1755,11 @@ class Phase10Game(Game, ActionGuardMixin):
         for group in self.table_groups:
             owner = self.get_player_by_id(group.owner_id)
             owner_name = owner.name if owner else "?"
-            cards_str = p10_cards_name(group.cards, locale)
-            req_str = req_description(group.requirement, locale)
+            cards_str = self._format_group_summary(group.cards, group.requirement, locale)
             lines.append(Localization.get(
                 locale, "phase10-table-group-entry",
-                owner=owner_name, index=group.group_index + 1,
-                req=req_str, cards=cards_str,
+                owner=owner_name,
+                cards=cards_str,
             ))
         self.status_box(player, lines)
 
@@ -1375,6 +1770,7 @@ class Phase10Game(Game, ActionGuardMixin):
         user = self.get_user(p)
         if not user:
             return
+        self._suppress_keybind_rebuild(player)
         locale = user.locale
         if p.phase_laid_down:
             user.speak_l("phase10-your-phase-laid-down", phase=p.current_phase)
@@ -1386,53 +1782,72 @@ class Phase10Game(Game, ActionGuardMixin):
         user = self.get_user(player)
         if not user:
             return
+        self._suppress_keybind_rebuild(player)
         locale = user.locale
         lines: list[str] = []
         for p in self._active_players():
             lines.append(Localization.get(locale, "phase10-player-hand-count",
                                            player=p.name, count=len(p.hand)))
+        lines.append(Localization.get(locale, "phase10-deck-count", count=len(self.deck.cards)))
         self.status_box(player, lines)
 
     def _action_check_turn_timer(self, player: Player, action_id: str) -> None:
         user = self.get_user(player)
         if not user:
             return
+        self._suppress_keybind_rebuild(player)
         remaining = self.timer.seconds_remaining()
         if remaining > 0:
             user.speak_l("poker-timer-remaining", seconds=remaining)
         else:
             user.speak_l("poker-timer-unlimited")
 
+    def _action_sort_by_color(self, player: Player, action_id: str) -> None:
+        p = self._get_p10_player(player)
+        user = self.get_user(player)
+        if not p or not user:
+            return
+        p.hand_sort = "color"
+        user.speak_l("phase10-sorted-by-color")
+        self.rebuild_player_menu(player)
+
+    def _action_sort_by_number(self, player: Player, action_id: str) -> None:
+        p = self._get_p10_player(player)
+        user = self.get_user(player)
+        if not p or not user:
+            return
+        if p.hand_sort == "number_asc":
+            p.hand_sort = "number_desc"
+            user.speak_l("phase10-sorted-by-number-desc")
+        else:
+            p.hand_sort = "number_asc"
+            user.speak_l("phase10-sorted-by-number-asc")
+        self.rebuild_player_menu(player)
+
     # =========================================================================
     # Score display overrides
     # =========================================================================
+
+    def _build_score_lines(self, locale: str) -> list[str]:
+        lines = [Localization.get(locale, "phase10-score-header")]
+        for p in sorted(self._active_players(), key=lambda x: x.score):
+            lines.append(Localization.get(
+                locale, "phase10-score-entry",
+                player=p.name, phase=p.current_phase, score=p.score,
+            ))
+        return lines
 
     def _action_check_scores(self, player: Player, action_id: str) -> None:
         user = self.get_user(player)
         if not user:
             return
-        locale = user.locale
-        lines = [Localization.get(locale, "phase10-score-header")]
-        for p in sorted(self._active_players(), key=lambda x: x.score):
-            desc = phase_description(p.current_phase, locale)
-            lines.append(Localization.get(
-                locale, "phase10-score-entry",
-                player=p.name, phase=p.current_phase, score=p.score,
-            ))
-        user.speak("; ".join(lines))
+        user.speak("; ".join(self._build_score_lines(user.locale)))
 
     def _action_check_scores_detailed(self, player: Player, action_id: str) -> None:
         user = self.get_user(player)
         if not user:
             return
-        locale = user.locale
-        lines = [Localization.get(locale, "phase10-score-header")]
-        for p in sorted(self._active_players(), key=lambda x: x.score):
-            lines.append(Localization.get(
-                locale, "phase10-score-entry",
-                player=p.name, phase=p.current_phase, score=p.score,
-            ))
-        self.status_box(player, lines)
+        self.status_box(player, self._build_score_lines(user.locale))
 
     def _is_check_scores_enabled(self, player: Player) -> str | None:
         if self.status != "playing":
@@ -1440,7 +1855,7 @@ class Phase10Game(Game, ActionGuardMixin):
         return None
 
     def _is_check_scores_hidden(self, player: Player) -> Visibility:
-        return Visibility.VISIBLE if self.status == "playing" else Visibility.HIDDEN
+        return self._is_playing_hidden(player)
 
     def _is_check_scores_detailed_enabled(self, player: Player) -> str | None:
         if self.status != "playing":
@@ -1448,17 +1863,20 @@ class Phase10Game(Game, ActionGuardMixin):
         return None
 
     def _is_check_scores_detailed_hidden(self, player: Player) -> Visibility:
-        return Visibility.VISIBLE if self.status == "playing" else Visibility.HIDDEN
+        return self._is_playing_hidden(player)
 
     # =========================================================================
     # Timer
     # =========================================================================
 
-    def _start_turn_timer(self) -> None:
+    def _timer_seconds(self) -> int:
         try:
-            seconds = int(self.options.turn_timer)
+            return int(self.options.turn_timer)
         except ValueError:
-            seconds = 0
+            return 0
+
+    def _start_turn_timer(self) -> None:
+        seconds = self._timer_seconds()
         if seconds <= 0:
             self.timer.clear()
             return
@@ -1466,11 +1884,7 @@ class Phase10Game(Game, ActionGuardMixin):
         self._timer_warning_played = False
 
     def _maybe_play_timer_warning(self) -> None:
-        try:
-            seconds = int(self.options.turn_timer)
-        except ValueError:
-            seconds = 0
-        if seconds < 20 or self._timer_warning_played:
+        if self._timer_seconds() < 20 or self._timer_warning_played:
             return
         if self.timer.seconds_remaining() == 5:
             self._timer_warning_played = True

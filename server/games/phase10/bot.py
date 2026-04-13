@@ -15,6 +15,7 @@ Strategy:
 from __future__ import annotations
 
 import random
+from collections import Counter
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -49,6 +50,15 @@ def bot_think(game: "Phase10Game", player: "Phase10Player") -> str | None:  # no
     # ---- lay-down mode (bot is mid-group-selection) -------------------------
     if game.lay_down_active:
         return _handle_lay_down_mode(game, player)
+
+    # ---- wild placement choice ----------------------------------------------
+    if game.hit_wild_group_idx is not None:
+        from .evaluator import resolve_run_order
+        group = game.table_groups[game.hit_wild_group_idx]
+        ordered = resolve_run_order(group.cards)
+        if ordered and ordered[0][1] > 1:
+            return "hit_wild_low"
+        return "hit_wild_high"
 
     # ---- hit mode -----------------------------------------------------------
     if game.hit_active:
@@ -140,7 +150,7 @@ def _handle_lay_down_mode(game: "Phase10Game", player: "Phase10Player") -> str |
         in_target = card.id in target_ids
         in_current = card.id in current_ids
         if in_target != in_current:
-            return f"card_{card.id}"
+            return game._card_action_id(player, card) or "card_1"
 
     # Selection matches target — confirm
     return "confirm_group"
@@ -159,7 +169,7 @@ def _handle_hit_mode(game: "Phase10Game", player: "Phase10Player") -> str | None
         if not hit_pair:
             return "cancel_hit"
         card, _group_idx = hit_pair
-        return f"card_{card.id}"
+        return game._card_action_id(player, card) or "card_1"
     else:
         # Card chosen; find the matching group
         card = next((c for c in player.hand if c.id == game.hit_card_id), None)
@@ -205,7 +215,7 @@ def _choose_skip_target(game: "Phase10Game", player: "Phase10Player") -> str:
     # Target whoever is on the highest phase (and not already skipped this hand)
     eligible = [
         p for p in active
-        if p.id not in game.skip_targets_this_hand
+        if p.id not in game.skip_targets_this_round
     ]
     if not eligible:
         return "cancel_skip"
@@ -220,7 +230,7 @@ def _choose_skip_target(game: "Phase10Game", player: "Phase10Player") -> str:
 
 
 def _choose_discard(game: "Phase10Game", player: "Phase10Player") -> str | None:
-    """Choose which card to discard."""
+    """Choose which card to discard and queue it via discard_pending_card_id."""
     if not player.hand:
         return None
 
@@ -246,19 +256,34 @@ def _choose_discard(game: "Phase10Game", player: "Phase10Player") -> str | None:
 
     # Prefer to discard dead cards (highest penalty first; selecting a Skip
     # triggers the skip-discard target-selection flow automatically).
+    # However, avoid feeding table groups — deprioritize cards that an opponent
+    # could immediately draw and hit onto an existing group.
     dead = sorted(
         [c for c in player.hand if c.id not in useful_ids],
         key=lambda c: score_card(c),
         reverse=True,
     )
+    card = None
     if dead:
-        return f"card_{dead[0].id}"
+        if game.table_groups:
+            safe = [c for c in dead if not any(can_hit_group(g, c)[0] for g in game.table_groups)]
+            if safe:
+                card = safe[0]
+        if card is None:
+            card = dead[0]
 
-    # All cards are useful — discard the lowest-value non-Wild if possible, else Wild
-    non_wilds = [c for c in player.hand if not is_wild(c)]
-    if non_wilds:
-        return f"card_{min(non_wilds, key=lambda c: score_card(c)).id}"
-    return f"card_{min(player.hand, key=lambda c: score_card(c)).id}"
+    if card is None:
+        # All cards are useful — discard the lowest-value non-Wild if possible, else Wild
+        non_wilds = [c for c in player.hand if not is_wild(c)]
+        if non_wilds:
+            card = min(non_wilds, key=lambda c: score_card(c))
+        else:
+            card = min(player.hand, key=lambda c: score_card(c))
+
+    # Set the pending card directly so do_discard can find it without needing
+    # a menu focus context (bots don't navigate the UI the way humans do).
+    game.discard_pending_card_id = card.id
+    return "do_discard"
 
 
 def _partial_useful_ids(hand: list[Card], reqs) -> set[int]:
@@ -269,8 +294,6 @@ def _partial_useful_ids(hand: list[Card], reqs) -> set[int]:
     - RUN: all naturals that form the longest consecutive chain
     - COLOR: all naturals of the most common color
     """
-    from collections import Counter
-
     nats = [c for c in hand if not is_wild(c) and not is_skip(c) and is_numbered(c)]
     useful: set[int] = set()
 

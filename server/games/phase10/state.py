@@ -121,6 +121,7 @@ class Phase10Player(Player):
     phase_laid_down: bool = False
     score: int = 0
     skipped: bool = False
+    hand_sort: str = "default"  # "default" | "color" | "number_asc" | "number_desc"
 
 
 # ---------------------------------------------------------------------------

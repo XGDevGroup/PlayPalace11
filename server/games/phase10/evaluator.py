@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from collections import defaultdict
+
 from ...game_utils.cards import Card
 from ...messages.localization import Localization
 from .state import (
@@ -197,6 +199,10 @@ def can_hit_group(group: TableGroup, new_card: Card) -> tuple[bool, str]:
         return False, "phase10-hit-invalid-color"
 
     if is_wild(new_card):
+        if group.requirement.kind == GROUP_RUN:
+            ordered = resolve_run_order(group.cards)
+            if ordered and ordered[0][1] <= 1 and ordered[-1][1] >= 12:
+                return False, "phase10-hit-invalid-run"
         return True, ""
 
     if group.requirement.kind == GROUP_SET:
@@ -206,11 +212,14 @@ def can_hit_group(group: TableGroup, new_card: Card) -> tuple[bool, str]:
         return True, ""
 
     if group.requirement.kind == GROUP_RUN:
-        # Re-validate the whole group with the new card added.
-        # This naturally checks for duplicate ranks and gap feasibility.
-        test = group.cards + [new_card]
-        ok, _ = _validate_run_cards(test, len(test))
-        if not ok:
+        # Natural cards must extend the run at one of its ends, not fill
+        # interior slots (including slots currently covered by a wild).
+        ordered = resolve_run_order(group.cards)
+        if not ordered:
+            return False, "phase10-hit-invalid-run"
+        min_val = ordered[0][1]
+        max_val = ordered[-1][1]
+        if new_card.rank != min_val - 1 and new_card.rank != max_val + 1:
             return False, "phase10-hit-invalid-run"
         return True, ""
 
@@ -265,7 +274,6 @@ def _pick_group(available: list[Card], req: PhaseRequirement) -> list[Card] | No
 
 
 def _pick_set(nats: list[Card], wilds: list[Card], count: int) -> list[Card] | None:
-    from collections import Counter
     rank_groups: dict[int, list[Card]] = {}
     for c in nats:
         rank_groups.setdefault(c.rank, []).append(c)
@@ -336,7 +344,6 @@ def _pick_run(nats: list[Card], wilds: list[Card], count: int) -> list[Card] | N
 
 def _pick_color(nats: list[Card], wilds: list[Card], count: int) -> list[Card] | None:
     """Find a color group of at least `count`."""
-    from collections import defaultdict
     color_groups: dict[int, list[Card]] = defaultdict(list)
     for c in nats:
         if is_numbered(c):
@@ -348,6 +355,51 @@ def _pick_color(nats: list[Card], wilds: list[Card], count: int) -> list[Card] |
             return cards + wilds[:needed_wilds]
 
     return None
+
+
+# ---------------------------------------------------------------------------
+# Run display helpers
+# ---------------------------------------------------------------------------
+
+
+def resolve_run_order(cards: list[Card]) -> list[tuple[Card, int]]:
+    """Return (card, assigned_value) pairs for a run, sorted by assigned value.
+
+    Wilds fill internal gaps first, then extend the run at the low end (greedy).
+    All-wild groups start at 1.
+    """
+    wilds = [c for c in cards if is_wild(c)]
+    nats = sorted((c for c in cards if not is_wild(c)), key=lambda c: c.rank)
+
+    if not nats:
+        return [(c, i + 1) for i, c in enumerate(wilds)]
+
+    nat_ranks = [c.rank for c in nats]
+    min_nat = nat_ranks[0]
+    max_nat = nat_ranks[-1]
+
+    internal_gaps = (max_nat - min_nat + 1) - len(nats)
+    wilds_for_boundary = len(wilds) - internal_gaps
+
+    # Greedy: extend left first, but don't go below 1
+    start = max(1, min_nat - wilds_for_boundary)
+
+    result: list[tuple[Card, int]] = []
+    nat_iter = iter(nats)
+    wild_iter = iter(wilds)
+    next_nat = next(nat_iter, None)
+
+    for val in range(start, start + len(cards)):
+        if next_nat is not None and next_nat.rank == val:
+            result.append((next_nat, val))
+            next_nat = next(nat_iter, None)
+        else:
+            w = next(wild_iter, None)
+            if w is not None:
+                result.append((w, val))
+
+    return result
+
 
 
 # ---------------------------------------------------------------------------
