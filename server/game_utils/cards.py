@@ -199,6 +199,50 @@ class DeckFactory:
         deck.shuffle()
         return deck, card_lookup
 
+    @staticmethod
+    def phase10_deck() -> tuple[Deck, dict[int, Card]]:
+        """
+        Create Phase 10 108-card deck.
+
+        Contains:
+        - 2 copies of each number 1-12 in 4 colors (suit 1=Red, 2=Blue, 3=Green, 4=Yellow) = 96 cards
+        - 8 Wild cards (rank=13, suit=0)
+        - 4 Skip cards (rank=14, suit=0)
+
+        Returns:
+            Tuple of (shuffled deck, card lookup dict mapping id -> Card)
+        """
+        cards = []
+        card_lookup: dict[int, Card] = {}
+        card_id = 0
+
+        # Numbered cards: 2 copies of ranks 1-12 in each of 4 colors
+        for _ in range(2):
+            for suit in range(1, 5):  # 1=Red, 2=Blue, 3=Green, 4=Yellow
+                for rank in range(1, 13):  # 1-12
+                    card = Card(id=card_id, rank=rank, suit=suit)
+                    cards.append(card)
+                    card_lookup[card_id] = card
+                    card_id += 1
+
+        # Wild cards (rank=13, suit=0)
+        for _ in range(8):
+            card = Card(id=card_id, rank=13, suit=SUIT_NONE)
+            cards.append(card)
+            card_lookup[card_id] = card
+            card_id += 1
+
+        # Skip cards (rank=14, suit=0)
+        for _ in range(4):
+            card = Card(id=card_id, rank=14, suit=SUIT_NONE)
+            cards.append(card)
+            card_lookup[card_id] = card
+            card_id += 1
+
+        deck = Deck(cards=cards)
+        deck.shuffle()
+        return deck, card_lookup
+
 
 # Suit localization keys
 SUIT_KEYS = {
