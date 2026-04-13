@@ -307,6 +307,7 @@ class Phase10Game(Game, ActionGuardMixin):
                 label="",
                 handler="_action_card_selected",
                 is_enabled="_is_card_enabled",
+                is_hidden="_is_card_hidden",
                 get_label="_get_card_label",
                 show_in_actions_menu=False,
             ))
@@ -323,11 +324,15 @@ class Phase10Game(Game, ActionGuardMixin):
                         id=f"skip_target_{other.id}",
                         label=other.name,
                         handler="_action_select_skip_target",
+                        is_enabled="_is_turn_action_enabled",
+                        is_hidden="_is_turn_action_hidden",
                     ))
             turn_set.add(Action(
                 id="cancel_skip",
                 label=Localization.get(locale, "phase10-skip-cancel-action"),
                 handler="_action_cancel_skip",
+                is_enabled="_is_turn_action_enabled",
+                is_hidden="_is_turn_action_hidden",
             ))
             return
 
@@ -340,12 +345,16 @@ class Phase10Game(Game, ActionGuardMixin):
                     id=f"hit_group_{i}",
                     label="",
                     handler="_action_select_hit_group",
+                    is_enabled="_is_turn_action_enabled",
+                    is_hidden="_is_turn_action_hidden",
                     get_label="_get_hit_group_label",
                 ))
             turn_set.add(Action(
                 id="cancel_hit",
                 label=Localization.get(locale, "phase10-hit-cancel-action"),
                 handler="_action_cancel_hit",
+                is_enabled="_is_turn_action_enabled",
+                is_hidden="_is_turn_action_hidden",
             ))
             return
 
@@ -355,6 +364,8 @@ class Phase10Game(Game, ActionGuardMixin):
                 id="cancel_hit",
                 label=Localization.get(locale, "phase10-hit-cancel-action"),
                 handler="_action_cancel_hit",
+                is_enabled="_is_turn_action_enabled",
+                is_hidden="_is_turn_action_hidden",
             ))
             return
 
@@ -369,11 +380,15 @@ class Phase10Game(Game, ActionGuardMixin):
                     current=current, total=total,
                 ),
                 handler="_action_confirm_lay_down_group",
+                is_enabled="_is_turn_action_enabled",
+                is_hidden="_is_turn_action_hidden",
             ))
             turn_set.add(Action(
                 id="cancel_lay_down",
                 label=Localization.get(locale, "phase10-cancel-lay-down-action"),
                 handler="_action_cancel_lay_down",
+                is_enabled="_is_turn_action_enabled",
+                is_hidden="_is_turn_action_hidden",
             ))
             return
 
@@ -384,6 +399,8 @@ class Phase10Game(Game, ActionGuardMixin):
                 id="draw_deck",
                 label=Localization.get(locale, "phase10-draw-deck-action"),
                 handler="_action_draw_deck",
+                is_enabled="_is_turn_action_enabled",
+                is_hidden="_is_turn_action_hidden",
             ))
             # Draw from discard (if top is not a Skip and pile is non-empty)
             if self.discard_pile and not is_skip(self.discard_pile[-1]):
@@ -392,6 +409,8 @@ class Phase10Game(Game, ActionGuardMixin):
                     id="draw_discard",
                     label=Localization.get(locale, "phase10-draw-discard-action", card=top_name),
                     handler="_action_draw_discard",
+                    is_enabled="_is_turn_action_enabled",
+                    is_hidden="_is_turn_action_hidden",
                 ))
         else:
             # Lay down phase
@@ -402,6 +421,8 @@ class Phase10Game(Game, ActionGuardMixin):
                     id="lay_down_phase",
                     label=Localization.get(locale, "phase10-lay-down-action", phase=p.current_phase),
                     handler="_action_start_lay_down",
+                    is_enabled="_is_turn_action_enabled",
+                    is_hidden="_is_turn_action_hidden",
                 ))
             # Hit (only if own phase is down and groups exist)
             if p.phase_laid_down and self.table_groups:
@@ -409,6 +430,8 @@ class Phase10Game(Game, ActionGuardMixin):
                     id="hit",
                     label=Localization.get(locale, "phase10-hit-action"),
                     handler="_action_start_hit",
+                    is_enabled="_is_turn_action_enabled",
+                    is_hidden="_is_turn_action_hidden",
                 ))
 
     # =========================================================================
@@ -425,8 +448,12 @@ class Phase10Game(Game, ActionGuardMixin):
         if not card:
             return action_id
         name = p10_card_name(card, locale)
-        if self.lay_down_active and card_id in self.lay_down_current:
-            return Localization.get(locale, "phase10-card-label-selected", card=name)
+        if self.lay_down_active:
+            staged_ids = {cid for group in self.lay_down_staged for cid in group}
+            if card_id in staged_ids:
+                return Localization.get(locale, "phase10-card-label-staged", card=name)
+            if card_id in self.lay_down_current:
+                return Localization.get(locale, "phase10-card-label-selected", card=name)
         return name
 
     def _get_hit_group_label(self, player: Player, action_id: str) -> str:
@@ -451,23 +478,34 @@ class Phase10Game(Game, ActionGuardMixin):
     # Visibility / enabled helpers
     # =========================================================================
 
-    def _is_playing_enabled(self, player: Player, action_id: str) -> bool:
-        return self.status == "playing"
+    def _is_playing_enabled(self, player: Player) -> str | None:
+        if self.status != "playing":
+            return "action-not-playing"
+        return None
 
-    def _is_playing_hidden(self, player: Player, action_id: str) -> Visibility:
+    def _is_playing_hidden(self, player: Player) -> Visibility:
         return Visibility.VISIBLE if self.status == "playing" else Visibility.HIDDEN
 
-    def _is_card_enabled(self, player: Player, action_id: str) -> bool:
+    def _is_card_enabled(self, player: Player, *, action_id: str | None = None) -> str | None:
         p = self._get_p10_player(player)
         if not p or self.status != "playing":
-            return False
+            return "action-not-playing"
         if p.is_spectator:
-            return False
-        # Current player can always interact with their cards (mode dispatch in handler)
+            return "action-not-playing"
         if self.current_player == p:
-            return True
-        # Non-current players can still "read" their cards (but not act)
-        return False
+            return None
+        return "action-not-playing"
+
+    def _is_card_hidden(self, player: Player, *, action_id: str | None = None) -> Visibility:
+        return Visibility.VISIBLE
+
+    def _is_turn_action_enabled(self, player: Player) -> str | None:
+        """Always enabled — these actions are only added when the mode is active."""
+        return None
+
+    def _is_turn_action_hidden(self, player: Player) -> Visibility:
+        """Always visible — these actions are only added when the mode is active."""
+        return Visibility.VISIBLE
 
     # =========================================================================
     # Game flow
@@ -616,9 +654,9 @@ class Phase10Game(Game, ActionGuardMixin):
         # Handle skip
         if p.skipped:
             p.skipped = False
-            self.broadcast_personal_l(p, "phase10-you-are-skipped", "phase10-you-are-skipped",
-                                       skipping_player="")
-            # We don't know who skipped them (could be anyone earlier), so omit name in self-speak
+            user = self.get_user(p)
+            if user:
+                user.speak_l("phase10-your-turn-skipped", buffer="table")
             self._advance_turn()
             return
 
@@ -662,27 +700,33 @@ class Phase10Game(Game, ActionGuardMixin):
 
         if winner:
             self.broadcast_personal_l(winner, "phase10-you-go-out", "phase10-player-goes-out",
-                                       player=winner.name, round=self.round)
+                                       round=self.round)
             self.play_sound(SOUND_WIN_ROUND)
 
         self.broadcast_l("phase10-round-scoring-header")
 
-        active = self._active_players()
+        # In tiebreaker mode only the tied players participated this hand.
+        # Processing non-participants would advance their phases incorrectly.
+        if self.tiebreaker_mode:
+            active = [p for p in self._active_players() if p.id in self.tiebreaker_player_ids]
+        else:
+            active = self._active_players()
 
         # Score penalty points
+        round_penalties: dict[str, int] = {}
         for p in active:
             if p is winner:
                 penalty = 0
             else:
                 penalty = score_hand(p.hand)
             p.score += penalty
+            round_penalties[p.id] = penalty
 
             if p is winner:
-                self.broadcast_personal_l(p, "phase10-you-score-zero", "phase10-player-scores-zero",
-                                           player=p.name)
+                self.broadcast_personal_l(p, "phase10-you-score-zero", "phase10-player-scores-zero")
             else:
                 self.broadcast_personal_l(p, "phase10-you-score", "phase10-player-scores",
-                                           player=p.name, points=penalty, total=p.score)
+                                           points=penalty, total=p.score)
 
         # Advance phases
         even_only = self.options.even_phases_only
@@ -692,20 +736,22 @@ class Phase10Game(Game, ActionGuardMixin):
                 # Everyone advances regardless
                 new_phase = next_phase(p.current_phase, even_only)
                 p.current_phase = min(new_phase, 11)
-                self.broadcast_personal_l(p, "phase10-fixed-hands-advance", "phase10-fixed-hands-advance",
-                                           player=p.name, next=p.current_phase)
+                self.broadcast_personal_l(p, "phase10-you-fixed-hands-advance", "phase10-fixed-hands-advance",
+                                           next=p.current_phase)
             elif laid:
                 new_phase = next_phase(p.current_phase, even_only)
                 p.current_phase = new_phase
                 self.broadcast_personal_l(p, "phase10-you-advance", "phase10-player-advances",
-                                           player=p.name, next=p.current_phase)
+                                           next=p.current_phase)
             else:
                 self.broadcast_personal_l(p, "phase10-you-stay", "phase10-player-stays",
-                                           player=p.name, phase=p.current_phase)
+                                           phase=p.current_phase)
 
-        # Update TeamManager scores for persistence
+        # Update TeamManager scores (negate so higher = better internally)
         for p in active:
-            self._team_manager.set_score(p.name, -p.score)  # negate so higher = better internally
+            penalty = round_penalties.get(p.id, 0)
+            if penalty > 0:
+                self._team_manager.add_to_team_score(p.name, -penalty)
 
         # Check win condition
         if self._check_game_end(active):
@@ -781,7 +827,7 @@ class Phase10Game(Game, ActionGuardMixin):
     def _declare_winner(self, winner: Phase10Player, active: list[Phase10Player]) -> None:
         self.play_sound(SOUND_WIN_GAME)
         self.broadcast_personal_l(winner, "phase10-you-win", "phase10-game-winner",
-                                   player=winner.name, score=winner.score)
+                                   score=winner.score)
 
         result = GameResult(
             winner_name=winner.name,
@@ -821,7 +867,7 @@ class Phase10Game(Game, ActionGuardMixin):
         card_name = p10_card_name(card, locale)
         self.play_sound(random.choice(SOUND_DRAW))
         self.broadcast_personal_l(p, "phase10-you-draw-deck", "phase10-player-draws-deck",
-                                   player=p.name, card=card_name)
+                                   card=card_name)
         self._start_turn_timer()
         if p.is_bot:
             BotHelper.jolt_bot(p, ticks=random.randint(15, 25))
@@ -852,7 +898,7 @@ class Phase10Game(Game, ActionGuardMixin):
         card_name = p10_card_name(card, locale)
         self.play_sound(random.choice(SOUND_DRAW))
         self.broadcast_personal_l(p, "phase10-you-draw-discard", "phase10-player-draws-discard",
-                                   player=p.name, card=card_name)
+                                   card=card_name)
         self._start_turn_timer()
         if p.is_bot:
             BotHelper.jolt_bot(p, ticks=random.randint(15, 25))
@@ -943,9 +989,15 @@ class Phase10Game(Game, ActionGuardMixin):
         current_num = self.lay_down_group_index + 1
 
         # Build current selection label (after toggle)
+        staged_ids = {cid for group in self.lay_down_staged for cid in group}
         if card.id in self.lay_down_current:
             self.lay_down_current.remove(card.id)
             msg_key = "phase10-lay-down-remove"
+        elif card.id in staged_ids:
+            user = self.get_user(p)
+            if user:
+                user.speak_l("phase10-lay-down-card-already-staged", card=card_name)
+            return
         else:
             self.lay_down_current.append(card.id)
             msg_key = "phase10-lay-down-add"
@@ -1052,7 +1104,7 @@ class Phase10Game(Game, ActionGuardMixin):
         desc = phase_description(p.current_phase, locale)
         self.play_sound(random.choice(SOUND_LAY_DOWN))
         self.broadcast_personal_l(p, "phase10-lay-down-success", "phase10-player-lays-down",
-                                   player=p.name, phase=p.current_phase, description=desc)
+                                   phase=p.current_phase, description=desc)
 
         if len(p.hand) == 0:
             self._end_round(p)
@@ -1150,7 +1202,7 @@ class Phase10Game(Game, ActionGuardMixin):
         owner_name = owner.name if owner else "?"
         self.play_sound(random.choice(SOUND_DISCARD))
         self.broadcast_personal_l(p, "phase10-hit-success", "phase10-player-hits",
-                                   player=p.name, target=owner_name,
+                                   target=owner_name,
                                    card=p10_card_name(card, locale))
 
         self.hit_active = False
@@ -1173,7 +1225,7 @@ class Phase10Game(Game, ActionGuardMixin):
         self.hit_card_id = None
         user = self.get_user(p)
         if user:
-            user.speak_l("phase10-hit-cancel-action", buffer="table")
+            user.speak_l("phase10-hit-cancelled", buffer="table")
         self.rebuild_player_menu(p, position=1)
 
     # =========================================================================
@@ -1187,7 +1239,7 @@ class Phase10Game(Game, ActionGuardMixin):
         locale = self._player_locale(p)
         self.play_sound(random.choice(SOUND_DISCARD))
         self.broadcast_personal_l(p, "phase10-you-discard", "phase10-player-discards",
-                                   player=p.name, card=p10_card_name(card, locale))
+                                   card=p10_card_name(card, locale))
 
         if len(p.hand) == 0:
             self._end_round(p)
@@ -1242,7 +1294,7 @@ class Phase10Game(Game, ActionGuardMixin):
         locale = self._player_locale(p)
         self.play_sound(random.choice(SOUND_DISCARD))
         self.broadcast_personal_l(p, "phase10-skip-played", "phase10-player-skips",
-                                   player=p.name, target=target.name)
+                                   target=target.name)
 
         # Inform the target
         target_user = self.get_user(target)
@@ -1266,7 +1318,7 @@ class Phase10Game(Game, ActionGuardMixin):
         self.skip_pending_card_id = None
         user = self.get_user(p)
         if user:
-            user.speak_l("phase10-skip-cancel-action", buffer="table")
+            user.speak_l("phase10-skip-cancelled", buffer="table")
         self.rebuild_player_menu(p, position=1)
 
     # =========================================================================
@@ -1382,16 +1434,20 @@ class Phase10Game(Game, ActionGuardMixin):
             ))
         self.status_box(player, lines)
 
-    def _is_check_scores_enabled(self, player: Player, action_id: str) -> bool:
-        return self.status == "playing"
+    def _is_check_scores_enabled(self, player: Player) -> str | None:
+        if self.status != "playing":
+            return "action-not-playing"
+        return None
 
-    def _is_check_scores_hidden(self, player: Player, action_id: str) -> Visibility:
+    def _is_check_scores_hidden(self, player: Player) -> Visibility:
         return Visibility.VISIBLE if self.status == "playing" else Visibility.HIDDEN
 
-    def _is_check_scores_detailed_enabled(self, player: Player, action_id: str) -> bool:
-        return self.status == "playing"
+    def _is_check_scores_detailed_enabled(self, player: Player) -> str | None:
+        if self.status != "playing":
+            return "action-not-playing"
+        return None
 
-    def _is_check_scores_detailed_hidden(self, player: Player, action_id: str) -> Visibility:
+    def _is_check_scores_detailed_hidden(self, player: Player) -> Visibility:
         return Visibility.VISIBLE if self.status == "playing" else Visibility.HIDDEN
 
     # =========================================================================

@@ -277,9 +277,6 @@ def _pick_set(nats: list[Card], wilds: list[Card], count: int) -> list[Card] | N
         nat_count = len(cards)
         needed_wilds = max(0, count - nat_count)
         if needed_wilds <= len(wilds) and nat_count > best_nat_count:
-            best = cards[:count] + wilds[:needed_wilds]  # may be more than count if nat_count > count
-            best = cards[:min(nat_count, count)] + wilds[:needed_wilds]
-            # Also allow more than minimum (lay down extras)
             best = cards + wilds[:max(0, count - len(cards))]
             best_nat_count = nat_count
 

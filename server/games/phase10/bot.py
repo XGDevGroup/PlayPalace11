@@ -94,9 +94,16 @@ def _choose_draw(game: "Phase10Game", player: "Phase10Player") -> str:
 
 
 def _discard_helps_phase(card: Card, hand: list[Card], reqs) -> bool:
-    """Return True if drawing the discard top card would help complete the phase."""
+    """Return True if drawing the discard top card would help complete the phase.
+
+    Wilds: always helpful (we keep them), but only draw from discard if the
+    phase assignment isn't already complete without it — otherwise taking it
+    just wastes a Wild slot and creates ping-pong loops.
+    """
     if is_wild(card):
-        return True
+        # Only take the Wild if we can't already lay down without it
+        already_done = find_phase_assignment(hand, reqs) is not None
+        return not already_done
     test_hand = hand + [card]
     return find_phase_assignment(test_hand, reqs) is not None
 
@@ -219,29 +226,82 @@ def _choose_discard(game: "Phase10Game", player: "Phase10Player") -> str | None:
 
     reqs = game._current_phase_reqs(player)
 
-    # Identify which card IDs are "useful" for the phase
+    # Identify which card IDs are "useful" for the phase.
+    # If the phase is completable now, keep exactly the assigned cards.
+    # Otherwise, keep cards that contribute to the best partial progress per
+    # requirement so we don't throw away the run/set we're building toward.
     useful_ids: set[int] = set()
     assignment = find_phase_assignment(player.hand, reqs)
     if assignment:
         for group in assignment:
             for c in group:
                 useful_ids.add(c.id)
+    else:
+        useful_ids = _partial_useful_ids(player.hand, reqs)
 
-    # Dead cards sorted by descending penalty (shed most expensive first)
+    # Wilds are always considered useful — never discard them if alternatives exist
+    for c in player.hand:
+        if is_wild(c):
+            useful_ids.add(c.id)
+
+    # Prefer to discard dead cards (highest penalty first; selecting a Skip
+    # triggers the skip-discard target-selection flow automatically).
     dead = sorted(
         [c for c in player.hand if c.id not in useful_ids],
         key=lambda c: score_card(c),
         reverse=True,
     )
-
     if dead:
-        # If the top dead card is a skip, play it on someone rather than just discarding
-        top_dead = dead[0]
-        if is_skip(top_dead):
-            # Trigger the skip-discard flow via the card action
-            return f"card_{top_dead.id}"
-        return f"card_{top_dead.id}"
+        return f"card_{dead[0].id}"
 
-    # All cards are useful — discard the lowest-value card
-    worst = min(player.hand, key=lambda c: score_card(c))
-    return f"card_{worst.id}"
+    # All cards are useful — discard the lowest-value non-Wild if possible, else Wild
+    non_wilds = [c for c in player.hand if not is_wild(c)]
+    if non_wilds:
+        return f"card_{min(non_wilds, key=lambda c: score_card(c)).id}"
+    return f"card_{min(player.hand, key=lambda c: score_card(c)).id}"
+
+
+def _partial_useful_ids(hand: list[Card], reqs) -> set[int]:
+    """Return card IDs worth keeping when the full phase can't yet be assembled.
+
+    For each requirement we keep the cards that best contribute to that group:
+    - SET: all naturals of the most common rank
+    - RUN: all naturals that form the longest consecutive chain
+    - COLOR: all naturals of the most common color
+    """
+    from collections import Counter
+
+    nats = [c for c in hand if not is_wild(c) and not is_skip(c) and is_numbered(c)]
+    useful: set[int] = set()
+
+    for req in reqs:
+        if req.kind == GROUP_SET:
+            if nats:
+                best_rank = Counter(c.rank for c in nats).most_common(1)[0][0]
+                useful.update(c.id for c in nats if c.rank == best_rank)
+
+        elif req.kind == GROUP_RUN:
+            seen_ranks = sorted(set(c.rank for c in nats))
+            if not seen_ranks:
+                continue
+            # Find the longest chain of consecutive ranks
+            best: list[int] = []
+            current: list[int] = [seen_ranks[0]]
+            for r in seen_ranks[1:]:
+                if r == current[-1] + 1:
+                    current.append(r)
+                else:
+                    if len(current) > len(best):
+                        best = current
+                    current = [r]
+            if len(current) > len(best):
+                best = current
+            best_set = set(best)
+            useful.update(c.id for c in nats if c.rank in best_set)
+
+        elif req.kind == GROUP_COLOR:
+            if nats:
+                best_color = Counter(c.suit for c in nats).most_common(1)[0][0]
+                useful.update(c.id for c in nats if c.suit == best_color)
+
+    return useful

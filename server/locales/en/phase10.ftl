@@ -13,6 +13,8 @@ phase10-card-numbered = { $number } { $color }
 phase10-card-wild = Wild
 phase10-card-skip = Skip
 phase10-card-label-selected = { $card } (selected)
+phase10-card-label-staged = { $card } (staged)
+phase10-lay-down-card-already-staged = { $card } is already staged in a previous group.
 
 # Phase requirement short descriptions (used in prompts)
 phase10-req-set = set of { $count }
@@ -86,6 +88,7 @@ phase10-lay-down-confirmed-group = Group { $current } confirmed: { $cards }.
 phase10-lay-down-success = You lay down Phase { $phase }: { $description }.
 phase10-player-lays-down = { $player } lays down Phase { $phase }.
 phase10-lay-down-cancel = Phase lay-down cancelled.
+phase10-hit-cancelled = Hit cancelled.
 
 # Lay down phase — validation errors
 phase10-err-need-cards = Need at least { $count } { $count ->
@@ -108,7 +111,7 @@ phase10-hit-cancel-action = Cancel hit
 # Hit — flow messages
 phase10-hit-mode-start = Select a card from your hand to hit with. Press Escape to cancel.
 phase10-hit-choose-group = Hitting { $card }. Select a group to hit onto, or cancel.
-phase10-hit-success = You hit { $card } onto { $player }'s group.
+phase10-hit-success = You hit { $card } onto { $target }'s group.
 phase10-player-hits = { $player } hits { $card } onto { $target }'s group.
 phase10-hit-invalid = { $card } does not fit that group: { $reason }.
 phase10-hit-no-phase = Lay down your own phase before hitting.
@@ -126,11 +129,13 @@ phase10-skip-cancel-action = Cancel skip
 
 # Skip — flow messages
 phase10-skip-choose-target = You discarded a Skip. Choose a player to skip, or cancel.
-phase10-skip-played = You skip { $player }.
+phase10-skip-cancelled = Skip cancelled.
+phase10-skip-played = You skip { $target }.
 phase10-player-skips = { $player } plays a Skip on { $target }.
 phase10-you-are-skipped = { $skipping_player } skips you. Your turn is lost.
 phase10-skip-already-used = { $player } has already been skipped this hand.
 phase10-skip-self = You cannot skip yourself.
+phase10-your-turn-skipped = Your turn has been skipped.
 
 # Status / info — action labels
 phase10-read-hand-action = Read hand
@@ -184,6 +189,7 @@ phase10-you-stay = You stay on Phase { $phase }.
 phase10-player-advances = { $player } advances to Phase { $next }.
 phase10-player-stays = { $player } stays on Phase { $phase }.
 phase10-fixed-hands-advance = { $player } advances to Phase { $next } (fixed hands).
+phase10-you-fixed-hands-advance = You advance to Phase { $next } (fixed hands).
 
 # Game end
 phase10-phase-completed = { $player } completes Phase { $phase }!
