@@ -94,8 +94,21 @@ class MenuManagementMixin:
                 label = f"{label}; {unavailable}"
             items.append(MenuItem(text=label, id=resolved.action.id, sound=resolved.sound))
 
+        # When a specific item is being focused by ID, also compute its 1-based
+        # position and pass it through. user.update_menu stores the position in
+        # _current_menus so that a subsequent rebuild_player_menu (which calls
+        # show_menu) can restore focus to the correct item even though show_menu
+        # uses a positional index rather than an ID.
+        position = None
+        if selection_id:
+            for i, item in enumerate(items, 1):
+                if item.id == selection_id:
+                    position = i
+                    break
+
         user.update_menu(
-            "turn_menu", items, selection_id=selection_id, play_selection_sound=play_selection_sound
+            "turn_menu", items, selection_id=selection_id, position=position,
+            play_selection_sound=play_selection_sound
         )
 
     def update_all_menus(self) -> None:

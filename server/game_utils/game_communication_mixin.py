@@ -105,8 +105,9 @@ class GameCommunicationMixin:
             **kwargs: Fluent arguments forwarded to the message.
         """
         target_tick = self.sound_scheduler_tick + delay_ticks
+        exclude_id = exclude.id if exclude is not None else None
         self.scheduled_broadcasts.append(
-            (target_tick, "broadcast", message_id, buffer, None, None, kwargs, exclude)
+            (target_tick, "broadcast", message_id, buffer, None, None, kwargs, exclude_id)
         )
 
     def schedule_broadcast_personal_l(
@@ -129,8 +130,9 @@ class GameCommunicationMixin:
             **kwargs: Fluent arguments forwarded to both messages.
         """
         target_tick = self.sound_scheduler_tick + delay_ticks
+        # Store player ID (str) rather than the player object so the entry is JSON-serializable.
         self.scheduled_broadcasts.append(
-            (target_tick, "personal", personal_message_id, buffer, player, others_message_id, kwargs, None)
+            (target_tick, "personal", personal_message_id, buffer, player.id, others_message_id, kwargs, None)
         )
 
     def process_scheduled_broadcasts(self) -> None:
@@ -141,11 +143,14 @@ class GameCommunicationMixin:
         current_tick = self.sound_scheduler_tick
         remaining = []
         for entry in self.scheduled_broadcasts:
-            tick, kind, message_id, buffer, player, others_id, kwargs, exclude = entry
+            tick, kind, message_id, buffer, player_id, others_id, kwargs, exclude_id = entry
             if tick <= current_tick:
                 if kind == "personal":
-                    self.broadcast_personal_l(player, message_id, others_id, buffer, **kwargs)
+                    player = next((p for p in self.players if p.id == player_id), None)
+                    if player:
+                        self.broadcast_personal_l(player, message_id, others_id, buffer, **kwargs)
                 else:
+                    exclude = next((p for p in self.players if p.id == exclude_id), None) if exclude_id else None
                     self.broadcast_l(message_id, buffer, exclude=exclude, **kwargs)
             else:
                 remaining.append(entry)
