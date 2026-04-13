@@ -76,10 +76,12 @@ After laying down your own phase (not before), you may hit additional cards onto
 * **Run:** The card must extend the run at either end. You cannot insert cards into the interior of a run. Wilds extend at either end (you will be asked which end when hitting a Wild onto a run).
 * **Color group:** The card must match the color of the group.
 
-Wilds may be hit onto any group that they can legally extend. Press H (or "Hit" from the menu) to enter hit mode. Select a card from your hand, then select the group to hit it onto.
+The primary way to hit is to navigate to the card in your hand and press Enter. If your phase is already laid down and groups are on the table, this immediately enters hit mode with that card ready, and the turn menu switches to showing available groups to hit onto. Alternatively, press H to enter hit mode first and then navigate to select a card — useful if you want to browse the groups before committing to a card.
 
 ### Discarding
-After drawing and taking any optional actions, you must discard exactly one card to end your turn. Navigate to the card you want to discard and press Enter to select it (it will be labeled "selected"), then press J or "Discard" to confirm. Pressing the discard action without a card selected will remind you to select one first.
+After drawing and taking any optional actions, you must discard exactly one card to end your turn. Navigate to the card you want to discard and press J — whichever card is currently focused in your hand menu is used directly. No prior selection step is needed.
+
+If you were in hit mode and cancelled with Escape, the card you had selected for hitting remains marked, and pressing J will discard that card.
 
 When you discard a Skip card, you must immediately choose a player to skip (the skip-target menu appears automatically). You cannot skip yourself. Each player can only be skipped once per round (once per full rotation around the table).
 
@@ -110,11 +112,12 @@ Shortcuts specific to Phase 10:
 * **Space:** Draw from the deck.
 * **Shift+D:** Draw from the discard pile.
 * **N:** Lay down your phase (opens lay-down mode).
-* **Enter:** In lay-down mode, toggle the focused card in or out of the current group; confirm a group; confirm hit target.
+* **Enter (on a group):** Confirm the selected hit group (after entering hit mode via a card).
 * **F:** Confirm the current group during lay-down.
 * **Escape:** Cancel lay-down mode or cancel a hit in progress.
-* **H:** Hit a card onto a table group (opens hit mode).
-* **J:** Discard the selected card (the card labeled "selected" in your hand).
+* **Enter (on a hand card):** If your phase is laid down and groups are on the table, immediately enters hit mode with that card. In lay-down mode, toggles the card in or out of the current group.
+* **H:** Enter hit mode without pre-selecting a card (browse groups first, then select a card).
+* **J:** Discard the currently focused hand card.
 * **D:** Read the top card of the discard pile.
 * **C:** Read all groups currently on the table.
 * **P:** Check your current phase and all players' phase status.
