@@ -67,6 +67,8 @@ jobs:
   linux-client:
     name: Linux Desktop Client
     runs-on: ubuntu-24.04
+    env:
+      WXPYTHON_LINUX_WHEEL: https://extras.wxpython.org/wxPython4/extras/linux/gtk3/ubuntu-24.04/wxpython-4.2.5-cp313-cp313-linux_x86_64.whl
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -82,7 +84,12 @@ jobs:
       - name: Sync client dependencies
         run: |
           cd clients/desktop
-          uv sync --find-links https://extras.wxpython.org/wxPython4/extras/linux/gtk3/ubuntu-24.04/
+          uv sync --no-install-package wxpython
+
+      - name: Install Linux wxPython wheel
+        run: |
+          cd clients/desktop
+          uv pip install --python .venv/bin/python --no-deps "$WXPYTHON_LINUX_WHEEL"
 
       - name: Build client
         run: |
