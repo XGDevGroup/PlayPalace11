@@ -4,17 +4,12 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
-if ! uv run --project . pyinstaller --version >/dev/null 2>&1; then
-  echo "PyInstaller not found in uv environment. Installing..."
-  uv add --dev pyinstaller pyinstaller-hooks-contrib
-fi
-
 DELIM=";"
 if [[ "$(uname -s)" != MINGW* && "$(uname -s)" != CYGWIN* ]]; then
   DELIM=":"
 fi
 
-uv run --project . pyinstaller -y --clean --onedir --noconsole --name PlayPalace \
+uv run --no-sync --with pyinstaller --with pyinstaller-hooks-contrib --project . pyinstaller -y --clean --onedir --noconsole --name PlayPalace \
   --add-data "sounds${DELIM}sounds" \
   --add-data "defaults${DELIM}defaults" \
   client.py

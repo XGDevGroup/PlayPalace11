@@ -3,18 +3,11 @@ $ErrorActionPreference = "Stop"
 # build.ps1 may be run from repo root; ensure uv uses the client/ pyproject.toml
 $ClientDir = $PSScriptRoot
 
-# Ensure PyInstaller is available in this uv project
-uv run --project $ClientDir pyinstaller --version 2>$null
-if ($LASTEXITCODE -ne 0) {
-	Write-Host "PyInstaller not found in uv environment. Installing..."
-	uv add --project $ClientDir --dev pyinstaller pyinstaller-hooks-contrib
-}
-
 Write-Host "Building PlayPalace..."
 
 Push-Location $ClientDir
 try {
-	uv run --project $ClientDir pyinstaller -y --clean --onedir --noconsole --name PlayPalace --add-data "sounds;sounds" --add-data "defaults;defaults" client.py
+	uv run --no-sync --with pyinstaller --with pyinstaller-hooks-contrib --project $ClientDir pyinstaller -y --clean --onedir --noconsole --name PlayPalace --add-data "sounds;sounds" --add-data "defaults;defaults" client.py
 	if ($LASTEXITCODE -ne 0) {
 		throw "PyInstaller failed."
 	}
