@@ -25,10 +25,10 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.13"
 
@@ -59,37 +59,30 @@ jobs:
           Compress-Archive -Path "$stage\\*" -DestinationPath "release/PlayPalace-windows-x64.zip" -Force
 
       - name: Upload Windows artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: desktop-client-windows
           path: release/PlayPalace-windows-x64.zip
 
   linux-client:
     name: Linux Desktop Client
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.13"
 
       - name: Install uv
         run: python -m pip install --upgrade uv
 
-      - name: Install wxPython build dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y \
-            libgtk-3-dev libsdl2-dev libnotify-dev libsm-dev \
-            libgstreamer-gl1.0-0 freeglut3-dev pkg-config
-
       - name: Sync client dependencies
         run: |
           cd clients/desktop
-          uv sync
+          uv sync --find-links https://extras.wxpython.org/wxPython4/extras/linux/gtk3/ubuntu-24.04/
 
       - name: Build client
         run: |
@@ -107,7 +100,7 @@ jobs:
           tar -C "$RUNNER_TEMP" -czf release/PlayPalace-linux-x86_64.tar.gz PlayPalace-linux-x86_64
 
       - name: Upload Linux artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: desktop-client-linux
           path: release/PlayPalace-linux-x86_64.tar.gz
@@ -117,10 +110,10 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.13"
 
@@ -163,7 +156,7 @@ jobs:
           ditto -c -k --sequesterRsrc --keepParent "$stage" release/PlayPalace-macos-x64.zip
 
       - name: Upload macOS artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: desktop-client-macos
           path: release/PlayPalace-macos-x64.zip
@@ -177,12 +170,12 @@ jobs:
       - macos-client
     steps:
       - name: Download build artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           path: release-assets
 
       - name: Publish GitHub release assets
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ github.event.inputs.release_tag || 'desktop-client-latest' }}
           name: ${{ github.event.inputs.release_name || 'Desktop Client Latest' }}
