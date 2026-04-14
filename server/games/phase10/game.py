@@ -308,7 +308,7 @@ class Phase10Game(Game, ActionGuardMixin):
         self.define_keybind("n", "Lay down phase", ["lay_down_phase"], state=KeybindState.ACTIVE)
         self.define_keybind("enter", "Confirm group / select", ["confirm_group", "select_card_for_hit", "select_hit_group", "select_skip_target"], state=KeybindState.ACTIVE)
         self.define_keybind("f", "Confirm group", ["confirm_group"], state=KeybindState.ACTIVE)
-        self.define_keybind("escape", "Cancel mode", ["cancel_lay_down", "cancel_hit", "cancel_skip"], state=KeybindState.ACTIVE)
+
         self.define_keybind("h", "Hit", ["hit"], state=KeybindState.ACTIVE)
         self.define_keybind("j", "Discard selected card", ["do_discard"], state=KeybindState.ACTIVE)
         # Info
