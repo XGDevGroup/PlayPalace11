@@ -909,53 +909,65 @@ class Phase10Game(Game, ActionGuardMixin):
             if penalty > 0:
                 self._team_manager.add_to_team_score(p.name, -penalty)
 
-        # If the game ends this round, fire all scoring/phase announces immediately
-        # (game-over announcement is the climax; per-round detail is secondary)
-        if self._check_game_end(active):
-            self.broadcast_l("phase10-round-scoring-header")
-            for p in active:
-                if p is winner:
-                    self.broadcast_personal_l(p, "phase10-you-score-zero", "phase10-player-scores-zero")
-                else:
-                    self.broadcast_personal_l(p, "phase10-you-score", "phase10-player-scores",
-                                               points=round_penalties[p.id], total=p.score)
-            for p, personal_id, others_id, kwargs in phase_announces:
-                self.broadcast_personal_l(p, personal_id, others_id, **kwargs)
-            return
+        # Check whether the game ends this round before showing results.
+        game_over = self._check_game_end(active)
 
-        # Game continues: stagger scoring and phase announces so NVDA can read each one
-        STEP = 10  # ticks between messages (~500ms)
-        delay = STEP
-
-        self.schedule_broadcast_l("phase10-round-scoring-header", delay)
-        delay += STEP
-
-        for p in active:
-            if p is winner:
-                self.schedule_broadcast_personal_l(p, "phase10-you-score-zero", "phase10-player-scores-zero", delay)
-            else:
-                self.schedule_broadcast_personal_l(p, "phase10-you-score", "phase10-player-scores", delay,
-                                                    points=round_penalties[p.id], total=p.score)
-            delay += STEP
-
-        for p, personal_id, others_id, kwargs in phase_announces:
-            self.schedule_broadcast_personal_l(p, personal_id, others_id, delay, **kwargs)
-            delay += STEP
-
-        self.game_active = True
-
+        # Determine whether this is the final fixed-hands hand.
+        fixed_hands_over = False
         if self.options.fixed_hands and not self.tiebreaker_mode:
             self.fixed_hands_remaining -= 1
             if self.fixed_hands_remaining <= 0:
-                self.schedule_broadcast_l("phase10-fixed-hands-over", delay)
-                delay += STEP
-                # Defer _resolve_winner until after announces have fired via event
-                self.schedule_event("resolve_winner", {}, delay_ticks=delay)
-                self.next_round_wait_ticks = delay + STEP
-                return
+                fixed_hands_over = True
 
-        REST = 2 * 20  # 2 seconds breathing room after final announcement
-        self.next_round_wait_ticks = delay + REST
+        self.game_active = True
+
+        # Show each player a status box with their personalised round summary.
+        # Using a status box lets each player read at their own pace rather than
+        # racing against a fixed stagger timer.
+        for p in active:
+            user = self.get_user(p)
+            if not user:
+                continue
+            locale = user.locale
+            lines: list[str] = [Localization.get(locale, "phase10-round-scoring-header")]
+
+            # Score lines: personal pronoun for self, third person for others.
+            for q in active:
+                if q is winner:
+                    if q is p:
+                        lines.append(Localization.get(locale, "phase10-you-score-zero"))
+                    else:
+                        lines.append(Localization.get(locale, "phase10-player-scores-zero", player=q.name))
+                else:
+                    if q is p:
+                        lines.append(Localization.get(locale, "phase10-you-score",
+                                                       points=round_penalties[q.id], total=q.score))
+                    else:
+                        lines.append(Localization.get(locale, "phase10-player-scores",
+                                                       player=q.name, points=round_penalties[q.id], total=q.score))
+
+            # Phase advancement lines.
+            for q, personal_id, others_id, kwargs in phase_announces:
+                if q is p:
+                    lines.append(Localization.get(locale, personal_id, **kwargs))
+                else:
+                    lines.append(Localization.get(locale, others_id, player=q.name, **kwargs))
+
+            if fixed_hands_over:
+                lines.append(Localization.get(locale, "phase10-fixed-hands-over"))
+
+            self.status_box(p, lines)
+
+        if game_over:
+            return
+
+        if fixed_hands_over:
+            # Small delay so the status box is visible before winner resolution fires.
+            self.schedule_event("resolve_winner", {}, delay_ticks=20)
+            self.next_round_wait_ticks = 40
+            return
+
+        self.next_round_wait_ticks = 2 * 20  # 2 seconds before next round
 
     def _check_game_end(self, active: list[Phase10Player]) -> bool:  # noqa: C901
         """Check whether any player has completed the target phase. Returns True if game ended."""

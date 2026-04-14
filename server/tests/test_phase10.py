@@ -404,22 +404,3 @@ class TestPersistence:
         assert loaded.options.even_phases_only is True
         assert loaded.options.fixed_hands is False
 
-    def test_round_trip_scheduled_broadcasts_serializable(self):
-        """scheduled_broadcasts must survive a JSON round-trip (no Player objects inside)."""
-        import json
-        game = _make_game(2, Phase10Options(winning_phase=1))
-        # Queue a personal broadcast to populate scheduled_broadcasts
-        if game.players:
-            game.schedule_broadcast_personal_l(
-                game.players[0],
-                "phase10-your-phase",
-                "phase10-player-phase-entry",
-                delay_ticks=10,
-                phase=1,
-                description="test",
-                laid_down="other",
-            )
-        payload = game.to_json()
-        # Must not raise
-        parsed = json.loads(payload)
-        assert "scheduled_broadcasts" in parsed
