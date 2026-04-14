@@ -19,6 +19,12 @@ mkdir -p "$CONFIG_DIR"
 if [ -f "$EXAMPLE" ] && [ ! -f "$TARGET" ]; then
     install -m 0640 -g playpalace "$EXAMPLE" "$TARGET"
 fi
+# Ensure pre-existing config files from earlier installs are readable by
+# the playpalace service user after upgrade.
+if [ -f "$TARGET" ]; then
+    chown root:playpalace "$TARGET"
+    chmod 0640 "$TARGET"
+fi
 chown root:playpalace "$CONFIG_DIR"
 chmod 0750 "$CONFIG_DIR"
 

@@ -102,12 +102,32 @@ def _coerce_bool(value: Any, default: bool) -> bool:
 # Default paths based on module location
 _MODULE_DIR = Path(__file__).parent.parent
 _REPO_ROOT = Path(__file__).resolve().parents[2]
-_VAR_SERVER_DIR = _REPO_ROOT / "var" / "server"
 _DEFAULT_LOCALES_DIR = _MODULE_DIR / "locales"
 
 
+def _resolve_var_server_dir() -> Path:
+    """Resolve the writable var directory for database and logs.
+
+    Honors ``PLAYPALACE_VAR_DIR`` first (set by the systemd unit so packaged
+    installs land in ``/opt/playpalace/server/var/server``). When running as a
+    PyInstaller frozen binary without that env var, ``__file__`` points inside
+    the ephemeral ``sys._MEIPASS`` extraction dir, so we anchor to the real
+    executable location instead of the module path. Dev checkouts fall through
+    to the repo-local path.
+    """
+    override = os.environ.get("PLAYPALACE_VAR_DIR")
+    if override:
+        return Path(override)
+    if getattr(sys, "frozen", False):
+        return Path(sys.executable).resolve().parent / "var" / "server"
+    return _REPO_ROOT / "var" / "server"
+
+
+_VAR_SERVER_DIR = _resolve_var_server_dir()
+
+
 def _ensure_var_server_dir() -> Path:
-    """Ensure the repo-local var directory exists for server artifacts."""
+    """Ensure the writable var directory exists for server artifacts."""
     _VAR_SERVER_DIR.mkdir(parents=True, exist_ok=True)
     return _VAR_SERVER_DIR
 
