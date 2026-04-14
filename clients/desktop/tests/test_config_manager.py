@@ -151,6 +151,80 @@ def test_get_server_url_respects_existing_scheme(tmp_path):
     assert cm.get_server_url(server_id) == "wss://example.com:9001"
 
 
+def test_bundled_default_server_is_seeded(tmp_path, monkeypatch):
+    defaults = tmp_path / "default_servers.json"
+    defaults.write_text(
+        json.dumps(
+            {
+                "description": "Bundled server",
+                "timestamp": 1,
+                "servers": [
+                    {
+                        "server_id": "public-palace",
+                        "name": "Public Palace",
+                        "host": "wss://palace.serrebiradio.com",
+                        "port": 443,
+                        "notes": "Public server",
+                        "accounts": {},
+                    }
+                ],
+            }
+        )
+    )
+    monkeypatch.setenv("PLAYPALACE_DEFAULT_SERVERS_FILE", str(defaults))
+
+    cm = ConfigManager(base_path=tmp_path / "pp")
+    servers = cm.get_all_servers()
+
+    assert list(servers) == ["public-palace"]
+    assert servers["public-palace"]["host"] == "wss://palace.serrebiradio.com"
+    assert servers["public-palace"]["port"] == 443
+    assert cm.get_last_server_id() == "public-palace"
+
+
+def test_bundled_default_server_does_not_duplicate_existing(tmp_path, monkeypatch):
+    defaults = tmp_path / "default_servers.json"
+    defaults.write_text(
+        json.dumps(
+            {
+                "description": "Bundled server",
+                "timestamp": 1,
+                "servers": [
+                    {
+                        "server_id": "public-palace",
+                        "name": "Public Palace",
+                        "host": "wss://palace.serrebiradio.com",
+                        "port": 443,
+                        "accounts": {},
+                    }
+                ],
+            }
+        )
+    )
+    monkeypatch.setenv("PLAYPALACE_DEFAULT_SERVERS_FILE", str(defaults))
+
+    base = tmp_path / "pp"
+    write_json(
+        base / "identities.json",
+        {
+            "last_server_id": "existing",
+            "servers": {
+                "existing": {
+                    "server_id": "existing",
+                    "name": "Existing",
+                    "host": "wss://palace.serrebiradio.com",
+                    "port": 443,
+                    "accounts": {},
+                }
+            },
+        },
+    )
+
+    cm = ConfigManager(base_path=base)
+    assert list(cm.get_all_servers()) == ["existing"]
+    assert cm.get_last_server_id() == "existing"
+
+
 def test_last_server_and_accounts(tmp_path):
     cm = make_manager(tmp_path)
     server_id = cm.add_server("Local", "localhost", 8000)

@@ -14,7 +14,7 @@ Write-Host "Building PlayPalace..."
 
 Push-Location $ClientDir
 try {
-	uv run --project $ClientDir pyinstaller -y --clean --onedir --noconsole --name PlayPalace --add-data "sounds;sounds" client.py
+	uv run --project $ClientDir pyinstaller -y --clean --onedir --noconsole --name PlayPalace --add-data "sounds;sounds" --add-data "defaults;defaults" client.py
 	if ($LASTEXITCODE -ne 0) {
 		throw "PyInstaller failed."
 	}
@@ -51,5 +51,14 @@ if (Test-Path $dst) {
 }
 
 Move-Item -Force $src $dst
+
+$defaultsSrc = Join-Path $dist "_internal\\defaults"
+$defaultsDst = Join-Path $dist "defaults"
+if (Test-Path $defaultsSrc) {
+	if (Test-Path $defaultsDst) {
+		Remove-Item -Recurse -Force $defaultsDst
+	}
+	Move-Item -Force $defaultsSrc $defaultsDst
+}
 
 Write-Host "Build complete. Output in $dist"
