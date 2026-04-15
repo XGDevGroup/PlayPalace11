@@ -956,7 +956,7 @@ class Phase10Game(Game, ActionGuardMixin):
             if fixed_hands_over:
                 lines.append(Localization.get(locale, "phase10-fixed-hands-over"))
 
-            self.status_box(p, lines)
+            user.speak("; ".join(lines), buffer="table")
 
         if game_over:
             return
@@ -1472,7 +1472,7 @@ class Phase10Game(Game, ActionGuardMixin):
                 cards_str = self._format_group_summary(group.cards, group.requirement, locale)
                 lines.append(Localization.get(locale, "phase10-table-group-entry",
                                               owner=owner_name, cards=cards_str))
-            self.status_box(p, lines)
+            user.speak("; ".join(lines))
         self.rebuild_player_menu(p, position=1)
 
     def _action_select_hit_group(self, player: Player, action_id: str) -> None:
@@ -1758,10 +1758,10 @@ class Phase10Game(Game, ActionGuardMixin):
         user = self.get_user(player)
         if not user:
             return
-        self._suppress_keybind_rebuild(player)
         locale = user.locale
         if not self.table_groups:
             user.speak_l("phase10-no-table-groups")
+            self._suppress_keybind_rebuild(player)
             return
         lines: list[str] = [Localization.get(locale, "phase10-table-group-header")]
         for group in self.table_groups:
@@ -1801,7 +1801,7 @@ class Phase10Game(Game, ActionGuardMixin):
             lines.append(Localization.get(locale, "phase10-player-hand-count",
                                            player=p.name, count=len(p.hand)))
         lines.append(Localization.get(locale, "phase10-deck-count", count=len(self.deck.cards)))
-        self.status_box(player, lines)
+        user.speak("; ".join(lines))
 
     def _action_check_turn_timer(self, player: Player, action_id: str) -> None:
         user = self.get_user(player)

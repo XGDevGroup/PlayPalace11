@@ -245,7 +245,4 @@ phase10-sorted-by-number-desc = Hand sorted by number, descending.
 
 # Score display (S key)
 phase10-score-header = Scores (lower is better):
-phase10-score-entry = { $player }: Phase { $phase }, { $score } { $score ->
-    [one] penalty point
-   *[other] penalty points
-}
+phase10-score-entry = { $player }: Phase { $phase }, { $score }
