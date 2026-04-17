@@ -39,6 +39,20 @@ exit 0
 
 %post
 %systemd_post playpalace-server.service
+
+# Ensure config directory and file are readable by the service user.
+# Fixes upgrades from pre-hardening installs where config was root:root.
+CONFIG_DIR="/etc/playpalace"
+TARGET="$CONFIG_DIR/config.toml"
+if [ -d "$CONFIG_DIR" ]; then
+    chown root:playpalace "$CONFIG_DIR"
+    chmod 0750 "$CONFIG_DIR"
+fi
+if [ -f "$TARGET" ]; then
+    chown root:playpalace "$TARGET"
+    chmod 0640 "$TARGET"
+fi
+
 chown -R playpalace:playpalace /opt/playpalace/server/var/server
 chmod 0750 /opt/playpalace/server/var/server
 

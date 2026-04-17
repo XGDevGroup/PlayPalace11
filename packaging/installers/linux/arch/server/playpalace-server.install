@@ -5,7 +5,19 @@ pre_install() {
 }
 
 post_install() {
+  # Ensure config directory and file are readable by the service user.
+  # Fixes upgrades from pre-hardening installs where config was root:root.
+  if [ -d /etc/playpalace ]; then
+    chown root:playpalace /etc/playpalace
+    chmod 0750 /etc/playpalace
+  fi
+  if [ -f /etc/playpalace/config.toml ]; then
+    chown root:playpalace /etc/playpalace/config.toml
+    chmod 0640 /etc/playpalace/config.toml
+  fi
+
   chown -R playpalace:playpalace /opt/playpalace/server/var/server
+  chmod 0750 /opt/playpalace/server/var/server
   systemctl daemon-reload
 }
 
@@ -15,4 +27,5 @@ pre_upgrade() {
 
 post_upgrade() {
   post_install
+  systemctl try-restart playpalace-server.service
 }
