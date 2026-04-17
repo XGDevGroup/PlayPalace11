@@ -1,0 +1,14 @@
+{
+  "description": "Bundled default servers for PlayPalace desktop clients",
+  "timestamp": 1776168000,
+  "servers": [
+    {
+      "server_id": "serrebiradio-public-palace",
+      "name": "Serrebi Radio Palace",
+      "host": "wss://palace.serrebiradio.com",
+      "port": 443,
+      "notes": "Official public PlayPalace server. Use Register to create an account.",
+      "accounts": {}
+    }
+  ]
+}

@@ -5,6 +5,7 @@ import os
 import threading
 import time
 from sound_cacher import SoundCacher
+from resource_paths import find_resource_path
 
 LOG = logging.getLogger(__name__)
 
@@ -326,7 +327,7 @@ class SoundManager:
         self.current_music = None
         self.current_music_name = None
         self.music_volume = 0.2
-        self.sounds_folder = "sounds"
+        self.sounds_folder = str(find_resource_path("sounds"))
 
         # Configurable menu sounds (can be changed by server)
         self.menuclick_sound = "menuclick.ogg"

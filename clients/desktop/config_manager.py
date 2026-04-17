@@ -7,12 +7,17 @@ Handles client-side configuration including:
 """
 
 import json
+import os
 import uuid
 from pathlib import Path
 from typing import Dict, Any, Optional, List
 from datetime import datetime
 
-from config_schemas import Identities, Server, UserAccount, validate_identities
+from config_schemas import ExportedIdentities, Identities, Server, UserAccount, validate_identities
+from resource_paths import find_resource_path
+
+
+DEFAULT_SERVERS_ENV = "PLAYPALACE_DEFAULT_SERVERS_FILE"
 
 
 def get_item_from_dict(dictionary: dict, key_path: (str, tuple), *, create_mode: bool = False):
@@ -130,6 +135,8 @@ class ConfigManager:
         self.profiles_path = base_path / "option_profiles.json"
 
         self.identities = self._load_identities()
+        if self._apply_bundled_default_servers():
+            self.save_identities()
         self.profiles = self._load_profiles()
 
     def _load_identities(self) -> Dict[str, Any]:
@@ -153,6 +160,58 @@ class ConfigManager:
     def _get_default_identities(self) -> Dict[str, Any]:
         """Get default identities structure."""
         return Identities().model_dump()
+
+    def _resolve_default_servers_path(self) -> Path:
+        """Return the bundled default-server export path.
+
+        The environment override is primarily for tests and packaging sanity
+        checks. Production builds fall back to the bundled defaults file.
+        """
+        override = os.environ.get(DEFAULT_SERVERS_ENV)
+        if override:
+            return Path(override)
+        return find_resource_path("defaults/default_servers.json")
+
+    @staticmethod
+    def _server_match_key(host: str, port: int) -> tuple[str, int]:
+        """Normalize a server endpoint for duplicate detection."""
+        return (host.strip().lower().rstrip("/"), int(port))
+
+    def _apply_bundled_default_servers(self) -> bool:
+        """Seed shipped server entries into otherwise-empty or older configs."""
+        defaults_path = self._resolve_default_servers_path()
+        if not defaults_path.exists():
+            return False
+
+        try:
+            export = ExportedIdentities.model_validate(json.loads(defaults_path.read_text()))
+        except Exception as e:
+            print(f"Error loading bundled default servers: {e}")
+            return False
+
+        existing = {
+            self._server_match_key(server.get("host", ""), server.get("port", 8000)): server_id
+            for server_id, server in self.identities.get("servers", {}).items()
+        }
+
+        changed = False
+        selected_server_id = self.identities.get("last_server_id")
+
+        for bundled_server in export.servers:
+            key = self._server_match_key(bundled_server.host, bundled_server.port)
+            if key in existing:
+                continue
+            self.identities["servers"][bundled_server.server_id] = bundled_server.model_dump()
+            existing[key] = bundled_server.server_id
+            if not selected_server_id:
+                selected_server_id = bundled_server.server_id
+            changed = True
+
+        if selected_server_id and self.identities.get("last_server_id") != selected_server_id:
+            self.identities["last_server_id"] = selected_server_id
+            changed = True
+
+        return changed
 
     def _load_profiles(self) -> Dict[str, Any]:
         """Load option profiles from file (shareable, no credentials)."""
