@@ -3,13 +3,35 @@ set -e
 
 CONFIG_DIR="/etc/playpalace"
 INSTALL_DIR="/opt/playpalace/server"
+VAR_DIR="$INSTALL_DIR/var/server"
 EXAMPLE="$INSTALL_DIR/config.example.toml"
 TARGET="$CONFIG_DIR/config.toml"
 
+# Create dedicated service user (no login shell, no home directory)
+if ! getent group playpalace >/dev/null 2>&1; then
+    groupadd --system playpalace
+fi
+if ! getent passwd playpalace >/dev/null 2>&1; then
+    useradd --system --gid playpalace --no-create-home --shell /usr/sbin/nologin playpalace
+fi
+
 mkdir -p "$CONFIG_DIR"
 if [ -f "$EXAMPLE" ] && [ ! -f "$TARGET" ]; then
-    install -m 0640 "$EXAMPLE" "$TARGET"
+    install -m 0640 -g playpalace "$EXAMPLE" "$TARGET"
 fi
+# Ensure pre-existing config files from earlier installs are readable by
+# the playpalace service user after upgrade.
+if [ -f "$TARGET" ]; then
+    chown root:playpalace "$TARGET"
+    chmod 0640 "$TARGET"
+fi
+chown root:playpalace "$CONFIG_DIR"
+chmod 0750 "$CONFIG_DIR"
+
+# Ensure writable var directory for database and logs
+mkdir -p "$VAR_DIR"
+chown -R playpalace:playpalace "$VAR_DIR"
+chmod 0750 "$VAR_DIR"
 
 systemctl daemon-reload || true
 systemctl enable playpalace-server.service || true

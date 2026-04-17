@@ -8,10 +8,12 @@ license=('custom')
 depends=('systemd')
 source=("PlayPalaceServer.tar.gz" "playpalace-server.service")
 sha256sums=('SKIP' 'SKIP')
+install=playpalace-server.install
 
 package() {
   install -d "$pkgdir/opt/playpalace/server"
   cp -a PlayPalaceServer/* "$pkgdir/opt/playpalace/server/"
+  install -dm750 "$pkgdir/opt/playpalace/server/var/server"
   install -Dm644 playpalace-server.service "$pkgdir/usr/lib/systemd/system/playpalace-server.service"
   install -Dm644 PlayPalaceServer/LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }

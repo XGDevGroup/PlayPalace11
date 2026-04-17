@@ -4,10 +4,20 @@ After=network.target
 
 [Service]
 Type=simple
+User=playpalace
+Group=playpalace
 ExecStart=/opt/playpalace/server/PlayPalaceServer --host 0.0.0.0 --port 8000
 WorkingDirectory=/opt/playpalace/server
 Restart=on-failure
 Environment=PLAYPALACE_CONFIG=/etc/playpalace/config.toml
+Environment=PLAYPALACE_VAR_DIR=/opt/playpalace/server/var/server
+
+# Hardening
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/opt/playpalace/server/var
+ReadOnlyPaths=-/etc/playpalace
 
 [Install]
 WantedBy=multi-user.target
