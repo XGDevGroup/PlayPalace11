@@ -121,6 +121,7 @@ phase10-hit-no-groups = No phases have been laid down yet.
 phase10-hit-invalid-set = card does not match the group's number
 phase10-hit-invalid-run = card does not extend the run
 phase10-hit-invalid-color = card does not match the group's color
+phase10-hit-invalid-skip = Skip cards cannot be used as hits
 phase10-hit-wild-choose = Wild on a run. Choose which end to extend.
 phase10-hit-wild-low = Extend low end to { $value }
 phase10-hit-wild-high = Extend high end to { $value }
@@ -157,16 +158,8 @@ phase10-turn-timer-action = Check turn timer
 # Status / info — messages
 phase10-your-phase = You are on Phase { $phase }: { $description }.
 phase10-your-phase-laid-down = Your Phase { $phase } is laid down. Waiting for end of hand.
-phase10-phase-status-header = Phase status:
-phase10-player-phase-entry = { $player }: Phase { $phase }{ $laid_down ->
-    [true]  (laid down)
-   *[other] }
 phase10-top-discard = { $card }.
 phase10-no-discard = The discard pile is empty.
-phase10-draw-pile-size = { $count } { $count ->
-    [one] card
-   *[other] cards
-} in the draw pile.
 phase10-hand-contents = Your hand ({ $count } { $count ->
     [one] card
    *[other] cards
@@ -222,8 +215,6 @@ phase10-fixed-hands-advance = { $player } advances to Phase { $next } (fixed han
 phase10-you-fixed-hands-advance = You advance to Phase { $next } (fixed hands).
 
 # Game end
-phase10-phase-completed = { $player } completes Phase { $phase }!
-phase10-you-completed-phase = You complete Phase { $phase }!
 phase10-game-winner = { $player } wins with { $score } penalty { $score ->
     [one] point
    *[other] points

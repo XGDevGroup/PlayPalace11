@@ -1380,7 +1380,7 @@ class Phase10Game(Game, ActionGuardMixin):
         group_detail_parts: list[str] = []
         for tg in new_groups:
             group_detail_parts.append(self._format_group_summary(tg.cards, tg.requirement, locale))
-        details = " and ".join(group_detail_parts)
+        details = Localization.format_list_and(locale, group_detail_parts)
 
         self.play_sound(random.choice(SOUND_LAY_DOWN))
         self.broadcast_personal_l(
@@ -1773,6 +1773,7 @@ class Phase10Game(Game, ActionGuardMixin):
                 owner=owner_name,
                 cards=cards_str,
             ))
+        self._suppress_keybind_rebuild(player)
         self.status_box(player, lines)
 
     def _action_check_phase(self, player: Player, action_id: str) -> None:
@@ -1907,7 +1908,7 @@ class Phase10Game(Game, ActionGuardMixin):
         p = self._get_p10_player(player) if player else None
         if not p:
             return
-        action_id = bot_think(self, p)
+        action_id = self.bot_think(p)
         if action_id:
             self.execute_action(p, action_id)
 

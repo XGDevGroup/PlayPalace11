@@ -192,11 +192,7 @@ def can_hit_group(group: TableGroup, new_card: Card) -> tuple[bool, str]:
     """
     if is_skip(new_card):
         # Skips cannot be used as hits
-        if group.requirement.kind == GROUP_SET:
-            return False, "phase10-hit-invalid-set"
-        if group.requirement.kind == GROUP_RUN:
-            return False, "phase10-hit-invalid-run"
-        return False, "phase10-hit-invalid-color"
+        return False, "phase10-hit-invalid-skip"
 
     if is_wild(new_card):
         if group.requirement.kind == GROUP_RUN:
@@ -290,7 +286,7 @@ def _pick_set(nats: list[Card], wilds: list[Card], count: int) -> list[Card] | N
 
     if best is not None and len(best) >= count:
         # Return exactly count or more (extras of same rank)
-        nat_for_rank = [c for c in nats if c.rank == best[0].rank if not is_wild(best[0])]
+        nat_for_rank = [c for c in nats if c.rank == best[0].rank]
         needed_wilds = max(0, count - len(nat_for_rank))
         if needed_wilds <= len(wilds):
             return nat_for_rank + wilds[:needed_wilds]
@@ -313,18 +309,15 @@ def _pick_run(nats: list[Card], wilds: list[Card], count: int) -> list[Card] | N
         # Build the longest run starting from seen_ranks[start_idx]
         run_nats: list[Card] = []
         wilds_used = 0
-        prev_rank = seen_ranks[start_idx] - 1  # one before start
 
         for rank in range(seen_ranks[start_idx], 13):
             # Find a natural card with this rank (prefer first available)
             nat_for_rank = next((c for c in numbered if c.rank == rank and c not in run_nats), None)
             if nat_for_rank:
-                prev_rank = rank
                 run_nats.append(nat_for_rank)
             elif wilds_used < len(wilds):
                 # Fill gap or extend with a wild
                 wilds_used += 1
-                prev_rank = rank
             else:
                 break  # can't extend further
 
