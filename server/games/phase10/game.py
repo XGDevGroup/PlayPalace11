@@ -919,7 +919,8 @@ class Phase10Game(Game, ActionGuardMixin):
             if self.fixed_hands_remaining <= 0:
                 fixed_hands_over = True
 
-        self.game_active = True
+        if not game_over:
+            self.game_active = True
 
         # Show each player a status box with their personalised round summary.
         # Using a status box lets each player read at their own pace rather than
@@ -1739,7 +1740,7 @@ class Phase10Game(Game, ActionGuardMixin):
             return
         self._suppress_keybind_rebuild(player)
         locale = user.locale
-        cards_str = p10_cards_name(sorted(p.hand, key=lambda c: (c.rank, c.suit)), locale)
+        cards_str = p10_cards_name(self._sorted_hand_for_menu(p), locale)
         user.speak_l("phase10-hand-contents", count=len(p.hand), cards=cards_str)
 
     def _action_read_discard(self, player: Player, action_id: str) -> None:
