@@ -31,7 +31,7 @@ The host can adjust these settings before the game starts:
     * Rotating (default): the role passes around the table in order, so everyone gets a turn.
     * Random: a random player is chosen each round. Someone might judge twice in a row.
     * Most Recent Winner: the player who won the last round becomes the next Card Czar. This means the winner sits out the next round as a tradeoff for their success. On the first round, it falls back to rotating.
-* **Number of Judges:** How many players serve as Card Czar simultaneously, from 1 to 3. With multiple judges, any one of them can pick the winner. More judges means fewer players submitting answers each round, so this works best with larger groups.
+* **Number of Judges:** How many players serve as Card Czar simultaneously, from 1 to 10, capped by the number of active players. With multiple judges, all judges choose before the round is scored. In Independent judging, each judge's vote awards a point. In Jury judging, the most-voted submission wins; ties award each tied player one point. If everyone is a judge, everyone also submits, but judges cannot pick their own submissions.
 
 ### Example Round
 Five players are in the game: Alice, Bob, Carol, Dan, and Eve. The winning score is 7, and Alice is the Card Czar this round.

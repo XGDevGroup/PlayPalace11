@@ -1,8 +1,12 @@
 I have a plan for cards against humanity for expanding the options. It is divided into 3 parts.
 The descriptions given here for the options should also be the description string for the option itself.
 
+Status note, May 2026: Parts 1, 2, and 5 are not implemented yet. Part 3 is partially complete: multiple-judge grammar and the multiple-judge race condition are fixed. Part 4 is partially complete: number of judges supports 1 to max players, and judging method supports Independent, Jury, and Random with single-judge rounds enforced as Independent. The remaining cardzar behavior settings are still planned.
+
 
 # Part 1: multiple submissions
+Status: Not implemented.
+
 On the player class replace player.submitted_cards with a list called current_submissions.
 Refactor the game to allow players to enter multiple submissions in one turn.
 Whenever a player enters a submission, append it to the "current_submissions" list.
@@ -17,6 +21,8 @@ The number of submissions each player must enter each turn.
 default 1
 
 # Part 2: extra and absent submissions tracking
+Status: Not implemented.
+
 Before adding judge settings, implement the extra and absent submission features so the tracking infrastructure can be tested independently.
 
 On the player class add "total_extra_submissions" and "total_abscent_submissions" both = 0.
@@ -37,18 +43,27 @@ def get_submission_counts(player):
 These should be done before introducing new judge settings, since the new settings replace the old ones.
 
 ## Bug: multiple judge grammar
+Status: Complete.
+
 When listing the judges with the j and t keys, the grammar is incorrect. For example with 3 judges it would say, "John and James, Jack are the judges". Instead of the word "and" being put before the last judge.
 
 ## Bug: multiple judges race condition
+Status: Complete.
+
 Currently when there are multiple judges, the winning card is chosen by whichever judge selects a submission first. The other judges do not get to judge. This needs to be fixed so all judges participate.
 
 ## Refactor: migrate number of judges
+Status: Partially complete. The existing option now supports 1 to max players, but it has not moved into a new judging behavior subgroup.
+
 The existing number of judges setting is migrated into the new judging behavior subgroup (Part 4). Saved option profiles referencing the old setting should still work.
 
 ## Refactor: remove cardzar selection setting
+Status: Not implemented.
+
 The existing cardzar selection setting is removed altogether and replaced by the new chain-of-appointment subgroup (Part 5).
 
 # Part 4: cardzar behavior settings
+Status: Partially implemented. Number of judges and judging method are present. Timer, judge submission, self-pick controls, and min/max picked submission settings are not implemented yet.
 
 Note: For all instances of "enforce x when y = z", enforce the value. These are meant to be locked values. Leave them visible so the user can still see the locked values.
 
@@ -57,10 +72,12 @@ Cardzar behavior settings (child group)
 Submenu for controlling judging behaviors
 
 number of judges (int): 1 to max players
+Status: Complete.
 The number of people who are allowed to judge each turn.
 default 1
 
 Timer limit for judging (string):
+Status: Not implemented.
 Determines how much time (in seconds) a judge has for picking submissions before submissions are randomly selected.
 Use existing turn limit code from crazy eights game server/games/crazyeights/game.py.
 Default is unlimited
@@ -68,16 +85,19 @@ Default is unlimited
 Timer behavior in jury mode: The timer applies per-judge. If a judge times out, one of the already-voted submissions is selected on their behalf. If ALL judges time out without voting, a random submission is chosen.
 
 Allow judges to submit cards (bool):
+Status: Not implemented. Current behavior only lets judges submit when all players are judges.
 Determines if judges are allowed to submit their own cards for a chance at winning the round.
 Enforce true if number of judges = max players.
 default false
 
 Allow judges to pick their own submissions (bool):
+Status: Not implemented. Current behavior blocks self-picks.
 Determines if judges are allowed to select their own or another judge's submissions as a winner. This is an all-or-nothing setting that applies the same way in both independent and jury modes.
 Enforce false if allow judges to submit cards = false.
 default false
 
 Judging method (string):
+Status: Complete for Independent, Jury, Random, and single-judge Independent enforcement.
 Determines how winning submissions are chosen by judges.
 Enforce independent if number of judges = 1.
 Default independent
@@ -87,14 +107,18 @@ Jury = all judges must agree on the winning submissions, making the game more fa
 Random = each turn any judging method can be chosen, allowing for chaotic scoring.
 
 number of required minimum picked submissions (int): 1 to (total submissions received that round - 1)
+Status: Not implemented.
 The fewest number of submissions each judge must pick.
 default 1
 
 number of allowed maximum picked submissions (int): 1 to (total submissions received that round - 1)
+Status: Not implemented.
 The greatest number of submissions each judge must pick.
 default 1
 
 # Part 5: cardzar selection
+Status: Not implemented. Current code still uses the existing Card Czar selection option.
+
 This part focuses on expanding how the next cardzars are chosen. Certain actions throughout the last round or game can influence who will be the next to judge. This adds an element of forced control and balance to the game.
 Currently multiple judges is handled by whatever the cardzar selection setting is for the first judge, followed by random selection for the remaining judges.
 
