@@ -35,7 +35,6 @@ hc-judge-is = { $count ->
    *[other] { $names } бол картын хаад.
 }
 hc-you-are-judge = You are the Card Czar this round.
-hc-you-are-not-judge = You are not the Card Czar this round.
 
 # Black card
 hc-black-card = The prompt is: { $text }
@@ -49,10 +48,9 @@ hc-select-cards = Select { $count } { $count ->
 } from your hand.
 hc-card-selected = { $text }, selected
 hc-card-not-selected = { $text }
+hc-card-fallback = Карт { $index }
 hc-submit-cards = Submit ({ $selected } of { $required } selected)
 hc-submitted = You submitted your cards.
-hc-player-submitted = { $player } submitted.
-hc-submission-progress = { $submitted } of { $total } players submitted.
 hc-waiting-for-submissions = Waiting for submissions...
 hc-already-submitted = You already submitted your cards.
 hc-wrong-card-count = You need to select exactly { $count } { $count ->
@@ -62,20 +60,17 @@ hc-wrong-card-count = You need to select exactly { $count } { $count ->
 
 # Judging phase
 hc-judging-start = All cards are in! Time to judge.
-hc-select-winner-prompt = Select the winning submission
-hc-submission-option = { $text }
+hc-judge-prompt-header = Үүнд хамгийн сайн тохирох картыг сонгоно уу: { $prompt }
+hc-judge-prompt-header-empty = Хамгийн сайн картыг сонгоно уу.
 
 # Results
+hc-submission-fallback = Хариулт { $index }
+
 hc-winner-announcement = { $player } { $text }-д { $points } { $points ->
     [one] оноо
    *[other] оноо
 } авлаа.
 hc-winner-card = Winning answer: { $text }
-hc-round-scores = Scores after round { $round }:
-hc-score-line = { $player }: { $score } { $score ->
-    [one] point
-   *[other] points
-}
 hc-all-submissions = Other submissions:
 hc-submission-reveal = { $player }: { $text }
 
@@ -96,7 +91,6 @@ hc-black-deck-reshuffled = Black card discard pile reshuffled into the deck.
 hc-not-enough-cards = Not enough cards. Try enabling more packs.
 
 # Hand management
-hc-view-hand = View hand
 
 # Scores
 hc-view-scores = View scores

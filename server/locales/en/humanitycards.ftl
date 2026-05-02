@@ -46,7 +46,6 @@ hc-judge-is = { $count ->
    *[other] { $names } are the Card Czars.
 }
 hc-you-are-judge = You are the Card Czar this round.
-hc-you-are-not-judge = You are not the Card Czar this round.
 
 hc-waiting-for-judges = Waiting for { $names } to judge.
 
@@ -62,10 +61,9 @@ hc-select-cards = Select { $count } { $count ->
 } from your hand.
 hc-card-selected = { $text }, selected
 hc-card-not-selected = { $text }
+hc-card-fallback = Card { $index }
 hc-submit-cards = Submit ({ $selected } of { $required } selected)
 hc-submitted = You submitted your cards.
-hc-player-submitted = { $player } submitted.
-hc-submission-progress = { $submitted } of { $total } players submitted.
 hc-already-submitted = You already submitted your cards.
 hc-wrong-card-count = You need to select exactly { $count } { $count ->
     [one] card
@@ -74,20 +72,16 @@ hc-wrong-card-count = You need to select exactly { $count } { $count ->
 
 # Judging phase
 hc-judging-start = All cards are in! Time to judge.
-hc-judge-voted = { $player } has made their choice.
-hc-select-winner-prompt = Select the winning submission
-hc-submission-option = { $text }
+hc-judge-prompt-header = Choose the best card that matches: { $prompt }
+hc-judge-prompt-header-empty = Choose the best card
 
 # Results
+hc-submission-fallback = Submission { $index }
+
 hc-winner-announcement = { $player } gets { $points } { $points ->
     [one] point
    *[other] points
 } for { $text }.
-hc-round-scores = Scores after round { $round }:
-hc-score-line = { $player }: { $score } { $score ->
-    [one] point
-   *[other] points
-}
 hc-all-submissions = Other submissions:
 hc-submission-reveal = { $player }: { $text }
 
@@ -108,7 +102,6 @@ hc-black-deck-reshuffled = Black card discard pile reshuffled into the deck.
 hc-not-enough-cards = Not enough cards. Try enabling more packs.
 
 # Hand management
-hc-view-hand = View hand
 
 # Scores
 # Whose turn / whose judge

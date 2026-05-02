@@ -35,7 +35,6 @@ hc-judge-is = { $count ->
    *[other] { $names } su sudije.
 }
 hc-you-are-judge = Vi ste sudija u ovoj rundi.
-hc-you-are-not-judge = Niste sudija u ovoj rundi.
 
 # Black card
 hc-black-card = Rečenica je: { $text }
@@ -50,10 +49,9 @@ hc-select-cards = Izaberite { $count } { $count ->
 } iz vaše ruke.
 hc-card-selected = { $text }, izabrano
 hc-card-not-selected = { $text }
+hc-card-fallback = Karta { $index }
 hc-submit-cards = Pošalji ({ $selected } od { $required } izabrano)
 hc-submitted = Stavili ste vaše karte.
-hc-player-submitted = { $player } stavlja svoje karte.
-hc-submission-progress = { $submitted } od { $total } igrača je stavilo svoje karte.
 hc-waiting-for-submissions = Čekanje na karte...
 hc-already-submitted = Već ste stavili vaše karte.
 hc-wrong-card-count = Morate da izaberete tačno { $count } { $count ->
@@ -64,20 +62,17 @@ hc-wrong-card-count = Morate da izaberete tačno { $count } { $count ->
 
 # Judging phase
 hc-judging-start = Sve karte su stavljene! vreme je da se ocene.
-hc-select-winner-prompt = Izaberite pobednički predlog
-hc-submission-option = { $text }
+hc-judge-prompt-header = Izaberite najbolju kartu koja odgovara: { $prompt }
+hc-judge-prompt-header-empty = Izaberite najbolju kartu.
 
 # Results
+hc-submission-fallback = Predlog { $index }
+
 hc-winner-announcement = { $player } dobija { $points } { $points ->
     [one] poen
    *[other] poena
 } za { $text }.
 hc-winner-card = Pobednički odgovor: { $text }
-hc-round-scores = Rezultat nakon runde { $round }:
-hc-score-line = { $player }: { $score } { $score ->
-    [one] poen
-   *[other] poena
-}
 hc-all-submissions = Drugi predlozi:
 hc-submission-reveal = { $player }: { $text }
 
@@ -98,7 +93,6 @@ hc-black-deck-reshuffled = Odbačene crne karte su promešane nazad u špil.
 hc-not-enough-cards = Nema dovoljno karata. Pokušajte da omogućite više paketa.
 
 # Hand management
-hc-view-hand = Pogledaj ruku
 
 # Scores
 hc-view-scores = Pogledaj rezultat

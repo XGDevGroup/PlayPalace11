@@ -197,7 +197,7 @@ class HumanityCardsOptions(GameOptions):
         IntOption(
             default=1,
             min_val=1,
-            max_val=3,
+            max_val=10,
             value_key="count",
             label="hc-set-num-judges",
             prompt="hc-enter-num-judges",
@@ -479,7 +479,7 @@ class HumanityCardsGame(Game):
             action_set.add(
                 Action(
                     id=f"toggle_card_{i}",
-                    label=f"Card {i + 1}",
+                    label=Localization.get(locale, "hc-card-fallback", index=i + 1),
                     handler=f"_action_toggle_card_{i}",
                     is_enabled="_is_toggle_card_enabled",
                     is_hidden="_is_toggle_card_hidden",
@@ -493,7 +493,7 @@ class HumanityCardsGame(Game):
         action_set.add(
             Action(
                 id="judge_prompt_header",
-                label="Choose the best card",
+                label=Localization.get(locale, "hc-judge-prompt-header-empty"),
                 handler="_action_noop",
                 is_enabled="_is_judge_prompt_header_enabled",
                 is_hidden="_is_judge_prompt_header_hidden",
@@ -507,7 +507,7 @@ class HumanityCardsGame(Game):
             action_set.add(
                 Action(
                     id=f"judge_pick_{i}",
-                    label=f"Submission {i + 1}",
+                    label=Localization.get(locale, "hc-submission-fallback", index=i + 1),
                     handler=f"_action_judge_pick_{i}",
                     is_enabled="_is_judge_pick_enabled",
                     is_hidden="_is_judge_pick_hidden",
@@ -653,11 +653,11 @@ class HumanityCardsGame(Game):
     def _get_toggle_card_label(self, player: Player, action_id: str) -> str:
         hcp: HumanityCardsPlayer = player  # type: ignore
         idx = int(action_id.removeprefix("toggle_card_"))
-        if idx >= len(hcp.hand):
-            return f"Card {idx + 1}"
-        card = hcp.hand[idx]
         user = self.get_user(player)
         locale = user.locale if user else "en"
+        if idx >= len(hcp.hand):
+            return Localization.get(locale, "hc-card-fallback", index=idx + 1)
+        card = hcp.hand[idx]
         if idx in hcp.selected_indices:
             return Localization.get(locale, "hc-card-selected", text=card["text"])
         return Localization.get(locale, "hc-card-not-selected", text=card["text"])
@@ -752,7 +752,9 @@ class HumanityCardsGame(Game):
                 if self.current_black_card:
                     return self._fill_in_blanks(self.current_black_card["text"], sub["cards"])
                 return ", ".join(sub["cards"])
-        return f"Submission {idx + 1}"
+        user = self.get_user(player)
+        locale = user.locale if user else "en"
+        return Localization.get(locale, "hc-submission-fallback", index=idx + 1)
 
     # ==========================================================================
     # Judge prompt header callbacks (static text)
@@ -774,10 +776,12 @@ class HumanityCardsGame(Game):
         return Visibility.VISIBLE
 
     def _get_judge_prompt_header_label(self, player: Player, action_id: str) -> str:
+        user = self.get_user(player)
+        locale = user.locale if user else "en"
         if self.current_black_card:
             prompt_text = self._speech_friendly_black(self.current_black_card["text"])
-            return f"Choose the best card that matches: {prompt_text}"
-        return "Choose the best card"
+            return Localization.get(locale, "hc-judge-prompt-header", prompt=prompt_text)
+        return Localization.get(locale, "hc-judge-prompt-header-empty")
 
     def _get_submission_options(self, player: Player) -> list[str]:
         """Get submission options for judge's menu."""
@@ -1331,12 +1335,7 @@ class HumanityCardsGame(Game):
                 if hasattr(self, "record_transcript_event"):
                     self.record_transcript_event(player, localized, "table")
                 if user:
-                    user.speak_l(
-                        "hc-judge-is",
-                        "table",
-                        names=self._format_names(locale, judge_names),
-                        count=len(judges),
-                    )
+                    user.speak(localized, "table")
             for judge in judges:
                 user = self.get_user(judge)
                 if user:
