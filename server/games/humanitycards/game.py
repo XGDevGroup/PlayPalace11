@@ -1253,6 +1253,7 @@ class HumanityCardsGame(Game):
         self._build_decks()
 
         active_players = self.get_active_players()
+        self.options.num_judges = min(self.options.num_judges, len(active_players))
 
         # Set up individual teams for score tracking (S / Shift+S)
         self._team_manager.team_mode = "individual"

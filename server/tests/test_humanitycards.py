@@ -121,6 +121,7 @@ def test_rotating_judge_advances_each_round():
 
 def test_judge_count_capped_at_active_player_count():
     game, _ = _setup_game(num_players=3, options=HumanityCardsOptions(num_judges=5))
+    assert game.options.num_judges == len(game.get_active_players())
     assert len(game._get_judges()) == len(game.get_active_players())
 
 
