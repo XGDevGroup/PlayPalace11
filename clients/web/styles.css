@@ -49,6 +49,14 @@
   box-sizing: border-box;
 }
 
+/* `display:` rules in author CSS (e.g. `.grid { display: grid }`) outrank the
+   UA stylesheet's `[hidden] { display: none }`. Force `hidden` to win so
+   `element.hidden = true` actually hides — without this, #game-shell stays
+   rendered when the login dialog is supposed to be the only thing on screen. */
+[hidden] {
+  display: none !important;
+}
+
 html,
 body {
   min-height: 100%;
@@ -181,8 +189,15 @@ textarea:focus-visible,
 .grid {
   display: grid;
   grid-template-columns: minmax(260px, 0.8fr) minmax(520px, 1.9fr);
+  grid-template-areas:
+    "game history"
+    "game chat";
   gap: 12px;
 }
+
+.game-panel { grid-area: game; }
+.history-panel { grid-area: history; }
+.chat-panel { grid-area: chat; }
 
 .menu-list {
   list-style: none;
@@ -193,6 +208,7 @@ textarea:focus-visible,
   max-height: 440px;
   overflow-y: auto;
   background: var(--panel-surface);
+  -webkit-overflow-scrolling: touch;
 }
 
 .menu-item {
@@ -224,6 +240,17 @@ textarea:focus-visible,
   border-radius: 0;
   background: transparent;
   color: var(--text);
+  /* iOS Safari tap reliability: skip the 300ms tap delay heuristic, suppress
+     the auto-zoom on double-tap, and give a visible flash so the user knows
+     the tap registered. Without these, taps on buttons inside scrollable
+     lists can feel unresponsive on iPhone. */
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: var(--menu-active-surface);
+}
+
+.menu-item-touch:active {
+  background: var(--menu-active-surface);
 }
 
 .history {
@@ -300,6 +327,13 @@ textarea:focus-visible,
   background: transparent;
   color: var(--text);
   min-height: 44px;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: var(--menu-active-surface);
+}
+
+.actions-item-btn:active {
+  background: var(--menu-active-surface);
 }
 
 .actions-list li:last-child .actions-item-btn {
@@ -345,15 +379,10 @@ dialog::backdrop {
 @media (max-width: 900px) {
   .grid {
     grid-template-columns: 1fr;
-  }
-
-  /* Show History above Game on narrow viewports without changing DOM
-     order (keeps Tab/screen-reader sequence desktop-correct: Game → History). */
-  #game-shell > .panel:nth-child(1) {
-    order: 2;
-  }
-  #game-shell > .panel:nth-child(2) {
-    order: 1;
+    grid-template-areas:
+      "history"
+      "game"
+      "chat";
   }
 
   main {
@@ -376,13 +405,8 @@ dialog::backdrop {
     gap: 8px;
   }
 
-  .volume-controls {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
   .volume-controls input[type="range"] {
-    width: 120px;
+    width: 110px;
   }
 
   .history {
