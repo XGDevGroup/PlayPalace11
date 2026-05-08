@@ -1230,6 +1230,7 @@ function handlePacket(packet) {
     case "menu": {
       const previousMenu = store.state.currentMenu;
       const items = parseMenuItems(packet.items);
+      audio.preloadEffects(items.map((item) => item.sound).filter(Boolean));
 
       if (pendingActionsMenuRequest) {
         if (packet.menu_id === "actions_menu") {
