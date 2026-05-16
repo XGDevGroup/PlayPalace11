@@ -126,6 +126,8 @@ hr {{
 </html>
 """
 
+_INTERNAL_WEBVIEW_URLS = {"", "about:blank"}
+
 
 def sanitize_markdown(markdown_content: str) -> str:
     """Convert untrusted Markdown to sanitized HTML for document viewing."""
@@ -140,6 +142,13 @@ def sanitize_markdown(markdown_content: str) -> str:
         url_schemes=_ALLOWED_URL_SCHEMES,
         link_rel="noopener noreferrer",
     )
+
+
+def should_allow_navigation(url: str, document_loaded: bool) -> bool:
+    """Allow only the initial internal document load for the embedded WebView."""
+    if document_loaded:
+        return False
+    return url in _INTERNAL_WEBVIEW_URLS
 
 
 class MarkdownViewerDialog(wx.Dialog):
@@ -159,7 +168,7 @@ class MarkdownViewerDialog(wx.Dialog):
             style=wx.DEFAULT_DIALOG_STYLE | wx.RESIZE_BORDER,
         )
 
-        self._allow_initial_load = True
+        self._document_loaded = False
         self._create_ui(markdown_content)
         self.SetSize(750, 550)
         self.CenterOnScreen()
@@ -204,6 +213,10 @@ class MarkdownViewerDialog(wx.Dialog):
 
         # WebView for rendered content
         self.web_view = wx.html2.WebView.New(panel)
+        self.web_view.Bind(
+            wx.html2.EVT_WEBVIEW_NAVIGATING,
+            self._on_webview_navigating,
+        )
         self.web_view.SetPage(full_html, "")
         sizer.Add(self.web_view, 1, wx.EXPAND | wx.ALL, 5)
 
@@ -222,10 +235,6 @@ class MarkdownViewerDialog(wx.Dialog):
             wx.html2.EVT_WEBVIEW_LOADED,
             self._on_webview_loaded,
         )
-        self.web_view.Bind(
-            wx.html2.EVT_WEBVIEW_NAVIGATING,
-            self._on_webview_navigating,
-        )
 
         # Escape key accelerator
         accel = wx.AcceleratorTable(
@@ -235,14 +244,14 @@ class MarkdownViewerDialog(wx.Dialog):
 
     def _on_webview_loaded(self, event):
         """Set focus to the web view body once content is loaded."""
+        self._document_loaded = True
         self.web_view.SetFocus()
         # Help screen readers pick up the content
         self.web_view.RunScript("document.body.focus();")
 
     def _on_webview_navigating(self, event):
         """Prevent untrusted document links from navigating the embedded browser."""
-        if self._allow_initial_load:
-            self._allow_initial_load = False
+        if should_allow_navigation(event.GetURL(), self._document_loaded):
             event.Skip()
             return
         event.Veto()
