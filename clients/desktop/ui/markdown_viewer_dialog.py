@@ -146,7 +146,7 @@ def sanitize_markdown(markdown_content: str) -> str:
     )
 
 
-def should_allow_navigation(url: str, document_loaded: bool | None = None) -> bool:
+def should_allow_navigation(url: str) -> bool:
     """Allow only navigation that stays within the rendered document."""
     base_url, _fragment = urldefrag(url)
     return base_url == MARKDOWN_DOCUMENT_BASE_URL
