@@ -32,7 +32,7 @@ from ..game_utils.event_handling_mixin import EventHandlingMixin
 from ..game_utils.action_set_creation_mixin import ActionSetCreationMixin
 from ..game_utils.action_execution_mixin import ActionExecutionMixin
 from ..game_utils.action_set_system_mixin import ActionSetSystemMixin
-from ..game_utils.game_status import GameStatus  # noqa: F401 - re-exported
+from ..game_utils.game_status import GameStatus
 from server.core.ui.keybinds import Keybind
 
 
@@ -106,7 +106,7 @@ if TYPE_CHECKING:
         """
 
         players: list[Player]
-        status: str
+        status: GameStatus
         game_active: bool
         host: str
         round: int
@@ -171,7 +171,7 @@ class Game(
     players: list[Player] = field(default_factory=list)
     round: int = 0
     game_active: bool = False
-    status: str = GameStatus.WAITING
+    status: GameStatus = GameStatus.WAITING
     host: str = ""  # Username of the host
     current_music: str = ""  # Currently playing music track
     current_ambience: str = ""  # Currently playing ambience loop
