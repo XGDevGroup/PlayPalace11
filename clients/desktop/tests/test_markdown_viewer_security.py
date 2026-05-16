@@ -1,10 +1,54 @@
 from importlib.util import module_from_spec, spec_from_file_location
 from pathlib import Path
+import re
 import sys
 import types
 
 
 def _load_markdown_viewer_dialog_module():
+    if "markdown" not in sys.modules:
+        markdown_module = types.ModuleType("markdown")
+
+        def _markdown_to_html(text, extensions=None):
+            text = re.sub(
+                r"!\[([^\]]*)\]\(([^)]+)\)",
+                lambda match: f'<img alt="{match.group(1)}" src="{match.group(2)}" />',
+                text,
+            )
+            text = re.sub(
+                r"\[([^\]]+)\]\(([^)]+)\)",
+                lambda match: f'<a href="{match.group(2)}">{match.group(1)}</a>',
+                text,
+            )
+            blocks = [block.strip() for block in text.split("\n\n") if block.strip()]
+            html_blocks = []
+            for block in blocks:
+                if block.startswith("<"):
+                    html_blocks.append(block)
+                else:
+                    html_blocks.append(f"<p>{block}</p>")
+            return "\n".join(html_blocks)
+
+        markdown_module.markdown = _markdown_to_html
+        sys.modules["markdown"] = markdown_module
+
+    if "nh3" not in sys.modules:
+        nh3_module = types.ModuleType("nh3")
+
+        def _clean_html(html, tags=None, attributes=None, url_schemes=None, link_rel=None):
+            cleaned = re.sub(r"<script.*?>.*?</script>", "", html, flags=re.IGNORECASE | re.DOTALL)
+            cleaned = re.sub(r'\s+on\w+="[^"]*"', "", cleaned)
+            cleaned = re.sub(r'\s+on\w+=\'[^\']*\'', "", cleaned)
+            cleaned = re.sub(r'(href|src)="javascript:[^"]*"', "", cleaned, flags=re.IGNORECASE)
+            if link_rel:
+                cleaned = re.sub(r"<a\b(?![^>]*\brel=)", f'<a rel="{link_rel}"', cleaned)
+            if tags is not None and "img" not in tags:
+                cleaned = re.sub(r"<img\b[^>]*>", "", cleaned)
+            return cleaned
+
+        nh3_module.clean = _clean_html
+        sys.modules["nh3"] = nh3_module
+
     wx_module = types.ModuleType("wx")
 
     class _Dialog:
