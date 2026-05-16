@@ -39,7 +39,6 @@ option-on = روشن
 option-off = خاموش
 
 # Status box
-status-box-closed = اطلاعات وضعیت بسته شد.
 
 # Game end
 game-leave = خروج از بازی

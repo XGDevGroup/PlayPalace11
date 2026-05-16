@@ -299,11 +299,11 @@ export function installKeybinds({
         }
         return;
       }
-      // keybind behavior: send as "escape" (desktop behavior for Backspace outside main menu).
+      // keybind behavior: send actual key name so server-defined keybinds match.
       const menuIndex = menu.items.length ? menu.selection + 1 : null;
       const currentItem = menu.items[menu.selection] || null;
       sendKeybind({
-        key: "escape",
+        key: event.key === "Backspace" ? "backspace" : "escape",
         control: event.ctrlKey,
         alt: event.altKey,
         shift: event.shiftKey,

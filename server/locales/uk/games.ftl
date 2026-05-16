@@ -39,7 +39,6 @@ option-on = увімкнено
 option-off = вимкнено
 
 # Status box
-status-box-closed = Інформацію про статус закрито.
 
 # Game end
 game-leave = Покинути гру

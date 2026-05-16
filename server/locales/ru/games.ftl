@@ -70,7 +70,6 @@ option-max-selected = Можно выбрать не более { $count } { $co
 }.
 
 # Status box
-status-box-closed = Информационное окно закрыто.
 
 # Game end
 game-leave = Покинуть игру

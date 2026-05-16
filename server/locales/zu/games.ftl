@@ -39,7 +39,6 @@ option-on = ivuliwe
 option-off = ivaliwe
 
 # Status box
-status-box-closed = Ulwazi lwesimo luvalwe.
 
 # Game end
 game-leave = Shiya umdlalo

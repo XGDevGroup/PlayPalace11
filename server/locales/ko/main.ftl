@@ -35,6 +35,8 @@ whose-turn = 누구 차례인지
 whos-at-table = 누가 테이블에 있는지
 check-scores = 점수 확인
 check-scores-detailed = 세부 점수
+check-game-options = 게임 옵션 확인
+no-game-options = 게임 옵션이 없습니다.
 
 # Turn messages
 game-player-skipped = { $player }님은 건너뛰었습니다.
@@ -153,7 +155,6 @@ game-leave = 나가기
 game-over = 게임 종료
 game-final-scores = 최종 점수
 game-points = { $count }점
-status-box-closed = 닫힘.
 play = 플레이
 
 # Leaderboards

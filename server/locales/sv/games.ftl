@@ -39,7 +39,6 @@ option-on = på
 option-off = av
 
 # Status box
-status-box-closed = Statusinformation stängd.
 
 # Game end
 game-leave = Lämna spelet

@@ -23,6 +23,9 @@ class DummyWidget:
     def SetLabel(self, text):  # noqa: N802
         self.label = text
 
+    def SetName(self, name):  # noqa: N802
+        self.name = name
+
     def SetFocus(self):  # noqa: N802
         self.focused = True
 

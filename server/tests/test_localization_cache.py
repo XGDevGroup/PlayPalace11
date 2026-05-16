@@ -51,6 +51,18 @@ def test_localization_cache_can_be_disabled(tmp_path, monkeypatch):
     assert not cache_dir.exists()
 
 
+def test_localization_missing_key_falls_back_to_english(tmp_path):
+    locales_dir = tmp_path / "locales"
+    (locales_dir / "en").mkdir(parents=True, exist_ok=True)
+    (locales_dir / "es").mkdir(parents=True, exist_ok=True)
+    (locales_dir / "en" / "main.ftl").write_text("hello = Hello\n", encoding="utf-8")
+    (locales_dir / "es" / "main.ftl").write_text("goodbye = Adios\n", encoding="utf-8")
+
+    Localization.init(locales_dir)
+
+    assert Localization.get("es", "hello") == "Hello"
+
+
 @pytest.mark.asyncio
 async def test_localization_background_warmup_logs(monkeypatch, capsys):
     calls: list[str] = []

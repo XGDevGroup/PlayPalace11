@@ -193,6 +193,7 @@ def test_packet_schema_files_are_up_to_date(tmp_path: Path) -> None:
     server_dir = repo_root / "server"
     server_out = tmp_path / "server_schema.json"
     client_out = tmp_path / "client_schema.json"
+    web_out = tmp_path / "web_schema.json"
     subprocess.run(
         [
             sys.executable,
@@ -201,6 +202,8 @@ def test_packet_schema_files_are_up_to_date(tmp_path: Path) -> None:
             str(server_out),
             "--client-out",
             str(client_out),
+            "--web-out",
+            str(web_out),
         ],
         cwd=server_dir,
         check=True,
@@ -210,4 +213,7 @@ def test_packet_schema_files_are_up_to_date(tmp_path: Path) -> None:
     )
     assert client_out.read_text(encoding="utf-8") == (
         repo_root / "clients" / "desktop" / "packet_schema.json"
+    ).read_text(encoding="utf-8")
+    assert web_out.read_text(encoding="utf-8") == (
+        repo_root / "clients" / "web" / "packet_schema.json"
     ).read_text(encoding="utf-8")

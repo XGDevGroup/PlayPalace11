@@ -33,6 +33,8 @@ whose-turn = De quem é a vez
 whos-at-table = Quem está na mesa
 check-scores = Ver pontuação
 check-scores-detailed = Pontuação detalhada
+check-game-options = Ver opções do jogo
+no-game-options = Nenhuma opção de jogo disponível.
 
 # Mensagens de mesa
 table-created = { $host } criou uma nova mesa de { $game }.

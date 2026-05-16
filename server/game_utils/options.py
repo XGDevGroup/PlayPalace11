@@ -30,6 +30,7 @@ from typing import Any, Callable, TYPE_CHECKING
 from mashumaro.mixins.json import DataClassJSONMixin
 
 from .actions import Action, ActionSet, EditboxInput, MenuInput
+from server.core.users.base import MenuItem
 from ..messages.localization import Localization
 
 if TYPE_CHECKING:
@@ -614,6 +615,120 @@ class GameOptions(DataClassJSONMixin):
         """Get all option group metadata for this options instance."""
         return get_all_option_group_metas(type(self))
 
+    def _get_game_options_view_path(self, game: "Game", player: "Player") -> list[str]:
+        """Get the current read-only game-options navigation path for a player."""
+        state = game._get_transient_display_state(player)
+        if state and state.kind == "game_options":
+            return state.path
+        return []
+
+    def _create_readonly_option_item(
+        self,
+        name: str,
+        meta: OptionMeta,
+        game: "Game",
+        player: "Player",
+        locale: str,
+    ) -> MenuItem:
+        """Create a read-only menu item for an option."""
+        current_value = getattr(self, name)
+        label = meta.create_action(name, game, player, current_value, locale).label
+        item_id = f"readonly_{name}"
+        if isinstance(meta, MultiSelectOption):
+            item_id = f"multiselect_{name}"
+        return MenuItem(text=label, id=item_id)
+
+    def build_game_options_view_items(self, game: "Game", player: "Player") -> list[MenuItem]:
+        """Build read-only menu items for the in-game options viewer."""
+        user = game.get_user(player)
+        locale = user.locale if user else "en"
+        items: list[MenuItem] = []
+        path = self._get_game_options_view_path(game, player)
+        options_class = type(self)
+        back_label = Localization.get(locale, "back")
+
+        if path:
+            current_level = path[-1]
+
+            if current_level.startswith("group:") and len(path) >= 2:
+                option_name = path[-2]
+                group_name = current_level.removeprefix("group:")
+                meta = get_option_meta(options_class, option_name)
+                if meta and isinstance(meta, MultiSelectOption):
+                    groups = meta.get_groups()
+                    if groups and group_name in groups:
+                        current_selections = getattr(self, option_name, [])
+                        for choice in groups[group_name]:
+                            selected = choice in current_selections
+                            on_off = Localization.get(
+                                locale, "option-on" if selected else "option-off"
+                            )
+                            display = meta.get_localized_choice(choice, locale)
+                            items.append(
+                                MenuItem(
+                                    text=f"{display}: {on_off}",
+                                    id=f"readonly_{option_name}_{choice}",
+                                )
+                            )
+                        items.append(MenuItem(text=back_label, id="transient_display_back"))
+                        return items
+
+            meta = get_option_meta(options_class, current_level)
+            if meta and isinstance(meta, MultiSelectOption):
+                current_selections = getattr(self, current_level, [])
+                groups = meta.get_groups()
+
+                if groups:
+                    for group_name, group_choices in groups.items():
+                        selected_count = sum(1 for choice in group_choices if choice in current_selections)
+                        total_count = len(group_choices)
+                        label = f"{group_name} ({selected_count} of {total_count} selected)"
+                        items.append(
+                            MenuItem(
+                                text=label,
+                                id=f"msgroup_{current_level}_{group_name}",
+                            )
+                        )
+                else:
+                    for choice in meta.get_choices():
+                        selected = choice in current_selections
+                        on_off = Localization.get(locale, "option-on" if selected else "option-off")
+                        display = meta.get_localized_choice(choice, locale)
+                        items.append(
+                            MenuItem(
+                                text=f"{display}: {on_off}",
+                                id=f"readonly_{current_level}_{choice}",
+                            )
+                        )
+
+                items.append(MenuItem(text=back_label, id="transient_display_back"))
+                return items
+
+            target_group = current_level
+        else:
+            target_group = None
+
+        for group_name, group_meta in self.get_option_group_metas().items():
+            group_parent = get_option_field_group(options_class, group_name)
+            if group_parent == target_group:
+                items.append(
+                    MenuItem(
+                        text=Localization.get(locale, group_meta.label),
+                        id=f"group_{group_name}",
+                    )
+                )
+
+        for name, meta in self.get_option_metas().items():
+            option_group_name = get_option_field_group(options_class, name)
+            if option_group_name != target_group:
+                continue
+            if not self._is_option_visible(name):
+                continue
+            items.append(self._create_readonly_option_item(name, meta, game, player, locale))
+
+        items.append(MenuItem(text=back_label, id="transient_display_back"))
+        return items
+
     def _is_option_visible(self, name: str) -> bool:
         """Check if an option passes all visible_when conditions (AND logic)."""
         conditions = get_visibility_conditions(type(self), name)
@@ -907,6 +1022,87 @@ class OptionsHandlerMixin:
         if hasattr(self, "_options_path"):
             return bool(self._options_path.get(player.id))
         return False
+
+    def _show_game_options_view(self, player: "Player") -> None:
+        """Show the read-only in-game options viewer."""
+        if not self.get_user(player) or not hasattr(self, "options"):
+            return
+        items = self.options.build_game_options_view_items(self, player)
+        path = self.options._get_game_options_view_path(self, player)
+        state = self._get_transient_display_state(player)
+        path_key = tuple(path)
+        position = 1
+        if state:
+            saved_position = state.positions.get(path_key)
+            if isinstance(saved_position, int) and saved_position > 0:
+                position = saved_position
+        self._show_transient_display(
+            player,
+            kind="game_options",
+            items=items,
+            multiletter=False,
+            path=path,
+            position=position,
+        )
+
+    def _close_game_options_view(self, player: "Player") -> None:
+        """Close the read-only in-game options viewer and restore the turn menu."""
+        self._close_transient_display(player)
+
+    def _action_check_game_options(self, player: "Player", action_id: str) -> None:
+        """Open the read-only in-game game options viewer."""
+        user = self.get_user(player)
+        if not hasattr(self, "options"):
+            if user:
+                user.speak_l("no-game-options")
+            return
+        self._show_game_options_view(player)
+
+    def _handle_game_options_display_selection(self, player: "Player", selection_id: str) -> None:
+        """Handle navigation in the read-only in-game options viewer."""
+        if not hasattr(self, "options"):
+            return
+        state = self._get_transient_display_state(player)
+        if not state or state.kind != "game_options":
+            return
+
+        if selection_id == "transient_display_back":
+            path = state.path
+            if path:
+                path.pop()
+                self._show_game_options_view(player)
+            else:
+                self._close_game_options_view(player)
+            return
+
+        if selection_id.startswith("group_"):
+            group_name = selection_id.removeprefix("group_")
+            state.path.append(group_name)
+            state.positions[tuple(state.path)] = 1
+            self._show_game_options_view(player)
+            return
+
+        if selection_id.startswith("multiselect_"):
+            option_name = selection_id.removeprefix("multiselect_")
+            state.path.append(option_name)
+            state.positions[tuple(state.path)] = 1
+            self._show_game_options_view(player)
+            return
+
+        if selection_id.startswith("msgroup_"):
+            remainder = selection_id.removeprefix("msgroup_")
+            for name, meta in self.options.get_option_metas().items():
+                if isinstance(meta, MultiSelectOption) and remainder.startswith(name + "_"):
+                    group_name = remainder[len(name) + 1 :]
+                    if not state.path or state.path[-1] != name:
+                        state.path.append(name)
+                        state.positions[tuple(state.path)] = 1
+                    state.path.append(f"group:{group_name}")
+                    state.positions[tuple(state.path)] = 1
+                    self._show_game_options_view(player)
+                    return
+
+        # Read-only leaf items intentionally ignore Enter without feedback.
 
     def get_all_visible_actions(self, player: "Player") -> list:
         """Get visible actions, filtering to only options when in a sub-menu.

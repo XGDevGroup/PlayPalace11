@@ -35,6 +35,8 @@ whose-turn = Di chi è il turno
 whos-at-table = Chi c'è al tavolo
 check-scores = Controlla punteggi
 check-scores-detailed = Punteggi dettagliati
+check-game-options = Controlla opzioni di gioco
+no-game-options = Nessuna opzione di gioco.
 
 # Turn messages
 game-player-skipped = { $player } viene saltato.
@@ -156,7 +158,6 @@ game-points = { $count } { $count ->
     [one] punto
    *[other] punti
 }
-status-box-closed = Chiuso.
 play = Gioca
 
 # Leaderboards

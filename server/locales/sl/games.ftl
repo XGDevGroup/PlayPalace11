@@ -39,7 +39,6 @@ option-on = vključeno
 option-off = izključeno
 
 # Status box
-status-box-closed = Informacije o stanju zaprte.
 
 # Game end
 game-leave = Zapusti igro

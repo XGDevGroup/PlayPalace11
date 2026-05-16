@@ -39,7 +39,6 @@ option-on = açık
 option-off = kapalı
 
 # Durum kutusu
-status-box-closed = Durum bilgisi kapatıldı.
 
 # Oyun sonu
 game-leave = Oyundan ayrıl

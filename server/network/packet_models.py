@@ -295,6 +295,7 @@ class RequestInputPacket(BasePacket):
     default_value: str = ""
     multiline: bool = False
     read_only: bool = False
+    content_format: Literal["text", "markdown"] = "text"
 
 
 class DocumentEditorPacket(BasePacket):

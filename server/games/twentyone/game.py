@@ -278,10 +278,6 @@ class TwentyOneGame(ActionGuardMixin, Game):
         return "21 (Survival Rules)"
 
     @classmethod
-    def get_name_key(cls) -> str:
-        return "21"
-
-    @classmethod
     def get_type(cls) -> str:
         return "twentyone"
 
@@ -611,7 +607,7 @@ class TwentyOneGame(ActionGuardMixin, Game):
         if not card:
             self._play_sound_for_player(p, SOUND_ACTION_FAIL)
             self.broadcast_l("twentyone-deck-empty-stay")
-            self.rebuild_all_menus()
+            self._resolve_stand(p, announce=True, play_feedback=False)
             return
 
         self.play_sound(SOUND_HIT, volume=80)
@@ -637,17 +633,7 @@ class TwentyOneGame(ActionGuardMixin, Game):
         if not p:
             return
 
-        self._play_sound_for_player(p, SOUND_STAND)
-        self._play_opponent_stand_sound(p)
-        p.stand_pending = True
-        self.broadcast_l("twentyone-player-stands", player=p.name)
-
-        if self._both_players_standing():
-            self.play_sound(SOUND_ROUND_RESOLVE, volume=65)
-            self._settle_round()
-            return
-
-        self._advance_turn_after_action()
+        self._resolve_stand(p, announce=True, play_feedback=True)
 
     def _action_play_modifier(self, player: Player, selected: str, action_id: str) -> None:
         p = player if isinstance(player, TwentyOnePlayer) else None
@@ -2018,6 +2004,23 @@ class TwentyOneGame(ActionGuardMixin, Game):
         if len(players) < 2:
             return False
         return all(p.stand_pending for p in players)
+
+    def _resolve_stand(
+        self, player: TwentyOnePlayer, *, announce: bool, play_feedback: bool
+    ) -> None:
+        if play_feedback:
+            self._play_sound_for_player(player, SOUND_STAND)
+            self._play_opponent_stand_sound(player)
+        player.stand_pending = True
+        if announce:
+            self.broadcast_l("twentyone-player-stands", player=player.name)
+
+        if self._both_players_standing():
+            self.play_sound(SOUND_ROUND_RESOLVE, volume=65)
+            self._settle_round()
+            return
+
+        self._advance_turn_after_action()
 
     def _clear_pending_stands(self) -> None:
         players = self._alive_players()

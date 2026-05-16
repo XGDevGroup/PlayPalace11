@@ -2110,6 +2110,17 @@ class Server(AdministrationMixin, DocumentBrowsingMixin, TranscriberRoleMixin):
                     self._show_main_menu(user, reset_history=True)
             return
 
+        if not self._selection_allowed_for_current_menu(user, current_menu, selection_id):
+            LOG.warning(
+                "Rejected invalid menu selection",
+                extra={
+                    "username": user.username,
+                    "menu": current_menu,
+                    "selection_id": selection_id,
+                },
+            )
+            return
+
         await self._dispatch_menu_selection(user, selection_id, state, current_menu)
         self._prune_menu_history_after_dispatch(
             user=user,
@@ -2167,6 +2178,41 @@ class Server(AdministrationMixin, DocumentBrowsingMixin, TranscriberRoleMixin):
             if isinstance(item, dict) and item.get("id") == selection_id:
                 menu_state["position"] = index
                 return
+
+    def _selection_allowed_for_current_menu(
+        self,
+        user: NetworkUser,
+        current_menu: str | None,
+        selection_id: str,
+    ) -> bool:
+        """Return whether a selection belongs to the user's currently shown menu."""
+        if not current_menu or not selection_id:
+            return True
+
+        current_menus = getattr(user, "_current_menus", None)
+        if not isinstance(current_menus, dict):
+            return True
+
+        menu_state = current_menus.get(current_menu)
+        if not isinstance(menu_state, dict):
+            return True
+
+        items = menu_state.get("items")
+        if not isinstance(items, list):
+            return True
+
+        allowed_ids: set[str] = set()
+        for item in items:
+            if isinstance(item, dict):
+                item_id = item.get("id")
+                if isinstance(item_id, str) and item_id:
+                    allowed_ids.add(item_id)
+            elif isinstance(item, str) and item:
+                allowed_ids.add(item)
+
+        if not allowed_ids:
+            return True
+        return selection_id in allowed_ids
 
     async def _dispatch_menu_selection(
         self,
@@ -4329,6 +4375,8 @@ class Server(AdministrationMixin, DocumentBrowsingMixin, TranscriberRoleMixin):
         if table and table.game:
             player = table.game.get_player_by_id(user.uuid)
             if player:
+                if table.game._is_transient_display_open(player):
+                    return
                 table.game.status_box(player, self._format_online_users_lines(user))
                 return
 

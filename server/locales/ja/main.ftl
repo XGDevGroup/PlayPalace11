@@ -35,6 +35,8 @@ whose-turn = 誰のターン
 whos-at-table = テーブルにいる人
 check-scores = スコアを確認
 check-scores-detailed = 詳細スコア
+check-game-options = ゲームオプションを確認
+no-game-options = ゲームオプションはありません。
 
 # ターンメッセージ
 game-player-skipped = { $player }はスキップされました。
@@ -153,7 +155,6 @@ game-leave = 退出
 game-over = ゲームオーバー
 game-final-scores = 最終スコア
 game-points = { $count }点
-status-box-closed = 閉じられました。
 play = プレイ
 
 # リーダーボード

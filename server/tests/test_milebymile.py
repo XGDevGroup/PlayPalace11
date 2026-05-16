@@ -5,6 +5,7 @@ Tests for the Mile by Mile game.
 import json
 import random
 
+from server.messages.localization import Localization
 from server.games.milebymile.game import (
     MileByMileGame,
     MileByMilePlayer,
@@ -51,6 +52,17 @@ class TestMileByMileGameUnit:
         game = MileByMileGame(options=options)
         assert game.options.round_distance == 700
         assert game.options.winning_score == 3000
+
+    def test_always_discard_option_localizes_in_english(self):
+        """The always-discard option strings should resolve in English."""
+        assert (
+            Localization.get("en", "milebymile-toggle-always-discard", enabled="yes")
+            == "Always allow discarding: yes"
+        )
+        assert (
+            Localization.get("en", "milebymile-option-changed-always-discard", enabled="off")
+            == "Always allow discarding off."
+        )
 
 
 class TestRightOfWayBehavior:
@@ -193,6 +205,115 @@ class TestMileByMilePlayTest:
             game.on_tick()
 
         assert game.status == "finished"
+
+
+class TestMileByMileDiscardConfirmation:
+    """Tests for the discard confirmation prompt on tap of an unplayable card."""
+
+    def _setup_unplayable_card(self):
+        """Create a 2-player game where the current player has a STOP hazard
+        and a distance card that therefore cannot be played."""
+        from server.games.milebymile.cards import Card, CardType
+
+        game = MileByMileGame()
+        user1 = MockUser("Alice")
+        user2 = MockUser("Bob")
+        game.add_player("Alice", user1)
+        game.add_player("Bob", user2)
+        game.on_start()
+
+        player = game.current_player
+        race_state = game.get_player_race_state(player)
+        race_state.add_problem(HazardType.STOP)
+
+        distance_card = Card(id=9999, card_type=CardType.DISTANCE, value="25")
+        player.hand = [distance_card]
+        return game, player
+
+    def test_prompts_when_pref_enabled(self):
+        game, player = self._setup_unplayable_card()
+        user = game.get_user(player)
+        user._preferences.confirm_destructive_actions = True
+
+        before_hand_len = len(player.hand)
+        game._action_play_card(player, "card_slot_1")
+
+        # Card is still in hand; a discard_confirm menu was shown.
+        assert len(player.hand) == before_hand_len
+        assert "discard_confirm" in user.menus
+        assert game._pending_actions.get(player.id) == "discard_confirm"
+        assert game._pending_discard_slot.get(player.id) == 0
+
+    def test_discards_immediately_when_pref_disabled(self):
+        game, player = self._setup_unplayable_card()
+        user = game.get_user(player)
+        user._preferences.confirm_destructive_actions = False
+
+        game._action_play_card(player, "card_slot_1")
+
+        # Card was discarded; no confirmation menu was shown.
+        assert len(player.hand) == 0
+        assert "discard_confirm" not in user.menus
+        assert player.id not in game._pending_actions
+
+    def test_per_game_override_disables_prompt(self):
+        game, player = self._setup_unplayable_card()
+        user = game.get_user(player)
+        # Global default is to confirm; override mile by mile specifically.
+        user._preferences.confirm_destructive_actions = True
+        user._preferences.game_overrides["milebymile"] = {
+            "confirm_destructive_actions": False
+        }
+
+        game._action_play_card(player, "card_slot_1")
+
+        assert len(player.hand) == 0
+        assert "discard_confirm" not in user.menus
+
+    def test_yes_confirmation_discards(self):
+        game, player = self._setup_unplayable_card()
+        user = game.get_user(player)
+        user._preferences.confirm_destructive_actions = True
+
+        game._action_play_card(player, "card_slot_1")
+        assert "discard_confirm" in user.menus
+
+        # Respond Yes
+        game._handle_menu_event(
+            player, {"menu_id": "discard_confirm", "selection_id": "yes"}
+        )
+
+        assert len(player.hand) == 0
+        assert player.id not in game._pending_actions
+        assert player.id not in game._pending_discard_slot
+
+    def test_no_confirmation_keeps_card(self):
+        game, player = self._setup_unplayable_card()
+        user = game.get_user(player)
+        user._preferences.confirm_destructive_actions = True
+
+        game._action_play_card(player, "card_slot_1")
+
+        game._handle_menu_event(
+            player, {"menu_id": "discard_confirm", "selection_id": "no"}
+        )
+
+        assert len(player.hand) == 1
+        assert player.id not in game._pending_actions
+        assert player.id not in game._pending_discard_slot
+
+    def test_bot_never_prompts(self):
+        game, player = self._setup_unplayable_card()
+        # Force the current player to be treated as a bot.
+        player.is_bot = True
+
+        game._action_play_card(player, "card_slot_1")
+
+        assert len(player.hand) == 0
+        assert player.id not in game._pending_actions
+
+    def test_relevant_preference_registered(self):
+        assert "confirm_destructive_actions" in MileByMileGame.relevant_preferences
 
 
 class TestMileByMilePersistence:

@@ -39,7 +39,6 @@ option-on = オン
 option-off = オフ
 
 # ステータスボックス
-status-box-closed = ステータス情報が閉じられました。
 
 # ゲーム終了
 game-leave = ゲームを退出

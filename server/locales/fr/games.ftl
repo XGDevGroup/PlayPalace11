@@ -39,7 +39,6 @@ option-on = activé
 option-off = désactivé
 
 # Boîte de statut
-status-box-closed = Informations de statut fermées.
 
 # Fin de jeu
 game-leave = Quitter le jeu

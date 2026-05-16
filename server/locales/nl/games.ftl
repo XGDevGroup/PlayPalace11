@@ -39,7 +39,6 @@ option-on = aan
 option-off = uit
 
 # Status box
-status-box-closed = Statusinformatie gesloten.
 
 # Game end
 game-leave = Verlaat spel

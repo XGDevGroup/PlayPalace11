@@ -39,7 +39,6 @@ option-on = เปิด
 option-off = ปิด
 
 # Status box
-status-box-closed = ปิดข้อมูลสถานะแล้ว
 
 # Game end
 game-leave = ออกจากเกม

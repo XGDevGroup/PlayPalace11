@@ -35,6 +35,8 @@ whose-turn = Čiji je red
 whos-at-table = Tko je za stolom
 check-scores = Provjeri rezultate
 check-scores-detailed = Detaljni rezultati
+check-game-options = Provjeri opcije igre
+no-game-options = Nema opcija igre.
 
 # Turn messages
 game-player-skipped = { $player } je preskočen.
@@ -156,7 +158,6 @@ game-points = { $count } { $count ->
     [one] bod
    *[other] bodova
 }
-status-box-closed = Zatvoreno.
 play = Igraj
 
 # Leaderboards

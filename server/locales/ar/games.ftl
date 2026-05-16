@@ -38,7 +38,6 @@ option-on = مفعل
 option-off = معطل
 
 # Status box
-status-box-closed = تم إغلاق معلومات الحالة.
 
 # Game end
 game-leave = غادر اللعبة

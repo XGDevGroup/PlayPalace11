@@ -306,6 +306,146 @@ class TestGetDocumentsInCategory:
         names = {d["folder_name"] for d in docs}
         assert names == {"shared_doc", "indie_doc"}
 
+    def test_private_documents_are_hidden_without_access(self, manager, docs_dir):
+        _create_doc_on_disk(
+            docs_dir,
+            "private_doc",
+            meta_override={
+                "categories": [],
+                "source_locale": "fr",
+                "titles": {"fr": "Document prive"},
+                "locales": {
+                    "fr": {
+                        "created": "2026-01-01T00:00:00Z",
+                        "modified_contents": "2026-01-01T00:00:00Z",
+                        "public": False,
+                    }
+                },
+            },
+        )
+        manager.load()
+
+        docs = manager.get_documents_in_category(None, "fr", include_private=False)
+
+        assert docs == []
+
+    def test_assigned_private_locale_remains_visible_in_listings(self, manager, docs_dir):
+        _create_doc_on_disk(
+            docs_dir,
+            "translator_doc",
+            locale="fr",
+            meta_override={
+                "categories": [],
+                "source_locale": "fr",
+                "titles": {"fr": "Document prive"},
+                "locales": {
+                    "fr": {
+                        "created": "2026-01-01T00:00:00Z",
+                        "modified_contents": "2026-01-01T00:00:00Z",
+                        "public": False,
+                    }
+                },
+            },
+        )
+        manager.load()
+
+        docs = manager.get_documents_in_category(
+            None,
+            "fr",
+            include_private=False,
+            allowed_private_locales={"fr"},
+        )
+
+        assert [doc["folder_name"] for doc in docs] == ["translator_doc"]
+
+    def test_listing_falls_back_to_other_visible_title(self, manager, docs_dir):
+        _create_doc_on_disk(
+            docs_dir,
+            "partially_translated_doc",
+            locale="fr",
+            meta_override={
+                "categories": [],
+                "source_locale": "en",
+                "titles": {"en": "English Title"},
+                "locales": {
+                    "en": {
+                        "created": "2026-01-01T00:00:00Z",
+                        "modified_contents": "2026-01-01T00:00:00Z",
+                        "public": True,
+                    },
+                    "fr": {
+                        "created": "2026-01-01T00:00:00Z",
+                        "modified_contents": "2026-01-01T00:00:00Z",
+                        "public": False,
+                    },
+                },
+            },
+        )
+        manager.load()
+
+        docs = manager.get_documents_in_category(
+            None,
+            "fr",
+            include_private=False,
+            allowed_private_locales={"fr"},
+        )
+
+        assert len(docs) == 1
+        assert docs[0]["title"] == "English Title"
+
+
+class TestGetCategoryDocumentCounts:
+    def test_hidden_private_documents_are_excluded_from_counts(self, manager, docs_dir):
+        _create_doc_on_disk(
+            docs_dir,
+            "hidden_doc",
+            meta_override={
+                "categories": ["rules"],
+                "source_locale": "en",
+                "titles": {"en": "Hidden Doc"},
+                "locales": {
+                    "en": {
+                        "created": "2026-01-01T00:00:00Z",
+                        "modified_contents": "2026-01-01T00:00:00Z",
+                        "public": False,
+                    }
+                },
+            },
+        )
+        manager.load()
+
+        counts = manager.get_category_document_counts(include_private=False)
+
+        assert counts == {None: 0, "": 0}
+
+    def test_allowed_private_locales_still_count_documents(self, manager, docs_dir):
+        _create_doc_on_disk(
+            docs_dir,
+            "translator_doc",
+            locale="fr",
+            meta_override={
+                "categories": ["rules"],
+                "source_locale": "fr",
+                "titles": {"fr": "Translator Doc"},
+                "locales": {
+                    "fr": {
+                        "created": "2026-01-01T00:00:00Z",
+                        "modified_contents": "2026-01-01T00:00:00Z",
+                        "public": False,
+                    }
+                },
+            },
+        )
+        manager.load()
+
+        counts = manager.get_category_document_counts(
+            include_private=False,
+            allowed_private_locales={"fr"},
+        )
+
+        assert counts[None] == 1
+        assert counts["rules"] == 1
+
 
 # ------------------------------------------------------------------
 # get_document_content
@@ -329,6 +469,40 @@ class TestGetDocumentContent:
     def test_returns_none_for_missing_document(self, manager):
         manager.load()
         assert manager.get_document_content("nonexistent", "en") is None
+
+    def test_private_locale_requires_explicit_access(self, manager, docs_dir):
+        _create_doc_on_disk(
+            docs_dir,
+            "hello",
+            locale="fr",
+            content="bonjour",
+            meta_override={
+                "categories": [],
+                "source_locale": "fr",
+                "titles": {"fr": "Bonjour"},
+                "locales": {
+                    "fr": {
+                        "created": "2026-01-01T00:00:00Z",
+                        "modified_contents": "2026-01-01T00:00:00Z",
+                        "public": False,
+                    }
+                },
+            },
+        )
+        manager.load()
+
+        assert manager.get_document_content_for_access(
+            "hello", "fr", include_private=False
+        ) is None
+        assert (
+            manager.get_document_content_for_access(
+                "hello",
+                "fr",
+                include_private=False,
+                allowed_private_locales={"fr"},
+            )
+            == "bonjour"
+        )
 
 
 # ------------------------------------------------------------------

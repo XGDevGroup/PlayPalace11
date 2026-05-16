@@ -5,6 +5,8 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ..games.base import Player, ActionContext
 
+from .menu_management_mixin import TRANSIENT_DISPLAY_MENU_ID
+
 
 class EventHandlingMixin:
     """Handle menu/editbox/keybind events for a game.
@@ -12,7 +14,6 @@ class EventHandlingMixin:
     Expected Game attributes:
         _actions_menu_open: set[str].
         _pending_actions: dict[str, str].
-        _status_box_open: set[str].
         _keybinds: dict[str, list[Keybind]].
         get_user(player) -> User | None.
         find_action(player, action_id) -> Action | None.
@@ -42,6 +43,9 @@ class EventHandlingMixin:
         menu_id = event.get("menu_id")
         selection_id = event.get("selection_id", "")
 
+        if self._is_transient_display_open(player) and menu_id != TRANSIENT_DISPLAY_MENU_ID:
+            return
+
         if menu_id == "turn_menu":
             self._handle_turn_menu_selection(player, event, selection_id)
 
@@ -50,13 +54,13 @@ class EventHandlingMixin:
             if selection_id:
                 self._handle_actions_menu_selection(player, selection_id)
 
-        elif menu_id == "status_box":
-            user = self.get_user(player)
-            if user:
-                user.remove_menu("status_box")
-                user.speak_l("status-box-closed")
-                self._status_box_open.discard(player.id)
-                self.rebuild_player_menu(player)
+        elif menu_id == TRANSIENT_DISPLAY_MENU_ID:
+            remember_position = getattr(self, "_remember_transient_display_position", None)
+            if remember_position:
+                remember_position(player, event)
+            handler = getattr(self, "_handle_transient_display_selection", None)
+            if handler:
+                handler(player, selection_id)
 
         elif menu_id == "game_over":
             # Handle game over menu - leave_game is the only selectable action
@@ -74,6 +78,9 @@ class EventHandlingMixin:
 
     def _handle_editbox_event(self, player: "Player", event: dict) -> None:
         """Handle an editbox submission event."""
+        if self._is_transient_display_open(player):
+            return
+
         input_id = event.get("input_id", "")
         text = event.get("text", "")
 
@@ -87,6 +94,9 @@ class EventHandlingMixin:
 
     def _handle_keybind_event(self, player: "Player", event: dict) -> None:
         """Handle a keybind press event."""
+        if self._is_transient_display_open(player):
+            return
+
         key = self._normalize_keybind(event)
         menu_item_id = event.get("menu_item_id")
         menu_index = event.get("menu_index")
@@ -129,8 +139,14 @@ class EventHandlingMixin:
             resolved = self.resolve_action(player, action)
             if resolved.enabled:
                 self.execute_action(player, action_id)
-        # Don't rebuild if action is waiting for input or status box is open
-        if player.id not in self._pending_actions and player.id not in self._status_box_open:
+        # Don't rebuild if action opened another transient UI
+        if (
+            player.id not in self._pending_actions
+            and not self._is_transient_display_open(player)
+            and (
+                player.id not in self._actions_menu_open
+            )
+        ):
             self.rebuild_player_menu(player)
 
     def _handle_turn_menu_selection(self, player: "Player", event: dict, selection_id: str) -> None:
@@ -173,7 +189,7 @@ class EventHandlingMixin:
                 self.execute_action(player, action_id, resolved_selection_id)
         if (
             player.id not in self._pending_actions
-            and player.id not in self._status_box_open
+            and not self._is_transient_display_open(player)
             and player.id not in self._actions_menu_open
         ):
             self.rebuild_player_menu(player)
@@ -272,6 +288,6 @@ class EventHandlingMixin:
         return (
             executed_any
             and player.id not in self._pending_actions
-            and player.id not in self._status_box_open
+            and not self._is_transient_display_open(player)
             and player.id not in self._actions_menu_open
         )

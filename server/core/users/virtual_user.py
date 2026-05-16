@@ -141,6 +141,7 @@ class VirtualUser(User):
         *,
         multiline: bool = False,
         read_only: bool = False,
+        content_format: str = "text",
     ) -> None:
         """No-op: virtual bots ignore editboxes."""
         pass

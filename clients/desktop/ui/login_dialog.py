@@ -64,6 +64,7 @@ class LoginDialog(wx.Dialog):
         self.tree = ManagedTreeCtrl(
             self.panel,
             style=wx.TR_HAS_BUTTONS | wx.TR_SINGLE | wx.TR_HIDE_ROOT,
+            name="Servers and accounts",
         )
         sizer.Add(self.tree, 1, wx.EXPAND | wx.LEFT | wx.RIGHT, 10)
 
@@ -73,10 +74,7 @@ class LoginDialog(wx.Dialog):
         add_sizer.Add(self.add_server_btn, 0, wx.RIGHT, 5)
 
         self.add_account_btn = wx.Button(self.panel, label="Add Acco&unt")
-        add_sizer.Add(self.add_account_btn, 0, wx.RIGHT, 5)
-
-        self.register_btn = wx.Button(self.panel, label="Re&gister")
-        add_sizer.Add(self.register_btn, 0)
+        add_sizer.Add(self.add_account_btn, 0)
 
         sizer.Add(add_sizer, 0, wx.LEFT | wx.RIGHT | wx.TOP, 10)
 
@@ -112,7 +110,6 @@ class LoginDialog(wx.Dialog):
         self.tree.Bind(wx.EVT_TREE_ITEM_ACTIVATED, self._on_tree_item_activated)
         self.add_server_btn.Bind(wx.EVT_BUTTON, self.on_add_server)
         self.add_account_btn.Bind(wx.EVT_BUTTON, self.on_add_account)
-        self.register_btn.Bind(wx.EVT_BUTTON, self.on_register)
         self.edit_btn.Bind(wx.EVT_BUTTON, self.on_edit)
         self.delete_btn.Bind(wx.EVT_BUTTON, self.on_delete)
         self.advanced_btn.Bind(wx.EVT_BUTTON, self.on_advanced)
@@ -259,31 +256,25 @@ class LoginDialog(wx.Dialog):
             self._set_label(self.edit_btn, "&Edit Server")
             self._set_label(self.delete_btn, "&Delete Server")
             self._set_label(self.add_account_btn, f"Add Acco&unt to {server_name}")
-            self._set_label(self.register_btn, f"Re&gister on {server_name}")
             self.edit_btn.Enable(True)
             self.delete_btn.Enable(True)
             self.add_account_btn.Enable(True)
-            self.register_btn.Enable(True)
             self.login_btn.Enable(False)
         elif item_type == "account":
             self._set_label(self.edit_btn, "&Edit Account")
             self._set_label(self.delete_btn, "&Delete Account")
             self._set_label(self.add_account_btn, f"Add Acco&unt to {server_name}")
-            self._set_label(self.register_btn, f"Re&gister on {server_name}")
             self.edit_btn.Enable(True)
             self.delete_btn.Enable(True)
             self.add_account_btn.Enable(True)
-            self.register_btn.Enable(True)
             self.login_btn.Enable(True)
         else:
             self._set_label(self.edit_btn, "&Edit")
             self._set_label(self.delete_btn, "&Delete")
             self._set_label(self.add_account_btn, "Add Acco&unt")
-            self._set_label(self.register_btn, "Re&gister")
             self.edit_btn.Enable(False)
             self.delete_btn.Enable(False)
             self.add_account_btn.Enable(False)
-            self.register_btn.Enable(False)
             self.login_btn.Enable(False)
 
     @staticmethod
@@ -322,10 +313,22 @@ class LoginDialog(wx.Dialog):
         from .server_manager import ServerEditorDialog
 
         dlg = ServerEditorDialog(self, self.config_manager)
-        dlg.ShowModal()
-        new_server_id = dlg.get_server_id()
+        new_server_id = None
+        if dlg.ShowModal() == wx.ID_OK:
+            new_server_id = dlg.get_server_id()
+            self._populate_tree(select_server_id=new_server_id)
         dlg.Destroy()
-        self._populate_tree(select_server_id=new_server_id)
+
+        if new_server_id:
+            prompt = wx.MessageBox(
+                "Server added. Would you like to add an account for it now?\nBy default, a server will accept new created accounts by users.",
+                "Add Account?",
+                wx.YES_NO | wx.ICON_QUESTION,
+            )
+            if prompt == wx.YES:
+                self.on_add_account(None)
+                return
+
         self.tree.SetFocus()
 
     def on_add_account(self, event):
@@ -343,35 +346,22 @@ class LoginDialog(wx.Dialog):
         dlg = AccountEditorDialog(
             self, self.config_manager, server_id, account_id=None, server_name=server_name
         )
-        dlg.ShowModal()
-        new_account_id = dlg.get_account_id()
+        new_account_id = None
+        if dlg.ShowModal() == wx.ID_OK:
+            new_account_id = dlg.get_account_id()
+            self._populate_tree(select_server_id=server_id, select_account_id=new_account_id)
         dlg.Destroy()
-        self._populate_tree(select_server_id=server_id, select_account_id=new_account_id)
-        self.tree.SetFocus()
 
-    def on_register(self, event):
-        """Open the registration dialog for the selected server."""
-        server_id = self._get_server_id_for_selection()
-        if not server_id:
-            wx.MessageBox(
-                "Please select a server first.", "No Server Selected", wx.OK | wx.ICON_WARNING
+        if new_account_id:
+            prompt = wx.MessageBox(
+                "Account added. Would you like to log in with this account now?\nBy default, a server will accept new created accounts by users.",
+                "Log In Now?",
+                wx.YES_NO | wx.ICON_QUESTION,
             )
-            return
+            if prompt == wx.YES:
+                self.on_login(None)
+                return
 
-        server_url = self.config_manager.get_server_url(server_id)
-        if not server_url:
-            wx.MessageBox("Could not determine server URL.", "Error", wx.OK | wx.ICON_ERROR)
-            return
-
-        from .registration_dialog import RegistrationDialog
-
-        dlg = RegistrationDialog(self, server_url, server_id=server_id, config_manager=self.config_manager)
-        result = dlg.ShowModal()
-        registered_account_id = dlg.get_registered_account_id()
-        dlg.Destroy()
-
-        if result == wx.ID_OK and registered_account_id:
-            self._populate_tree(select_server_id=server_id, select_account_id=registered_account_id)
         self.tree.SetFocus()
 
     def on_edit(self, event):
@@ -382,9 +372,9 @@ class LoginDialog(wx.Dialog):
             from .server_manager import ServerEditorDialog
 
             dlg = ServerEditorDialog(self, self.config_manager, server_id)
-            dlg.ShowModal()
+            if dlg.ShowModal() == wx.ID_OK:
+                self._populate_tree(select_server_id=server_id)
             dlg.Destroy()
-            self._populate_tree(select_server_id=server_id)
         elif item_type == "account":
             from .server_manager import AccountEditorDialog
 
@@ -392,9 +382,9 @@ class LoginDialog(wx.Dialog):
             dlg = AccountEditorDialog(
                 self, self.config_manager, server_id, account_id, server_name=server_name
             )
-            dlg.ShowModal()
+            if dlg.ShowModal() == wx.ID_OK:
+                self._populate_tree(select_server_id=server_id, select_account_id=account_id)
             dlg.Destroy()
-            self._populate_tree(select_server_id=server_id, select_account_id=account_id)
 
         self.tree.SetFocus()
 

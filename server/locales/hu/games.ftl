@@ -39,7 +39,6 @@ option-on = be
 option-off = ki
 
 # Status box
-status-box-closed = Státuszinformáció bezárva.
 
 # Game end
 game-leave = Játék elhagyása

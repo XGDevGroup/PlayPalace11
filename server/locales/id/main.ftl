@@ -35,6 +35,8 @@ whose-turn = Giliran siapa
 whos-at-table = Siapa yang di meja
 check-scores = Periksa skor
 check-scores-detailed = Skor detail
+check-game-options = Periksa opsi permainan
+no-game-options = Tidak ada opsi permainan.
 
 # Turn messages
 game-player-skipped = { $player } dilewati.
@@ -156,7 +158,6 @@ game-points = { $count } { $count ->
     [one] poin
    *[other] poin
 }
-status-box-closed = Ditutup.
 play = Main
 
 # Leaderboards

@@ -39,7 +39,6 @@ option-on = चालू
 option-off = बंद
 
 # Status box
-status-box-closed = स्थिति की जानकारी बंद।
 
 # Game end
 game-leave = खेल छोड़ें

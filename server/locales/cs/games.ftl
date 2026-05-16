@@ -39,7 +39,6 @@ option-on = zapnuto
 option-off = vypnuto
 
 # Stavové okno
-status-box-closed = Informace o stavu uzavřena.
 
 # Konec hry
 game-leave = Opustit hru

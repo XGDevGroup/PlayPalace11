@@ -35,6 +35,8 @@ whose-turn = Đến lượt ai?
 whos-at-table = Ai đang ở trong bàn
 check-scores = Xem điểm
 check-scores-detailed = Chi tiết điểm số
+check-game-options = Xem tùy chọn trò chơi
+no-game-options = Không có tùy chọn trò chơi.
 
 # Thông báo lượt
 game-player-skipped = { $player } bị bỏ qua.
@@ -156,7 +158,6 @@ game-points = { $count } { $count ->
     [one] điểm
    *[other] điểm
 }
-status-box-closed = Đã đóng.
 play = Chơi
 
 # Bảng xếp hạng

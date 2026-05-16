@@ -39,7 +39,6 @@ option-on = 켜짐
 option-off = 꺼짐
 
 # Status box
-status-box-closed = 상태 정보가 닫혔습니다.
 
 # Game end
 game-leave = 게임 나가기

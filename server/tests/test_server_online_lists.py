@@ -62,12 +62,16 @@ class FakeTables:
 class FakeGame:
     """Game stub capturing status box calls."""
 
-    def __init__(self, user_uuid: str) -> None:
+    def __init__(self, user_uuid: str, *, transient_open: bool = False) -> None:
         self.user_uuid = user_uuid
+        self.transient_open = transient_open
         self.status_calls: list[list[str]] = []
 
     def get_player_by_id(self, player_id: str):
         return SimpleNamespace(id=player_id) if player_id == self.user_uuid else None
+
+    def _is_transient_display_open(self, _player) -> bool:
+        return self.transient_open
 
     def status_box(self, player, lines: list[str]) -> None:
         self.status_calls.append(lines)
@@ -141,3 +145,18 @@ async def test_handle_list_online_with_games_menu(server):
 
     assert user.last_menu_id == "online_users"
     assert user.menu_items is not None and len(user.menu_items) >= 1
+
+
+@pytest.mark.asyncio
+async def test_handle_list_online_with_games_ignored_while_transient_open(server):
+    user = DummyUser("alice")
+    game = FakeGame(user.uuid, transient_open=True)
+    table = SimpleNamespace(game=game, game_type="mock")
+    server._users = {"alice": user}
+    server._tables = FakeTables({"alice": table})
+    client = SimpleNamespace(username="alice")
+
+    await server._handle_list_online_with_games(client)
+
+    assert game.status_calls == []
+    assert user.last_menu_id is None

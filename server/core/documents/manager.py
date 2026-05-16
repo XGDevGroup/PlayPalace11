@@ -190,14 +190,28 @@ class DocumentManager:
         result.sort(key=lambda c: c["name"].lower())
         return result
 
-    def get_category_document_counts(self) -> dict[str | None, int]:
+    def get_category_document_counts(
+        self,
+        *,
+        include_private: bool = True,
+        allowed_private_locales: set[str] | None = None,
+    ) -> dict[str | None, int]:
         """Return document counts per category in a single pass.
 
         Keys are category slugs, plus ``None`` for all documents and
         ``""`` for uncategorized.
         """
-        counts: dict[str | None, int] = {None: len(self._documents), "": 0}
+        counts: dict[str | None, int] = {None: 0, "": 0}
         for meta in self._documents.values():
+            visible_locales = self._get_visible_locale_codes(
+                meta,
+                include_private=include_private,
+                allowed_private_locales=allowed_private_locales,
+            )
+            if not visible_locales:
+                continue
+
+            counts[None] += 1
             cats = meta.get("categories", [])
             if not cats:
                 counts[""] += 1
@@ -205,13 +219,84 @@ class DocumentManager:
                 counts[slug] = counts.get(slug, 0) + 1
         return counts
 
-    def get_documents_in_category(self, category_slug: str | None, locale: str) -> list[dict]:
+    @staticmethod
+    def _get_visible_locale_codes(
+        meta: dict,
+        *,
+        include_private: bool,
+        allowed_private_locales: set[str] | None = None,
+    ) -> list[str]:
+        """Return locale codes visible to the current caller."""
+        locales = meta.get("locales", {})
+        if include_private:
+            return list(locales.keys())
+
+        allowed_private_locales = allowed_private_locales or set()
+        return [
+            locale_code
+            for locale_code, locale_meta in locales.items()
+            if locale_meta.get("public", False) or locale_code in allowed_private_locales
+        ]
+
+    @staticmethod
+    def _select_display_title_locale(
+        visible_locales: list[str],
+        preferred_locale: str,
+        source_locale: str,
+    ) -> str | None:
+        """Pick the best locale to display from the visible locales."""
+        if preferred_locale in visible_locales:
+            return preferred_locale
+        if source_locale in visible_locales:
+            return source_locale
+        if "en" in visible_locales:
+            return "en"
+        if visible_locales:
+            return sorted(visible_locales)[0]
+        return None
+
+    @staticmethod
+    def _select_visible_title(
+        titles: dict[str, str],
+        visible_locales: list[str],
+        preferred_locale: str,
+        source_locale: str,
+        folder_name: str,
+    ) -> str:
+        """Pick the best available title without using hidden locales."""
+        ordered_locales: list[str] = []
+        for locale_code in [
+            preferred_locale,
+            source_locale,
+            "en",
+            *sorted(visible_locales),
+        ]:
+            if locale_code in visible_locales and locale_code not in ordered_locales:
+                ordered_locales.append(locale_code)
+
+        for locale_code in ordered_locales:
+            title = titles.get(locale_code)
+            if title:
+                return title
+        return folder_name
+
+    def get_documents_in_category(
+        self,
+        category_slug: str | None,
+        locale: str,
+        *,
+        include_private: bool = True,
+        allowed_private_locales: set[str] | None = None,
+    ) -> list[dict]:
         """Return documents in a category.
 
         Args:
             category_slug: Category slug to filter by.  ``None`` returns all
                 documents, ``""`` returns uncategorized documents.
             locale: Locale for display title resolution.
+            include_private: When ``True``, include private locales.
+            allowed_private_locales: Private locales still visible when
+                ``include_private`` is ``False``.
 
         Returns a list of dicts with ``folder_name`` and ``title``.
         """
@@ -227,11 +312,28 @@ class DocumentManager:
                 if category_slug not in cats:
                     continue
 
+            visible_locales = self._get_visible_locale_codes(
+                meta,
+                include_private=include_private,
+                allowed_private_locales=allowed_private_locales,
+            )
+            if not visible_locales:
+                continue
+
             titles = meta.get("titles", {})
-            title = titles.get(locale) or titles.get("en") or folder_name
-            # Include sort-relevant timestamps from source locale.
             source = meta.get("source_locale", "en")
-            loc_info = meta.get("locales", {}).get(source, {})
+            title_locale = self._select_display_title_locale(visible_locales, locale, source)
+            title = self._select_visible_title(
+                titles,
+                visible_locales,
+                title_locale or locale,
+                source,
+                folder_name,
+            )
+
+            # Include sort-relevant timestamps from a visible locale.
+            timestamp_locale = source if source in visible_locales else title_locale
+            loc_info = meta.get("locales", {}).get(timestamp_locale or "", {})
             results.append(
                 {
                     "folder_name": folder_name,
@@ -269,6 +371,10 @@ class DocumentManager:
         """Read a document's ``.md`` file for the given locale."""
         if folder_name not in self._documents:
             return None
+        meta = self._documents[folder_name]
+        visible_locales = self._get_visible_locale_codes(meta, include_private=True)
+        if locale not in visible_locales:
+            return None
         doc_dir = self._document_dir(folder_name)
         if doc_dir is None:
             return None
@@ -276,6 +382,27 @@ class DocumentManager:
         if not md_path.exists():
             return None
         return md_path.read_text(encoding="utf-8")
+
+    def get_document_content_for_access(
+        self,
+        folder_name: str,
+        locale: str,
+        *,
+        include_private: bool = True,
+        allowed_private_locales: set[str] | None = None,
+    ) -> str | None:
+        """Read document content only if the locale is visible to the caller."""
+        meta = self._documents.get(folder_name)
+        if meta is None:
+            return None
+        visible_locales = self._get_visible_locale_codes(
+            meta,
+            include_private=include_private,
+            allowed_private_locales=allowed_private_locales,
+        )
+        if locale not in visible_locales:
+            return None
+        return self.get_document_content(folder_name, locale)
 
     # ------------------------------------------------------------------
     # Writing

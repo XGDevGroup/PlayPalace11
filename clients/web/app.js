@@ -6,6 +6,7 @@ import { createMenuView } from "./ui/menus.js";
 import { createChat } from "./ui/chat.js";
 import { installKeybinds } from "./keybinds.js";
 import { createDocumentEditor } from "./ui/document_editor.js";
+import { createMarkdownViewer } from "./ui/markdown_viewer.js";
 import { createNetworkClient, loadPacketValidator } from "./network.js";
 
 const REMEMBERED_USERNAME_KEY = "playpalace.web.remembered_username";
@@ -232,6 +233,7 @@ const elements = {
   inputSubmit: document.getElementById("input-submit"),
   appVersion: document.getElementById("app-version"),
   documentEditorDialog: document.getElementById("document-editor-dialog"),
+  markdownViewerDialog: document.getElementById("markdown-viewer-dialog"),
 };
 
 const store = createStore();
@@ -286,6 +288,16 @@ const documentEditor = createDocumentEditor({
     if (network) {
       network.send({ type: "document_editor", ...response });
     }
+  },
+});
+
+const markdownViewer = createMarkdownViewer({
+  dialogEl: elements.markdownViewerDialog,
+  onSubmit: (response) => {
+    if (network) {
+      network.send({ type: "editbox", ...response });
+    }
+    focusMenuOnNextMenuPacket = true;
   },
 });
 let pendingInlineInput = null;
@@ -1329,7 +1341,14 @@ function handlePacket(packet) {
       break;
     }
     case "request_input": {
-      showInlineInput(packet);
+      if (packet.content_format === "markdown") {
+        if (!packet.default_value) {
+          packet.default_value = "*No documentation available.*";
+        }
+        markdownViewer.show(packet);
+      } else {
+        showInlineInput(packet);
+      }
       break;
     }
     case "document_editor": {

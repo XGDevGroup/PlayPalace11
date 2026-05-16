@@ -35,6 +35,8 @@ whose-turn = Чий хід
 whos-at-table = Хто за столом
 check-scores = Перевірити рахунок
 check-scores-detailed = Детальний рахунок
+check-game-options = Перевірити параметри гри
+no-game-options = Немає параметрів гри.
 
 # Turn messages
 game-player-skipped = { $player } пропущений.
@@ -156,7 +158,6 @@ game-points = { $count } { $count ->
     [one] очко
    *[other] очок
 }
-status-box-closed = Закрито.
 play = Грати
 
 # Leaderboards

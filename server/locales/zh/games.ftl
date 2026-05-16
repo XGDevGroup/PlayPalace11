@@ -39,7 +39,6 @@ option-on = 开启
 option-off = 关闭
 
 # 状态框
-status-box-closed = 状态信息已关闭。
 
 # 游戏结束
 game-leave = 离开游戏

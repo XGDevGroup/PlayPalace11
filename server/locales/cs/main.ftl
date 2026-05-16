@@ -35,6 +35,8 @@ whose-turn = Čí je tah
 whos-at-table = Kdo je u stolu
 check-scores = Zkontrolovat skóre
 check-scores-detailed = Podrobné skóre
+check-game-options = Zkontrolovat herní možnosti
+no-game-options = Žádné herní možnosti.
 
 # Zprávy o tahu
 game-player-skipped = { $player } je přeskočen.
@@ -188,7 +190,6 @@ game-points = { $count } { $count ->
     [many] bodu
    *[other] bodů
 }
-status-box-closed = Zavřeno.
 play = Hrát
 
 # Žebříčky

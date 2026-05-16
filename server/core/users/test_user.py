@@ -188,6 +188,7 @@ class MockUser(User):
         *,
         multiline: bool = False,
         read_only: bool = False,
+        content_format: str = "text",
     ) -> None:
         """Record editbox display state and message."""
         editbox_data = {
@@ -195,6 +196,7 @@ class MockUser(User):
             "default_value": default_value,
             "multiline": multiline,
             "read_only": read_only,
+            "content_format": content_format,
         }
         self.editboxes[input_id] = editbox_data
         self.messages.append(Message("show_editbox", {"input_id": input_id, **editbox_data}))

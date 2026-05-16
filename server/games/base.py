@@ -52,6 +52,15 @@ class ActionContext:
 
 
 @dataclass
+class TransientDisplayState:
+    """Runtime-only state for an in-game transient display."""
+
+    kind: str
+    path: list[str] = field(default_factory=list)
+    positions: dict[tuple[str, ...], int] = field(default_factory=dict)
+
+
+@dataclass
 class Player(DataClassJSONMixin):
     """A player in a game (serialized with game state).
 
@@ -200,7 +209,7 @@ class Game(
         self._action_context: dict[
             str, ActionContext
         ] = {}  # player_id -> context during action execution
-        self._status_box_open: set[str] = set()  # player_ids with status box open
+        self._transient_display_state: dict[str, TransientDisplayState] = {}
         self._actions_menu_open: set[str] = set()  # player_ids with actions menu open
         self._destroyed: bool = False  # Whether game has been destroyed
         # Duration estimation state

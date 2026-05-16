@@ -36,6 +36,8 @@ milebymile-desc-rig = Modify deck composition and hand rules
 milebymile-select-rig = Select deck rigging option
 milebymile-option-changed-rig = Deck rigging set to { $rig }.
 
+milebymile-toggle-always-discard = Always allow discarding: { $enabled }
+milebymile-option-changed-always-discard = Always allow discarding { $enabled }.
 milebymile-desc-always-discard = When enabled, press backspace on a card to discard it even if it could be played.
 
 # Status
@@ -45,6 +47,8 @@ milebymile-status = { $name }: { $points } points, { $miles } miles, Problems: {
 milebymile-no-matching-safety = You don't have the matching safety card!
 milebymile-cant-play = You can't play { $card } because { $reason }.
 milebymile-no-card-selected = No card selected to discard.
+milebymile-cant-discard-playable = You can't discard a card that can be played.
+milebymile-discard-confirm = Do you want to discard this card?
 milebymile-no-valid-targets = No valid targets for this hazard!
 milebymile-you-drew = You drew: { $card }
 milebymile-discards = { $player } discards a card.
@@ -84,12 +88,12 @@ milebymile-from-trip = { $points } from completing the trip
 milebymile-from-perfect = { $points } from a perfect crossing
 milebymile-from-safe = { $points } from a safe trip
 milebymile-from-shutout = { $points } from a shut out
-milebymile-from-safeties = { $points } from { $count } { $safeties ->
+milebymile-from-safeties = { $points } from { $count } { $count ->
     [one] safety
     *[other] safeties
 }
 milebymile-from-all-safeties = { $points } from all 4 safeties
-milebymile-from-dirty-tricks = { $points } from { $count } { $tricks ->
+milebymile-from-dirty-tricks = { $points } from { $count } { $count ->
     [one] dirty trick
     *[other] dirty tricks
 }

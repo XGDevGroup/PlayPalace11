@@ -12,6 +12,7 @@ import random
 from ..base import Game, Player
 from ..registry import register_game
 from ...game_utils.actions import Action, ActionSet, MenuInput, Visibility
+from ...core.users.base import MenuItem, EscapeBehavior
 from ...game_utils.bot_helper import BotHelper
 from ...game_utils.game_result import GameResult, PlayerResult
 from ...game_utils.round_timer import RoundTransitionTimer
@@ -49,6 +50,8 @@ class MileByMileGame(Game):
     permanent protection. First team to reach the winning score wins.
     """
 
+    relevant_preferences = ["confirm_destructive_actions"]
+
     players: list[MileByMilePlayer] = field(default_factory=list)
     options: MileByMileOptions = field(default_factory=MileByMileOptions)
 
@@ -73,11 +76,13 @@ class MileByMileGame(Game):
         """Initialize runtime state."""
         super().__post_init__()
         self._round_timer = RoundTransitionTimer(self, delay_seconds=10.0)
+        self._pending_discard_slot: dict[str, int] = {}
 
     def rebuild_runtime_state(self) -> None:
         """Rebuild non-serialized state after deserialization."""
         super().rebuild_runtime_state()
         self._round_timer = RoundTransitionTimer(self, delay_seconds=10.0)
+        self._pending_discard_slot: dict[str, int] = {}
 
     @classmethod
     def get_name(cls) -> str:
@@ -936,15 +941,24 @@ class MileByMileGame(Game):
         if self._can_play_card(player, card):
             self._play_card(player, slot, card, input_value)
         else:
-            # Can't play - tell human players why, bots auto-discard
+            # Can't play - bots auto-discard; humans get a yes/no prompt if
+            # they've enabled confirm_destructive_actions for this game.
             if player.is_bot:
                 self._discard_card(player, slot, card)
+                return
+            user = self.get_user(player)
+            if not user:
+                return
+            reason = self._get_unplayable_reason(player, card, user.locale)
+            card_name = self._get_localized_card_name(card, user.locale)
+            user.speak_l("milebymile-cant-play", card=card_name, reason=reason)
+            wants_confirm = user.preferences.get_effective(
+                "confirm_destructive_actions", game_type=self.get_type()
+            )
+            if wants_confirm:
+                self._show_discard_confirm(player, slot, user)
             else:
-                user = self.get_user(player)
-                if user:
-                    reason = self._get_unplayable_reason(player, card, user.locale)
-                    card_name = self._get_localized_card_name(card, user.locale)
-                    user.speak_l("milebymile-cant-play", card=card_name, reason=reason)
+                self._discard_card(player, slot, card)
 
     def _action_junk_card(self, player: Player, action_id: str) -> None:
         """Handle discarding the currently selected card (shift+enter or backspace keybind)."""
@@ -985,6 +999,59 @@ class MileByMileGame(Game):
                 return
 
         self._discard_card(player, slot, card)
+
+    def rebuild_player_menu(self, player, *, position: int | None = None) -> None:
+        """Skip rebuilding if this player has a pending discard confirmation."""
+        if self._pending_actions.get(player.id) == "discard_confirm":
+            return
+        super().rebuild_player_menu(player, position=position)
+
+    def _show_discard_confirm(self, player: MileByMilePlayer, slot: int, user) -> None:
+        """Show a yes/no confirmation to discard the unplayable card."""
+        self._pending_discard_slot[player.id] = slot
+        self._pending_actions[player.id] = "discard_confirm"
+        user.speak_l("milebymile-discard-confirm")
+        items = [
+            MenuItem(text=Localization.get(user.locale, "confirm-yes"), id="yes"),
+            MenuItem(text=Localization.get(user.locale, "confirm-no"), id="no"),
+        ]
+        user.show_menu(
+            "discard_confirm",
+            items,
+            multiletter=False,
+            escape_behavior=EscapeBehavior.SELECT_LAST,
+        )
+
+    def _handle_menu_event(self, player: "Player", event: dict) -> None:
+        """Handle menu events, routing discard confirmation."""
+        menu_id = event.get("menu_id")
+        if menu_id == "discard_confirm":
+            self._handle_discard_confirm(player, event)
+        else:
+            super()._handle_menu_event(player, event)
+
+    def _handle_discard_confirm(self, player: "Player", event: dict) -> None:
+        """Handle the discard confirmation menu response."""
+        self._pending_actions.pop(player.id, None)
+        slot = self._pending_discard_slot.pop(player.id, None)
+        if not isinstance(player, MileByMilePlayer):
+            self.rebuild_all_menus()
+            return
+        selection_id = event.get("selection_id", "")
+        if not selection_id:
+            selection = event.get("selection", 1) - 1
+            selection_id = "yes" if selection == 0 else "no"
+        if selection_id == "yes" and slot is not None and slot < len(player.hand):
+            card = player.hand[slot]
+            if not self.options.always_allow_discarding and self._can_play_card(player, card):
+                user = self.get_user(player)
+                if user:
+                    user.speak_l("milebymile-cant-discard-playable")
+                self.rebuild_all_menus()
+                return
+            self._discard_card(player, slot, card)
+            return
+        self.rebuild_all_menus()
 
     def _play_card(
         self,
@@ -1494,6 +1561,12 @@ class MileByMileGame(Game):
 
     def _start_turn(self) -> None:
         """Start a player's turn."""
+        # Clean up any leftover discard confirmation state
+        self._pending_discard_slot.clear()
+        for pid in list(self._pending_actions):
+            if self._pending_actions.get(pid) == "discard_confirm":
+                del self._pending_actions[pid]
+
         player = self.current_player
         if not player or not isinstance(player, MileByMilePlayer):
             return

@@ -23,6 +23,8 @@ class GameResultMixin:
         players: list[Player].
         sound_scheduler_tick: int.
         _table: Table or server reference.
+        _is_transient_display_open(player) -> bool.
+        _close_transient_display(player, rebuild_menu=False).
         get_user(player) -> User | None.
         get_type() -> str.
         get_active_players() -> list[Player].
@@ -159,6 +161,8 @@ class GameResultMixin:
     def _show_end_screen(self, result: GameResult) -> None:
         """Show the end screen to all players using structured result."""
         for player in self.players:
+            if self._is_transient_display_open(player):
+                self._close_transient_display(player, rebuild_menu=False)
             user = self.get_user(player)
             if user:
                 lines = self.format_end_screen(result, user.locale)
@@ -178,6 +182,8 @@ class GameResultMixin:
                          (e.g., ["Final Scores:", "1. Alice: 100 points", ...])
         """
         for player in self.players:
+            if self._is_transient_display_open(player):
+                self._close_transient_display(player, rebuild_menu=False)
             user = self.get_user(player)
             if user:
                 items = [MenuItem(text=line, id="score_line") for line in score_lines]

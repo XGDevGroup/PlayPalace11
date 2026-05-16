@@ -35,6 +35,8 @@ whose-turn = Čí je ťah
 whos-at-table = Kto je pri stole
 check-scores = Skontrolovať skóre
 check-scores-detailed = Podrobné skóre
+check-game-options = Skontrolovať nastavenia hry
+no-game-options = Žiadne nastavenia hry.
 
 # Turn messages
 game-player-skipped = { $player } je preskočený.
@@ -158,7 +160,6 @@ game-points = { $count } { $count ->
     [many] bodov
    *[other] bodov
 }
-status-box-closed = Zatvorené.
 play = Hraj
 
 # Leaderboards

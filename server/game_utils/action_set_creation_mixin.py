@@ -156,6 +156,15 @@ class ActionSetCreationMixin:
         )
         action_set.add(
             Action(
+                id="check_game_options",
+                label=Localization.get(locale, "check-game-options"),
+                handler="_action_check_game_options",
+                is_enabled="_is_check_game_options_enabled",
+                is_hidden="_is_check_game_options_hidden",
+            )
+        )
+        action_set.add(
+            Action(
                 id="predict_outcomes",
                 label=Localization.get(locale, "predict-outcomes"),
                 handler="_action_predict_outcomes",
@@ -257,6 +266,13 @@ class ActionSetCreationMixin:
             "shift+s",
             "Detailed scores",
             ["check_scores_detailed"],
+            state=KeybindState.ACTIVE,
+            include_spectators=True,
+        )
+        self.define_keybind(
+            "alt+o",
+            "Check game options",
+            ["check_game_options"],
             state=KeybindState.ACTIVE,
             include_spectators=True,
         )

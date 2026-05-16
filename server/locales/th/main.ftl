@@ -35,6 +35,8 @@ whose-turn = ตาของใคร
 whos-at-table = ใครอยู่ที่โต๊ะ
 check-scores = ตรวจสอบคะแนน
 check-scores-detailed = คะแนนโดยละเอียด
+check-game-options = ตรวจสอบตัวเลือกเกม
+no-game-options = ไม่มีตัวเลือกเกม
 
 # Turn messages
 game-player-skipped = { $player } ถูกข้าม
@@ -153,7 +155,6 @@ game-leave = ออก
 game-over = จบเกม
 game-final-scores = คะแนนสุดท้าย
 game-points = { $count } คะแนน
-status-box-closed = ปิดแล้ว
 play = เล่น
 
 # Leaderboards

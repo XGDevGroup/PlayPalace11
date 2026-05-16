@@ -35,6 +35,8 @@ whose-turn = Vems tur
 whos-at-table = Vem är vid bordet
 check-scores = Kontrollera poäng
 check-scores-detailed = Detaljerad poäng
+check-game-options = Kontrollera spelalternativ
+no-game-options = Inga spelalternativ tillgängliga.
 
 # Turn messages
 game-player-skipped = { $player } hoppas över.
@@ -156,7 +158,6 @@ game-points = { $count } { $count ->
     [one] poäng
    *[other] poäng
 }
-status-box-closed = Stängd.
 play = Spela
 
 # Leaderboards

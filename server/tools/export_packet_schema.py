@@ -19,12 +19,13 @@ from server.network.packet_models import (  # pylint: disable=wrong-import-posit
 )
 
 
-def _default_paths() -> tuple[Path, Path]:
+def _default_paths() -> tuple[Path, Path, Path]:
     base_dir = Path(__file__).resolve().parents[1]
     repo_root = Path(__file__).resolve().parents[2]
     server_path = base_dir / "packet_schema.json"
-    client_path = repo_root / "clients" / "desktop" / "packet_schema.json"
-    return server_path, client_path
+    desktop_path = repo_root / "clients" / "desktop" / "packet_schema.json"
+    web_path = repo_root / "clients" / "web" / "packet_schema.json"
+    return server_path, desktop_path, web_path
 
 
 def _write_schema(path: Path, payload: dict[str, Any]) -> None:
@@ -33,7 +34,7 @@ def _write_schema(path: Path, payload: dict[str, Any]) -> None:
 
 
 def main() -> None:
-    server_default, client_default = _default_paths()
+    server_default, desktop_default, web_default = _default_paths()
 
     parser = argparse.ArgumentParser(description="Export packet JSON schemas.")
     parser.add_argument(
@@ -45,8 +46,14 @@ def main() -> None:
     parser.add_argument(
         "--client-out",
         type=Path,
-        default=client_default,
+        default=desktop_default,
         help="Path to write the client copy of the schema JSON.",
+    )
+    parser.add_argument(
+        "--web-out",
+        type=Path,
+        default=web_default,
+        help="Path to write the web client copy of the schema JSON.",
     )
     args = parser.parse_args()
 
@@ -58,7 +65,7 @@ def main() -> None:
         "server_to_client": SERVER_TO_CLIENT_PACKET_ADAPTER.json_schema(),
     }
 
-    for target in (args.server_out, args.client_out):
+    for target in (args.server_out, args.client_out, args.web_out):
         _write_schema(target, payload)
         print(f"Wrote schema to {target}")
 

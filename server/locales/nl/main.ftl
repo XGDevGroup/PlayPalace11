@@ -35,6 +35,8 @@ whose-turn = Wie is aan de beurt
 whos-at-table = Wie is er aan tafel
 check-scores = Bekijk scores
 check-scores-detailed = Gedetailleerde scores
+check-game-options = Spelopties bekijken
+no-game-options = Geen spelopties beschikbaar.
 
 # Turn messages
 game-player-skipped = { $player } wordt overgeslagen.
@@ -156,7 +158,6 @@ game-points = { $count } { $count ->
     [one] punt
    *[other] punten
 }
-status-box-closed = Gesloten.
 play = Speel
 
 # Leaderboards

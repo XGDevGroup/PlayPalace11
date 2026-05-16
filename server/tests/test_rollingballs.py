@@ -310,7 +310,7 @@ class TestRollingBallsActions:
 
         assert self.player1.view_pipe_uses == 1
         # Check that the user received a status box with pipe information
-        assert "status_box" in self.user1.menus
+        assert "transient_display" in self.user1.menus
 
     def test_view_pipe_visible_when_uses_remain(self):
         """Test view pipe is visible when uses remain."""

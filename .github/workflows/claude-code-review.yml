@@ -1,7 +1,16 @@
 name: Claude Code Review
 
+# SECURITY: This workflow uses `pull_request_target` so PRs from forks get
+# access to the CLAUDE_CODE_OAUTH_TOKEN secret and can mint an OIDC token.
+# That means this workflow runs with write permissions on the base repo,
+# so it must NEVER execute PR-author-controlled code. Specifically:
+#   - Do not `checkout` the PR's head ref (leave `ref:` unset so we get base).
+#   - Do not run `npm install`, tests, build scripts, or anything that
+#     executes code from the PR tree.
+# The Claude review action reads the PR diff via the GitHub API, which is
+# the safe path. If you add steps here, preserve this invariant.
 on:
-  pull_request:
+  pull_request_target:
     types: [opened, synchronize, ready_for_review, reopened]
     # Optional: Only run on specific file changes
     # paths:

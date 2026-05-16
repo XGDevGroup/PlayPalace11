@@ -332,7 +332,7 @@ def test_information_actions_use_direct_tts_not_status_box() -> None:
 
     game._action_read_hand(player1, "read_hand")
 
-    assert "status_box" not in user.menus
+    assert "transient_display" not in user.menus
     assert any(message.type == "speak" for message in user.messages)
 
 
@@ -344,7 +344,7 @@ def test_view_chain_uses_status_box() -> None:
 
     game._action_view_chain(player1, "view_chain")
 
-    assert "status_box" in user.menus
+    assert "transient_display" in user.menus
 
 
 def test_read_ends_uses_direct_tts() -> None:
@@ -357,7 +357,7 @@ def test_read_ends_uses_direct_tts() -> None:
 
     game._action_read_ends(player1, "read_ends")
 
-    assert "status_box" not in user.menus
+    assert "transient_display" not in user.menus
     spoken = user.get_last_spoken()
     assert spoken is not None
     assert "3" in spoken

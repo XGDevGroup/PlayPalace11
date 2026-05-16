@@ -580,13 +580,13 @@ class TestFleetStatus:
         game._action_read_fleet(alice, "read_fleet")
         user = game.get_user(alice)
         # Status box should be open
-        assert alice.id in game._status_box_open
+        assert game._get_transient_display_state(alice) is not None
 
     def test_read_enemy_fleet(self) -> None:
         game = make_game(start=True, placement_mode="auto")
         alice = get_bp(game, "Alice")
         game._action_read_enemy_fleet(alice, "read_enemy_fleet")
-        assert alice.id in game._status_box_open
+        assert game._get_transient_display_state(alice) is not None
 
 
 # ------------------------------------------------------------------ #

@@ -559,7 +559,7 @@ class BackgammonGame(Game):
     ) -> None:
         if self._destroyed or self.status == "finished":
             return
-        if player.id in self._status_box_open:
+        if self._is_transient_display_open(player):
             return
         user = self.get_user(player)
         if not user:
@@ -601,7 +601,7 @@ class BackgammonGame(Game):
     ) -> None:
         if self._destroyed or self.status == "finished":
             return
-        if player.id in self._status_box_open:
+        if self._is_transient_display_open(player):
             return
         user = self.get_user(player)
         if not user:

@@ -35,6 +35,8 @@ whose-turn = Ko je na potezu
 whos-at-table = Ko je za stolom
 check-scores = Proveri rezultat
 check-scores-detailed = Detaljni rezultati
+check-game-options = Proveri opcije igre
+no-game-options = Nema opcija igre.
 
 # Poruke o redu igranja
 game-player-skipped = { $player } se preskače.
@@ -156,7 +158,6 @@ game-points = { $count } { $count ->
     [one] poen
     *[other] poena
 }
-status-box-closed = Zatvoreno.
 play = Igraj
 
 # Rang liste

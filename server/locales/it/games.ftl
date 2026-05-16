@@ -39,7 +39,6 @@ option-on = attivo
 option-off = disattivo
 
 # Status box
-status-box-closed = Informazioni sullo stato chiuse.
 
 # Game end
 game-leave = Abbandona partita

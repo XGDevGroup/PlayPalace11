@@ -227,6 +227,16 @@ class ActionVisibilityMixin:
         """Check scores detailed is always hidden (keybind only)."""
         return Visibility.HIDDEN
 
+    def _is_check_game_options_enabled(self, player: "Player") -> str | None:
+        """Check if readonly game options are available."""
+        if self.status != "playing":
+            return "action-not-playing"
+        return None
+
+    def _is_check_game_options_hidden(self, player: "Player") -> Visibility:
+        """Readonly game options are hidden from the turn menu (keybind/actions menu only)."""
+        return Visibility.HIDDEN
+
     def _is_predict_outcomes_enabled(self, player: "Player") -> str | None:
         """Check if predict_outcomes action is enabled."""
         if self.status != "playing":

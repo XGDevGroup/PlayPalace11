@@ -35,6 +35,8 @@ whose-turn = Al cui e rândul
 whos-at-table = Cine e la masă
 check-scores = Verifică scorurile
 check-scores-detailed = Scoruri detaliate
+check-game-options = Verifică opțiunile jocului
+no-game-options = Nicio opțiune de joc disponibilă.
 
 # Turn messages
 game-player-skipped = { $player } este sărit.
@@ -157,7 +159,6 @@ game-points = { $count } { $count ->
     [few] puncte
    *[other] de puncte
 }
-status-box-closed = Închis.
 play = Joacă
 
 # Leaderboards

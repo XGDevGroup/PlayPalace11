@@ -35,6 +35,8 @@ whose-turn = किसकी बारी है
 whos-at-table = टेबल पर कौन है
 check-scores = स्कोर देखें
 check-scores-detailed = विस्तृत स्कोर
+check-game-options = खेल विकल्प देखें
+no-game-options = कोई खेल विकल्प उपलब्ध नहीं है।
 
 # Turn messages
 game-player-skipped = { $player } को छोड़ दिया गया है।
@@ -156,7 +158,6 @@ game-points = { $count } { $count ->
     [one] अंक
    *[other] अंक
 }
-status-box-closed = बंद।
 play = खेलें
 
 # Leaderboards

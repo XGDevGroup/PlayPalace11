@@ -1,4 +1,5 @@
 *.claude
+.codex/
 *.pyc
 *.venv
 *.pytest_cache

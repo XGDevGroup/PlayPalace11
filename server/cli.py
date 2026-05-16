@@ -306,7 +306,7 @@ class GameSimulator:
         saved_table = self.game._table
         saved_keybinds = dict(self.game._keybinds)
         saved_pending_actions = dict(self.game._pending_actions)
-        saved_status_box_open = set(self.game._status_box_open)
+        saved_transient_display_state = dict(self.game._transient_display_state)
         saved_actions_menu_open = set(self.game._actions_menu_open)
         saved_turn_index = self.game.turn_index
 
@@ -327,7 +327,7 @@ class GameSimulator:
         self.game._table = saved_table
         self.game._keybinds = saved_keybinds
         self.game._pending_actions = saved_pending_actions
-        self.game._status_box_open = saved_status_box_open
+        self.game._transient_display_state = saved_transient_display_state
         self.game._actions_menu_open = saved_actions_menu_open
 
         # Restore turn_index before rebuild

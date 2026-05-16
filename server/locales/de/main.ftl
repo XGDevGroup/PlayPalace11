@@ -35,6 +35,8 @@ whose-turn = Wer ist am Zug
 whos-at-table = Wer ist am Tisch
 check-scores = Punktzahlen prüfen
 check-scores-detailed = Detaillierte Punktzahlen
+check-game-options = Spieloptionen prüfen
+no-game-options = Keine Spieloptionen verfügbar.
 
 # Zugnachrichten
 game-player-skipped = { $player } wird übersprungen.
@@ -156,7 +158,6 @@ game-points = { $count } { $count ->
     [one] Punkt
    *[other] Punkte
 }
-status-box-closed = Geschlossen.
 play = Spielen
 
 # Bestenlisten

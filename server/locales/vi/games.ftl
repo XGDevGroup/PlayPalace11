@@ -39,7 +39,6 @@ option-on = bật
 option-off = tắt
 
 # Hộp trạng thái
-status-box-closed = Đã đóng thông tin trạng thái.
 
 # Kết thúc game
 game-leave = Rời trò chơi

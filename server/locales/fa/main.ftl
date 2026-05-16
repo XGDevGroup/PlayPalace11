@@ -35,6 +35,8 @@ whose-turn = نوبت کیست
 whos-at-table = چه کسانی پشت میز هستند
 check-scores = بررسی امتیازها
 check-scores-detailed = امتیازهای تفصیلی
+check-game-options = بررسی گزینه‌های بازی
+no-game-options = هیچ گزینه‌ای برای بازی وجود ندارد.
 
 # Turn messages
 game-player-skipped = { $player } رد شد.
@@ -156,7 +158,6 @@ game-points = { $count } { $count ->
     [one] امتیاز
    *[other] امتیاز
 }
-status-box-closed = بسته شد.
 play = بازی
 
 # Leaderboards

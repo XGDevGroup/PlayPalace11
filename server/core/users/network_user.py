@@ -283,6 +283,11 @@ class NetworkUser(User):
             self._current_menus[menu_id]["items"] = converted_items
             if position is not None:
                 self._current_menus[menu_id]["position"] = position
+            elif selection_id is not None:
+                for i, item in enumerate(items, 1):
+                    if isinstance(item, MenuItem) and item.id == selection_id:
+                        self._current_menus[menu_id]["position"] = i
+                        break
 
         packet: dict[str, Any] = {
             "type": "menu",
@@ -317,6 +322,7 @@ class NetworkUser(User):
         *,
         multiline: bool = False,
         read_only: bool = False,
+        content_format: str = "text",
     ) -> None:
         """Show a text input prompt on the client."""
         self._current_editboxes[input_id] = {
@@ -324,17 +330,19 @@ class NetworkUser(User):
             "default_value": default_value,
             "multiline": multiline,
             "read_only": read_only,
+            "content_format": content_format,
         }
-        self._queue_packet(
-            {
-                "type": "request_input",
-                "input_id": input_id,
-                "prompt": prompt,
-                "default_value": default_value,
-                "multiline": multiline,
-                "read_only": read_only,
-            }
-        )
+        packet: dict[str, Any] = {
+            "type": "request_input",
+            "input_id": input_id,
+            "prompt": prompt,
+            "default_value": default_value,
+            "multiline": multiline,
+            "read_only": read_only,
+        }
+        if content_format != "text":
+            packet["content_format"] = content_format
+        self._queue_packet(packet)
 
     def show_document_editor(
         self,

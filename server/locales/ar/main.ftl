@@ -35,6 +35,8 @@ whose-turn = دور من
 whos-at-table = من على الطاولة
 check-scores = تحقق من النتائج
 check-scores-detailed = نتائج مفصلة
+check-game-options = تحقق من خيارات اللعبة
+no-game-options = لا توجد خيارات للعبة
 
 # رسائل الدور
 game-player-skipped = تم تخطي { $player }.
@@ -202,7 +204,6 @@ game-points = { $count } { $count ->
     [many] نقطة
    *[other] نقطة
 }
-status-box-closed = مغلق.
 play = العب
 
 # لوحات الصدارة

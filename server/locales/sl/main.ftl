@@ -35,6 +35,8 @@ whose-turn = Čigava poteza
 whos-at-table = Kdo je pri mizi
 check-scores = Preveri rezultate
 check-scores-detailed = Podrobni rezultati
+check-game-options = Preveri možnosti igre
+no-game-options = Ni možnosti igre.
 
 # Turn messages
 game-player-skipped = { $player } je preskočen.
@@ -156,7 +158,6 @@ game-points = { $count } { $count ->
     [one] točka
    *[other] točk
 }
-status-box-closed = Zaprto.
 play = Igraj
 
 # Leaderboards

@@ -68,7 +68,6 @@ option-deselected-count = { $count } { $count ->
 }.
 
 # Status box
-status-box-closed = Informacije o stanju zatvorene.
 
 # Game end
 game-leave = Napusti igru

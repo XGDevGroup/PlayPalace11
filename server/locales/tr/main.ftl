@@ -35,6 +35,8 @@ whose-turn = Kimin turu
 whos-at-table = Masada kim var
 check-scores = Skorları kontrol et
 check-scores-detailed = Detaylı skorlar
+check-game-options = Oyun seçeneklerini kontrol et
+no-game-options = Oyun seçeneği yok.
 
 # Tur mesajları
 game-player-skipped = { $player } atlanıyor.
@@ -156,7 +158,6 @@ game-points = { $count } { $count ->
     [one] puan
    *[other] puan
 }
-status-box-closed = Kapatıldı.
 play = Oyna
 
 # Lider tabloları

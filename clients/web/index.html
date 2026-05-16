@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>PlayPalace Web Client</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
@@ -89,6 +89,7 @@
       </dialog>
 
       <dialog id="document-editor-dialog" aria-label="Document Editor"></dialog>
+      <dialog id="markdown-viewer-dialog" aria-labelledby="markdown-viewer-prompt"></dialog>
 
       <dialog id="actions-dialog">
         <div id="actions-dialog-form">
@@ -182,6 +183,9 @@
           await loadScript(`./version.js?${cacheBust}`, { optional: true });
           await loadScript(`./config.sample.js?${cacheBust}`, { optional: true });
           await loadScript(`./config.js?${cacheBust}`, { optional: true });
+          
+          await loadScript(`./libs/marked.min.js?${cacheBust}`, { optional: true });
+          await loadScript(`./libs/purify.min.js?${cacheBust}`, { optional: true });
 
           const version = String(window.PLAYPALACE_WEB_VERSION || "2026.02.08.1").trim();
           await loadScript(`./app.js?v=${encodeURIComponent(version)}&${cacheBust}`, {
