@@ -3,7 +3,25 @@
  */
 const MARKDOWN_SANITIZE_CONFIG = {
   USE_PROFILES: { html: true },
-  FORBID_TAGS: ["img", "svg", "math", "iframe", "object", "embed", "form", "style"],
+  FORBID_TAGS: [
+    "img",
+    "svg",
+    "math",
+    "iframe",
+    "object",
+    "embed",
+    "form",
+    "style",
+    "audio",
+    "video",
+    "source",
+    "track",
+    "picture",
+    "input",
+    "button",
+    "link",
+    "meta",
+  ],
   FORBID_ATTR: ["style", "srcset"],
   ALLOWED_URI_REGEXP: /^(https?|mailto):/i,
 };
