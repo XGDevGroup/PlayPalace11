@@ -1,5 +1,7 @@
 """Markdown viewer dialog for displaying rendered document content."""
 
+from urllib.parse import urldefrag
+
 import wx
 import wx.html2
 import markdown
@@ -126,7 +128,7 @@ hr {{
 </html>
 """
 
-_INTERNAL_WEBVIEW_URLS = {"", "about:blank"}
+MARKDOWN_DOCUMENT_BASE_URL = "playpalace://document/viewer"
 
 
 def sanitize_markdown(markdown_content: str) -> str:
@@ -144,11 +146,10 @@ def sanitize_markdown(markdown_content: str) -> str:
     )
 
 
-def should_allow_navigation(url: str, document_loaded: bool) -> bool:
-    """Allow only the initial internal document load for the embedded WebView."""
-    if document_loaded:
-        return False
-    return url in _INTERNAL_WEBVIEW_URLS
+def should_allow_navigation(url: str, document_loaded: bool | None = None) -> bool:
+    """Allow only navigation that stays within the rendered document."""
+    base_url, _fragment = urldefrag(url)
+    return base_url == MARKDOWN_DOCUMENT_BASE_URL
 
 
 class MarkdownViewerDialog(wx.Dialog):
@@ -168,7 +169,6 @@ class MarkdownViewerDialog(wx.Dialog):
             style=wx.DEFAULT_DIALOG_STYLE | wx.RESIZE_BORDER,
         )
 
-        self._document_loaded = False
         self._create_ui(markdown_content)
         self.SetSize(750, 550)
         self.CenterOnScreen()
@@ -217,7 +217,7 @@ class MarkdownViewerDialog(wx.Dialog):
             wx.html2.EVT_WEBVIEW_NAVIGATING,
             self._on_webview_navigating,
         )
-        self.web_view.SetPage(full_html, "")
+        self.web_view.SetPage(full_html, MARKDOWN_DOCUMENT_BASE_URL)
         sizer.Add(self.web_view, 1, wx.EXPAND | wx.ALL, 5)
 
         # Close button
@@ -244,14 +244,13 @@ class MarkdownViewerDialog(wx.Dialog):
 
     def _on_webview_loaded(self, event):
         """Set focus to the web view body once content is loaded."""
-        self._document_loaded = True
         self.web_view.SetFocus()
         # Help screen readers pick up the content
         self.web_view.RunScript("document.body.focus();")
 
     def _on_webview_navigating(self, event):
         """Prevent untrusted document links from navigating the embedded browser."""
-        if should_allow_navigation(event.GetURL(), self._document_loaded):
+        if should_allow_navigation(event.GetURL()):
             event.Skip()
             return
         event.Veto()

@@ -114,6 +114,8 @@ def _load_markdown_viewer_dialog_module():
 
 
 markdown_viewer_dialog = _load_markdown_viewer_dialog_module()
+MARKDOWN_DOCUMENT_BASE_URL = markdown_viewer_dialog.MARKDOWN_DOCUMENT_BASE_URL
+MarkdownViewerDialog = markdown_viewer_dialog.MarkdownViewerDialog
 sanitize_markdown = markdown_viewer_dialog.sanitize_markdown
 should_allow_navigation = markdown_viewer_dialog.should_allow_navigation
 
@@ -134,8 +136,42 @@ def test_sanitize_markdown_strips_remote_images():
     assert "tracker.example" not in html
 
 
-def test_should_allow_navigation_only_for_initial_internal_load():
-    assert should_allow_navigation("", document_loaded=False)
-    assert should_allow_navigation("about:blank", document_loaded=False)
+def test_should_allow_navigation_allows_internal_document_url():
+    assert should_allow_navigation(MARKDOWN_DOCUMENT_BASE_URL)
+
+
+def test_should_allow_navigation_allows_internal_document_fragment():
+    assert should_allow_navigation(f"{MARKDOWN_DOCUMENT_BASE_URL}#section-1")
+
+
+def test_should_allow_navigation_blocks_external_url():
     assert not should_allow_navigation("https://example.com", document_loaded=False)
-    assert not should_allow_navigation("https://example.com", document_loaded=True)
+
+
+def test_on_webview_navigating_skips_internal_urls_and_vetoes_external_urls():
+    dialog = MarkdownViewerDialog.__new__(MarkdownViewerDialog)
+
+    class _Event:
+        def __init__(self, url):
+            self._url = url
+            self.skipped = False
+            self.vetoed = False
+
+        def GetURL(self):
+            return self._url
+
+        def Skip(self):
+            self.skipped = True
+
+        def Veto(self):
+            self.vetoed = True
+
+    internal_event = _Event(f"{MARKDOWN_DOCUMENT_BASE_URL}#top")
+    MarkdownViewerDialog._on_webview_navigating(dialog, internal_event)
+    assert internal_event.skipped
+    assert not internal_event.vetoed
+
+    external_event = _Event("https://example.com")
+    MarkdownViewerDialog._on_webview_navigating(dialog, external_event)
+    assert external_event.vetoed
+    assert not external_event.skipped
