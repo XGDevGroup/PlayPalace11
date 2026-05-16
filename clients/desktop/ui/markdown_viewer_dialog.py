@@ -29,7 +29,6 @@ _ALLOWED_TAGS = {
     "pre", "code",
     "em", "strong", "del", "s",
     "a",
-    "img",
     "table", "thead", "tbody", "tr", "th", "td",
     "div", "span",
     "sub", "sup",
@@ -39,7 +38,6 @@ _ALLOWED_TAGS = {
 
 _ALLOWED_ATTRIBUTES = {
     "a": {"href", "title"},
-    "img": {"src", "alt", "title", "width", "height"},
     "abbr": {"title"},
     "td": {"align"},
     "th": {"align"},
@@ -129,6 +127,21 @@ hr {{
 """
 
 
+def sanitize_markdown(markdown_content: str) -> str:
+    """Convert untrusted Markdown to sanitized HTML for document viewing."""
+    html_body = markdown.markdown(
+        markdown_content,
+        extensions=_MD_EXTENSIONS,
+    )
+    return nh3.clean(
+        html_body,
+        tags=_ALLOWED_TAGS,
+        attributes=_ALLOWED_ATTRIBUTES,
+        url_schemes=_ALLOWED_URL_SCHEMES,
+        link_rel="noopener noreferrer",
+    )
+
+
 class MarkdownViewerDialog(wx.Dialog):
     """Modal dialog for viewing rendered Markdown content.
 
@@ -146,6 +159,7 @@ class MarkdownViewerDialog(wx.Dialog):
             style=wx.DEFAULT_DIALOG_STYLE | wx.RESIZE_BORDER,
         )
 
+        self._allow_initial_load = True
         self._create_ui(markdown_content)
         self.SetSize(750, 550)
         self.CenterOnScreen()
@@ -154,20 +168,7 @@ class MarkdownViewerDialog(wx.Dialog):
         panel = wx.Panel(self)
         sizer = wx.BoxSizer(wx.VERTICAL)
 
-        # Convert markdown to HTML, then sanitize to prevent XSS.
-        # Documents are user-editable and transmitted over the network;
-        # python-markdown passes raw HTML through by default.
-        html_body = markdown.markdown(
-            markdown_content,
-            extensions=_MD_EXTENSIONS,
-        )
-        html_body = nh3.clean(
-            html_body,
-            tags=_ALLOWED_TAGS,
-            attributes=_ALLOWED_ATTRIBUTES,
-            url_schemes=_ALLOWED_URL_SCHEMES,
-            link_rel="noopener noreferrer",
-        )
+        html_body = sanitize_markdown(markdown_content)
 
         # Build full HTML page with system colours
         bg = _sys_color_hex(wx.SYS_COLOUR_WINDOW)
@@ -221,6 +222,10 @@ class MarkdownViewerDialog(wx.Dialog):
             wx.html2.EVT_WEBVIEW_LOADED,
             self._on_webview_loaded,
         )
+        self.web_view.Bind(
+            wx.html2.EVT_WEBVIEW_NAVIGATING,
+            self._on_webview_navigating,
+        )
 
         # Escape key accelerator
         accel = wx.AcceleratorTable(
@@ -233,6 +238,14 @@ class MarkdownViewerDialog(wx.Dialog):
         self.web_view.SetFocus()
         # Help screen readers pick up the content
         self.web_view.RunScript("document.body.focus();")
+
+    def _on_webview_navigating(self, event):
+        """Prevent untrusted document links from navigating the embedded browser."""
+        if self._allow_initial_load:
+            self._allow_initial_load = False
+            event.Skip()
+            return
+        event.Veto()
 
     def _on_close(self, event):
         """Close the dialog."""
