@@ -11,7 +11,7 @@ name: Claude Code Review
 # the safe path. If you add steps here, preserve this invariant.
 on:
   pull_request_target:
-    types: [opened, synchronize, ready_for_review, reopened]
+    types: [opened, synchronize, ready_for_review, reopened, labeled]
     # Optional: Only run on specific file changes
     # paths:
     #   - "src/**/*.ts"
@@ -26,6 +26,7 @@ jobs:
       github.event.pull_request.author_association == 'OWNER' ||
       github.event.pull_request.author_association == 'MEMBER' ||
       github.event.pull_request.author_association == 'COLLABORATOR' ||
+      # Maintainers apply this label to explicitly approve privileged review on fork PRs.
       contains(github.event.pull_request.labels.*.name, 'safe-to-run-claude-review')
 
     runs-on: ubuntu-latest
