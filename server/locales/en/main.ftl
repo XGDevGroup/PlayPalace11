@@ -190,6 +190,7 @@ action-table-full = The table is full.
 action-no-bots = There are no bots to remove.
 action-bots-cannot = Bots cannot do this.
 action-no-scores = No scores available yet.
+action-must-be-at-table = You must be at a table to view rules.
 
 # Dice actions
 dice-not-rolled = You haven't rolled yet.

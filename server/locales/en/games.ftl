@@ -5,6 +5,9 @@
 game-name-ninetynine = Ninety Nine
 game-name-humanitycards = Cards Against Humanity
 
+# Generic game actions
+show-rules = Show rules
+
 # Game categories (shared)
 category-party-games = Party Games
 

@@ -4105,7 +4105,8 @@ class Server(AdministrationMixin, DocumentBrowsingMixin, TranscriberRoleMixin):
         user = self._users.get(username)
         table = self._tables.find_user_table(username)
         if not table and user:
-            if packet.get("key") == "w" and packet.get("control"):
+            keybind_key = packet.get("key")
+            if keybind_key == "w" and packet.get("control"):
                 players = [
                     u.username
                     for u in self._users.values()
@@ -4117,6 +4118,8 @@ class Server(AdministrationMixin, DocumentBrowsingMixin, TranscriberRoleMixin):
                 names = Localization.format_list_and(user.locale, players)
                 key = "online-users-one" if len(players) == 1 else "online-users-many"
                 user.speak_l(key, count=len(players), users=names)
+            elif keybind_key == "f1":
+                user.speak_l("action-must-be-at-table")
             return
         if table and table.game and user:
             player = table.game.get_player_by_id(user.uuid)
