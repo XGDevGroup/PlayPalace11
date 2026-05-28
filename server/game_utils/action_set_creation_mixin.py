@@ -143,6 +143,7 @@ class ActionSetCreationMixin:
                 handler="_action_check_scores",
                 is_enabled="_is_check_scores_enabled",
                 is_hidden="_is_check_scores_hidden",
+                skip_menu_rebuild=True,
             )
         )
         action_set.add(
@@ -152,6 +153,7 @@ class ActionSetCreationMixin:
                 handler="_action_check_scores_detailed",
                 is_enabled="_is_check_scores_detailed_enabled",
                 is_hidden="_is_check_scores_detailed_hidden",
+                skip_menu_rebuild=True,
             )
         )
         action_set.add(
