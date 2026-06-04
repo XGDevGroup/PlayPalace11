@@ -13,7 +13,7 @@ main-menu-title = Menu główne.
 play-menu-title = Rozpocznij grę
 categories-menu-title = Kategorie gier
 tables-menu-title = Dostępne stoły
-play = Play
+play = Graj
 view-active-tables = Pokaż aktywne stoły
 options = Opcje
 logout = Wyloguj się
@@ -154,8 +154,7 @@ game-over = Koniec gry
 game-final-scores = Wyniki końcowe:
 game-points = { $count } { $count ->
     [one] punkt
-   *[other] punktów
-}
+   *[other] punktów}
 play = Graj
 
 # Leaderboards
@@ -165,13 +164,13 @@ leaderboards-select-game = Wybierz grę, aby przeglądać wyniki.
 leaderboard-no-data = Brak wyników dla tej gry.
 
 # Leaderboard types
-leaderboard-type-wins = Ranking wygranych liderów
+leaderboard-type-wins = Najlepsi gracze
 leaderboard-type-rating = Ranking umiejętności
 leaderboard-type-total-score = Ranking całkowitych wyników
-leaderboard-type-high-score = Ranking najwyższych wyników
-leaderboard-type-games-played = Największej liczby rozegranych gier
+leaderboard-type-high-score = Najwyższe wyniki
+leaderboard-type-games-played = Największa liczby rozegranych gier
 leaderboard-type-avg-points-per-turn = Średnia punktów na turę
-leaderboard-type-best-single-turn = Najlepsza pojedyńcza tura
+leaderboard-type-best-single-turn = Najlepsza pojedyncza tura
 leaderboard-type-score-per-round = Wynik na rundę
 
 # Leaderboard headers
@@ -191,9 +190,9 @@ leaderboard-wins-entry = { $rank }: { $player }, { $wins } { $wins ->
 } { $losses } { $losses ->
     [one] przegrana
    *[other] przegranych
-}, { $percentage }% winrate
+}, { $percentage }% współczynnik wygranych
 leaderboard-score-entry = { $rank }. { $player }: { $value }
-leaderboard-avg-entry = { $rank }. { $player }: { $value } avg
+leaderboard-avg-entry = { $rank }. { $player }: { $value } średnio
 leaderboard-games-entry = { $rank }. { $player }: { $value } gier
 
 # Player stats
@@ -202,7 +201,7 @@ leaderboard-no-player-stats = Jeszcze nie grałeś w tą grę
 
 # Skill rating leaderboard
 leaderboard-no-ratings = Brak  danych dla tej gry.
-leaderboard-rating-entry = { $rank }. { $player }: { $rating } rating ({ $mu } ± { $sigma })
+leaderboard-rating-entry = { $rank }. { $player }: { $rating } Ocena ({ $mu } ± { $sigma })
 leaderboard-player-rating = Twój ranking: { $rating } ({ $mu } ± { $sigma })
 leaderboard-no-player-rating = Nie masz jeszcze żadnych wyników w tej grze.
 
@@ -260,8 +259,8 @@ incorrect-password = Wprowadzone hasło jest nieprawidłowe.
 already-logged-in = To konto jest już zalogowane.
 
 # Walidacja danych logowania
-credential-username-length = Nazwa użytkownika musi mieć od { $min } do { $max } znaków.
-credential-password-length = Hasło musi mieć od { $min } do { $max } znaków.
+credential-username-length = Nazwa użytkownika musi zawierać od { $min } do { $max } znaków.
+credential-password-length = Hasło musi zawierać od { $min } do { $max } znaków.
 
 # Ograniczenie liczby prób
 rate-limit-login-ip = Zbyt wiele prób logowania z tego adresu. Poczekaj chwilę i spróbuj ponownie.
