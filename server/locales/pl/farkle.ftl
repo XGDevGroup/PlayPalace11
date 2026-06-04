@@ -11,17 +11,17 @@ farkle-roll = Rzuć { $count } { $count ->
 farkle-bank = Bankuj { $points } punktów
 
 # Scoring combination actions (matching v10 exactly)
-farkle-take-single-one = Single 1 for { $points } points
-farkle-take-single-five = Single 5 for { $points } points
-farkle-take-three-kind = Three { $number }s for { $points } points
-farkle-take-four-kind = Four { $number }s for { $points } points
-farkle-take-five-kind = Five { $number }s for { $points } points
-farkle-take-six-kind = Six { $number }s for { $points } points
-farkle-take-small-straight = Small Straight for { $points } points
-farkle-take-large-straight = Large Straight for { $points } points
-farkle-take-three-pairs = Three pairs for { $points } points
-farkle-take-double-triplets = Double triplets for { $points } points
-farkle-take-full-house = Full house for { $points } points
+farkle-take-single-one = As za { $points } punktów
+farkle-take-single-five = Pojedyncza 5 za { $points } punktów
+farkle-take-three-kind = Trzy { $number } za { $points } punktów
+farkle-take-four-kind = Cztery { $number } za { $points } punktów
+farkle-take-five-kind = Pięć { $number } za { $points } punktów
+farkle-take-six-kind = Sześć { $number } za { $points } punktów
+farkle-take-small-straight = Mały strit za { $points } punktów
+farkle-take-large-straight = Duży strit za { $points } punktów
+farkle-take-three-pairs = Trzy pary za { $points } punktów
+farkle-take-double-triplets = Podwójny triplet za { $points } punktów
+farkle-take-full-house = Full za { $points } punktów
 
 # Game events (matching v10 exactly)
 farkle-rolls = { $player } rzuca { $count } { $count ->
