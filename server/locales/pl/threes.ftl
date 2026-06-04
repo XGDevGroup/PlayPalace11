@@ -1,44 +1,45 @@
 # Threes dice game messages
 
 # Game info
-game-name-threes = Threes
+game-name-threes = Trójki
 threes-category = Dice Games
 
 # Actions
-threes-roll = Roll the dice
-threes-bank = Bank and end turn
-threes-check-hand = Check your dice
+threes-roll = Rzuć kośćmi
+threes-bank = Bankuj i zakończ turę
+threes-check-hand = Sprawdź swoje kości
 
 # Rolling
-threes-you-rolled = You rolled: { $dice }
-threes-player-rolled = { $player } rolled: { $dice }
-threes-must-keep = You must keep at least one die before rolling again.
+threes-you-rolled = Wyrzuciłeś: { $dice }
+threes-player-rolled = { $player } wyrzucił: { $dice }
+threes-must-keep = Musisz wziąć conajmniej jedną kość przed ponownym rzutem
 
 # Dice status (keeping messages now in games.ftl)
-threes-no-dice-yet = You haven't rolled yet.
-threes-your-dice = Your dice: { $dice }
+threes-no-dice-yet = Jeszcze nic nie wyrzuciłeś.
+threes-your-dice = Twoje kości: { $dice }
 
 # Scoring
-threes-you-scored = You scored { $score } points this turn.
-threes-scored = { $player } scored { $score } points this turn.
-threes-you-shot-moon = Shooting the moon! You scored -30 points!
-threes-shot-moon = { $player } shot the moon and scored -30 points!
+threes-you-scored = 
+Zdobyłeś { $score } punktów w tej turze.
+threes-scored = { $player } zdobył { $score } punktów w tej turze.
+threes-you-shot-moon = Strzał w księżyc! Zdobywasz -30 punktów!
+threes-shot-moon = { $player } strzelił w księżyc i zdobył -30 punktów!
 
 # Round flow
-threes-round-start = Round { $round } of { $total }.
-threes-round-scores = Round { $round } scores: { $scores }
+threes-round-start = Runda { $round } z { $total }.
+threes-round-scores = Runda { $round } wyniki: { $scores }
 
 # Game end
-threes-winner = { $player } wins with { $score } points!
-threes-tie = { $players } tie with { $score } points!
+threes-winner = { $player } wygrał z wynikiem { $score } punktów!
+threes-tie = { $players } zremisowali zdobywając { $score } punktów!
 
 # Options
-threes-set-rounds = Rounds: { $rounds }
-threes-enter-rounds = Enter number of rounds:
-threes-option-changed-rounds = Number of rounds set to { $rounds }.
+threes-set-rounds = { $rounds } rund
+threes-enter-rounds = Wprowadź liczbę rund:
+threes-option-changed-rounds = Liczba rund została ustawiona na { $rounds }.
 
 # Disabled reasons
-threes-must-bank = You must bank now.
-threes-roll-first = You need to roll first.
-threes-keep-all-first = Keep all dice first to bank.
-threes-last-die = This is your last die.
+threes-must-bank = Musisz teraz zabankować.
+threes-roll-first = Najpierw musisz rzucić.
+threes-keep-all-first = Weź wszystkie kości, zanim dodasz do banku.
+threes-last-die = To Twoja ostatnia kość.
