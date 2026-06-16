@@ -35,8 +35,6 @@ whose-turn = Wie is aan de beurt
 whos-at-table = Wie is er aan tafel
 check-scores = Bekijk scores
 check-scores-detailed = Gedetailleerde scores
-check-game-options = Spelopties bekijken
-no-game-options = Geen spelopties beschikbaar.
 
 # Turn messages
 game-player-skipped = { $player } wordt overgeslagen.
@@ -158,6 +156,7 @@ game-points = { $count } { $count ->
     [one] punt
    *[other] punten
 }
+status-box-closed = Gesloten.
 play = Speel
 
 # Leaderboards
@@ -378,5 +377,13 @@ virtual-bots-profiles-header = Profielen: { $count } gedefinieerd (standaard: { 
 virtual-bots-profiles-empty = Geen profielen zijn gedefinieerd.
 virtual-bots-profiles-line = { $profile } ({ $bot_count } bots) overschrijvingen: { $overrides }.
 virtual-bots-profiles-no-overrides = erft basisconfiguratie
+
+chatroom-table-topic-action = Tafelonderwerp
+chatroom-topic-prompt = Voer het tafelonderwerp in (of laat leeg om te wissen):
+chatroom-topic-set = { $player } heeft het onderwerp ingesteld: { $topic }
+chatroom-topic-cleared = { $player } heeft het onderwerp gewist.
+chatroom-topic = Onderwerp: { $topic }
+chatroom-no-topic = Er is geen onderwerp ingesteld.
+table-topic-label = Onderwerp: { $topic }
 
 localization-in-progress-try-again = Lokalisatie is bezig. Probeer het over een minuut opnieuw.

@@ -35,8 +35,6 @@ whose-turn = Giliran siapa
 whos-at-table = Siapa yang di meja
 check-scores = Periksa skor
 check-scores-detailed = Skor detail
-check-game-options = Periksa opsi permainan
-no-game-options = Tidak ada opsi permainan.
 
 # Turn messages
 game-player-skipped = { $player } dilewati.
@@ -158,6 +156,7 @@ game-points = { $count } { $count ->
     [one] poin
    *[other] poin
 }
+status-box-closed = Ditutup.
 play = Main
 
 # Leaderboards
@@ -378,5 +377,13 @@ virtual-bots-profiles-header = Profil: { $count } didefinisikan (default: { $def
 virtual-bots-profiles-empty = Tidak ada profil yang didefinisikan.
 virtual-bots-profiles-line = { $profile } ({ $bot_count } bot) override: { $overrides }.
 virtual-bots-profiles-no-overrides = mewarisi konfigurasi dasar
+
+chatroom-table-topic-action = Topik meja
+chatroom-topic-prompt = Masukkan topik meja (atau biarkan kosong untuk menghapus):
+chatroom-topic-set = { $player } mengatur topik: { $topic }
+chatroom-topic-cleared = { $player } menghapus topik.
+chatroom-topic = Topik: { $topic }
+chatroom-no-topic = Belum ada topik yang diatur.
+table-topic-label = Topik: { $topic }
 
 localization-in-progress-try-again = Lokalisasi sedang diproses. Silakan coba lagi dalam satu menit.

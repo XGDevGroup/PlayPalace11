@@ -30,10 +30,10 @@ hc-dealing-cards = Deljenje { $count } karata svakom igraču.
 hc-round-start = Runda { $round }.
 
 # Judge announcement
-hc-judge-is = { $count ->
-    [one] { $names } je sudija.
-   *[other] { $names } su sudije.
-}
+hc-judge-is = { $player } { $count ->
+    [one] je sudija
+   *[other] i { $others } su sudije
+}.
 hc-you-are-judge = Vi ste sudija u ovoj rundi.
 hc-you-are-not-judge = Niste sudija u ovoj rundi.
 
@@ -68,10 +68,7 @@ hc-select-winner-prompt = Izaberite pobednički predlog
 hc-submission-option = { $text }
 
 # Results
-hc-winner-announcement = { $player } dobija { $points } { $points ->
-    [one] poen
-   *[other] poena
-} za { $text }.
+hc-winner-announcement = { $player } dobija rundu! Rezultat: { $score }.
 hc-winner-card = Pobednički odgovor: { $text }
 hc-round-scores = Rezultat nakon runde { $round }:
 hc-score-line = { $player }: { $score } { $score ->
@@ -106,6 +103,5 @@ hc-no-scores = Još uvek nema rezultata.
 
 # Whose turn / whose judge
 hc-whose-judge = Ko je sudija
-hc-waiting-for = Čeka se da { $names } odigraju.
-hc-all-submitted-waiting-judge = Svi igrači su poslali svoje predloge. Čeka se da { $judge } presudi.
-hc-waiting-for-judges = Čeka se da { $names } presude.
+hc-waiting-for = Čeka se da { $names } igraju.
+hc-all-submitted-waiting-judge = Svi igrači su poslali svoje predloge. Čeka se da { $judge } sudi.

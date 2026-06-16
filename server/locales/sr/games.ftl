@@ -4,6 +4,7 @@
 # Game names
 game-name-ninetynine = Devedeset devet
 game-name-humanitycards = Karte protiv čovečanstva
+game-name-chatroom = Chat Room
 
 # Game categories (shared)
 category-party-games = Društvene igre
@@ -68,6 +69,7 @@ option-deselected-count = { $count } { $count ->
 }.
 
 # Status box
+status-box-closed = Informacije o stanju zatvorene.
 
 # Game end
 game-leave = Napusti igru

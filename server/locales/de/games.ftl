@@ -3,6 +3,7 @@
 
 # Spielnamen
 game-name-ninetynine = Ninety Nine
+game-name-chatroom = Chat Room
 
 # Runden- und Zugablauf
 game-round-start = Runde { $round }.
@@ -39,6 +40,7 @@ option-on = an
 option-off = aus
 
 # Statusbox
+status-box-closed = Statusinformationen geschlossen.
 
 # Spielende
 game-leave = Spiel verlassen

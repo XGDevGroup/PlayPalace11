@@ -35,8 +35,6 @@ whose-turn = Al cui e rândul
 whos-at-table = Cine e la masă
 check-scores = Verifică scorurile
 check-scores-detailed = Scoruri detaliate
-check-game-options = Verifică opțiunile jocului
-no-game-options = Nicio opțiune de joc disponibilă.
 
 # Turn messages
 game-player-skipped = { $player } este sărit.
@@ -159,6 +157,7 @@ game-points = { $count } { $count ->
     [few] puncte
    *[other] de puncte
 }
+status-box-closed = Închis.
 play = Joacă
 
 # Leaderboards
@@ -382,5 +381,13 @@ virtual-bots-profiles-header = Profiluri: { $count } definite (implicit: { $defa
 virtual-bots-profiles-empty = Niciun profil definit.
 virtual-bots-profiles-line = { $profile } ({ $bot_count } boți) suprascrie: { $overrides }.
 virtual-bots-profiles-no-overrides = moștenește configurația de bază
+
+chatroom-table-topic-action = Subiectul mesei
+chatroom-topic-prompt = Introduceți subiectul mesei (sau lăsați gol pentru a șterge):
+chatroom-topic-set = { $player } a stabilit subiectul: { $topic }
+chatroom-topic-cleared = { $player } a șters subiectul.
+chatroom-topic = Subiect: { $topic }
+chatroom-no-topic = Nu a fost stabilit niciun subiect.
+table-topic-label = Subiect: { $topic }
 
 localization-in-progress-try-again = Localizarea este în curs. Vă rugăm să încercați din nou peste un minut.

@@ -3,6 +3,7 @@
 
 # Názvy her
 game-name-ninetynine = Devadesát devět
+game-name-chatroom = Chat Room
 
 # Průběh kol a tahů
 game-round-start = Kolo { $round }.
@@ -39,6 +40,7 @@ option-on = zapnuto
 option-off = vypnuto
 
 # Stavové okno
+status-box-closed = Informace o stavu uzavřena.
 
 # Konec hry
 game-leave = Opustit hru

@@ -36,8 +36,6 @@ milebymile-desc-rig = Modify deck composition and hand rules
 milebymile-select-rig = Select deck rigging option
 milebymile-option-changed-rig = Deck rigging set to { $rig }.
 
-milebymile-toggle-always-discard = Always allow discarding: { $enabled }
-milebymile-option-changed-always-discard = Always allow discarding { $enabled }.
 milebymile-desc-always-discard = When enabled, press backspace on a card to discard it even if it could be played.
 
 # Status
@@ -88,12 +86,12 @@ milebymile-from-trip = { $points } from completing the trip
 milebymile-from-perfect = { $points } from a perfect crossing
 milebymile-from-safe = { $points } from a safe trip
 milebymile-from-shutout = { $points } from a shut out
-milebymile-from-safeties = { $points } from { $count } { $count ->
+milebymile-from-safeties = { $points } from { $count } { $safeties ->
     [one] safety
     *[other] safeties
 }
 milebymile-from-all-safeties = { $points } from all 4 safeties
-milebymile-from-dirty-tricks = { $points } from { $count } { $count ->
+milebymile-from-dirty-tricks = { $points } from { $count } { $tricks ->
     [one] dirty trick
     *[other] dirty tricks
 }
