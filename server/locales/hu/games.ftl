@@ -3,6 +3,7 @@
 
 # Game names
 game-name-ninetynine = Kilencvenkilenc
+game-name-chatroom = Chat Room
 
 # Round and turn flow
 game-round-start = { $round }. kör.
@@ -39,6 +40,7 @@ option-on = be
 option-off = ki
 
 # Status box
+status-box-closed = Státuszinformáció bezárva.
 
 # Game end
 game-leave = Játék elhagyása

@@ -840,9 +840,8 @@ class MainWindow(wx.Frame):
         self.chat_input.Clear()
 
     def get_language_name(self, text: str = "") -> str:
-        """Get the name of a language based on input."""
         if not text:
-            return self.client_options["social"]["chat_input_language"]
+            return self.client_options.get("social", {}).get("chat_input_language", "English")
         text = text.lower()
         if text in self.lang_codes.keys():
             return self.lang_codes[text]
@@ -852,9 +851,8 @@ class MainWindow(wx.Frame):
         return ""
 
     def get_language_code(self, name: str = "") -> str:
-        """Get a language code from its name."""
         if not name:
-            name = self.client_options["social"]["chat_input_language"]
+            name = self.client_options.get("social", {}).get("chat_input_language", "English")
         try:
             return tuple(self.lang_codes.keys())[tuple(self.lang_codes.values()).index(name)]
         except ValueError:
@@ -1679,7 +1677,7 @@ class MainWindow(wx.Frame):
         convo = packet.get("convo")
         lang = packet.get("language")
         # For now all chats are in English
-        same_user = packet.get("sender") == self.credentials["username"]
+        same_user = packet.get("sender") == self.credentials.get("username")
         """comment out all of this code for now
         if lang not in self.lang_codes.values():
             lang = "Other"
@@ -1811,7 +1809,13 @@ class MainWindow(wx.Frame):
     def on_table_create(self, packet):
         host = packet.get("host")
         game = packet.get("game")
-        if not self.client_options["local_table"]["creation_notifications"][game]:
+        notification_enabled = (
+            self.client_options
+            .get("local_table", {})
+            .get("creation_notifications", {})
+            .get(game, False)
+        )
+        if not notification_enabled:
             return
         self.sound_manager.play("notify.ogg")
         self.add_history(f"{host} is hosting {game}.", "activity")

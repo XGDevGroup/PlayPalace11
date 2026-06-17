@@ -35,8 +35,6 @@ whose-turn = Vems tur
 whos-at-table = Vem är vid bordet
 check-scores = Kontrollera poäng
 check-scores-detailed = Detaljerad poäng
-check-game-options = Kontrollera spelalternativ
-no-game-options = Inga spelalternativ tillgängliga.
 
 # Turn messages
 game-player-skipped = { $player } hoppas över.
@@ -158,6 +156,7 @@ game-points = { $count } { $count ->
     [one] poäng
    *[other] poäng
 }
+status-box-closed = Stängd.
 play = Spela
 
 # Leaderboards
@@ -378,5 +377,13 @@ virtual-bots-profiles-header = Profiler: { $count } definierade (standard: { $de
 virtual-bots-profiles-empty = Inga profiler är definierade.
 virtual-bots-profiles-line = { $profile } ({ $bot_count } botar) åsidosätter: { $overrides }.
 virtual-bots-profiles-no-overrides = ärver baskonfiguration
+
+chatroom-table-topic-action = Bordsämne
+chatroom-topic-prompt = Ange bordsämnet (eller lämna tomt för att rensa):
+chatroom-topic-set = { $player } ställde in ämnet: { $topic }
+chatroom-topic-cleared = { $player } rensade ämnet.
+chatroom-topic = Ämne: { $topic }
+chatroom-no-topic = Inget ämne har ställts in.
+table-topic-label = Ämne: { $topic }
 
 localization-in-progress-try-again = Lokalisering pågår. Försök igen om en minut.

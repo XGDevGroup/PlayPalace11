@@ -30,10 +30,10 @@ hc-dealing-cards = Dealing { $count } cards to each player.
 hc-round-start = Round { $round }.
 
 # Judge announcement
-hc-judge-is = { $count ->
-    [one] { $names } è lo zar delle carte.
-   *[other] { $names } sono gli zar delle carte.
-}
+hc-judge-is = { $player } { $count ->
+    [one] is the Card Czar
+   *[other] and { $others } are the Card Czars
+}.
 hc-you-are-judge = You are the Card Czar this round.
 hc-you-are-not-judge = You are not the Card Czar this round.
 
@@ -66,10 +66,7 @@ hc-select-winner-prompt = Select the winning submission
 hc-submission-option = { $text }
 
 # Results
-hc-winner-announcement = { $player } ottiene { $points } { $points ->
-    [one] punto
-   *[other] punti
-} per { $text }.
+hc-winner-announcement = { $player } wins the round! Score: { $score }.
 hc-winner-card = Winning answer: { $text }
 hc-round-scores = Scores after round { $round }:
 hc-score-line = { $player }: { $score } { $score ->
@@ -104,6 +101,5 @@ hc-no-scores = No scores yet.
 
 # Whose turn / whose judge
 hc-whose-judge = Who is judging
-hc-waiting-for = In attesa che { $names } inviino le carte.
-hc-all-submitted-waiting-judge = Tutti i giocatori hanno inviato le carte. In attesa del giudizio di { $judge }.
-hc-waiting-for-judges = In attesa del giudizio di { $names }.
+hc-waiting-for = Waiting for { $names } to submit.
+hc-all-submitted-waiting-judge = All players have submitted. Waiting for { $judge } to judge.

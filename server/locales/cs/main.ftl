@@ -35,8 +35,6 @@ whose-turn = Čí je tah
 whos-at-table = Kdo je u stolu
 check-scores = Zkontrolovat skóre
 check-scores-detailed = Podrobné skóre
-check-game-options = Zkontrolovat herní možnosti
-no-game-options = Žádné herní možnosti.
 
 # Zprávy o tahu
 game-player-skipped = { $player } je přeskočen.
@@ -190,6 +188,7 @@ game-points = { $count } { $count ->
     [many] bodu
    *[other] bodů
 }
+status-box-closed = Zavřeno.
 play = Hrát
 
 # Žebříčky
@@ -416,5 +415,13 @@ virtual-bots-profiles-header = Profily: { $count } definováno (výchozí: { $de
 virtual-bots-profiles-empty = Nejsou definovány žádné profily.
 virtual-bots-profiles-line = { $profile } ({ $bot_count } botů) přepsání: { $overrides }.
 virtual-bots-profiles-no-overrides = dědí základní konfiguraci
+
+chatroom-table-topic-action = Téma stolu
+chatroom-topic-prompt = Zadejte téma stolu (nebo nechte prázdné pro vymazání):
+chatroom-topic-set = { $player } nastavil téma: { $topic }
+chatroom-topic-cleared = { $player } vymazal téma.
+chatroom-topic = Téma: { $topic }
+chatroom-no-topic = Nebylo nastaveno žádné téma.
+table-topic-label = Téma: { $topic }
 
 localization-in-progress-try-again = Lokalizace se stále načítá. Zkuste to prosím za minutu znovu.

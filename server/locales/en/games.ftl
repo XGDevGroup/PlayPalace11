@@ -4,6 +4,7 @@
 # Game names
 game-name-ninetynine = Ninety Nine
 game-name-humanitycards = Cards Against Humanity
+game-name-chatroom = Chat Room
 
 # Game categories (shared)
 category-party-games = Party Games
@@ -64,6 +65,7 @@ option-deselected-count = { $count } { $count ->
 } deselected.
 
 # Status box
+status-box-closed = Status information closed.
 
 # Game end
 game-leave = Leave game

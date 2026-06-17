@@ -3,6 +3,7 @@
 
 # Game names
 game-name-ninetynine = Ninety Nine
+game-name-chatroom = Chat Room
 
 # Round and turn flow
 game-round-start = Ronde { $round }.
@@ -39,6 +40,7 @@ option-on = aktif
 option-off = nonaktif
 
 # Status box
+status-box-closed = Informasi status ditutup.
 
 # Game end
 game-leave = Tinggalkan permainan

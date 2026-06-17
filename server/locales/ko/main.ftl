@@ -35,8 +35,6 @@ whose-turn = 누구 차례인지
 whos-at-table = 누가 테이블에 있는지
 check-scores = 점수 확인
 check-scores-detailed = 세부 점수
-check-game-options = 게임 옵션 확인
-no-game-options = 게임 옵션이 없습니다.
 
 # Turn messages
 game-player-skipped = { $player }님은 건너뛰었습니다.
@@ -155,6 +153,7 @@ game-leave = 나가기
 game-over = 게임 종료
 game-final-scores = 최종 점수
 game-points = { $count }점
+status-box-closed = 닫힘.
 play = 플레이
 
 # Leaderboards
@@ -366,5 +365,13 @@ virtual-bots-profiles-header = 프로필: { $count }개 정의됨 (기본: { $de
 virtual-bots-profiles-empty = 정의된 프로필이 없습니다.
 virtual-bots-profiles-line = { $profile } ({ $bot_count }개 봇) 재정의: { $overrides }.
 virtual-bots-profiles-no-overrides = 기본 구성 상속
+
+chatroom-table-topic-action = 테이블 주제
+chatroom-topic-prompt = 테이블 주제를 입력하세요 (비우면 초기화):
+chatroom-topic-set = { $player } 님이 주제를 설정했습니다: { $topic }
+chatroom-topic-cleared = { $player } 님이 주제를 초기화했습니다.
+chatroom-topic = 주제: { $topic }
+chatroom-no-topic = 설정된 주제가 없습니다.
+table-topic-label = 주제: { $topic }
 
 localization-in-progress-try-again = 현지화 작업이 진행 중입니다. 1분 후에 다시 시도해 주세요.

@@ -3,6 +3,7 @@
 
 # Game names
 game-name-ninetynine = เก้าสิบเก้า
+game-name-chatroom = Chat Room
 
 # Round and turn flow
 game-round-start = รอบที่ { $round }
@@ -39,6 +40,7 @@ option-on = เปิด
 option-off = ปิด
 
 # Status box
+status-box-closed = ปิดข้อมูลสถานะแล้ว
 
 # Game end
 game-leave = ออกจากเกม

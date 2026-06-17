@@ -35,8 +35,6 @@ whose-turn = دور من
 whos-at-table = من على الطاولة
 check-scores = تحقق من النتائج
 check-scores-detailed = نتائج مفصلة
-check-game-options = تحقق من خيارات اللعبة
-no-game-options = لا توجد خيارات للعبة
 
 # رسائل الدور
 game-player-skipped = تم تخطي { $player }.
@@ -204,6 +202,7 @@ game-points = { $count } { $count ->
     [many] نقطة
    *[other] نقطة
 }
+status-box-closed = مغلق.
 play = العب
 
 # لوحات الصدارة
@@ -464,5 +463,13 @@ virtual-bots-profiles-line = { $profile } ({ $bot_count } { $bot_count ->
    *[other] بوت
 }) التجاوزات: { $overrides }.
 virtual-bots-profiles-no-overrides = يرث الإعدادات الأساسية
+
+chatroom-table-topic-action = موضوع الطاولة
+chatroom-topic-prompt = أدخل موضوع الطاولة (أو اتركه فارغاً للإزالة):
+chatroom-topic-set = { $player } قام بتعيين الموضوع: { $topic }
+chatroom-topic-cleared = { $player } أزال الموضوع.
+chatroom-topic = الموضوع: { $topic }
+chatroom-no-topic = لم يتم تعيين موضوع.
+table-topic-label = الموضوع: { $topic }
 
 localization-in-progress-try-again = جارٍ إعداد الترجمة. يُرجى المحاولة مرة أخرى بعد دقيقة.
