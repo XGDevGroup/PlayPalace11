@@ -14,6 +14,7 @@ export function createMenuView({
   let searchBuffer = "";
   let lastTypeTime = 0;
   const typeTimeoutSeconds = 0.15;
+  let suppressClickUntil = 0;
 
   function menuStructureSnapshot(menu) {
     const itemsSnapshot = (menu.items || [])
@@ -47,6 +48,19 @@ export function createMenuView({
     if (onSelectionSound) {
       onSelectionSound(store.state.currentMenu.items[bounded], bounded);
     }
+  }
+
+  function setSelectionSilently(next) {
+    const count = store.state.currentMenu.items.length;
+    if (!count) {
+      store.setMenu({ selection: 0 });
+      return 0;
+    }
+    const bounded = Math.max(0, Math.min(count - 1, next));
+    if (bounded !== store.state.currentMenu.selection) {
+      store.setMenu({ selection: bounded });
+    }
+    return bounded;
   }
 
   function moveSelection(delta) {
@@ -113,10 +127,26 @@ export function createMenuView({
     if (!item) {
       return;
     }
+    onActivate(item, menu.selection);
     if (onActivateSound) {
       onActivateSound();
     }
-    onActivate(item, menu.selection);
+  }
+
+  function activateIndex(selectionIndex) {
+    const menu = store.state.currentMenu;
+    if (!menu.items.length) {
+      return;
+    }
+    const bounded = setSelectionSilently(selectionIndex);
+    const item = store.state.currentMenu.items[bounded];
+    if (!item) {
+      return;
+    }
+    onActivate(item, bounded);
+    if (onActivateSound) {
+      onActivateSound();
+    }
   }
 
   function applySelection(selectionIndex) {
@@ -166,9 +196,53 @@ export function createMenuView({
         button.type = "button";
         button.className = "menu-item-touch";
         button.textContent = item.text;
-        button.addEventListener("click", () => {
-          setSelection(index);
-          activateSelection();
+        let pointerStart = null;
+        button.addEventListener("pointerdown", (event) => {
+          if (event.pointerType !== "touch" && event.pointerType !== "pen") {
+            pointerStart = null;
+            return;
+          }
+          pointerStart = {
+            id: event.pointerId,
+            x: event.clientX,
+            y: event.clientY,
+            cancelled: false,
+          };
+        }, { passive: true });
+        button.addEventListener("pointermove", (event) => {
+          if (!pointerStart || pointerStart.id !== event.pointerId) {
+            return;
+          }
+          const dx = Math.abs(event.clientX - pointerStart.x);
+          const dy = Math.abs(event.clientY - pointerStart.y);
+          if (dx > 12 || dy > 12) {
+            pointerStart.cancelled = true;
+          }
+        }, { passive: true });
+        button.addEventListener("pointercancel", () => {
+          pointerStart = null;
+        });
+        button.addEventListener("pointerup", (event) => {
+          if (!pointerStart || pointerStart.id !== event.pointerId) {
+            return;
+          }
+          const started = pointerStart;
+          pointerStart = null;
+          if (started.cancelled) {
+            return;
+          }
+          if (event.cancelable) {
+            event.preventDefault();
+          }
+          suppressClickUntil = performance.now() + 750;
+          activateIndex(index);
+        });
+        button.addEventListener("click", (event) => {
+          if (performance.now() < suppressClickUntil) {
+            event.preventDefault();
+            return;
+          }
+          activateIndex(index);
         });
         li.appendChild(button);
       } else {

@@ -39,7 +39,23 @@
       </section>
 
       <section id="game-shell" class="grid" hidden>
-        <section class="panel">
+        <section class="panel history-panel">
+          <div class="history-header">
+            <h2><button id="history-toggle" class="history-toggle-title" type="button" tabindex="-1" aria-expanded="true">History</button></h2>
+          </div>
+          <div id="history-content">
+            <textarea id="history" class="history" readonly tabindex="0" aria-label="History"></textarea>
+            <div
+              id="history-log"
+              class="history-log"
+              tabindex="0"
+              aria-label="History"
+              hidden
+            ></div>
+          </div>
+        </section>
+
+        <section class="panel game-panel">
           <div class="row">
             <h2>Game</h2>
             <button id="actions-btn" class="secondary actions-btn" type="button" tabindex="-1">Actions</button>
@@ -55,22 +71,8 @@
           </section>
         </section>
 
-        <section class="panel">
-          <div class="history-header">
-            <h2><button id="history-toggle" class="history-toggle-title" type="button" tabindex="-1" aria-expanded="true">History</button></h2>
-          </div>
-          <div id="history-content">
-            <textarea id="history" class="history" readonly tabindex="0" aria-label="History"></textarea>
-            <div
-              id="history-log"
-              class="history-log"
-              tabindex="0"
-              aria-label="History"
-              hidden
-            ></div>
-          </div>
-
-          <h2 style="margin-top: 10px;">Chat</h2>
+        <section class="panel chat-panel">
+          <h2>Chat</h2>
           <form id="chat-form" class="row" style="margin-top: 10px;">
             <label>
               Chat
