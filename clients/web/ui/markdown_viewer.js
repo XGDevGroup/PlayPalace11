@@ -1,6 +1,61 @@
 /**
  * Markdown viewer dialog for rendering secure HTML from markdown content.
  */
+const MARKDOWN_SANITIZE_CONFIG = {
+  USE_PROFILES: { html: true },
+  FORBID_TAGS: [
+    "img",
+    "svg",
+    "math",
+    "iframe",
+    "object",
+    "embed",
+    "form",
+    "style",
+    "audio",
+    "video",
+    "source",
+    "track",
+    "picture",
+    "input",
+    "button",
+    "link",
+    "meta",
+    "textarea",
+    "select",
+    "option",
+    "optgroup",
+    "details",
+    "summary",
+    "dialog",
+    "fieldset",
+    "label",
+    "datalist",
+    "legend",
+    "output",
+  ],
+  FORBID_ATTR: ["style", "srcset", "background"],
+  ALLOWED_URI_REGEXP: /^(https?|mailto):/i,
+};
+
+function escapeHtml(text) {
+  return String(text)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+export function renderMarkdownHtml(rawMarkdown, markedImpl = window.marked, purifier = window.DOMPurify) {
+  if (markedImpl && purifier) {
+    const rawHtml = markedImpl.parse(String(rawMarkdown || ""), {
+      breaks: true,
+      gfm: true,
+    });
+    return purifier.sanitize(rawHtml, MARKDOWN_SANITIZE_CONFIG);
+  }
+  return `<p>Markdown renderer failed to load.</p><pre>${escapeHtml(rawMarkdown || "")}</pre>`;
+}
+
 export function createMarkdownViewer({ dialogEl, onSubmit }) {
   let currentDialogId = null;
 
@@ -73,23 +128,7 @@ export function createMarkdownViewer({ dialogEl, onSubmit }) {
       
       const rawMarkdown = packet.default_value || "";
       
-      let htmlOutput = "";
-      if (window.marked && window.DOMPurify) {
-        // Parse markdown to HTML
-        const rawHtml = marked.parse(rawMarkdown, {
-           breaks: true,
-           gfm: true
-        });
-        
-        // Sanitize HTML strictly
-        htmlOutput = DOMPurify.sanitize(rawHtml, {
-          USE_PROFILES: { html: true },
-          ALLOWED_URI_REGEXP: /^(https?|mailto):/i
-        });
-      } else {
-        // Fallback if parsing libraries fail to load
-        htmlOutput = `<p style="color: red;">Markdown renderer failed to load.</p><pre>${rawMarkdown.replace(/&/g, '&amp;').replace(/</g, '&lt;')}</pre>`;
-      }
+      const htmlOutput = renderMarkdownHtml(rawMarkdown);
       
       contentEl.innerHTML = htmlOutput;
       
