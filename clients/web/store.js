@@ -1,3 +1,16 @@
+// Cap each history buffer so a long session can't grow the arrays (and the
+// per-render join/DOM rebuild) without bound. Older lines drop off the front.
+// This is the main guard against the mobile "taps get slower over time" lag.
+const HISTORY_BUFFER_LIMIT = 500;
+
+function pushCappedHistory(lines, text) {
+  lines.push(text);
+  const overflow = lines.length - HISTORY_BUFFER_LIMIT;
+  if (overflow > 0) {
+    lines.splice(0, overflow);
+  }
+}
+
 export function createStore() {
   const state = {
     connection: {
@@ -58,9 +71,9 @@ export function createStore() {
       if (!state.historyBuffers[buffer]) {
         state.historyBuffers[buffer] = [];
       }
-      state.historyBuffers[buffer].push(text);
+      pushCappedHistory(state.historyBuffers[buffer], text);
       if (buffer !== "all") {
-        state.historyBuffers.all.push(text);
+        pushCappedHistory(state.historyBuffers.all, text);
       }
       notify();
     },
