@@ -1,10 +1,15 @@
 # -*- mode: python ; coding: utf-8 -*-
 
+from pathlib import Path
+
+
+CLIENT_DIR = Path(SPECPATH)
+
 a = Analysis(
-    ['client.py'],
-    pathex=[],
+    [str(CLIENT_DIR / 'client.py')],
+    pathex=[str(CLIENT_DIR)],
     binaries=[],
-    datas=[('sounds', 'sounds')],
+    datas=[(str(CLIENT_DIR / 'sounds'), 'sounds')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
@@ -24,7 +29,7 @@ exe = EXE(
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
-    upx=True,
+    upx=False,
     console=False,
     disable_windowed_traceback=False,
     argv_emulation=False,
@@ -37,13 +42,13 @@ coll = COLLECT(
     a.binaries,
     a.datas,
     strip=False,
-    upx=True,
+    upx=False,
     upx_exclude=[],
     name='PlayPalace',
 )
 app = BUNDLE(
     coll,
     name='PlayPalace.app',
-    icon=None,
-    bundle_identifier=None,
+    icon=str(CLIENT_DIR / 'assets' / 'playpalace.icns'),
+    bundle_identifier='com.xgdevgroup.playpalace',
 )
