@@ -227,3 +227,56 @@ class MenuManagementMixin:
             items=items,
             multiletter=False,
         )
+
+    def _action_show_rules(self, player: "Player", action_id: str) -> None:
+        """Show the rules document for the game."""
+        user = self.get_user(player)
+        if not user:
+            return
+
+        doc_manager = self._table.get_documents()
+
+        folder_name = f"{self.get_type()}_rules"
+        meta = doc_manager.get_document_metadata(folder_name)
+        if not meta:
+            user.speak_l("documents-no-content")
+            return
+
+        visible_locales = doc_manager._get_visible_locale_codes(meta, include_private=False)
+        if not visible_locales:
+            user.speak_l("documents-no-content")
+            return
+
+        source_locale = meta.get("source_locale", "en")
+        title_locale = doc_manager._select_display_title_locale(visible_locales, user.locale, source_locale)
+
+        if not title_locale:
+            user.speak_l("documents-no-content")
+            return
+
+        content = doc_manager.get_document_content_for_access(
+            folder_name,
+            title_locale,
+            include_private=False,
+        )
+        if content is None:
+            user.speak_l("documents-no-content")
+            return
+
+        titles = meta.get("titles", {})
+        title = doc_manager._select_visible_title(
+            titles,
+            visible_locales,
+            title_locale,
+            source_locale,
+            folder_name,
+        )
+
+        user.show_editbox(
+            "game_rules",
+            title,
+            default_value=content,
+            multiline=True,
+            read_only=True,
+            content_format="markdown",
+        )

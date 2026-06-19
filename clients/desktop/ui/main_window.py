@@ -263,6 +263,7 @@ class MainWindow(wx.Frame):
         self.ID_PING = wx.NewIdRef()
         self.ID_LIST_ONLINE = wx.NewIdRef()
         self.ID_LIST_ONLINE_WITH_GAMES = wx.NewIdRef()
+        self.ID_F1 = wx.NewIdRef()
 
         # Buffer system IDs
         self.ID_PREV_BUFFER = wx.NewIdRef()
@@ -278,6 +279,7 @@ class MainWindow(wx.Frame):
         # Common accelerators that work everywhere
         common_entries = [
             wx.AcceleratorEntry(wx.ACCEL_ALT, ord("M"), self.ID_FOCUS_MENU),
+            wx.AcceleratorEntry(wx.ACCEL_NORMAL, wx.WXK_F1, self.ID_F1),
             wx.AcceleratorEntry(wx.ACCEL_NORMAL, wx.WXK_F6, self.ID_TOGGLE_TABLE_CHAT),
             wx.AcceleratorEntry(wx.ACCEL_SHIFT, wx.WXK_F6, self.ID_TOGGLE_GLOBAL_CHAT),
             wx.AcceleratorEntry(wx.ACCEL_NORMAL, wx.WXK_F7, self.ID_AMBIENCE_DOWN),
@@ -327,6 +329,7 @@ class MainWindow(wx.Frame):
             self.on_list_online_with_games,
             id=self.ID_LIST_ONLINE_WITH_GAMES,
         )
+        self.Bind(wx.EVT_MENU, self.on_f1_keybind, id=self.ID_F1)
 
         # Buffer system event bindings
         self.Bind(wx.EVT_MENU, self.on_prev_buffer, id=self.ID_PREV_BUFFER)
@@ -371,6 +374,11 @@ class MainWindow(wx.Frame):
         """Handle menu list gaining focus - enable buffer navigation."""
         self.SetAcceleratorTable(self.accel_table_with_buffers)
         event.Skip()
+
+    def on_f1_keybind(self, event):
+        """Handle F1 accelerator (global rules request)."""
+        if self.connected:
+            self.network.send_packet({"type": "keybind", "key": "f1"})
 
     def on_menu_unfocus(self, event):
         """Handle menu list losing focus - disable buffer navigation."""
@@ -693,11 +701,10 @@ class MainWindow(wx.Frame):
 
     def _map_function_key(self, event, key_code: int) -> str | None:
         key_map = {
-            wx.WXK_F1: "f1",
             wx.WXK_F3: "f3",
             wx.WXK_F5: "f5",
         }
-        if key_code in (wx.WXK_F2, wx.WXK_F4):
+        if key_code in (wx.WXK_F1, wx.WXK_F2, wx.WXK_F4):
             event.Skip()
             return None
         return key_map.get(key_code)
@@ -730,7 +737,6 @@ class MainWindow(wx.Frame):
         has_shift = (modifiers & wx.MOD_SHIFT) != 0
 
         is_function_key = key_name in [
-            "f1",
             "f2",
             "f3",
             "f5",

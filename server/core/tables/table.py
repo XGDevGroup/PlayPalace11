@@ -104,6 +104,10 @@ class Table(DataClassJSONMixin):
         """Attach a user to a member (e.g., after deserialization)."""
         self._users[username] = user
 
+    def get_documents(self) -> Any:
+        """Get the server's document manager."""
+        return self._server._documents
+
     def get_players(self) -> list[TableMember]:
         """Get all non-spectator members."""
         return [m for m in self.members if not m.is_spectator]
