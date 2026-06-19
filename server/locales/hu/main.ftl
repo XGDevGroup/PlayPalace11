@@ -35,8 +35,6 @@ whose-turn = Kié a lépés
 whos-at-table = Ki van az asztalnál
 check-scores = Eredmények ellenőrzése
 check-scores-detailed = Részletes eredmények
-check-game-options = Játékbeállítások ellenőrzése
-no-game-options = Nincsenek játékbeállítások.
 
 # Turn messages
 game-player-skipped = { $player } ki van hagyva.
@@ -158,6 +156,7 @@ game-points = { $count } { $count ->
     [one] pont
    *[other] pont
 }
+status-box-closed = Lezárva.
 play = Játék
 
 # Leaderboards
@@ -378,5 +377,13 @@ virtual-bots-profiles-header = Profilok: { $count } definiálva (alapértelmezet
 virtual-bots-profiles-empty = Nincsenek definiált profilok.
 virtual-bots-profiles-line = { $profile } ({ $bot_count } bot) felülírások: { $overrides }.
 virtual-bots-profiles-no-overrides = örökli az alap konfigurációt
+
+chatroom-table-topic-action = Asztal téma
+chatroom-topic-prompt = Add meg az asztal témáját (vagy hagyd üresen a törléshez):
+chatroom-topic-set = { $player } beállította a témát: { $topic }
+chatroom-topic-cleared = { $player } törölte a témát.
+chatroom-topic = Téma: { $topic }
+chatroom-no-topic = Nincs téma beállítva.
+table-topic-label = Téma: { $topic }
 
 localization-in-progress-try-again = A lokalizáció folyamatban van. Kérjük, próbálja újra egy perc múlva.

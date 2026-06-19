@@ -30,10 +30,10 @@ hc-dealing-cards = Dealing { $count } cards to each player.
 hc-round-start = Round { $round }.
 
 # Judge announcement
-hc-judge-is = { $count ->
-    [one] { $names } がカードツァーです。
-   *[other] { $names } がカードツァーです。
-}
+hc-judge-is = { $player } { $count ->
+    [one] is the Card Czar
+   *[other] and { $others } are the Card Czars
+}.
 hc-you-are-judge = You are the Card Czar this round.
 hc-you-are-not-judge = You are not the Card Czar this round.
 
@@ -66,10 +66,7 @@ hc-select-winner-prompt = Select the winning submission
 hc-submission-option = { $text }
 
 # Results
-hc-winner-announcement = { $player } は { $text } で { $points } { $points ->
-    [one] 点
-   *[other] 点
-} を獲得します。
+hc-winner-announcement = { $player } wins the round! Score: { $score }.
 hc-winner-card = Winning answer: { $text }
 hc-round-scores = Scores after round { $round }:
 hc-score-line = { $player }: { $score } { $score ->
@@ -104,6 +101,5 @@ hc-no-scores = No scores yet.
 
 # Whose turn / whose judge
 hc-whose-judge = Who is judging
-hc-waiting-for = { $names } の提出を待っています。
-hc-all-submitted-waiting-judge = 全員が提出しました。{ $judge } の判定を待っています。
-hc-waiting-for-judges = { $names } の判定を待っています。
+hc-waiting-for = Waiting for { $names } to submit.
+hc-all-submitted-waiting-judge = All players have submitted. Waiting for { $judge } to judge.

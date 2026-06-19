@@ -3,6 +3,7 @@
 
 # Game names
 game-name-ninetynine = नाइंटी नाइन
+game-name-chatroom = Chat Room
 
 # Round and turn flow
 game-round-start = राउंड { $round }।
@@ -39,6 +40,7 @@ option-on = चालू
 option-off = बंद
 
 # Status box
+status-box-closed = स्थिति की जानकारी बंद।
 
 # Game end
 game-leave = खेल छोड़ें

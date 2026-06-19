@@ -46,3 +46,9 @@ packages = ["."]
 [tool.hatch.build.targets.wheel.force-include]
 "locales" = "server/locales"
 "../clients/desktop/sounds" = "server/audio"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.2",
+    "pytest-asyncio>=1.3.0",
+]

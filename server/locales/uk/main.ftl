@@ -35,8 +35,6 @@ whose-turn = Чий хід
 whos-at-table = Хто за столом
 check-scores = Перевірити рахунок
 check-scores-detailed = Детальний рахунок
-check-game-options = Перевірити параметри гри
-no-game-options = Немає параметрів гри.
 
 # Turn messages
 game-player-skipped = { $player } пропущений.
@@ -158,6 +156,7 @@ game-points = { $count } { $count ->
     [one] очко
    *[other] очок
 }
+status-box-closed = Закрито.
 play = Грати
 
 # Leaderboards
@@ -378,5 +377,13 @@ virtual-bots-profiles-header = Профілі: { $count } визначено (з
 virtual-bots-profiles-empty = Не визначено профілів.
 virtual-bots-profiles-line = { $profile } ({ $bot_count } ботів) перевизначення: { $overrides }.
 virtual-bots-profiles-no-overrides = успадковує базову конфігурацію
+
+chatroom-table-topic-action = (Ukrainian) Table topic
+chatroom-topic-prompt = (Ukrainian) Enter the table topic (or leave blank to clear):
+chatroom-topic-set = (Ukrainian) { $player } set the topic: { $topic }
+chatroom-topic-cleared = (Ukrainian) { $player } cleared the topic.
+chatroom-topic = (Ukrainian) Topic: { $topic }
+chatroom-no-topic = (Ukrainian) No topic has been set.
+table-topic-label = (Ukrainian) Topic: { $topic }
 
 localization-in-progress-try-again = Локалізація ще завантажується. Будь ласка, спробуйте знову за хвилину.

@@ -3,6 +3,7 @@
 
 # Тоглоомын нэрс
 game-name-ninetynine = Ерэн есөн
+game-name-chatroom = Chat Room
 
 # Тойрог ба ээлжийн урсгал
 game-round-start = { $round } дугаар тойрог.
@@ -39,6 +40,7 @@ option-on = асаалттай
 option-off = унтраалттай
 
 # Статус хайрцаг
+status-box-closed = Статусын мэдээлэл хаагдсан.
 
 # Тоглоом дуусах
 game-leave = Тоглоом орхих

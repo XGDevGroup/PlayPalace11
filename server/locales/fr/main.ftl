@@ -35,8 +35,6 @@ whose-turn = Tour de qui
 whos-at-table = Qui est à la table
 check-scores = Vérifier les scores
 check-scores-detailed = Scores détaillés
-check-game-options = Vérifier les options de jeu
-no-game-options = Aucune option de jeu.
 
 # Messages de tour
 game-player-skipped = { $player } est passé.
@@ -159,6 +157,7 @@ game-points = { $count } { $count ->
     [1] point
    *[other] points
 }
+status-box-closed = Fermé.
 play = Jouer
 
 # Classements
@@ -382,5 +381,13 @@ virtual-bots-profiles-header = Profils : { $count } définis (par défaut : { $d
 virtual-bots-profiles-empty = Aucun profil n'est défini.
 virtual-bots-profiles-line = { $profile } ({ $bot_count } bots) remplacements : { $overrides }.
 virtual-bots-profiles-no-overrides = hérite de la configuration de base
+
+chatroom-table-topic-action = Sujet de la table
+chatroom-topic-prompt = Entrez le sujet de la table (ou laissez vide pour effacer) :
+chatroom-topic-set = { $player } a défini le sujet : { $topic }
+chatroom-topic-cleared = { $player } a effacé le sujet.
+chatroom-topic = Sujet : { $topic }
+chatroom-no-topic = Aucun sujet n'a été défini.
+table-topic-label = Sujet : { $topic }
 
 localization-in-progress-try-again = La localisation est en cours. Veuillez réessayer dans une minute.

@@ -33,6 +33,7 @@ from .nine.game import NineGame
 from .blackjack.game import BlackjackGame
 from .twentyone import TwentyOneGame
 from .chess.game import ChessGame
+from .chatroom.game import ChatRoomGame
 from .backgammon.game import BackgammonGame
 from .senet.game import SenetGame
 
@@ -76,6 +77,7 @@ __all__ = [
     "BlackjackGame",
     "TwentyOneGame",
     "ChessGame",
+    "ChatRoomGame",
     "BackgammonGame",
     "SenetGame",
     "BattleshipGame",

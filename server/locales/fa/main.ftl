@@ -35,8 +35,6 @@ whose-turn = نوبت کیست
 whos-at-table = چه کسانی پشت میز هستند
 check-scores = بررسی امتیازها
 check-scores-detailed = امتیازهای تفصیلی
-check-game-options = بررسی گزینه‌های بازی
-no-game-options = هیچ گزینه‌ای برای بازی وجود ندارد.
 
 # Turn messages
 game-player-skipped = { $player } رد شد.
@@ -158,6 +156,7 @@ game-points = { $count } { $count ->
     [one] امتیاز
    *[other] امتیاز
 }
+status-box-closed = بسته شد.
 play = بازی
 
 # Leaderboards
@@ -378,5 +377,13 @@ virtual-bots-profiles-header = پروفایل‌ها: { $count } تعریف‌ش
 virtual-bots-profiles-empty = هیچ پروفایلی تعریف نشده است.
 virtual-bots-profiles-line = { $profile } ({ $bot_count } ربات) بازنویسی‌ها: { $overrides }.
 virtual-bots-profiles-no-overrides = ارث‌بری پیکربندی پایه
+
+chatroom-table-topic-action = موضوع میز
+chatroom-topic-prompt = موضوع میز را وارد کنید (یا خالی بگذارید تا پاک شود):
+chatroom-topic-set = { $player } موضوع را تنظیم کرد: { $topic }
+chatroom-topic-cleared = { $player } موضوع را پاک کرد.
+chatroom-topic = موضوع: { $topic }
+chatroom-no-topic = هیچ موضوعی تنظیم نشده است.
+table-topic-label = موضوع: { $topic }
 
 localization-in-progress-try-again = بومی‌سازی در حال انجام است. لطفاً یک دقیقه دیگر دوباره تلاش کنید.

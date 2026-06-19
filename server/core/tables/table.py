@@ -42,6 +42,7 @@ class Table(DataClassJSONMixin):
     members: list[TableMember] = field(default_factory=list)
     game_json: str | None = None  # Serialized game state
     status: str = GameStatus.WAITING
+    topic: str = ""  # Table topic (set by host, shown in listings)
 
     # Not serialized
     _game: "Game | None" = field(default=None, repr=False)

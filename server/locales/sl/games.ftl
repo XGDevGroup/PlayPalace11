@@ -3,6 +3,7 @@
 
 # Game names
 game-name-ninetynine = Devetindevetdeset
+game-name-chatroom = Chat Room
 
 # Round and turn flow
 game-round-start = Krog { $round }.
@@ -39,6 +40,7 @@ option-on = vključeno
 option-off = izključeno
 
 # Status box
+status-box-closed = Informacije o stanju zaprte.
 
 # Game end
 game-leave = Zapusti igro

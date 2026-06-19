@@ -1,7 +1,6 @@
 # Blackjack
 
 game-name-blackjack = Blackjack
-game-name-twentyone = 21 (Survival Rules)
 
 blackjack-set-rules-profile = Rules profile: { $profile }
 blackjack-select-rules-profile = Select rules profile

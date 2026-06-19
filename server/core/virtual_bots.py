@@ -1368,6 +1368,10 @@ class VirtualBotManager:
         if not game:
             return False
 
+        # Don't join chat rooms
+        if table.game_type == "chatroom":
+            return False
+
         # Only join games that haven't started yet
         if game.status != "waiting":
             return False
@@ -1430,6 +1434,8 @@ class VirtualBotManager:
         available = []
         for game_class in GameRegistry.get_all():
             game_type = game_class.get_type()
+            if game_type == "chatroom":
+                continue  # Bots don't create chat rooms
             if self._can_create_game_type(game_type):
                 available.append(game_class)
         return available
