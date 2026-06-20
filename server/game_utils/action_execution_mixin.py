@@ -180,6 +180,11 @@ class ActionExecutionMixin:
             for opt in options:
                 if menu_option_meta:
                     display_text = menu_option_meta.get_localized_choice(opt, user.locale)
+                elif getattr(self, "_menu_options_encode_ids", False) and "|" in opt:
+                    # Opt-in convention: options are encoded "value|label" so a
+                    # stable id can be carried as the selection value without
+                    # being shown. Display only the human-readable label half.
+                    display_text = opt.split("|", 1)[1]
                 else:
                     display_text = opt
                 items.append(MenuItem(text=display_text, id=opt))

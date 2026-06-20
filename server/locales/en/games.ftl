@@ -42,6 +42,9 @@ game-team-mode-x-teams-of-y = { $num_teams } teams of { $team_size }
 option-on = on
 option-off = off
 
+# In-game read-only options viewer
+check-game-options = Check game options
+
 # Option navigation
 option-back = Back
 option-min-selected = At least { $count } { $count ->
