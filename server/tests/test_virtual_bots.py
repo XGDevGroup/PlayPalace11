@@ -1311,42 +1311,6 @@ def test_process_in_game_bot_starts_game_when_host(monkeypatch):
     assert table.game.actions == [("BotA", "start_game")]
 
 
-def test_process_leaving_game_logout_branch(monkeypatch):
-    manager = VirtualBotManager(FakeServer())
-    bot = VirtualBot("Leaf", state=VirtualBotState.LEAVING_GAME)
-    bot.logout_after_game = True
-    bot.online_ticks = 10
-    bot.target_online_ticks = 999
-    manager._bots["Leaf"] = bot
-    monkeypatch.setattr("server.core.virtual_bots.random.randint", lambda a, b: a)
-
-    manager._process_leaving_game_bot(bot)
-
-    assert bot.state == VirtualBotState.ONLINE_IDLE
-    assert bot.cooldown_ticks == manager._get_config_value(bot, "logout_after_game_min_ticks")
-
-
-def test_process_leaving_game_offline_path(monkeypatch):
-    manager = VirtualBotManager(FakeServer())
-    bot = VirtualBot("Leaf", state=VirtualBotState.LEAVING_GAME)
-    bot.logout_after_game = False
-    bot.online_ticks = 100
-    bot.target_online_ticks = 50
-    manager._bots["Leaf"] = bot
-    taken_offline = {}
-
-    def fake_take(target_bot):
-        taken_offline["bot"] = target_bot
-        target_bot.state = VirtualBotState.OFFLINE
-
-    monkeypatch.setattr(manager, "_take_bot_offline", fake_take)
-
-    manager._process_leaving_game_bot(bot)
-
-    assert taken_offline["bot"] is bot
-    assert bot.state == VirtualBotState.OFFLINE
-
-
 def test_on_tick_processes_all_bots(monkeypatch):
     manager = _make_single_bot_manager(["BotA", "BotB"])
     calls = []

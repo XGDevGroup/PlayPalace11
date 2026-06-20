@@ -82,9 +82,6 @@ class DummyBotsManager:
         self.cleared = True
         return 2, 0
 
-    def save_state(self):
-        self.saved = True
-
     def get_status(self):
         return {"online": 0, "total": 0, "offline": 0, "in_game": 0}
 

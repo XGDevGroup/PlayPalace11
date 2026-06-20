@@ -5,6 +5,10 @@ from __future__ import annotations
 import logging
 from dataclasses import dataclass, field
 import random
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from .gnubg import GnubgProcess
 
 log = logging.getLogger(__name__)
 
