@@ -406,7 +406,7 @@ class ChaosBearGame(Game):
         # Otherwise roll the dice
         return "roll_dice"
 
-    def _start_next_turn(self, previous_player: "ChaosPlayer | None" = None) -> None:
+    def _start_next_turn(self, previous_player: "ChaosBearPlayer | None" = None) -> None:
         """Start the next player's turn with menu rebuild and bot jolt.
 
         Args:

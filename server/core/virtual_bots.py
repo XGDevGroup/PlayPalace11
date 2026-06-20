@@ -903,7 +903,7 @@ class VirtualBotManager:
         """Build snapshot data for guided table rules."""
         return [self._build_guided_state_snapshot(state) for state in self._iter_guided_states()]
 
-    def _build_guided_state_snapshot(self, state: "GuidedTableRuleState") -> dict[str, Any]:
+    def _build_guided_state_snapshot(self, state: "GuidedTableState") -> dict[str, Any]:
         """Build a snapshot for a single guided rule state."""
         config = state.config
         assigned = len(state.assigned_bots)
@@ -937,7 +937,7 @@ class VirtualBotManager:
             "unavailable_bots": unavailable,
         }
 
-    def _count_guided_availability(self, state: "GuidedTableRuleState") -> tuple[int, int]:
+    def _count_guided_availability(self, state: "GuidedTableState") -> tuple[int, int]:
         """Count guided bots waiting vs unavailable for a rule."""
         waiting = 0
         unavailable = 0
@@ -958,7 +958,7 @@ class VirtualBotManager:
         return waiting, unavailable
 
     def _describe_guided_table(
-        self, state: "GuidedTableRuleState"
+        self, state: "GuidedTableState"
     ) -> tuple[str, str | None, int, int]:
         """Describe the guided table link and player counts."""
         if not state.table_id:

@@ -33,6 +33,7 @@ from .trading import create_offer, announce_offer, check_and_execute_trades
 
 if TYPE_CHECKING:
     from .game import AgeOfHeroesGame, AgeOfHeroesPlayer
+    from .state import TribeState
 
 
 def bot_think(game: AgeOfHeroesGame, player: AgeOfHeroesPlayer) -> str | None:

@@ -28,6 +28,7 @@ from .rules import (
 )
 from .state import (
     SorryGameState,
+    SorryPawnState,
     SorryPlayerState,
     build_initial_game_state,
     discard_current_card,

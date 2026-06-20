@@ -36,9 +36,10 @@ from .documents.browsing import DocumentBrowsingMixin, _DOCUMENTS_DIR
 from .documents.transcriber_role import TranscriberRoleMixin
 from .virtual_bots import VirtualBotManager
 from ..network.websocket_server import WebSocketServer, ClientConnection
-from ..persistence.database import Database
+from ..persistence.database import Database, UserRecord
 from ..auth.auth import AuthManager, AuthResult
 from .tables.manager import TableManager
+from .tables.table import Table
 from .users.network_user import NetworkUser
 from .users.base import MenuItem, EscapeBehavior, TrustLevel
 from .users.preferences import UserPreferences, DiceKeepingStyle, PREF_CATEGORIES, PrefMeta
@@ -1133,7 +1134,7 @@ class Server(AdministrationMixin, DocumentBrowsingMixin, TranscriberRoleMixin):
         if not self._restore_login_table(user, username):
             self._show_main_menu(user)
 
-    def _load_user_preferences(self, user_record: "AuthUserRecord") -> UserPreferences:
+    def _load_user_preferences(self, user_record: "UserRecord") -> UserPreferences:
         """Load stored preferences, falling back to defaults."""
         if user_record.preferences_json:
             try:
@@ -1150,7 +1151,7 @@ class Server(AdministrationMixin, DocumentBrowsingMixin, TranscriberRoleMixin):
         self,
         client: ClientConnection,
         username: str,
-        user_record: "AuthUserRecord",
+        user_record: "UserRecord",
         preferences: UserPreferences,
     ) -> tuple[NetworkUser, bool]:
         """Attach a connection to an existing user or create a new one."""
