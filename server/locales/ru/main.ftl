@@ -35,8 +35,6 @@ whose-turn = Чей ход
 whos-at-table = Кто за столом
 check-scores = Проверить счёт
 check-scores-detailed = Подробный счёт
-check-game-options = Проверить настройки игры
-no-game-options = Нет настроек игры.
 
 # Turn messages
 game-player-skipped = { $player } пропускает ход.
@@ -183,6 +181,7 @@ game-points = { $count } { $count ->
     [few] очка
    *[other] очков
 }
+status-box-closed = Закрыто.
 play = Играть
 
 # Leaderboards
@@ -419,4 +418,13 @@ virtual-bots-profiles-empty = Профили не определены.
 virtual-bots-profiles-line = { $profile } (ботов: { $bot_count }) переопределения: { $overrides }.
 virtual-bots-profiles-no-overrides = наследует базовую конфигурацию
 
+chatroom-table-topic-action = Тема стола
+chatroom-topic-prompt = Введите тему стола (или оставьте пустым, чтобы очистить):
+chatroom-topic-set = { $player } установил тему: { $topic }
+chatroom-topic-cleared = { $player } очистил тему.
+chatroom-topic = Тема: { $topic }
+chatroom-no-topic = Тема не установлена.
+table-topic-label = Тема: { $topic }
+
 localization-in-progress-try-again = Локализация ещё загружается. Пожалуйста, попробуйте снова через минуту.
+action-player-not-found = Player not found.

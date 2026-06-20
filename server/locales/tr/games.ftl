@@ -3,6 +3,8 @@
 
 # Oyun adları
 game-name-ninetynine = Ninety Nine
+game-name-chatroom = Chat Room
+game-name-twentyone = 21 (Survival Rules)
 
 # Raund ve tur akışı
 game-round-start = Raund { $round }.
@@ -39,6 +41,7 @@ option-on = açık
 option-off = kapalı
 
 # Durum kutusu
+status-box-closed = Durum bilgisi kapatıldı.
 
 # Oyun sonu
 game-leave = Oyundan ayrıl

@@ -25,6 +25,9 @@ milebymile-option-changed-reshuffle = Premešaj zavržen kup { $enabled }.
 milebymile-option-changed-karma = Pravilo karme { $enabled }.
 milebymile-option-changed-rig = Manipulacija kupčka nastavljena na { $rig }.
 
+milebymile-toggle-always-discard = Always allow discarding: { $enabled }
+milebymile-option-changed-always-discard = Always allow discarding { $enabled }.
+
 # Status
 milebymile-status = { $name }: { $points } točk, { $miles } milj, Težave: { $problems }, Zaščite: { $safeties }
 

@@ -24,6 +24,9 @@ milebymile-option-changed-reshuffle = إعادة خلط كومة الإلقاء 
 milebymile-option-changed-karma = قاعدة الكارما { $enabled }.
 milebymile-option-changed-rig = تم تعيين تزوير المجموعة إلى { $rig }.
 
+milebymile-toggle-always-discard = Always allow discarding: { $enabled }
+milebymile-option-changed-always-discard = Always allow discarding { $enabled }.
+
 # Status
 milebymile-status = { $name }: { $points } نقطة، { $miles } ميل، مشاكل: { $problems }، سلامات: { $safeties }
 

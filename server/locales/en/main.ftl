@@ -38,8 +38,6 @@ whose-turn = Whose turn
 whos-at-table = Who's at the table
 check-scores = Check scores
 check-scores-detailed = Detailed scores
-check-game-options = Check Game Options
-no-game-options = No Game Options
 
 # Turn messages
 game-player-skipped = { $player } is skipped.
@@ -179,7 +177,6 @@ table-saved-destroying = Table saved! Returning to main menu.
 game-type-not-found = Game type no longer exists.
 
 # Action disabled reasons
-action-player-not-found = Player not found.
 action-not-your-turn = It's not your turn.
 action-not-playing = The game hasn't started.
 action-spectator = Spectators cannot do this.
@@ -190,6 +187,8 @@ action-table-full = The table is full.
 action-no-bots = There are no bots to remove.
 action-bots-cannot = Bots cannot do this.
 action-no-scores = No scores available yet.
+action-must-be-at-table = You must be at a table to view rules.
+action-player-not-found = Player not found.
 
 # Dice actions
 dice-not-rolled = You haven't rolled yet.
@@ -211,6 +210,7 @@ game-points = { $count } { $count ->
     [one] point
    *[other] points
 }
+status-box-closed = Closed.
 play = Play
 
 # Leaderboards
@@ -348,14 +348,6 @@ account-action-empty-reason = No reason given.
 # Admin notifications for account requests
 account-request = account request
 account-action = account action taken
-
-# Password recovery
-reset-user-password = Reset User Password
-no-users-to-reset-password = No users available for password reset.
-reset-user-password-prompt = Enter a new temporary password for { $player } (or press Escape to cancel):
-reset-user-password-done = { $player }'s password has been reset.
-reset-user-password-unavailable = { $player } is not available for password reset.
-your-password-was-reset = Your password was reset by an administrator. Please log in with the new password.
 
 # Admin promotion/demotion
 promote-admin = Promote Admin
@@ -576,6 +568,15 @@ transcribers-remove-all-confirm = Remove all transcriber assignments from { $use
 transcribers-removed-all = Removed all transcriber assignments from { $user }.
 
 localization-in-progress-try-again = Localization in progress. Please try again in a minute.
+
+# Chat room
+chatroom-table-topic-action = Table topic
+chatroom-topic-prompt = Enter the table topic (or leave blank to clear):
+chatroom-topic-set = { $player } set the topic: { $topic }
+chatroom-topic-cleared = { $player } cleared the topic.
+chatroom-topic = Topic: { $topic }
+chatroom-no-topic = No topic has been set.
+table-topic-label = Topic: { $topic }
 
 # Errors
 internal-error = Something went wrong. Please try again.

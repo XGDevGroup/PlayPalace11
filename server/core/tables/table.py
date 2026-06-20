@@ -42,6 +42,7 @@ class Table(DataClassJSONMixin):
     members: list[TableMember] = field(default_factory=list)
     game_json: str | None = None  # Serialized game state
     status: str = GameStatus.WAITING
+    topic: str = ""  # Table topic (set by host, shown in listings)
 
     # Not serialized
     _game: "Game | None" = field(default=None, repr=False)
@@ -102,6 +103,10 @@ class Table(DataClassJSONMixin):
     def attach_user(self, username: str, user: "User") -> None:
         """Attach a user to a member (e.g., after deserialization)."""
         self._users[username] = user
+
+    def get_documents(self) -> Any:
+        """Get the server's document manager."""
+        return self._server._documents
 
     def get_players(self) -> list[TableMember]:
         """Get all non-spectator members."""

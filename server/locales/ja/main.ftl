@@ -35,8 +35,6 @@ whose-turn = 誰のターン
 whos-at-table = テーブルにいる人
 check-scores = スコアを確認
 check-scores-detailed = 詳細スコア
-check-game-options = ゲームオプションを確認
-no-game-options = ゲームオプションはありません。
 
 # ターンメッセージ
 game-player-skipped = { $player }はスキップされました。
@@ -155,6 +153,7 @@ game-leave = 退出
 game-over = ゲームオーバー
 game-final-scores = 最終スコア
 game-points = { $count }点
+status-box-closed = 閉じられました。
 play = プレイ
 
 # リーダーボード
@@ -367,4 +366,13 @@ virtual-bots-profiles-empty = プロファイルは定義されていません�
 virtual-bots-profiles-line = { $profile }({ $bot_count }個のボット)オーバーライド: { $overrides }。
 virtual-bots-profiles-no-overrides = ベース設定を継承
 
+chatroom-table-topic-action = テーブルのトピック
+chatroom-topic-prompt = テーブルのトピックを入力してください（空欄でクリア）：
+chatroom-topic-set = { $player } がトピックを設定しました：{ $topic }
+chatroom-topic-cleared = { $player } がトピックをクリアしました。
+chatroom-topic = トピック：{ $topic }
+chatroom-no-topic = トピックは設定されていません。
+table-topic-label = トピック：{ $topic }
+
 localization-in-progress-try-again = ローカライズ処理中です。1分後にもう一度お試しください。
+action-player-not-found = Player not found.

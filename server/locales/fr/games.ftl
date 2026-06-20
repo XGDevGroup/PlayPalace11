@@ -3,6 +3,8 @@
 
 # Noms de jeux
 game-name-ninetynine = Quatre-vingt-dix-neuf
+game-name-chatroom = Chat Room
+game-name-twentyone = 21 (Survival Rules)
 
 # Flux de manche et de tour
 game-round-start = Manche { $round }.
@@ -39,6 +41,7 @@ option-on = activé
 option-off = désactivé
 
 # Boîte de statut
+status-box-closed = Informations de statut fermées.
 
 # Fin de jeu
 game-leave = Quitter le jeu

@@ -35,8 +35,6 @@ whose-turn = Kimin turu
 whos-at-table = Masada kim var
 check-scores = Skorları kontrol et
 check-scores-detailed = Detaylı skorlar
-check-game-options = Oyun seçeneklerini kontrol et
-no-game-options = Oyun seçeneği yok.
 
 # Tur mesajları
 game-player-skipped = { $player } atlanıyor.
@@ -158,6 +156,7 @@ game-points = { $count } { $count ->
     [one] puan
    *[other] puan
 }
+status-box-closed = Kapatıldı.
 play = Oyna
 
 # Lider tabloları
@@ -379,4 +378,13 @@ virtual-bots-profiles-empty = Profil tanımlanmamış.
 virtual-bots-profiles-line = { $profile } ({ $bot_count } bot) geçersiz kılmalar: { $overrides }.
 virtual-bots-profiles-no-overrides = temel yapılandırmayı miras alır
 
+chatroom-table-topic-action = Masa konusu
+chatroom-topic-prompt = Masa konusunu girin (veya temizlemek için boş bırakın):
+chatroom-topic-set = { $player } konuyu belirledi: { $topic }
+chatroom-topic-cleared = { $player } konuyu temizledi.
+chatroom-topic = Konu: { $topic }
+chatroom-no-topic = Henüz bir konu belirlenmedi.
+table-topic-label = Konu: { $topic }
+
 localization-in-progress-try-again = Yerelleştirme sürüyor. Lütfen bir dakika sonra tekrar deneyin.
+action-player-not-found = Player not found.

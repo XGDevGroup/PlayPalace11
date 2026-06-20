@@ -33,8 +33,6 @@ whose-turn = De quem é a vez
 whos-at-table = Quem está na mesa
 check-scores = Ver pontuação
 check-scores-detailed = Pontuação detalhada
-check-game-options = Ver opções do jogo
-no-game-options = Nenhuma opção de jogo disponível.
 
 # Mensagens de mesa
 table-created = { $host } criou uma nova mesa de { $game }.
@@ -320,4 +318,13 @@ virtual-bots-profiles-empty = No profiles are defined.
 virtual-bots-profiles-line = { $profile } ({ $bot_count } bots) overrides: { $overrides }.
 virtual-bots-profiles-no-overrides = inherits base configuration
 
+chatroom-table-topic-action = Tópico da mesa
+chatroom-topic-prompt = Digite o tópico da mesa (ou deixe em branco para limpar):
+chatroom-topic-set = { $player } definiu o tópico: { $topic }
+chatroom-topic-cleared = { $player } limpou o tópico.
+chatroom-topic = Tópico: { $topic }
+chatroom-no-topic = Nenhum tópico foi definido.
+table-topic-label = Tópico: { $topic }
+
 localization-in-progress-try-again = A localização está em andamento. Tente novamente em um minuto.
+action-player-not-found = Player not found.

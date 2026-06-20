@@ -83,6 +83,7 @@ class Action(DataClassJSONMixin):
     include_spectators: bool = False  # Whether spectators can see/execute this action
     disabled_message: str = ""  # Locale key spoken when activated while disabled
     show_disabled_label: bool = True  # Append "unavailable" suffix when disabled but visible
+    skip_menu_rebuild: bool = False  # If True, executing via keybind won't trigger a menu rebuild
 
 
 @dataclass

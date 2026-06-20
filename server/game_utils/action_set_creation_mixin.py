@@ -102,9 +102,19 @@ class ActionSetCreationMixin:
                 id="show_actions",
                 label=Localization.get(locale, "actions-menu"),
                 handler="_action_show_actions_menu",
-                is_enabled="_is_show_actions_enabled",
+                is_enabled="_is_always_enabled",
                 is_hidden="_is_always_hidden",
                 show_in_actions_menu=False,
+            )
+        )
+        action_set.add(
+            Action(
+                id="show_rules",
+                label=Localization.get(locale, "show-rules"),
+                handler="_action_show_rules",
+                is_enabled="_is_always_enabled",
+                is_hidden="_is_always_hidden",
+                show_in_actions_menu=True,
             )
         )
         action_set.add(
@@ -143,6 +153,7 @@ class ActionSetCreationMixin:
                 handler="_action_check_scores",
                 is_enabled="_is_check_scores_enabled",
                 is_hidden="_is_check_scores_hidden",
+                skip_menu_rebuild=True,
             )
         )
         action_set.add(
@@ -152,6 +163,7 @@ class ActionSetCreationMixin:
                 handler="_action_check_scores_detailed",
                 is_enabled="_is_check_scores_detailed_enabled",
                 is_hidden="_is_check_scores_detailed_hidden",
+                skip_menu_rebuild=True,
             )
         )
         action_set.add(
@@ -177,7 +189,7 @@ class ActionSetCreationMixin:
                 id="leave_game",
                 label=Localization.get(locale, "leave-table"),
                 handler="_action_leave_game",
-                is_enabled="_is_leave_game_enabled",
+                is_enabled="_is_always_enabled",
                 is_hidden="_is_leave_game_hidden",
             )
         )
@@ -223,6 +235,13 @@ class ActionSetCreationMixin:
             include_spectators=True,
         )
         # Standard keybinds
+        self.define_keybind(
+            "f1",
+            "Show rules",
+            ["show_rules"],
+            state=KeybindState.ALWAYS,
+            include_spectators=True,
+        )
         self.define_keybind(
             "escape",
             "Actions menu",

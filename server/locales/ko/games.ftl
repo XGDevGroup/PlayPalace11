@@ -3,6 +3,8 @@
 
 # Game names
 game-name-ninetynine = 나인티 나인
+game-name-chatroom = Chat Room
+game-name-twentyone = 21 (Survival Rules)
 
 # Round and turn flow
 game-round-start = 라운드 { $round }.
@@ -39,6 +41,7 @@ option-on = 켜짐
 option-off = 꺼짐
 
 # Status box
+status-box-closed = 상태 정보가 닫혔습니다.
 
 # Game end
 game-leave = 게임 나가기

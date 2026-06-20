@@ -35,8 +35,6 @@ whose-turn = Ngubani oshintshayo
 whos-at-table = Ngubani osethafeni
 check-scores = Bheka amaphuzu
 check-scores-detailed = Amaphuzu anemininingwane
-check-game-options = Bheka izinketho zomdlalo
-no-game-options = Azikho izinketho zomdlalo.
 
 # Turn messages
 game-player-skipped = U-{ $player } uyeqiwa.
@@ -158,6 +156,7 @@ game-points = { $count } { $count ->
     [one] iphuzu
    *[other] amaphuzu
 }
+status-box-closed = Kuvalwe.
 play = Dlala
 
 # Leaderboards
@@ -379,4 +378,13 @@ virtual-bots-profiles-empty = Akukho maphrofayili achazwe.
 virtual-bots-profiles-line = { $profile } (ama-bots angu-{ $bot_count }) kweqiwe: { $overrides }.
 virtual-bots-profiles-no-overrides = idla ifa ukucushwa okuyisisekelo
 
+chatroom-table-topic-action = Isihloko setafula
+chatroom-topic-prompt = Faka isihloko setafula (noma shiya kungenalutho ukuze usule):
+chatroom-topic-set = { $player } umise isihloko: { $topic }
+chatroom-topic-cleared = { $player } usulile isihloko.
+chatroom-topic = Isihloko: { $topic }
+chatroom-no-topic = Asikho isihloko esimisiwe.
+table-topic-label = Isihloko: { $topic }
+
 localization-in-progress-try-again = Ukuhumusha kusaqhubeka. Sicela uzame futhi emzuzwini.
+action-player-not-found = Player not found.

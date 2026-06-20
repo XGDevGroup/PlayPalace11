@@ -33,8 +33,6 @@ whose-turn = 轮到谁
 whos-at-table = 桌上都有谁
 check-scores = 查看分数
 check-scores-detailed = 详细分数
-check-game-options = 查看游戏选项
-no-game-options = 没有游戏选项。
 
 # 桌台消息
 table-created = { $host } 创建了一个新的 { $game } 桌台。
@@ -310,4 +308,13 @@ virtual-bots-profiles-empty = No profiles are defined.
 virtual-bots-profiles-line = { $profile } ({ $bot_count } bots) overrides: { $overrides }.
 virtual-bots-profiles-no-overrides = inherits base configuration
 
+chatroom-table-topic-action = (Chinese) Table topic
+chatroom-topic-prompt = (Chinese) Enter the table topic (or leave blank to clear):
+chatroom-topic-set = (Chinese) { $player } set the topic: { $topic }
+chatroom-topic-cleared = (Chinese) { $player } cleared the topic.
+chatroom-topic = (Chinese) Topic: { $topic }
+chatroom-no-topic = (Chinese) No topic has been set.
+table-topic-label = (Chinese) Topic: { $topic }
+
 localization-in-progress-try-again = 本地化正在进行中。请在一分钟后重试。
+action-player-not-found = Player not found.

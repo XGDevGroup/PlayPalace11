@@ -25,6 +25,9 @@ milebymile-option-changed-reshuffle = Dobópakli újrakeverése { $enabled }.
 milebymile-option-changed-karma = Karma szabály { $enabled }.
 milebymile-option-changed-rig = Pakli manipuláció beállítva: { $rig }.
 
+milebymile-toggle-always-discard = Always allow discarding: { $enabled }
+milebymile-option-changed-always-discard = Always allow discarding { $enabled }.
+
 # Status
 milebymile-status = { $name }: { $points } pont, { $miles } mérföld, Problémák: { $problems }, Védelem: { $safeties }
 

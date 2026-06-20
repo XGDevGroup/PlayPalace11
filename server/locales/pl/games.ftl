@@ -4,6 +4,8 @@
 # Game names
 game-name-ninetynine = Ninety Nine
 game-name-humanitycards = Karty przeciwko ludzkości
+game-name-chatroom = Chat Room
+game-name-twentyone = 21 (Survival Rules)
 
 # Game categories (shared)
 category-party-games = Gry imprezowe
@@ -64,6 +66,7 @@ option-deselected-count = Wybrano { $count } { $count ->
 }.
 
 # Status box
+status-box-closed = Informacja o statusie zamknięta.
 
 # Game end
 game-leave = Opuść grę

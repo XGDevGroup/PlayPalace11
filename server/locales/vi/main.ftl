@@ -35,8 +35,6 @@ whose-turn = Đến lượt ai?
 whos-at-table = Ai đang ở trong bàn
 check-scores = Xem điểm
 check-scores-detailed = Chi tiết điểm số
-check-game-options = Xem tùy chọn trò chơi
-no-game-options = Không có tùy chọn trò chơi.
 
 # Thông báo lượt
 game-player-skipped = { $player } bị bỏ qua.
@@ -158,6 +156,7 @@ game-points = { $count } { $count ->
     [one] điểm
    *[other] điểm
 }
+status-box-closed = Đã đóng.
 play = Chơi
 
 # Bảng xếp hạng
@@ -379,4 +378,13 @@ virtual-bots-profiles-empty = Chưa định nghĩa hồ sơ nào.
 virtual-bots-profiles-line = { $profile } ({ $bot_count } bots) ghi đè: { $overrides }.
 virtual-bots-profiles-no-overrides = kế thừa cấu hình gốc
 
+chatroom-table-topic-action = Chủ đề bàn
+chatroom-topic-prompt = Nhập chủ đề bàn (hoặc để trống để xóa):
+chatroom-topic-set = { $player } đã đặt chủ đề: { $topic }
+chatroom-topic-cleared = { $player } đã xóa chủ đề.
+chatroom-topic = Chủ đề: { $topic }
+chatroom-no-topic = Chưa có chủ đề nào được đặt.
+table-topic-label = Chủ đề: { $topic }
+
 localization-in-progress-try-again = Bản địa hóa đang được xử lý. Vui lòng thử lại sau một phút.
+action-player-not-found = Player not found.

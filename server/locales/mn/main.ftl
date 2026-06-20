@@ -35,8 +35,6 @@ whose-turn = Хэний ээлж
 whos-at-table = Ширээнд хэн байна
 check-scores = Оноо шалгах
 check-scores-detailed = Дэлгэрэнгүй оноо
-check-game-options = Тоглоомын тохиргоог шалгах
-no-game-options = Тоглоомын тохиргоо алга.
 
 # Turn messages
 game-player-skipped = { $player } алгасав.
@@ -158,6 +156,7 @@ game-points = { $count } { $count ->
     [one] оноо
    *[other] оноо
 }
+status-box-closed = Хаагдсан.
 play = Тоглох
 
 # Leaderboards
@@ -379,4 +378,13 @@ virtual-bots-profiles-empty = Профайл тодорхойлоогүй бай
 virtual-bots-profiles-line = { $profile } ({ $bot_count } бот) дарж бичих: { $overrides }.
 virtual-bots-profiles-no-overrides = үндсэн тохиргооноос өвлөнө
 
+chatroom-table-topic-action = Хүснэгтийн сэдэв
+chatroom-topic-prompt = Хүснэгтийн сэдвээ оруулна уу (арилгахыг хүсвэл хоосон орхино уу):
+chatroom-topic-set = { $player } сэдвийг тогтоосон: { $topic }
+chatroom-topic-cleared = { $player } сэдвийг арилгасан.
+chatroom-topic = Сэдэв: { $topic }
+chatroom-no-topic = Сэдэв тогтоогдоогүй байна.
+table-topic-label = Сэдэв: { $topic }
+
 localization-in-progress-try-again = Нутагшуулалт хийгдэж байна. Нэг минутын дараа дахин оролдоно уу.
+action-player-not-found = Player not found.

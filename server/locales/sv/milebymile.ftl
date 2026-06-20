@@ -25,6 +25,9 @@ milebymile-option-changed-reshuffle = Blanda om slänga-högen { $enabled }.
 milebymile-option-changed-karma = Karmaregel { $enabled }.
 milebymile-option-changed-rig = Kortleksriggning inställd på { $rig }.
 
+milebymile-toggle-always-discard = Always allow discarding: { $enabled }
+milebymile-option-changed-always-discard = Always allow discarding { $enabled }.
+
 # Status
 milebymile-status = { $name }: { $points } poäng, { $miles } miles, Problem: { $problems }, Säkerheter: { $safeties }
 

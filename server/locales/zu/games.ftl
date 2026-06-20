@@ -3,6 +3,8 @@
 
 # Game names
 game-name-ninetynine = Ninety Nine
+game-name-chatroom = Chat Room
+game-name-twentyone = 21 (Survival Rules)
 
 # Round and turn flow
 game-round-start = Umjikelezo { $round }.
@@ -39,6 +41,7 @@ option-on = ivuliwe
 option-off = ivaliwe
 
 # Status box
+status-box-closed = Ulwazi lwesimo luvalwe.
 
 # Game end
 game-leave = Shiya umdlalo

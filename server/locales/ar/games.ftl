@@ -2,6 +2,8 @@
 
 # Game names
 game-name-ninetynine = تسعة وتسعون
+game-name-chatroom = Chat Room
+game-name-twentyone = 21 (Survival Rules)
 
 # Round and turn flow
 game-round-start = الجولة { $round }.
@@ -38,6 +40,7 @@ option-on = مفعل
 option-off = معطل
 
 # Status box
+status-box-closed = تم إغلاق معلومات الحالة.
 
 # Game end
 game-leave = غادر اللعبة

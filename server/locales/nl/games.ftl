@@ -3,6 +3,8 @@
 
 # Game names
 game-name-ninetynine = Ninety Nine
+game-name-chatroom = Chat Room
+game-name-twentyone = 21 (Survival Rules)
 
 # Round and turn flow
 game-round-start = Ronde { $round }.
@@ -39,6 +41,7 @@ option-on = aan
 option-off = uit
 
 # Status box
+status-box-closed = Statusinformatie gesloten.
 
 # Game end
 game-leave = Verlaat spel

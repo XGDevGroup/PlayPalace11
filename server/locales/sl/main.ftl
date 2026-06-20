@@ -35,8 +35,6 @@ whose-turn = Čigava poteza
 whos-at-table = Kdo je pri mizi
 check-scores = Preveri rezultate
 check-scores-detailed = Podrobni rezultati
-check-game-options = Preveri možnosti igre
-no-game-options = Ni možnosti igre.
 
 # Turn messages
 game-player-skipped = { $player } je preskočen.
@@ -158,6 +156,7 @@ game-points = { $count } { $count ->
     [one] točka
    *[other] točk
 }
+status-box-closed = Zaprto.
 play = Igraj
 
 # Leaderboards
@@ -379,4 +378,13 @@ virtual-bots-profiles-empty = Ni definiranih profilov.
 virtual-bots-profiles-line = { $profile } ({ $bot_count } botov) prepiše: { $overrides }.
 virtual-bots-profiles-no-overrides = podeduje osnovno konfiguracijo
 
+chatroom-table-topic-action = Tema mize
+chatroom-topic-prompt = Vnesite temo mize (ali pustite prazno za brisanje):
+chatroom-topic-set = { $player } je nastavil temo: { $topic }
+chatroom-topic-cleared = { $player } je počistil temo.
+chatroom-topic = Tema: { $topic }
+chatroom-no-topic = Nobena tema ni bila nastavljena.
+table-topic-label = Tema: { $topic }
+
 localization-in-progress-try-again = Lokalizacija je v teku. Poskusite znova čez minuto.
+action-player-not-found = Player not found.

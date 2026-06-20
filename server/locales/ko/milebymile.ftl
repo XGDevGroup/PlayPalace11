@@ -25,6 +25,9 @@ milebymile-option-changed-reshuffle = 버린 카드 더미 재섞기 { $enabled 
 milebymile-option-changed-karma = 카르마 규칙 { $enabled }.
 milebymile-option-changed-rig = 덱 조작이 { $rig }(으)로 설정되었습니다.
 
+milebymile-toggle-always-discard = Always allow discarding: { $enabled }
+milebymile-option-changed-always-discard = Always allow discarding { $enabled }.
+
 # Status
 milebymile-status = { $name }: { $points }점, { $miles }마일, 문제: { $problems }, 안전: { $safeties }
 

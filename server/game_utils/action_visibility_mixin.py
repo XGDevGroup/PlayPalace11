@@ -109,10 +109,6 @@ class ActionVisibilityMixin:
             return Localization.get(locale, "play")
         return Localization.get(locale, "spectate")
 
-    def _is_leave_game_enabled(self, player: "Player") -> str | None:
-        """Leave game is always enabled."""
-        return None
-
     def _is_leave_game_hidden(self, player: "Player") -> Visibility:
         """Leave game is always hidden (F5/keybind only)."""
         return Visibility.HIDDEN
@@ -157,15 +153,15 @@ class ActionVisibilityMixin:
 
     # --- Standard actions ---
 
-    def _is_show_actions_enabled(self, player: "Player") -> str | None:
-        """Show actions menu is always enabled."""
-        return None
-
     def _is_show_actions_hidden(self, player: "Player") -> Visibility:
         """Show actions is hidden for players but visible to spectators."""
         if player.is_spectator:
             return Visibility.VISIBLE
         return Visibility.HIDDEN
+
+    def _is_always_enabled(self, player: "Player") -> str | None:
+        """Always enable an action."""
+        return None
 
     def _is_always_hidden(self, player: "Player") -> Visibility:
         """Always hide an action from menus (keybind only)."""

@@ -25,6 +25,9 @@ milebymile-option-changed-reshuffle = Перемешивание стопки с
 milebymile-option-changed-karma = Правило кармы: { $enabled }.
 milebymile-option-changed-rig = Подтасовка колоды: { $rig }.
 
+milebymile-toggle-always-discard = Always allow discarding: { $enabled }
+milebymile-option-changed-always-discard = Always allow discarding { $enabled }.
+
 # Status
 milebymile-status = { $name }: { $points } очков, { $miles } миль. Проблемы: { $problems }, защиты: { $safeties }
 

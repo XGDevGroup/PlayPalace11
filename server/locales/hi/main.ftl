@@ -35,8 +35,6 @@ whose-turn = किसकी बारी है
 whos-at-table = टेबल पर कौन है
 check-scores = स्कोर देखें
 check-scores-detailed = विस्तृत स्कोर
-check-game-options = खेल विकल्प देखें
-no-game-options = कोई खेल विकल्प उपलब्ध नहीं है।
 
 # Turn messages
 game-player-skipped = { $player } को छोड़ दिया गया है।
@@ -158,6 +156,7 @@ game-points = { $count } { $count ->
     [one] अंक
    *[other] अंक
 }
+status-box-closed = बंद।
 play = खेलें
 
 # Leaderboards
@@ -379,4 +378,13 @@ virtual-bots-profiles-empty = कोई प्रोफाइल परिभा
 virtual-bots-profiles-line = { $profile } ({ $bot_count } बॉट) ओवरराइड: { $overrides }।
 virtual-bots-profiles-no-overrides = आधार कॉन्फ़िगरेशन विरासत में मिलता है
 
+chatroom-table-topic-action = (Hindi) Table topic
+chatroom-topic-prompt = (Hindi) Enter the table topic (or leave blank to clear):
+chatroom-topic-set = (Hindi) { $player } set the topic: { $topic }
+chatroom-topic-cleared = (Hindi) { $player } cleared the topic.
+chatroom-topic = (Hindi) Topic: { $topic }
+chatroom-no-topic = (Hindi) No topic has been set.
+table-topic-label = (Hindi) Topic: { $topic }
+
 localization-in-progress-try-again = स्थानीयकरण जारी है। कृपया एक मिनट बाद फिर प्रयास करें।
+action-player-not-found = Player not found.

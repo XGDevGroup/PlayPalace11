@@ -25,6 +25,9 @@ milebymile-option-changed-reshuffle = Promiješaj odbačene karte { $enabled }.
 milebymile-option-changed-karma = Pravilo karme { $enabled }.
 milebymile-option-changed-rig = Namještanje špila postavljeno na { $rig }.
 
+milebymile-toggle-always-discard = Always allow discarding: { $enabled }
+milebymile-option-changed-always-discard = Always allow discarding { $enabled }.
+
 # Status
 milebymile-status = { $name }: { $points } bodova, { $miles } milja, Problemi: { $problems }, Sigurnosti: { $safeties }
 

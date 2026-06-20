@@ -22,6 +22,15 @@ hc-option-changed-num-judges = Broj sudija podešen na { $count }.
 
 hc-czar-rotating = Rotirajući
 hc-czar-random = Nasumičan
+
+hc-set-judging-method = Judging method: { $mode }
+hc-select-judging-method = Select judging method
+hc-option-changed-judging-method = Judging method set to { $mode }.
+hc-desc-judging-method = How multiple Card Czars choose winners.
+hc-judging-method-independent = Independent
+hc-judging-method-jury = Jury
+hc-judging-method-random = Random
+
 hc-czar-winner = Poslednji pobednik
 
 # Game flow
@@ -30,10 +39,10 @@ hc-dealing-cards = Deljenje { $count } karata svakom igraču.
 hc-round-start = Runda { $round }.
 
 # Judge announcement
-hc-judge-is = { $count ->
-    [one] { $names } je sudija.
-   *[other] { $names } su sudije.
-}
+hc-judge-is = { $names } { $count ->
+    [one] is the Card Czar
+   *[other] are the Card Czars
+}.
 hc-you-are-judge = Vi ste sudija u ovoj rundi.
 hc-you-are-not-judge = Niste sudija u ovoj rundi.
 
@@ -68,10 +77,10 @@ hc-select-winner-prompt = Izaberite pobednički predlog
 hc-submission-option = { $text }
 
 # Results
-hc-winner-announcement = { $player } dobija { $points } { $points ->
-    [one] poen
-   *[other] poena
-} za { $text }.
+hc-winner-announcement = { $player } gets { $points } { $points ->
+    [one] point
+   *[other] points
+} for { $text }.
 hc-winner-card = Pobednički odgovor: { $text }
 hc-round-scores = Rezultat nakon runde { $round }:
 hc-score-line = { $player }: { $score } { $score ->
@@ -106,6 +115,6 @@ hc-no-scores = Još uvek nema rezultata.
 
 # Whose turn / whose judge
 hc-whose-judge = Ko je sudija
-hc-waiting-for = Čeka se da { $names } odigraju.
-hc-all-submitted-waiting-judge = Svi igrači su poslali svoje predloge. Čeka se da { $judge } presudi.
-hc-waiting-for-judges = Čeka se da { $names } presude.
+hc-waiting-for = Čeka se da { $names } igraju.
+hc-all-submitted-waiting-judge = Svi igrači su poslali svoje predloge. Čeka se da { $judge } sudi.
+hc-waiting-for-judges = Waiting for { $names } to judge.

@@ -3,6 +3,8 @@
 
 # 游戏名称
 game-name-ninetynine = 九十九
+game-name-chatroom = Chat Room
+game-name-twentyone = 21 (Survival Rules)
 
 # 回合和轮次流程
 game-round-start = 第 { $round } 回合。
@@ -39,6 +41,7 @@ option-on = 开启
 option-off = 关闭
 
 # 状态框
+status-box-closed = 状态信息已关闭。
 
 # 游戏结束
 game-leave = 离开游戏

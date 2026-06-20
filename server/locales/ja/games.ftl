@@ -3,6 +3,8 @@
 
 # ゲーム名
 game-name-ninetynine = Ninety Nine
+game-name-chatroom = Chat Room
+game-name-twentyone = 21 (Survival Rules)
 
 # ラウンドとターンの流れ
 game-round-start = ラウンド{ $round }。
@@ -39,6 +41,7 @@ option-on = オン
 option-off = オフ
 
 # ステータスボックス
+status-box-closed = ステータス情報が閉じられました。
 
 # ゲーム終了
 game-leave = ゲームを退出

@@ -3,6 +3,8 @@
 
 # Game names
 game-name-ninetynine = Nittionio
+game-name-chatroom = Chat Room
+game-name-twentyone = 21 (Survival Rules)
 
 # Round and turn flow
 game-round-start = Omgång { $round }.
@@ -39,6 +41,7 @@ option-on = på
 option-off = av
 
 # Status box
+status-box-closed = Statusinformation stängd.
 
 # Game end
 game-leave = Lämna spelet

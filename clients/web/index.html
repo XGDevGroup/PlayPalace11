@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>PlayPalace Web Client</title>
     <link rel="stylesheet" href="./styles.css" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self' ws: wss:; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'"
+    />
   </head>
   <body>
     <main>
@@ -35,7 +39,23 @@
       </section>
 
       <section id="game-shell" class="grid" hidden>
-        <section class="panel">
+        <section class="panel history-panel">
+          <div class="history-header">
+            <h2><button id="history-toggle" class="history-toggle-title" type="button" tabindex="-1" aria-expanded="true">History</button></h2>
+          </div>
+          <div id="history-content">
+            <textarea id="history" class="history" readonly tabindex="0" aria-label="History"></textarea>
+            <div
+              id="history-log"
+              class="history-log"
+              tabindex="0"
+              aria-label="History"
+              hidden
+            ></div>
+          </div>
+        </section>
+
+        <section class="panel game-panel">
           <div class="row">
             <h2>Game</h2>
             <button id="actions-btn" class="secondary actions-btn" type="button" tabindex="-1">Actions</button>
@@ -51,22 +71,8 @@
           </section>
         </section>
 
-        <section class="panel">
-          <div class="history-header">
-            <h2><button id="history-toggle" class="history-toggle-title" type="button" tabindex="-1" aria-expanded="true">History</button></h2>
-          </div>
-          <div id="history-content">
-            <textarea id="history" class="history" readonly tabindex="0" aria-label="History"></textarea>
-            <div
-              id="history-log"
-              class="history-log"
-              tabindex="0"
-              aria-label="History"
-              hidden
-            ></div>
-          </div>
-
-          <h2 style="margin-top: 10px;">Chat</h2>
+        <section class="panel chat-panel">
+          <h2>Chat</h2>
           <form id="chat-form" class="row" style="margin-top: 10px;">
             <label>
               Chat
@@ -156,46 +162,6 @@
       </footer>
     </main>
 
-    <script>
-      (() => {
-        const cacheBust = `cb=${Date.now()}`;
-
-        function loadScript(src, { type = "text/javascript", optional = false } = {}) {
-          return new Promise((resolve, reject) => {
-            const script = document.createElement("script");
-            if (type === "module") {
-              script.type = "module";
-            }
-            script.src = src;
-            script.onload = () => resolve();
-            script.onerror = () => {
-              if (optional) {
-                resolve();
-              } else {
-                reject(new Error(`Failed to load script: ${src}`));
-              }
-            };
-            document.body.appendChild(script);
-          });
-        }
-
-        (async () => {
-          await loadScript(`./version.js?${cacheBust}`, { optional: true });
-          await loadScript(`./config.sample.js?${cacheBust}`, { optional: true });
-          await loadScript(`./config.js?${cacheBust}`, { optional: true });
-          
-          await loadScript(`./libs/marked.min.js?${cacheBust}`, { optional: true });
-          await loadScript(`./libs/purify.min.js?${cacheBust}`, { optional: true });
-
-          const version = String(window.PLAYPALACE_WEB_VERSION || "2026.02.08.1").trim();
-          await loadScript(`./app.js?v=${encodeURIComponent(version)}&${cacheBust}`, {
-            type: "module",
-          });
-        })().catch((error) => {
-          // Keep failures visible for deployment debugging.
-          console.error(error);
-        });
-      })();
-    </script>
+    <script src="./bootstrap.js"></script>
   </body>
 </html>

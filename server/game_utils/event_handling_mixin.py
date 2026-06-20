@@ -121,9 +121,9 @@ class EventHandlingMixin:
             from_keybind=True,
         )
 
-        executed_any = self._execute_keybinds(player, keybinds, is_spectator, menu_item_id, context)
+        executed_any, wants_rebuild = self._execute_keybinds(player, keybinds, is_spectator, menu_item_id, context)
 
-        if self._should_rebuild_after_keybind(player, executed_any):
+        if wants_rebuild and self._should_rebuild_after_keybind(player, executed_any):
             self.rebuild_all_menus()
 
     def _handle_actions_menu_selection(self, player: "Player", action_id: str) -> None:
@@ -259,8 +259,13 @@ class EventHandlingMixin:
         is_spectator: bool,
         menu_item_id: str | None,
         context: "ActionContext",
-    ) -> bool:
+    ) -> tuple[bool, bool]:
+        """Execute matching keybinds and return (executed_any, wants_rebuild).
+
+        wants_rebuild is False only when every executed action has skip_menu_rebuild=True.
+        """
         executed_any = False
+        wants_rebuild = False
         for keybind in keybinds:
             if not keybind.can_player_use(self, player, is_spectator):
                 continue
@@ -273,6 +278,8 @@ class EventHandlingMixin:
                     if resolved.enabled:
                         self.execute_action(player, action_id, context=context)
                         executed_any = True
+                        if not getattr(action, "skip_menu_rebuild", False):
+                            wants_rebuild = True
                     elif action.disabled_message:
                         user = self.get_user(player)
                         if user:
@@ -282,7 +289,7 @@ class EventHandlingMixin:
                             user = self.get_user(player)
                             if user:
                                 user.speak_l(resolved.disabled_reason)
-        return executed_any
+        return executed_any, wants_rebuild
 
     def _should_rebuild_after_keybind(self, player: "Player", executed_any: bool) -> bool:
         return (

@@ -25,6 +25,9 @@ milebymile-option-changed-reshuffle = Xào lại bài đã bỏ { $enabled }.
 milebymile-option-changed-karma = Luật Nghiệp chướng { $enabled }.
 milebymile-option-changed-rig = Sắp xếp bộ bài đã đặt là { $rig }.
 
+milebymile-toggle-always-discard = Always allow discarding: { $enabled }
+milebymile-option-changed-always-discard = Always allow discarding { $enabled }.
+
 # Trạng thái
 milebymile-status = { $name }: { $points } điểm, { $miles } dặm, Sự cố: { $problems }, Bảo hộ: { $safeties }
 

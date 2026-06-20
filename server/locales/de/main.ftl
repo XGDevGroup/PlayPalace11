@@ -35,8 +35,6 @@ whose-turn = Wer ist am Zug
 whos-at-table = Wer ist am Tisch
 check-scores = Punktzahlen prüfen
 check-scores-detailed = Detaillierte Punktzahlen
-check-game-options = Spieloptionen prüfen
-no-game-options = Keine Spieloptionen verfügbar.
 
 # Zugnachrichten
 game-player-skipped = { $player } wird übersprungen.
@@ -158,6 +156,7 @@ game-points = { $count } { $count ->
     [one] Punkt
    *[other] Punkte
 }
+status-box-closed = Geschlossen.
 play = Spielen
 
 # Bestenlisten
@@ -379,4 +378,13 @@ virtual-bots-profiles-empty = Keine Profile definiert.
 virtual-bots-profiles-line = { $profile } ({ $bot_count } Bots) Überschreibungen: { $overrides }.
 virtual-bots-profiles-no-overrides = erbt Basiskonfiguration
 
+chatroom-table-topic-action = Tischthema
+chatroom-topic-prompt = Gib das Tischthema ein (oder leer lassen, um zu löschen):
+chatroom-topic-set = { $player } hat das Thema festgelegt: { $topic }
+chatroom-topic-cleared = { $player } hat das Thema gelöscht.
+chatroom-topic = Thema: { $topic }
+chatroom-no-topic = Es wurde kein Thema festgelegt.
+table-topic-label = Thema: { $topic }
+
 localization-in-progress-try-again = Die Lokalisierung wird noch geladen. Bitte versuchen Sie es in einer Minute erneut.
+action-player-not-found = Player not found.

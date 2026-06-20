@@ -3,6 +3,8 @@
 
 # Game names
 game-name-ninetynine = Девяносто девять
+game-name-chatroom = Chat Room
+game-name-twentyone = 21 (Survival Rules)
 
 # Round and turn flow
 game-round-start = Раунд { $round }.
@@ -70,6 +72,7 @@ option-max-selected = Можно выбрать не более { $count } { $co
 }.
 
 # Status box
+status-box-closed = Информационное окно закрыто.
 
 # Game end
 game-leave = Покинуть игру

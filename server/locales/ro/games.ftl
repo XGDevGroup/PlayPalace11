@@ -3,6 +3,8 @@
 
 # Game names
 game-name-ninetynine = Nouăzeci și nouă
+game-name-chatroom = Chat Room
+game-name-twentyone = 21 (Survival Rules)
 
 # Round and turn flow
 game-round-start = Runda { $round }.
@@ -39,6 +41,7 @@ option-on = activat
 option-off = dezactivat
 
 # Status box
+status-box-closed = Informații despre stare închise.
 
 # Game end
 game-leave = Părăsește jocul

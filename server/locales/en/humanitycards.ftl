@@ -15,14 +15,6 @@ hc-set-card-packs = Card packs ({ $count } of { $total } selected)
 hc-desc-card-packs = Which card packs to use
 hc-option-changed-card-packs = Card pack selection changed.
 
-hc-set-judging-method = Judging method: { $mode }
-hc-select-judging-method = Select judging method
-hc-desc-judging-method = How winning submissions are chosen. Independent: each judge picks a winner, one point per vote. Jury: majority wins; ties award all tied players one point. Random: method chosen randomly each round.
-hc-option-changed-judging-method = Judging method set to { $mode }.
-hc-judging-method-independent = Independent
-hc-judging-method-jury = Jury
-hc-judging-method-random = Random
-
 hc-set-czar-selection = Card Czar selection: { $mode }
 hc-select-czar-selection = Select Card Czar selection mode
 hc-option-changed-czar-selection = Card Czar selection set to { $mode }.
@@ -30,6 +22,14 @@ hc-option-changed-czar-selection = Card Czar selection set to { $mode }.
 hc-set-num-judges = Number of judges: { $count }
 hc-enter-num-judges = Enter number of judges:
 hc-option-changed-num-judges = Number of judges set to { $count }.
+
+hc-set-judging-method = Judging method: { $mode }
+hc-select-judging-method = Select judging method
+hc-option-changed-judging-method = Judging method set to { $mode }.
+hc-desc-judging-method = How multiple Card Czars choose winners.
+hc-judging-method-independent = Independent
+hc-judging-method-jury = Jury
+hc-judging-method-random = Random
 
 hc-czar-rotating = Rotating
 hc-czar-random = Random
@@ -41,14 +41,12 @@ hc-dealing-cards = Dealing { $count } cards to each player.
 hc-round-start = Round { $round }.
 
 # Judge announcement
-hc-judge-is = { $count ->
-    [one] { $names } is the Card Czar.
-   *[other] { $names } are the Card Czars.
-}
+hc-judge-is = { $names } { $count ->
+    [one] is the Card Czar
+   *[other] are the Card Czars
+}.
 hc-you-are-judge = You are the Card Czar this round.
 hc-you-are-not-judge = You are not the Card Czar this round.
-
-hc-waiting-for-judges = Waiting for { $names } to judge.
 
 # Black card
 hc-black-card = The prompt is: { $text }
@@ -66,6 +64,7 @@ hc-submit-cards = Submit ({ $selected } of { $required } selected)
 hc-submitted = You submitted your cards.
 hc-player-submitted = { $player } submitted.
 hc-submission-progress = { $submitted } of { $total } players submitted.
+hc-waiting-for-submissions = Waiting for submissions...
 hc-already-submitted = You already submitted your cards.
 hc-wrong-card-count = You need to select exactly { $count } { $count ->
     [one] card
@@ -74,7 +73,6 @@ hc-wrong-card-count = You need to select exactly { $count } { $count ->
 
 # Judging phase
 hc-judging-start = All cards are in! Time to judge.
-hc-judge-voted = { $player } has made their choice.
 hc-select-winner-prompt = Select the winning submission
 hc-submission-option = { $text }
 
@@ -83,6 +81,7 @@ hc-winner-announcement = { $player } gets { $points } { $points ->
     [one] point
    *[other] points
 } for { $text }.
+hc-winner-card = Winning answer: { $text }
 hc-round-scores = Scores after round { $round }:
 hc-score-line = { $player }: { $score } { $score ->
     [one] point
@@ -111,7 +110,11 @@ hc-not-enough-cards = Not enough cards. Try enabling more packs.
 hc-view-hand = View hand
 
 # Scores
+hc-view-scores = View scores
+hc-no-scores = No scores yet.
+
 # Whose turn / whose judge
 hc-whose-judge = Who is judging
 hc-waiting-for = Waiting for { $names } to submit.
 hc-all-submitted-waiting-judge = All players have submitted. Waiting for { $judge } to judge.
+hc-waiting-for-judges = Waiting for { $names } to judge.

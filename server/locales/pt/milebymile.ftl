@@ -25,6 +25,9 @@ milebymile-option-changed-reshuffle = Embaralhar pilha de descarte { $enabled }.
 milebymile-option-changed-karma = Regra do karma { $enabled }.
 milebymile-option-changed-rig = Ajuste do baralho definido para { $rig }.
 
+milebymile-toggle-always-discard = Always allow discarding: { $enabled }
+milebymile-option-changed-always-discard = Always allow discarding { $enabled }.
+
 # Status
 milebymile-status = { $name }: { $miles } milhas, Problemas: { $problems }, Seguranças: { $safeties }
 

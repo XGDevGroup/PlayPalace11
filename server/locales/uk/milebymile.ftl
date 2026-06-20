@@ -25,6 +25,9 @@ milebymile-option-changed-reshuffle = Перетасувати скинуту к
 milebymile-option-changed-karma = Правило карми { $enabled }.
 milebymile-option-changed-rig = Підтасовку колоди встановлено на { $rig }.
 
+milebymile-toggle-always-discard = Always allow discarding: { $enabled }
+milebymile-option-changed-always-discard = Always allow discarding { $enabled }.
+
 # Status
 milebymile-status = { $name }: { $points } очок, { $miles } миль, Проблеми: { $problems }, Безпека: { $safeties }
 

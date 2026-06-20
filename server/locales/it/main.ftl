@@ -35,8 +35,6 @@ whose-turn = Di chi è il turno
 whos-at-table = Chi c'è al tavolo
 check-scores = Controlla punteggi
 check-scores-detailed = Punteggi dettagliati
-check-game-options = Controlla opzioni di gioco
-no-game-options = Nessuna opzione di gioco.
 
 # Turn messages
 game-player-skipped = { $player } viene saltato.
@@ -158,6 +156,7 @@ game-points = { $count } { $count ->
     [one] punto
    *[other] punti
 }
+status-box-closed = Chiuso.
 play = Gioca
 
 # Leaderboards
@@ -379,4 +378,13 @@ virtual-bots-profiles-empty = Nessun profilo definito.
 virtual-bots-profiles-line = { $profile } ({ $bot_count } bot) sostituzioni: { $overrides }.
 virtual-bots-profiles-no-overrides = eredita configurazione base
 
+chatroom-table-topic-action = Argomento del tavolo
+chatroom-topic-prompt = Inserisci l'argomento del tavolo (o lascia vuoto per cancellare):
+chatroom-topic-set = { $player } ha impostato l'argomento: { $topic }
+chatroom-topic-cleared = { $player } ha cancellato l'argomento.
+chatroom-topic = Argomento: { $topic }
+chatroom-no-topic = Nessun argomento è stato impostato.
+table-topic-label = Argomento: { $topic }
+
 localization-in-progress-try-again = La localizzazione è in corso. Riprova tra un minuto.
+action-player-not-found = Player not found.

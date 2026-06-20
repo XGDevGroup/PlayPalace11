@@ -35,8 +35,6 @@ whose-turn = Ko je na potezu
 whos-at-table = Ko je za stolom
 check-scores = Proveri rezultat
 check-scores-detailed = Detaljni rezultati
-check-game-options = Proveri opcije igre
-no-game-options = Nema opcija igre.
 
 # Poruke o redu igranja
 game-player-skipped = { $player } se preskače.
@@ -158,6 +156,7 @@ game-points = { $count } { $count ->
     [one] poen
     *[other] poena
 }
+status-box-closed = Zatvoreno.
 play = Igraj
 
 # Rang liste
@@ -383,4 +382,13 @@ virtual-bots-profiles-empty = Nema definisanih profila.
 virtual-bots-profiles-line = { $profile } ({ $bot_count } robota) zamene: { $overrides }.
 virtual-bots-profiles-no-overrides = Preuzima osnovnu konfiguraciju
 
+chatroom-table-topic-action = Tema stola
+chatroom-topic-prompt = Unesite temu stola (ili ostavite prazno za brisanje):
+chatroom-topic-set = { $player } je postavio temu: { $topic }
+chatroom-topic-cleared = { $player } je obrisao temu.
+chatroom-topic = Tema: { $topic }
+chatroom-no-topic = Nije postavljena nijedna tema.
+table-topic-label = Tema: { $topic }
+
 localization-in-progress-try-again = Učitavanje prevoda u toku. Molimo pokušajte ponovo za minut.
+action-player-not-found = Player not found.

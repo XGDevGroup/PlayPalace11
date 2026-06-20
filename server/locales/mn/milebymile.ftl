@@ -25,6 +25,9 @@ milebymile-option-changed-reshuffle = Хаясан хөзрийг холих { $
 milebymile-option-changed-karma = Карма дүрэм { $enabled }.
 milebymile-option-changed-rig = Хөзөр залилах { $rig }-д тохируулагдлаа.
 
+milebymile-toggle-always-discard = Always allow discarding: { $enabled }
+milebymile-option-changed-always-discard = Always allow discarding { $enabled }.
+
 # Status
 milebymile-status = { $name }: { $points } оноо, { $miles } миль, Асуудал: { $problems }, Аюулгүй байдал: { $safeties }
 

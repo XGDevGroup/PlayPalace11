@@ -24,6 +24,9 @@ milebymile-option-changed-reshuffle = Xova kabusha inqwaba yokulahlwa { $enabled
 milebymile-option-changed-karma = Umthetho we-karma { $enabled }.
 milebymile-option-changed-rig = Ukutshela isigange kusetelwe ku-{ $rig }.
 
+milebymile-toggle-always-discard = Always allow discarding: { $enabled }
+milebymile-option-changed-always-discard = Always allow discarding { $enabled }.
+
 # Status
 milebymile-status = { $name }: { $points } amaphuzu, { $miles } amamayela, Izinkinga: { $problems }, Ukuphepha: { $safeties }
 

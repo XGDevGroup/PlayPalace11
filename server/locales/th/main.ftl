@@ -35,8 +35,6 @@ whose-turn = ตาของใคร
 whos-at-table = ใครอยู่ที่โต๊ะ
 check-scores = ตรวจสอบคะแนน
 check-scores-detailed = คะแนนโดยละเอียด
-check-game-options = ตรวจสอบตัวเลือกเกม
-no-game-options = ไม่มีตัวเลือกเกม
 
 # Turn messages
 game-player-skipped = { $player } ถูกข้าม
@@ -155,6 +153,7 @@ game-leave = ออก
 game-over = จบเกม
 game-final-scores = คะแนนสุดท้าย
 game-points = { $count } คะแนน
+status-box-closed = ปิดแล้ว
 play = เล่น
 
 # Leaderboards
@@ -367,4 +366,13 @@ virtual-bots-profiles-empty = ไม่มีโปรไฟล์ที่ก�
 virtual-bots-profiles-line = { $profile } ({ $bot_count } บอต) แทนที่: { $overrides }
 virtual-bots-profiles-no-overrides = สืบทอดการกำหนดค่าพื้นฐาน
 
+chatroom-table-topic-action = (Thai) Table topic
+chatroom-topic-prompt = (Thai) Enter the table topic (or leave blank to clear):
+chatroom-topic-set = (Thai) { $player } set the topic: { $topic }
+chatroom-topic-cleared = (Thai) { $player } cleared the topic.
+chatroom-topic = (Thai) Topic: { $topic }
+chatroom-no-topic = (Thai) No topic has been set.
+table-topic-label = (Thai) Topic: { $topic }
+
 localization-in-progress-try-again = กำลังโหลดการแปลภาษา โปรดลองอีกครั้งในอีกหนึ่งนาที
+action-player-not-found = Player not found.

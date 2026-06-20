@@ -36,6 +36,69 @@ export function createAudioEngine(options = {}) {
   const soundBaseUrl = options.soundBaseUrl || "./sounds";
   const AudioCtx = window.AudioContext || window.webkitAudioContext;
   const context = AudioCtx ? new AudioCtx() : null;
+  const MAX_EFFECT_START_DELAY_MS = 1500;
+  const MAX_EFFECT_CACHE_ENTRIES = 128;
+  const MAX_PENDING_EFFECTS = 24;
+  const PRELOAD_CONCURRENCY = 4;
+  const DEFAULT_PRELOAD_EFFECTS = [
+    "menuclick.ogg",
+    "menuenter.ogg",
+    "chat.ogg",
+    "chatlocal.ogg",
+    "typing1.ogg",
+    "typing2.ogg",
+    "typing3.ogg",
+    "typing4.ogg",
+    "mention.ogg",
+    "game_cards/play1.ogg",
+    "game_cards/play2.ogg",
+    "game_cards/play3.ogg",
+    "game_cards/play4.ogg",
+    "game_cards/draw1.ogg",
+    "game_cards/draw2.ogg",
+    "game_cards/draw3.ogg",
+    "game_cards/draw4.ogg",
+    "game_cards/discard1.ogg",
+    "game_cards/discard2.ogg",
+    "game_cards/discard3.ogg",
+    "game_cards/shuffle1.ogg",
+    "game_cards/shuffle2.ogg",
+    "game_cards/shuffle3.ogg",
+    "game_milebymile/25miles1.ogg",
+    "game_milebymile/25miles2.ogg",
+    "game_milebymile/50miles1.ogg",
+    "game_milebymile/50miles2.ogg",
+    "game_milebymile/50miles3.ogg",
+    "game_milebymile/75miles1.ogg",
+    "game_milebymile/75miles2.ogg",
+    "game_milebymile/75miles3.ogg",
+    "game_milebymile/100miles1.ogg",
+    "game_milebymile/100miles2.ogg",
+    "game_milebymile/100miles3.ogg",
+    "game_milebymile/200miles1.ogg",
+    "game_milebymile/200miles2.ogg",
+    "game_milebymile/200miles3.ogg",
+    "game_milebymile/crash1.ogg",
+    "game_milebymile/crash2.ogg",
+    "game_milebymile/drivingace.ogg",
+    "game_milebymile/extratank1.ogg",
+    "game_milebymile/extratank2.ogg",
+    "game_milebymile/flat.ogg",
+    "game_milebymile/gas.ogg",
+    "game_milebymile/greenlight1.ogg",
+    "game_milebymile/greenlight2.ogg",
+    "game_milebymile/greenlight3.ogg",
+    "game_milebymile/outofgas.ogg",
+    "game_milebymile/punctureproof.ogg",
+    "game_milebymile/repair1.ogg",
+    "game_milebymile/repair2.ogg",
+    "game_milebymile/rightofway.ogg",
+    "game_milebymile/sparetyre.ogg",
+    "game_milebymile/speedlimit.ogg",
+    "game_milebymile/speedlimitend.ogg",
+    "game_milebymile/stop.ogg",
+    "game_milebymile/winround.ogg",
+  ];
 
   let effectsGain = null;
   let musicGain = null;
@@ -52,8 +115,12 @@ export function createAudioEngine(options = {}) {
   let currentAmbienceLoopName = "";
   let pendingAmbiencePacket = null;
   const pendingEffectPackets = [];
-  const MAX_PENDING_EFFECTS = 24;
   const activeEffects = new Map();
+  const activeBufferEffects = new Set();
+  const effectBufferCache = new Map();
+  const preloadQueue = [];
+  const preloadQueued = new Set();
+  let activePreloads = 0;
   let muted = false;
 
   if (context) {
@@ -78,6 +145,7 @@ export function createAudioEngine(options = {}) {
     if (context.state !== "running") {
       await context.resume();
     }
+    preloadEffects(DEFAULT_PRELOAD_EFFECTS);
     retryPendingPlayback();
     return context.state === "running";
   }
@@ -136,13 +204,173 @@ export function createAudioEngine(options = {}) {
     }
   }
 
-  function playSound(packet) {
-    const name = packet.name || packet.sound || "";
+  function canUseBufferedEffect(url) {
+    return Boolean(
+      context
+      && effectsGain
+      && typeof fetch === "function"
+      && !isCrossOriginUrl(url)
+    );
+  }
+
+  function rememberEffectCacheUse(url, entry) {
+    effectBufferCache.delete(url);
+    effectBufferCache.set(url, entry);
+    while (effectBufferCache.size > MAX_EFFECT_CACHE_ENTRIES) {
+      const oldestUrl = effectBufferCache.keys().next().value;
+      effectBufferCache.delete(oldestUrl);
+    }
+  }
+
+  function decodeAudioBuffer(arrayBuffer) {
+    if (!context) {
+      return Promise.reject(new Error("Audio context unavailable"));
+    }
+    return new Promise((resolve, reject) => {
+      let settled = false;
+      const finish = (callback, value) => {
+        if (settled) {
+          return;
+        }
+        settled = true;
+        callback(value);
+      };
+
+      try {
+        const maybePromise = context.decodeAudioData(
+          arrayBuffer.slice(0),
+          (buffer) => finish(resolve, buffer),
+          (error) => finish(reject, error)
+        );
+        if (maybePromise && typeof maybePromise.then === "function") {
+          maybePromise.then(
+            (buffer) => finish(resolve, buffer),
+            (error) => finish(reject, error)
+          );
+        }
+      } catch (error) {
+        finish(reject, error);
+      }
+    });
+  }
+
+  function loadEffectBuffer(url) {
+    const cached = effectBufferCache.get(url);
+    if (cached) {
+      rememberEffectCacheUse(url, cached);
+      return cached.promise;
+    }
+
+    const entry = {
+      promise: fetch(url, { cache: "force-cache" })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`Sound fetch failed: ${response.status}`);
+          }
+          return response.arrayBuffer();
+        })
+        .then((arrayBuffer) => decodeAudioBuffer(arrayBuffer)),
+    };
+    rememberEffectCacheUse(url, entry);
+    return entry.promise;
+  }
+
+  function queueEffectPreload(name) {
     const url = toSoundUrl(name, soundBaseUrl);
-    if (!url) {
+    if (!url || !canUseBufferedEffect(url) || preloadQueued.has(url) || effectBufferCache.has(url)) {
+      return;
+    }
+    preloadQueued.add(url);
+    preloadQueue.push(url);
+    pumpEffectPreloads();
+  }
+
+  function pumpEffectPreloads() {
+    while (activePreloads < PRELOAD_CONCURRENCY && preloadQueue.length > 0) {
+      const url = preloadQueue.shift();
+      activePreloads += 1;
+      loadEffectBuffer(url)
+        .catch(() => {
+          effectBufferCache.delete(url);
+          preloadQueued.delete(url);
+        })
+        .finally(() => {
+          activePreloads -= 1;
+          pumpEffectPreloads();
+        });
+    }
+  }
+
+  function preloadEffects(names = []) {
+    for (const name of names) {
+      queueEffectPreload(name);
+    }
+  }
+
+  function stopBufferEffect(effect) {
+    try { effect.source.stop(); } catch { /* already stopped */ }
+    try { effect.source.disconnect(); } catch { /* already disconnected */ }
+    try { effect.gain.disconnect(); } catch { /* already disconnected */ }
+    if (effect.panner) {
+      try { effect.panner.disconnect(); } catch { /* already disconnected */ }
+    }
+    activeBufferEffects.delete(effect);
+  }
+
+  function startBufferedEffect(buffer, packet, queuedAtMs) {
+    if (!context || !effectsGain || muted) {
+      return;
+    }
+    if (performance.now() - queuedAtMs > MAX_EFFECT_START_DELAY_MS) {
       return;
     }
 
+    const source = context.createBufferSource();
+    source.buffer = buffer;
+    source.playbackRate.value = Math.max(0.5, Math.min(2, (packet.pitch ?? 100) / 100));
+
+    const gain = context.createGain();
+    const volume = Math.max(0, Math.min(1, (packet.volume ?? 100) / 100));
+    gain.gain.value = muted ? 0 : volume;
+
+    let panner = null;
+    if (typeof context.createStereoPanner === "function") {
+      panner = context.createStereoPanner();
+      panner.pan.value = Math.max(-1, Math.min(1, (packet.pan ?? 0) / 100));
+      source.connect(panner);
+      panner.connect(gain);
+    } else {
+      source.connect(gain);
+    }
+    gain.connect(effectsGain);
+
+    const effect = { source, gain, panner, volume };
+    activeBufferEffects.add(effect);
+    if (typeof source.addEventListener === "function") {
+      source.addEventListener("ended", () => stopBufferEffect(effect), { once: true });
+    } else {
+      source.onended = () => stopBufferEffect(effect);
+    }
+    try {
+      source.start(0);
+    } catch {
+      stopBufferEffect(effect);
+    }
+  }
+
+  function queuePendingEffect(packet) {
+    if (pendingEffectPackets.length >= MAX_PENDING_EFFECTS) {
+      pendingEffectPackets.shift();
+    }
+    pendingEffectPackets.push({
+      name: packet.name || packet.sound || "",
+      volume: packet.volume ?? 100,
+      pan: packet.pan ?? 0,
+      pitch: packet.pitch ?? 100,
+    });
+  }
+
+  function playSoundWithElement(packet, url, name) {
     const audio = createAudioElement(url);
     audio.muted = muted;
     audio.preload = "auto";
@@ -164,10 +392,7 @@ export function createAudioEngine(options = {}) {
       safePlay(audio, {
         onRejected: () => {
           cleanup();
-          if (pendingEffectPackets.length >= MAX_PENDING_EFFECTS) {
-            pendingEffectPackets.shift();
-          }
-          pendingEffectPackets.push({
+          queuePendingEffect({
             name,
             volume: packet.volume ?? 100,
             pan: packet.pan ?? 0,
@@ -178,6 +403,53 @@ export function createAudioEngine(options = {}) {
     } catch {
       // Ignore autoplay/stream failures before unlock.
     }
+  }
+
+  function playSound(packet) {
+    const name = packet.name || packet.sound || "";
+    const url = toSoundUrl(name, soundBaseUrl);
+    if (!url) {
+      return;
+    }
+
+    if (canUseBufferedEffect(url)) {
+      if (context.state !== "running") {
+        queuePendingEffect(packet);
+        queueEffectPreload(name);
+        return;
+      }
+      const queuedAtMs = performance.now();
+      loadEffectBuffer(url)
+        .then((buffer) => {
+          startBufferedEffect(buffer, packet, queuedAtMs);
+        })
+        .catch(() => {
+          effectBufferCache.delete(url);
+          playSoundWithElement(packet, url, name);
+        });
+      return;
+    }
+
+    playSoundWithElement(packet, url, name);
+  }
+
+  if (context) {
+    setTimeout(() => {
+      preloadEffects([
+        "menuclick.ogg",
+        "menuenter.ogg",
+        "chat.ogg",
+        "chatlocal.ogg",
+        "game_cards/play1.ogg",
+        "game_cards/play2.ogg",
+        "game_cards/play3.ogg",
+        "game_cards/play4.ogg",
+        "game_cards/draw1.ogg",
+        "game_cards/draw2.ogg",
+        "game_cards/draw3.ogg",
+        "game_cards/draw4.ogg",
+      ]);
+    }, 0);
   }
 
   function playMusic(packet) {
@@ -419,6 +691,9 @@ export function createAudioEngine(options = {}) {
     for (const effect of activeEffects.keys()) {
       effect.muted = muted;
     }
+    for (const effect of activeBufferEffects) {
+      effect.gain.gain.value = muted ? 0 : effect.volume;
+    }
   }
 
   function isMuted() {
@@ -458,6 +733,9 @@ export function createAudioEngine(options = {}) {
       disconnectNodes(nodes);
     }
     activeEffects.clear();
+    for (const effect of Array.from(activeBufferEffects)) {
+      stopBufferEffect(effect);
+    }
   }
 
   return {
@@ -475,5 +753,6 @@ export function createAudioEngine(options = {}) {
     setMuted,
     isMuted,
     retryPendingPlayback,
+    preloadEffects,
   };
 }

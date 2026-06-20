@@ -12,7 +12,8 @@ export function createHistoryView({
   const isMobileLike = window.matchMedia("(pointer: coarse)").matches;
   let mobileCollapsed = isMobileLike;
   let renderedLogBuffer = "";
-  let renderedLogCount = 0;
+  let renderedLogValue = null;
+  let renderScheduled = false;
 
   function ensureBufferPosition(bufferName) {
     if (!Object.hasOwn(bufferPositions, bufferName)) {
@@ -72,38 +73,56 @@ export function createHistoryView({
     }
   }
 
-  function render() {
+  function flushRender() {
+    renderScheduled = false;
     for (const name of getBufferNames()) {
       ensureBufferPosition(name);
     }
     const bufferName = store.state.historyBuffer;
     const lines = store.state.historyBuffers[bufferName] || [];
-    historyEl.value = lines.join("\n");
+    const joined = lines.join("\n");
+
+    // Skip the DOM work entirely when nothing in the visible buffer changed.
+    // notify() fires on every state change (menu navigation, audio, etc.), so
+    // most flushes here are no-ops — this keeps arrow-key menu moves cheap.
+    if (bufferName === renderedLogBuffer && joined === renderedLogValue) {
+      return;
+    }
+    renderedLogBuffer = bufferName;
+    renderedLogValue = joined;
+
+    historyEl.value = joined;
     historyEl.scrollTop = historyEl.scrollHeight;
 
     if (historyLogEl) {
-      const needsRebuild = renderedLogBuffer !== bufferName || renderedLogCount > lines.length;
-      if (needsRebuild) {
-        historyLogEl.replaceChildren();
-        for (const line of lines) {
-          const row = document.createElement("p");
-          row.className = "history-line";
-          row.textContent = line;
-          historyLogEl.appendChild(row);
-        }
-        renderedLogBuffer = bufferName;
-        renderedLogCount = lines.length;
-      } else if (lines.length > renderedLogCount) {
-        for (let i = renderedLogCount; i < lines.length; i += 1) {
-          const row = document.createElement("p");
-          row.className = "history-line";
-          row.textContent = lines[i];
-          historyLogEl.appendChild(row);
-        }
-        renderedLogBuffer = bufferName;
-        renderedLogCount = lines.length;
+      // Rebuild from scratch (bounded by the store's per-buffer cap). A full
+      // rebuild is correct even when the cap trims lines off the front, which
+      // the previous incremental count-based append could not detect.
+      const fragment = document.createDocumentFragment();
+      for (const line of lines) {
+        const row = document.createElement("p");
+        row.className = "history-line";
+        row.textContent = line;
+        fragment.appendChild(row);
       }
+      historyLogEl.replaceChildren(fragment);
       historyLogEl.scrollTop = historyLogEl.scrollHeight;
+    }
+  }
+
+  // Coalesce bursts of notify() calls (a single tap can append many lines, each
+  // firing notify()) into one render per animation frame instead of one render
+  // per line. This is what turns the old O(lines added * buffer size) churn per
+  // tap into a single bounded render.
+  function render() {
+    if (renderScheduled) {
+      return;
+    }
+    renderScheduled = true;
+    if (typeof requestAnimationFrame === "function") {
+      requestAnimationFrame(flushRender);
+    } else {
+      flushRender();
     }
   }
 

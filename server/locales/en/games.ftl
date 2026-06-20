@@ -4,6 +4,11 @@
 # Game names
 game-name-ninetynine = Ninety Nine
 game-name-humanitycards = Cards Against Humanity
+game-name-chatroom = Chat Room
+game-name-twentyone = 21 (Survival Rules)
+
+# Generic game actions
+show-rules = Show rules
 
 # Game categories (shared)
 category-party-games = Party Games
@@ -42,6 +47,9 @@ game-team-mode-x-teams-of-y = { $num_teams } teams of { $team_size }
 option-on = on
 option-off = off
 
+# In-game read-only options viewer
+check-game-options = Check game options
+
 # Option navigation
 option-back = Back
 option-min-selected = At least { $count } { $count ->
@@ -64,6 +72,7 @@ option-deselected-count = { $count } { $count ->
 } deselected.
 
 # Status box
+status-box-closed = Status information closed.
 
 # Game end
 game-leave = Leave game
