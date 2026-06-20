@@ -387,3 +387,4 @@ chatroom-no-topic = (Hindi) No topic has been set.
 table-topic-label = (Hindi) Topic: { $topic }
 
 localization-in-progress-try-again = स्थानीयकरण जारी है। कृपया एक मिनट बाद फिर प्रयास करें।
+action-player-not-found = Player not found.

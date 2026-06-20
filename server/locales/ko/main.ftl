@@ -375,3 +375,4 @@ chatroom-no-topic = 설정된 주제가 없습니다.
 table-topic-label = 주제: { $topic }
 
 localization-in-progress-try-again = 현지화 작업이 진행 중입니다. 1분 후에 다시 시도해 주세요.
+action-player-not-found = Player not found.

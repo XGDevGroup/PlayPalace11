@@ -4,6 +4,7 @@
 # Spielnamen
 game-name-ninetynine = Ninety Nine
 game-name-chatroom = Chat Room
+game-name-twentyone = 21 (Survival Rules)
 
 # Runden- und Zugablauf
 game-round-start = Runde { $round }.

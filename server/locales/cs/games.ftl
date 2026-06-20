@@ -4,6 +4,7 @@
 # Názvy her
 game-name-ninetynine = Devadesát devět
 game-name-chatroom = Chat Room
+game-name-twentyone = 21 (Survival Rules)
 
 # Průběh kol a tahů
 game-round-start = Kolo { $round }.

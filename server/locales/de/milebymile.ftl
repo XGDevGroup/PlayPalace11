@@ -25,6 +25,9 @@ milebymile-option-changed-reshuffle = Ablagestapel neu mischen { $enabled }.
 milebymile-option-changed-karma = Karma-Regel { $enabled }.
 milebymile-option-changed-rig = Deck-Manipulation auf { $rig } gesetzt.
 
+milebymile-toggle-always-discard = Always allow discarding: { $enabled }
+milebymile-option-changed-always-discard = Always allow discarding { $enabled }.
+
 # Status
 milebymile-status = { $name }: { $points } Punkte, { $miles } Meilen, Probleme: { $problems }, Sicherheiten: { $safeties }
 

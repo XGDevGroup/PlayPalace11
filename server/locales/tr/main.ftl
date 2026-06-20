@@ -387,3 +387,4 @@ chatroom-no-topic = Henüz bir konu belirlenmedi.
 table-topic-label = Konu: { $topic }
 
 localization-in-progress-try-again = Yerelleştirme sürüyor. Lütfen bir dakika sonra tekrar deneyin.
+action-player-not-found = Player not found.

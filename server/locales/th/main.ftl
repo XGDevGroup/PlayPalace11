@@ -375,3 +375,4 @@ chatroom-no-topic = (Thai) No topic has been set.
 table-topic-label = (Thai) Topic: { $topic }
 
 localization-in-progress-try-again = กำลังโหลดการแปลภาษา โปรดลองอีกครั้งในอีกหนึ่งนาที
+action-player-not-found = Player not found.

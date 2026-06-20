@@ -24,6 +24,9 @@ milebymile-option-changed-reshuffle = 捨て札のシャッフルが{ $enabled }
 milebymile-option-changed-karma = カルマルールが{ $enabled }になりました。
 milebymile-option-changed-rig = デッキ操作が{ $rig }に設定されました。
 
+milebymile-toggle-always-discard = Always allow discarding: { $enabled }
+milebymile-option-changed-always-discard = Always allow discarding { $enabled }.
+
 # ステータス
 milebymile-status = { $name }: { $points }点、{ $miles }マイル、問題: { $problems }、セーフティ: { $safeties }
 

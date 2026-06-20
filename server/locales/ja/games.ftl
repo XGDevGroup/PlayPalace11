@@ -4,6 +4,7 @@
 # ゲーム名
 game-name-ninetynine = Ninety Nine
 game-name-chatroom = Chat Room
+game-name-twentyone = 21 (Survival Rules)
 
 # ラウンドとターンの流れ
 game-round-start = ラウンド{ $round }。

@@ -4,6 +4,7 @@
 # Noms de jeux
 game-name-ninetynine = Quatre-vingt-dix-neuf
 game-name-chatroom = Chat Room
+game-name-twentyone = 21 (Survival Rules)
 
 # Flux de manche et de tour
 game-round-start = Manche { $round }.

@@ -387,3 +387,4 @@ chatroom-no-topic = Belum ada topik yang diatur.
 table-topic-label = Topik: { $topic }
 
 localization-in-progress-try-again = Lokalisasi sedang diproses. Silakan coba lagi dalam satu menit.
+action-player-not-found = Player not found.

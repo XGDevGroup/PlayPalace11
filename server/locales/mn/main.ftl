@@ -387,3 +387,4 @@ chatroom-no-topic = Сэдэв тогтоогдоогүй байна.
 table-topic-label = Сэдэв: { $topic }
 
 localization-in-progress-try-again = Нутагшуулалт хийгдэж байна. Нэг минутын дараа дахин оролдоно уу.
+action-player-not-found = Player not found.

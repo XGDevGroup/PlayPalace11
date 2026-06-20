@@ -25,6 +25,9 @@ milebymile-option-changed-reshuffle = Schud aflegstapel opnieuw { $enabled }.
 milebymile-option-changed-karma = Karmaregel { $enabled }.
 milebymile-option-changed-rig = Deck manipulatie ingesteld op { $rig }.
 
+milebymile-toggle-always-discard = Always allow discarding: { $enabled }
+milebymile-option-changed-always-discard = Always allow discarding { $enabled }.
+
 # Status
 milebymile-status = { $name }: { $points } punten, { $miles } mijl, Problemen: { $problems }, Veiligheidskaarten: { $safeties }
 

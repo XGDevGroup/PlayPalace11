@@ -20,6 +20,14 @@ hc-set-num-judges = Number of judges: { $count }
 hc-enter-num-judges = Enter number of judges:
 hc-option-changed-num-judges = Number of judges set to { $count }.
 
+hc-set-judging-method = Judging method: { $mode }
+hc-select-judging-method = Select judging method
+hc-option-changed-judging-method = Judging method set to { $mode }.
+hc-desc-judging-method = How multiple Card Czars choose winners.
+hc-judging-method-independent = Independent
+hc-judging-method-jury = Jury
+hc-judging-method-random = Random
+
 hc-czar-rotating = Rotating
 hc-czar-random = Random
 hc-czar-winner = Most Recent Winner
@@ -30,9 +38,9 @@ hc-dealing-cards = Dealing { $count } cards to each player.
 hc-round-start = Round { $round }.
 
 # Judge announcement
-hc-judge-is = { $player } { $count ->
+hc-judge-is = { $names } { $count ->
     [one] is the Card Czar
-   *[other] and { $others } are the Card Czars
+   *[other] are the Card Czars
 }.
 hc-you-are-judge = You are the Card Czar this round.
 hc-you-are-not-judge = You are not the Card Czar this round.
@@ -66,7 +74,10 @@ hc-select-winner-prompt = Select the winning submission
 hc-submission-option = { $text }
 
 # Results
-hc-winner-announcement = { $player } wins the round! Score: { $score }.
+hc-winner-announcement = { $player } gets { $points } { $points ->
+    [one] point
+   *[other] points
+} for { $text }.
 hc-winner-card = Winning answer: { $text }
 hc-round-scores = Scores after round { $round }:
 hc-score-line = { $player }: { $score } { $score ->
@@ -103,3 +114,4 @@ hc-no-scores = No scores yet.
 hc-whose-judge = Who is judging
 hc-waiting-for = Waiting for { $names } to submit.
 hc-all-submitted-waiting-judge = All players have submitted. Waiting for { $judge } to judge.
+hc-waiting-for-judges = Waiting for { $names } to judge.

@@ -4,6 +4,7 @@
 # Game names
 game-name-ninetynine = Devetindevetdeset
 game-name-chatroom = Chat Room
+game-name-twentyone = 21 (Survival Rules)
 
 # Round and turn flow
 game-round-start = Krog { $round }.

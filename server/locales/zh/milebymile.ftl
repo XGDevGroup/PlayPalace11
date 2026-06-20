@@ -25,6 +25,9 @@ milebymile-option-changed-reshuffle = 重新洗牌弃牌堆 { $enabled }。
 milebymile-option-changed-karma = 因果规则 { $enabled }。
 milebymile-option-changed-rig = 牌组调整已设为 { $rig }。
 
+milebymile-toggle-always-discard = Always allow discarding: { $enabled }
+milebymile-option-changed-always-discard = Always allow discarding { $enabled }.
+
 # 状态
 milebymile-status = { $name }：{ $miles } 英里，问题：{ $problems }，安全牌：{ $safeties }
 

@@ -24,6 +24,9 @@ milebymile-option-changed-reshuffle = Zamíchat odhazovací balíček { $enabled
 milebymile-option-changed-karma = Pravidlo karmy { $enabled }.
 milebymile-option-changed-rig = Úprava balíčku nastavena na { $rig }.
 
+milebymile-toggle-always-discard = Always allow discarding: { $enabled }
+milebymile-option-changed-always-discard = Always allow discarding { $enabled }.
+
 # Stav
 milebymile-status = { $name }: { $points } bodů, { $miles } mil, Problémy: { $problems }, Bezpečnosti: { $safeties }
 

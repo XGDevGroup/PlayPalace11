@@ -395,3 +395,4 @@ chatroom-no-topic = Nebola nastavená žiadna téma.
 table-topic-label = Téma: { $topic }
 
 localization-in-progress-try-again = Lokalizácia sa stále načítava. Skúste to prosím znova o minútu.
+action-player-not-found = Player not found.

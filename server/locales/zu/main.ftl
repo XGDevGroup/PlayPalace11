@@ -387,3 +387,4 @@ chatroom-no-topic = Asikho isihloko esimisiwe.
 table-topic-label = Isihloko: { $topic }
 
 localization-in-progress-try-again = Ukuhumusha kusaqhubeka. Sicela uzame futhi emzuzwini.
+action-player-not-found = Player not found.

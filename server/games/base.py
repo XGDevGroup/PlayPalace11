@@ -199,6 +199,7 @@ class Game(
 
     def __post_init__(self):
         """Initialize non-serialized state."""
+        self._normalize_status()
         # These are runtime-only, not serialized
         self._users: dict[str, User] = {}  # player_id -> User
         self._table: Any = None  # Reference to Table (set by server)
@@ -220,6 +221,25 @@ class Game(
         self._estimate_lock: threading.Lock = threading.Lock()  # Protect results list
         self._transcripts: dict[str, list[dict[str, str]]] = {}
         self._options_path: dict[str, list[str]] = {}  # player_id -> options nav stack
+
+    def _normalize_status(self) -> None:
+        """Convert legacy string statuses to GameStatus before persistence."""
+        if isinstance(self.status, GameStatus):
+            return
+        if isinstance(self.status, str):
+            try:
+                self.status = GameStatus(self.status)
+            except ValueError:
+                pass
+
+    def __pre_serialize__(self):
+        self._normalize_status()
+        return self
+
+    @classmethod
+    def __post_deserialize__(cls, obj):
+        obj._normalize_status()
+        return obj
 
     def rebuild_runtime_state(self) -> None:
         """Rebuild runtime-only state after deserialization.

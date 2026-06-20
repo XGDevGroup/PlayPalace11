@@ -387,3 +387,4 @@ chatroom-no-topic = هیچ موضوعی تنظیم نشده است.
 table-topic-label = موضوع: { $topic }
 
 localization-in-progress-try-again = بومی‌سازی در حال انجام است. لطفاً یک دقیقه دیگر دوباره تلاش کنید.
+action-player-not-found = Player not found.

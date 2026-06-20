@@ -317,3 +317,4 @@ chatroom-no-topic = (Chinese) No topic has been set.
 table-topic-label = (Chinese) Topic: { $topic }
 
 localization-in-progress-try-again = 本地化正在进行中。请在一分钟后重试。
+action-player-not-found = Player not found.

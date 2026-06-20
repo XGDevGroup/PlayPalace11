@@ -4,6 +4,7 @@
 # Game names
 game-name-ninetynine = 나인티 나인
 game-name-chatroom = Chat Room
+game-name-twentyone = 21 (Survival Rules)
 
 # Round and turn flow
 game-round-start = 라운드 { $round }.

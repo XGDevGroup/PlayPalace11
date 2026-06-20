@@ -1369,7 +1369,10 @@ class VirtualBotManager:
             return False
 
         # Don't join chat rooms
-        if table.game_type == "chatroom":
+        game_type = getattr(table, "game_type", None)
+        if game_type is None and hasattr(game, "get_type"):
+            game_type = game.get_type()
+        if game_type == "chatroom":
             return False
 
         # Only join games that haven't started yet

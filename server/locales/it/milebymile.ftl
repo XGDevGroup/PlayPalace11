@@ -25,6 +25,9 @@ milebymile-option-changed-reshuffle = Rimescola mazzo scarti { $enabled }.
 milebymile-option-changed-karma = Regola karma { $enabled }.
 milebymile-option-changed-rig = Truccatura mazzo impostata su { $rig }.
 
+milebymile-toggle-always-discard = Always allow discarding: { $enabled }
+milebymile-option-changed-always-discard = Always allow discarding { $enabled }.
+
 # Status
 milebymile-status = { $name }: { $points } punti, { $miles } miglia, Problemi: { $problems }, Sicurezze: { $safeties }
 

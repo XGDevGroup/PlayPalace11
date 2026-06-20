@@ -4,6 +4,7 @@
 # Тоглоомын нэрс
 game-name-ninetynine = Ерэн есөн
 game-name-chatroom = Chat Room
+game-name-twentyone = 21 (Survival Rules)
 
 # Тойрог ба ээлжийн урсгал
 game-round-start = { $round } дугаар тойрог.

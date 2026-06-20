@@ -387,3 +387,4 @@ chatroom-no-topic = Chưa có chủ đề nào được đặt.
 table-topic-label = Chủ đề: { $topic }
 
 localization-in-progress-try-again = Bản địa hóa đang được xử lý. Vui lòng thử lại sau một phút.
+action-player-not-found = Player not found.

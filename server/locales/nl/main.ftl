@@ -387,3 +387,4 @@ chatroom-no-topic = Er is geen onderwerp ingesteld.
 table-topic-label = Onderwerp: { $topic }
 
 localization-in-progress-try-again = Lokalisatie is bezig. Probeer het over een minuut opnieuw.
+action-player-not-found = Player not found.

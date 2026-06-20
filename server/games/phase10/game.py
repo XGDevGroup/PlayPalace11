@@ -13,6 +13,7 @@ from ...game_utils.action_guard_mixin import ActionGuardMixin
 from ...game_utils.bot_helper import BotHelper
 from ...game_utils.cards import Card, Deck, DeckFactory
 from ...game_utils.game_result import GameResult, PlayerResult
+from ...game_utils.game_status import GameStatus
 from ...game_utils.poker_timer import PokerTurnTimer
 from ...messages.localization import Localization
 from server.core.ui.keybinds import KeybindState
@@ -671,7 +672,7 @@ class Phase10Game(Game, ActionGuardMixin):
     # =========================================================================
 
     def on_start(self) -> None:
-        self.status = "playing"
+        self.status = GameStatus.PLAYING
         self._sync_table_status()
         self.game_active = True
         self.round = 0

@@ -391,3 +391,4 @@ chatroom-no-topic = Nije postavljena nijedna tema.
 table-topic-label = Tema: { $topic }
 
 localization-in-progress-try-again = Učitavanje prevoda u toku. Molimo pokušajte ponovo za minut.
+action-player-not-found = Player not found.

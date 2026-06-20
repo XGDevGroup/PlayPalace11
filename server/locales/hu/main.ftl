@@ -387,3 +387,4 @@ chatroom-no-topic = Nincs téma beállítva.
 table-topic-label = Téma: { $topic }
 
 localization-in-progress-try-again = A lokalizáció folyamatban van. Kérjük, próbálja újra egy perc múlva.
+action-player-not-found = Player not found.

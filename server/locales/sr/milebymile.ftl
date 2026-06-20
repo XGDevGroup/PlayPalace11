@@ -25,6 +25,9 @@ milebymile-option-changed-reshuffle = Mešanje odbačenih karata u špil { $enab
 milebymile-option-changed-karma = Pravilo karme { $enabled }.
 milebymile-option-changed-rig = Štelovanje špila podešeno na { $rig }.
 
+milebymile-toggle-always-discard = Always allow discarding: { $enabled }
+milebymile-option-changed-always-discard = Always allow discarding { $enabled }.
+
 # Status
 milebymile-status = { $name }: { $points } poena, { $miles } kilometara, Problemi: { $problems }, Zaštite: { $safeties }
 

@@ -36,6 +36,9 @@ milebymile-desc-rig = Modify deck composition and hand rules
 milebymile-select-rig = Select deck rigging option
 milebymile-option-changed-rig = Deck rigging set to { $rig }.
 
+milebymile-toggle-always-discard = Always allow discarding: { $enabled }
+milebymile-option-changed-always-discard = Always allow discarding { $enabled }.
+
 milebymile-desc-always-discard = When enabled, press backspace on a card to discard it even if it could be played.
 
 # Status

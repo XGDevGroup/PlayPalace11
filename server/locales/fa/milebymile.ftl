@@ -25,6 +25,9 @@ milebymile-option-changed-reshuffle = مخلوط مجدد دور ریخته‌ه
 milebymile-option-changed-karma = قانون کارما { $enabled }.
 milebymile-option-changed-rig = تقلب دسته به { $rig } تنظیم شد.
 
+milebymile-toggle-always-discard = Always allow discarding: { $enabled }
+milebymile-option-changed-always-discard = Always allow discarding { $enabled }.
+
 # Status
 milebymile-status = { $name }: { $points } امتیاز، { $miles } مایل، مشکلات: { $problems }، ایمنی‌ها: { $safeties }
 

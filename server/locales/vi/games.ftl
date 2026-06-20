@@ -4,6 +4,7 @@
 # Tên trò chơi
 game-name-ninetynine = Ninety Nine
 game-name-chatroom = Chat Room
+game-name-twentyone = 21 (Survival Rules)
 
 # Luồng vòng chơi và lượt
 game-round-start = Vòng { $round }.

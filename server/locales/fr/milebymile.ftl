@@ -24,6 +24,9 @@ milebymile-option-changed-reshuffle = Remélanger la défausse { $enabled }.
 milebymile-option-changed-karma = Règle du karma { $enabled }.
 milebymile-option-changed-rig = Truquage du paquet défini sur { $rig }.
 
+milebymile-toggle-always-discard = Always allow discarding: { $enabled }
+milebymile-option-changed-always-discard = Always allow discarding { $enabled }.
+
 # Statut
 milebymile-status = { $name } : { $points } points, { $miles } miles, Problèmes : { $problems }, Sécurités : { $safeties }
 

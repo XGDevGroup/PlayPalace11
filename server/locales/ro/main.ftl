@@ -391,3 +391,4 @@ chatroom-no-topic = Nu a fost stabilit niciun subiect.
 table-topic-label = Subiect: { $topic }
 
 localization-in-progress-try-again = Localizarea este în curs. Vă rugăm să încercați din nou peste un minut.
+action-player-not-found = Player not found.

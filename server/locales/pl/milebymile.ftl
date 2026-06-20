@@ -25,6 +25,9 @@ milebymile-option-changed-reshuffle = Reshuffle discard pile { $enabled }.
 milebymile-option-changed-karma = Karma rule { $enabled }.
 milebymile-option-changed-rig = Deck rigging set to { $rig }.
 
+milebymile-toggle-always-discard = Always allow discarding: { $enabled }
+milebymile-option-changed-always-discard = Always allow discarding { $enabled }.
+
 # Status
 milebymile-status = { $name }: { $miles } miles, Problems: { $problems }, Safeties: { $safeties }
 

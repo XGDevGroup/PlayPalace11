@@ -473,3 +473,4 @@ chatroom-no-topic = لم يتم تعيين موضوع.
 table-topic-label = الموضوع: { $topic }
 
 localization-in-progress-try-again = جارٍ إعداد الترجمة. يُرجى المحاولة مرة أخرى بعد دقيقة.
+action-player-not-found = Player not found.

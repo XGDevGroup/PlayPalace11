@@ -375,3 +375,4 @@ chatroom-no-topic = トピックは設定されていません。
 table-topic-label = トピック：{ $topic }
 
 localization-in-progress-try-again = ローカライズ処理中です。1分後にもう一度お試しください。
+action-player-not-found = Player not found.

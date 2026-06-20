@@ -387,3 +387,4 @@ chatroom-no-topic = (Ukrainian) No topic has been set.
 table-topic-label = (Ukrainian) Topic: { $topic }
 
 localization-in-progress-try-again = Локалізація ще завантажується. Будь ласка, спробуйте знову за хвилину.
+action-player-not-found = Player not found.

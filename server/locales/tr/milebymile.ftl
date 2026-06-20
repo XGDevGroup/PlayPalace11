@@ -25,6 +25,9 @@ milebymile-option-changed-reshuffle = Atık destesini yeniden karıştır { $ena
 milebymile-option-changed-karma = Karma kuralı { $enabled }.
 milebymile-option-changed-rig = Deste hilesi { $rig } olarak ayarlandı.
 
+milebymile-toggle-always-discard = Always allow discarding: { $enabled }
+milebymile-option-changed-always-discard = Always allow discarding { $enabled }.
+
 # Durum
 milebymile-status = { $name }: { $points } puan, { $miles } mil, Sorunlar: { $problems }, Güvenlikler: { $safeties }
 

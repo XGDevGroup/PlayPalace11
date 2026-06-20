@@ -25,6 +25,9 @@ milebymile-option-changed-reshuffle = Amestecă pachetul de descărcare { $enabl
 milebymile-option-changed-karma = Regula karmei { $enabled }.
 milebymile-option-changed-rig = Trucarea pachetului setată la { $rig }.
 
+milebymile-toggle-always-discard = Always allow discarding: { $enabled }
+milebymile-option-changed-always-discard = Always allow discarding { $enabled }.
+
 # Status
 milebymile-status = { $name }: { $points } puncte, { $miles } mile, Probleme: { $problems }, Siguranțe: { $safeties }
 

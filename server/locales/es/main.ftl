@@ -387,3 +387,4 @@ chatroom-no-topic = No se ha establecido ningún tema.
 table-topic-label = Tema: { $topic }
 
 localization-in-progress-try-again = La localización está en progreso. Vuelve a intentarlo en un minuto.
+action-player-not-found = Player not found.

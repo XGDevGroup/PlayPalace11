@@ -25,6 +25,9 @@ milebymile-option-changed-reshuffle = สับกองทิ้งกลับ
 milebymile-option-changed-karma = กฎกรรม { $enabled }
 milebymile-option-changed-rig = ตั้งการจัดสำรับเป็น { $rig }
 
+milebymile-toggle-always-discard = Always allow discarding: { $enabled }
+milebymile-option-changed-always-discard = Always allow discarding { $enabled }.
+
 # Status
 milebymile-status = { $name }: { $points } คะแนน, { $miles } ไมล์, ปัญหา: { $problems }, ความปลอดภัย: { $safeties }
 

@@ -25,6 +25,9 @@ milebymile-option-changed-reshuffle = Kocok ulang tumpukan buangan { $enabled }.
 milebymile-option-changed-karma = Aturan karma { $enabled }.
 milebymile-option-changed-rig = Kecurangan dek diatur ke { $rig }.
 
+milebymile-toggle-always-discard = Always allow discarding: { $enabled }
+milebymile-option-changed-always-discard = Always allow discarding { $enabled }.
+
 # Status
 milebymile-status = { $name }: { $points } poin, { $miles } mil, Masalah: { $problems }, Keselamatan: { $safeties }
 

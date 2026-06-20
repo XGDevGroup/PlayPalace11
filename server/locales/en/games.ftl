@@ -5,6 +5,7 @@
 game-name-ninetynine = Ninety Nine
 game-name-humanitycards = Cards Against Humanity
 game-name-chatroom = Chat Room
+game-name-twentyone = 21 (Survival Rules)
 
 # Generic game actions
 show-rules = Show rules
@@ -45,6 +46,9 @@ game-team-mode-x-teams-of-y = { $num_teams } teams of { $team_size }
 # Boolean option values
 option-on = on
 option-off = off
+
+# In-game read-only options viewer
+check-game-options = Check game options
 
 # Option navigation
 option-back = Back

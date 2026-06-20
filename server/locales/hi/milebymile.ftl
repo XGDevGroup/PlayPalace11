@@ -25,6 +25,9 @@ milebymile-option-changed-reshuffle = डिस्कार्ड पाइल �
 milebymile-option-changed-karma = कर्म नियम { $enabled }।
 milebymile-option-changed-rig = डेक रिगिंग { $rig } पर सेट किया गया।
 
+milebymile-toggle-always-discard = Always allow discarding: { $enabled }
+milebymile-option-changed-always-discard = Always allow discarding { $enabled }.
+
 # Status
 milebymile-status = { $name }: { $points } अंक, { $miles } मील, समस्याएं: { $problems }, सुरक्षाएं: { $safeties }
 

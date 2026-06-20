@@ -5,6 +5,7 @@
 game-name-ninetynine = Ninety Nine
 game-name-humanitycards = Karty przeciwko ludzkości
 game-name-chatroom = Chat Room
+game-name-twentyone = 21 (Survival Rules)
 
 # Game categories (shared)
 category-party-games = Gry imprezowe

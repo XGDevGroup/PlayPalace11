@@ -278,7 +278,7 @@ class EventHandlingMixin:
                     if resolved.enabled:
                         self.execute_action(player, action_id, context=context)
                         executed_any = True
-                        if not action.skip_menu_rebuild:
+                        if not getattr(action, "skip_menu_rebuild", False):
                             wants_rebuild = True
                     elif action.disabled_message:
                         user = self.get_user(player)
