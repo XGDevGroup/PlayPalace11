@@ -8,6 +8,7 @@ monopoly-in-jail-turn = { $player } is in jail. Failed roll attempts: { $turns }
 
 # Actions
 monopoly-roll-dice = Roll dice
+monopoly-speed-die-choose-move = Choose Speed Die move
 monopoly-buy-property = Buy property
 monopoly-auction-property = Auction property
 monopoly-end-turn = End turn
@@ -45,6 +46,7 @@ monopoly-select-trade-give = Choose one of your properties to add to or remove f
 monopoly-select-trade-request = Choose one of their properties to add to or remove from the offer
 monopoly-select-trade-jail = Choose a Get Out of Jail Free card to include or remove
 monopoly-enter-trade-cash = Enter the cash for this trade: a positive amount if you pay the other player, a negative amount if they pay you, or 0.
+monopoly-speed-die-select-move = Select how to move with the Speed Die
 
 # Validation
 monopoly-player-bankrupt-disabled = You are bankrupt.
@@ -75,6 +77,9 @@ monopoly-bid-out-of-range = Bid at least { $minimum } and no more than your cash
 
 # Board events
 monopoly-roll-result = { $player } rolled { $die1 } + { $die2 } = { $total }.
+monopoly-speed-die-roll-result = { $player } rolled { $die1 } + { $die2 } with Speed Die { $speed_die }.
+monopoly-speed-die-bus = { $player } rolled the Bus. Choose one white die or their total.
+monopoly-speed-die-three-of-a-kind = { $player } rolled three of a kind and may move anywhere on the board.
 monopoly-landed = { $player } landed on { $space }.
 monopoly-moved-to = { $player } moved to { $space }.
 monopoly-pass-go = { $player } passed GO and collected { $amount }.
@@ -128,14 +133,27 @@ monopoly-player-bankrupt = { $player } is bankrupt. Creditor: { $creditor }.
 monopoly-winner = { $player } wins Monopoly with net worth { $value }.
 
 # House-rule options (lobby settings; defaults reproduce the official ruleset)
-monopoly-option-starting-cash = Starting cash: ${ $cash }
+monopoly-option-ruleset = Ruleset: { $ruleset }
+monopoly-option-select-ruleset = Select the Monopoly ruleset
+monopoly-option-changed-ruleset = Ruleset changed to { $ruleset }.
+monopoly-option-desc-ruleset = Choose US Classic, 1996 UK Waddingtons Classic, or US Speed Die before the game starts.
+monopoly-ruleset-us-classic = US Classic
+monopoly-ruleset-uk-classic = UK Waddingtons Classic
+monopoly-ruleset-uk-short = UK Waddingtons Short Game
+monopoly-ruleset-uk-time-limit = UK Waddingtons Time Limit Game
+monopoly-ruleset-us-speed-die = US Speed Die
+monopoly-option-time-limit = Time limit: { $minutes } minutes
+monopoly-option-enter-time-limit = Enter the Time Limit Game duration in minutes
+monopoly-option-changed-time-limit = Time limit set to { $minutes } minutes.
+monopoly-option-desc-time-limit = The Time Limit Game ends after this many minutes; the richest player wins.
+monopoly-option-starting-cash = Starting cash: { $cash }
 monopoly-option-enter-starting-cash = Enter the starting cash each player receives
-monopoly-option-changed-starting-cash = Starting cash set to ${ $cash }.
+monopoly-option-changed-starting-cash = Starting cash set to { $cash }.
 monopoly-option-desc-starting-cash = How much money each player begins with. The official rule is 1500.
 monopoly-option-free-parking-jackpot = Free Parking jackpot: { $enabled }
 monopoly-option-changed-free-parking-jackpot = Free Parking jackpot turned { $enabled }.
 monopoly-option-desc-free-parking-jackpot = House rule: taxes, fees, and bail paid to the bank pile into a pot that a player wins by landing on Free Parking. Off by default for official rules.
-monopoly-option-free-parking-seed = Free Parking starting pot: ${ $cash }
+monopoly-option-free-parking-seed = Free Parking starting pot: { $cash }
 monopoly-option-enter-free-parking-seed = Enter the amount the Free Parking pot starts and resets to
-monopoly-option-changed-free-parking-seed = Free Parking starting pot set to ${ $cash }.
+monopoly-option-changed-free-parking-seed = Free Parking starting pot set to { $cash }.
 monopoly-option-desc-free-parking-seed = The amount the pot holds at the start and resets to after a player collects it. Default 0.

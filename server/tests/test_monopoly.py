@@ -4,7 +4,14 @@ from server.core.users.bot import Bot
 from server.core.users.test_user import MockUser
 from server.games.registry import GameRegistry
 from server.games.monopoly.board import CHANCE_CARD_IDS, COMMUNITY_CHEST_CARD_IDS, get_board
-from server.games.monopoly.game import MonopolyGame, MonopolyPlayer
+from server.games.monopoly.game import (
+    UK_CLASSIC_RULESET,
+    UK_SHORT_RULESET,
+    UK_TIME_LIMIT_RULESET,
+    US_SPEED_DIE_RULESET,
+    MonopolyGame,
+    MonopolyPlayer,
+)
 
 
 def make_game() -> tuple[MonopolyGame, MonopolyPlayer, MonopolyPlayer]:
@@ -26,6 +33,163 @@ def test_classic_board_definition_has_expected_shape():
     assert len(COMMUNITY_CHEST_CARD_IDS) == 16
     assert board.get_space("boardwalk").price == 400
     assert board.get_space("boardwalk").rents == (50, 200, 600, 1400, 1700, 2000)
+
+
+def test_ruleset_selection_switches_board_currency_and_speed_die_starting_cash():
+    game = MonopolyGame()
+    game.options.ruleset = UK_CLASSIC_RULESET
+    game.add_player("Alice", MockUser("Alice"))
+    game.add_player("Bob", MockUser("Bob"))
+    game.on_start()
+
+    assert game.board_id == "uk_classic"
+    assert game.board.name == "Waddingtons Monopoly"
+    assert game.board.get_space_at(1).name == "Old Kent Road"
+    assert game._money(200) == "£200"
+
+    speed_game = MonopolyGame()
+    speed_game.options.ruleset = US_SPEED_DIE_RULESET
+    alice = speed_game.add_player("Alice", MockUser("Alice"))
+    speed_game.add_player("Bob", MockUser("Bob"))
+    speed_game.on_start()
+
+    assert speed_game.uses_speed_die is True
+    assert speed_game.board_id == "classic"
+    assert alice.cash == 2500
+
+
+def test_uk_card_destinations_follow_waddingtons_board():
+    game = MonopolyGame()
+    game.options.ruleset = UK_CLASSIC_RULESET
+    alice = game.add_player("Alice", MockUser("Alice"))
+    game.add_player("Bob", MockUser("Bob"))
+    game.on_start()
+    alice.position = 20
+
+    game._apply_card(alice, "advance_to_st_charles_place", roll_total=7)
+
+    assert alice.position == 39
+    assert game._space_at(alice.position).name == "Mayfair"
+    assert game._card_text("advance_to_st_charles_place") == "Advance to Mayfair. If you pass GO, collect £200."
+
+
+def test_uk_short_game_deals_two_deeds_and_ends_after_second_bankruptcy():
+    game = MonopolyGame()
+    game.options.ruleset = UK_SHORT_RULESET
+    alice = game.add_player("Alice", MockUser("Alice"))
+    bob = game.add_player("Bob", MockUser("Bob"))
+    game.add_player("Cara", MockUser("Cara"))
+    game.on_start()
+    assert len(game._owned_spaces(alice)) == 2
+    assert len(game._owned_spaces(bob)) == 2
+    bob.bankrupt = True
+    game._check_for_winner()
+    assert game.game_active is True
+    game.players[2].bankrupt = True
+    game._check_for_winner()
+    assert game.game_active is False
+
+
+def test_uk_auctions_allow_a_one_pound_opening_bid():
+    game, alice, _bob = make_game()
+    game.options.ruleset = UK_CLASSIC_RULESET
+    game.ruleset_id = UK_CLASSIC_RULESET
+    game.pending_purchase_property_id = "baltic_avenue"
+    game.phase = "await_purchase"
+    game.execute_action(alice, "auction_property")
+    assert game._minimum_auction_bid() == 1
+
+
+def test_uk_time_limit_uses_customizable_duration():
+    game = MonopolyGame()
+    game.options.ruleset = UK_TIME_LIMIT_RULESET
+    game.options.time_limit_minutes = 5
+    alice = game.add_player("Alice", MockUser("Alice"))
+    game.add_player("Bob", MockUser("Bob"))
+    game.on_start()
+    alice.cash = 2000
+    game.sound_scheduler_tick = game.ruleset_started_tick + 5 * 60 * 20
+    game.on_tick()
+    assert game.game_active is False
+    assert game.winner_id == alice.id
+
+
+def test_speed_die_unlocks_after_passing_go():
+    game = MonopolyGame()
+    game.options.ruleset = US_SPEED_DIE_RULESET
+    alice = game.add_player("Alice", MockUser("Alice"))
+    game.add_player("Bob", MockUser("Bob"))
+    game.on_start()
+    alice.position = 39
+
+    game._move_steps(alice, 2)
+
+    assert alice.speed_die_unlocked is True
+    assert alice.cash == 2700
+
+
+def test_speed_die_bus_offers_white_die_or_total(monkeypatch):
+    game = MonopolyGame()
+    game.options.ruleset = US_SPEED_DIE_RULESET
+    alice = game.add_player("Alice", MockUser("Alice"))
+    game.add_player("Bob", MockUser("Bob"))
+    game.on_start()
+    game.reset_turn_order()
+    alice.speed_die_unlocked = True
+    dice = iter([1, 2, 4])  # white dice 1 + 2, then the Bus
+    monkeypatch.setattr("server.games.monopoly.game.random.randint", lambda *_: next(dice))
+
+    game.execute_action(alice, "roll")
+
+    assert game.phase == "await_speed_die_move"
+    assert game.speed_die_action == "bus"
+    assert game._speed_die_move_options(alice) == [
+        "first|Move 1 spaces",
+        "second|Move 2 spaces",
+        "sum|Move 3 spaces",
+    ]
+
+    game.execute_action(alice, "speed_die_move", "sum|Move 3 spaces")
+
+    assert alice.position == 3
+    assert game.pending_purchase_property_id == "baltic_avenue"
+
+
+def test_speed_die_three_of_a_kind_allows_any_destination(monkeypatch):
+    game = MonopolyGame()
+    game.options.ruleset = US_SPEED_DIE_RULESET
+    alice = game.add_player("Alice", MockUser("Alice"))
+    game.add_player("Bob", MockUser("Bob"))
+    game.on_start()
+    game.reset_turn_order()
+    alice.speed_die_unlocked = True
+    dice = iter([2, 2, 2])
+    monkeypatch.setattr("server.games.monopoly.game.random.randint", lambda *_: next(dice))
+
+    game.execute_action(alice, "roll")
+    game.execute_action(alice, "speed_die_move", "39|Move to Boardwalk")
+
+    assert alice.position == 39
+    assert alice.cash == 2500
+    assert game.pending_purchase_property_id == "boardwalk"
+
+
+def test_mr_monopoly_advances_to_next_unowned_property(monkeypatch):
+    game = MonopolyGame()
+    game.options.ruleset = US_SPEED_DIE_RULESET
+    alice = game.add_player("Alice", MockUser("Alice"))
+    game.add_player("Bob", MockUser("Bob"))
+    game.on_start()
+    game.reset_turn_order()
+    alice.speed_die_unlocked = True
+    game.property_states["baltic_avenue"].owner_id = alice.id
+    dice = iter([1, 2, 5])  # white dice 1 + 2, then Mr. Monopoly
+    monkeypatch.setattr("server.games.monopoly.game.random.randint", lambda *_: next(dice))
+
+    game.execute_action(alice, "roll")
+
+    assert alice.position == 5
+    assert game.pending_purchase_property_id == "reading_railroad"
 
 
 def test_start_initializes_players_and_property_bank():

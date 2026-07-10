@@ -1,12 +1,20 @@
 # Monopoly Rules
 PlayPalace team, 2026.
 
-This guide describes PlayPalace's Classic Monopoly implementation. It is based on the server rules in this game and informed by Hasbro's official Monopoly Classic Game instructions: https://instructions.hasbro.com/en-my/instruction/monopoly-classic-game
+This guide describes PlayPalace's Monopoly implementation. Before the host starts a game, choose one of the supported rulesets:
+
+* **US Classic** uses the familiar Atlantic City board and the standard two-dice rules.
+* **UK Waddingtons Classic** follows the 1996 Waddingtons rules and London board, using pounds sterling.
+* **UK Waddingtons Short Game** deals two deeds to each player, uses three houses before a hotel, and ends after the second bankruptcy.
+* **UK Waddingtons Time Limit Game** deals two deeds, then awards the game to the richest player when the host-selected time expires (60 minutes by default).
+* **US Speed Die** uses the US Classic board with Hasbro's Speed Die additions.
+
+The classic rules are informed by Hasbro's official Monopoly Classic Game instructions: https://instructions.hasbro.com/en-my/instruction/monopoly-classic-game
 
 ## TL;DR
 Monopoly is a property trading game for 2 to 8 players. Move around the board, buy unowned properties, collect rent from opponents, build houses and hotels on complete color sets, and try to stay solvent while everyone else goes bankrupt. The last non-bankrupt player wins.
 
-The default PlayPalace settings follow the classic rules: each player starts with $1500, passing GO pays $200, Free Parking does nothing, and the bank has 32 houses and 12 hotels. The host can enable optional house rules before the game starts.
+The default US Classic settings follow the standard rules: each player starts with $1500, passing GO pays $200, Free Parking does nothing, and the bank has 32 houses and 12 hotels. The UK ruleset uses the equivalent £ values and London properties. The host can enable optional house rules before the game starts.
 
 ## Object
 Become the wealthiest surviving player by buying, renting, trading, mortgaging, and improving properties. A player who cannot pay a debt after raising money must declare bankruptcy. When only one solvent player remains, that player wins.
@@ -35,6 +43,17 @@ After you land, the server resolves the space:
 * If you land on Go to Jail, move directly to Jail.
 
 Most turns advance automatically after all required choices and payments are complete.
+
+### Speed Die
+
+In the US Speed Die ruleset, every player begins with $2500. A player starts using the third die after they first land on or pass GO. Before that point, they use only the two white dice.
+
+* **1, 2, or 3:** add it to the white-dice total.
+* **Bus:** choose the first white die, second white die, or their total as the movement.
+* **Mr. Monopoly:** resolve the normal white-dice move, then advance to the next unowned property. If none remain, advance to the next property where rent is due.
+* **Three of a kind:** move to any board space.
+
+Only the white dice determine doubles and are used for Jail. Utility rent uses all three dice, treating Bus and Mr. Monopoly as zero.
 
 ## Buying And Auctions
 When you land on an unowned property, you may buy it for its printed price. If you do not buy it, an auction starts. Every solvent player may bid or pass. Bids must meet the minimum bid and increase by at least $10. The highest remaining bidder pays the winning bid and receives the property. If everyone passes without bidding, the property remains unowned.
@@ -93,6 +112,9 @@ The host may enable the Free Parking jackpot house rule before the game. With th
 
 ## Options
 The host can configure these settings before play:
+
+* **Ruleset:** US Classic, UK Waddingtons Classic, UK Short Game, UK Time Limit Game, or US Speed Die. This choice is locked once play starts.
+* **Time limit:** The Time Limit Game duration. Default: 60 minutes.
 
 * **Starting cash:** Cash each player receives at setup. Default: $1500.
 * **Free Parking jackpot:** Optional house rule. Default: off.

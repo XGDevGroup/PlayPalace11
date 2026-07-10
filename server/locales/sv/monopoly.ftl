@@ -113,4 +113,22 @@ monopoly-card-drawn = { $player } drew { $deck }: { $text }
 monopoly-debt-created = { $player } owes { $amount } to { $target } for { $reason }.
 monopoly-debt-can-pay = { $player } has enough cash to pay the pending debt.
 monopoly-player-bankrupt = { $player } is bankrupt. Creditor: { $creditor }.
-monopoly-winner = { $player } wins Monopoly with net worth { $value }.
+
+# Ruleset and Speed Die options
+monopoly-speed-die-choose-move = Choose Speed Die move
+monopoly-speed-die-select-move = Select how to move with the Speed Die
+monopoly-speed-die-roll-result = { $player } rolled { $die1 } + { $die2 } with Speed Die { $speed_die }.
+monopoly-speed-die-bus = { $player } rolled the Bus. Choose one white die or their total.
+monopoly-speed-die-three-of-a-kind = { $player } rolled three of a kind and may move anywhere on the board.
+monopoly-option-ruleset = Ruleset: { $ruleset }
+monopoly-option-select-ruleset = Select the Monopoly ruleset
+monopoly-option-changed-ruleset = Ruleset changed to { $ruleset }.
+monopoly-option-desc-ruleset = Choose US Classic, 1996 UK Waddingtons Classic, or US Speed Die before the game starts.
+monopoly-ruleset-us-classic = US Classic
+monopoly-ruleset-uk-classic = UK Waddingtons Classic
+monopoly-ruleset-uk-short = UK Waddingtons Short Game
+monopoly-ruleset-uk-time-limit = UK Waddingtons Time Limit Game
+monopoly-option-time-limit = Time limit: { $minutes } minutes
+monopoly-option-enter-time-limit = Enter the Time Limit Game duration in minutes
+monopoly-option-changed-time-limit = Time limit set to { $minutes } minutes.
+monopoly-option-desc-time-limit = The Time Limit Game ends after this many minutes; the richest player wins.

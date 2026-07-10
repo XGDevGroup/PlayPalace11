@@ -12,7 +12,7 @@ from ...game_utils.actions import Action, ActionSet, EditboxInput, MenuInput, Vi
 from ...game_utils.bot_helper import BotHelper
 from ...game_utils.game_result import GameResult, PlayerResult
 from ...game_utils.game_status import GameStatus
-from ...game_utils.options import BoolOption, GameOptions, IntOption, option_field
+from ...game_utils.options import BoolOption, GameOptions, IntOption, MenuOption, option_field
 from ...messages.localization import Localization
 from ..base import Game, Player
 from ..registry import register_game
@@ -36,6 +36,19 @@ JAIL_POSITION = 10
 GO_POSITION = 0
 JAIL_CARD_TRADE_VALUE = 50
 
+US_CLASSIC_RULESET = "us_classic"
+UK_CLASSIC_RULESET = "uk_classic"
+UK_SHORT_RULESET = "uk_short"
+UK_TIME_LIMIT_RULESET = "uk_time_limit"
+US_SPEED_DIE_RULESET = "us_speed_die"
+RULESET_BOARD_IDS = {
+    US_CLASSIC_RULESET: DEFAULT_BOARD_ID,
+    UK_CLASSIC_RULESET: "uk_classic",
+    UK_SHORT_RULESET: "uk_classic",
+    UK_TIME_LIMIT_RULESET: "uk_classic",
+    US_SPEED_DIE_RULESET: DEFAULT_BOARD_ID,
+}
+
 
 @dataclass
 class MonopolyPlayer(Player):
@@ -48,6 +61,7 @@ class MonopolyPlayer(Player):
     jail_turns: int = 0
     jail_free_cards: list[str] = field(default_factory=list)
     last_roll: list[int] = field(default_factory=list)
+    speed_die_unlocked: bool = False
 
 
 @dataclass
@@ -109,6 +123,28 @@ class MonopolyOptions(GameOptions):
     house rule without affecting the faithful default experience.
     """
 
+    ruleset: str = option_field(
+        MenuOption(
+            default=US_CLASSIC_RULESET,
+            value_key="ruleset",
+            choices=[US_CLASSIC_RULESET, UK_CLASSIC_RULESET, UK_SHORT_RULESET, UK_TIME_LIMIT_RULESET, US_SPEED_DIE_RULESET],
+            choice_labels={
+                US_CLASSIC_RULESET: "monopoly-ruleset-us-classic",
+                UK_CLASSIC_RULESET: "monopoly-ruleset-uk-classic",
+                UK_SHORT_RULESET: "monopoly-ruleset-uk-short",
+                UK_TIME_LIMIT_RULESET: "monopoly-ruleset-uk-time-limit",
+                US_SPEED_DIE_RULESET: "monopoly-ruleset-us-speed-die",
+            },
+            label="monopoly-option-ruleset",
+            prompt="monopoly-option-select-ruleset",
+            change_msg="monopoly-option-changed-ruleset",
+            description="monopoly-option-desc-ruleset",
+        )
+    )
+    time_limit_minutes: int = option_field(
+        IntOption(default=60, min_val=5, max_val=360, value_key="minutes", label="monopoly-option-time-limit", prompt="monopoly-option-enter-time-limit", change_msg="monopoly-option-changed-time-limit", description="monopoly-option-desc-time-limit"),
+        visible_when=("ruleset", lambda value: value == UK_TIME_LIMIT_RULESET),
+    )
     starting_cash: int = option_field(
         IntOption(
             default=STARTING_CASH,
@@ -158,6 +194,7 @@ class MonopolyGame(Game):
     options: MonopolyOptions = field(default_factory=MonopolyOptions)
 
     board_id: str = DEFAULT_BOARD_ID
+    ruleset_id: str = US_CLASSIC_RULESET
     property_states: dict[str, MonopolyPropertyState] = field(default_factory=dict)
     chance_deck: list[str] = field(default_factory=list)
     community_chest_deck: list[str] = field(default_factory=list)
@@ -173,6 +210,10 @@ class MonopolyGame(Game):
     trade_draft_offers: dict[str, MonopolyTradeOffer] = field(default_factory=dict)
     extra_roll_pending: bool = False
     doubles_count: int = 0
+    speed_die_action: str = ""
+    speed_die_white_total: int = 0
+    speed_die_roll_total: int = 0
+    ruleset_started_tick: int = 0
     winner_id: str = ""
 
     @classmethod
@@ -199,14 +240,43 @@ class MonopolyGame(Game):
     def board(self) -> BoardDefinition:
         return get_board(self.board_id)
 
+    @property
+    def uses_speed_die(self) -> bool:
+        return self.ruleset_id == US_SPEED_DIE_RULESET
+
+    @property
+    def uses_uk_short_game(self) -> bool:
+        return self.ruleset_id == UK_SHORT_RULESET
+
+    @property
+    def uses_uk_time_limit(self) -> bool:
+        return self.ruleset_id == UK_TIME_LIMIT_RULESET
+
+    @property
+    def houses_per_hotel(self) -> int:
+        return 3 if self.uses_uk_short_game else 4
+
+    def _resolve_ruleset(self) -> str:
+        requested = self.options.ruleset or self.ruleset_id
+        if requested not in RULESET_BOARD_IDS:
+            requested = US_CLASSIC_RULESET
+        self.ruleset_id = requested
+        self.options.ruleset = requested
+        self.board_id = RULESET_BOARD_IDS[requested]
+        return requested
+
     def create_player(self, player_id: str, name: str, is_bot: bool = False) -> MonopolyPlayer:
         return MonopolyPlayer(id=player_id, name=name, is_bot=is_bot)
 
     def rebuild_runtime_state(self) -> None:
+        if self.ruleset_id not in RULESET_BOARD_IDS:
+            self.ruleset_id = UK_CLASSIC_RULESET if self.board_id == "uk_classic" else US_CLASSIC_RULESET
         self._ensure_property_states()
 
     def on_start(self) -> None:
         """Start a classic Monopoly game."""
+
+        self._resolve_ruleset()
 
         self.status = GameStatus.PLAYING
         self.game_active = True
@@ -218,7 +288,11 @@ class MonopolyGame(Game):
         self.trade_draft_offers.clear()
         self.extra_roll_pending = False
         self.doubles_count = 0
+        self.speed_die_action = ""
+        self.speed_die_white_total = 0
+        self.speed_die_roll_total = 0
         self.winner_id = ""
+        self.ruleset_started_tick = self.sound_scheduler_tick
 
         board = self.board
         self.property_states = {
@@ -235,6 +309,8 @@ class MonopolyGame(Game):
         )
 
         starting_cash = self.options.starting_cash
+        if self.uses_speed_die and starting_cash == STARTING_CASH:
+            starting_cash += 1000
         for player in self.get_active_players():
             mp: MonopolyPlayer = player  # type: ignore[assignment]
             mp.position = GO_POSITION
@@ -244,8 +320,17 @@ class MonopolyGame(Game):
             mp.jail_turns = 0
             mp.jail_free_cards.clear()
             mp.last_roll.clear()
+            mp.speed_die_unlocked = False
 
         self.set_turn_players(self.get_active_players())
+        if self.uses_uk_short_game or self.uses_uk_time_limit:
+            deeds = list(board.purchasable_spaces)
+            random.shuffle(deeds)
+            for player, first, second in zip(self.get_active_players(), deeds[::2], deeds[1::2]):
+                mp: MonopolyPlayer = player  # type: ignore[assignment]
+                for space in (first, second):
+                    self.property_states[space.space_id].owner_id = mp.id
+                    mp.cash -= space.price
         self.broadcast_l("monopoly-started", board=board.name, cash=self._money(starting_cash))
         self._start_turn(rebuild_all=True)
 
@@ -261,6 +346,20 @@ class MonopolyGame(Game):
                 handler="_action_roll",
                 is_enabled="_is_roll_enabled",
                 is_hidden="_is_roll_hidden",
+            )
+        )
+        action_set.add(
+            Action(
+                id="speed_die_move",
+                label=Localization.get(locale, "monopoly-speed-die-choose-move"),
+                handler="_action_speed_die_move",
+                is_enabled="_is_speed_die_move_enabled",
+                is_hidden="_is_speed_die_move_hidden",
+                input_request=MenuInput(
+                    prompt="monopoly-speed-die-select-move",
+                    options="_speed_die_move_options",
+                    bot_select="_bot_select_first_option",
+                ),
             )
         )
         action_set.add(
@@ -648,6 +747,22 @@ class MonopolyGame(Game):
             return Visibility.VISIBLE
         return Visibility.HIDDEN
 
+    def _is_speed_die_move_enabled(self, player: Player) -> str | None:
+        if not self._is_current_turn_player(player):
+            return "action-not-your-turn"
+        if self.phase != "await_speed_die_move" or self.speed_die_action not in {"bus", "triple"}:
+            return "monopoly-roll-not-available"
+        return None
+
+    def _is_speed_die_move_hidden(self, player: Player) -> Visibility:
+        if (
+            self.phase == "await_speed_die_move"
+            and self.speed_die_action in {"bus", "triple"}
+            and self._is_current_turn_player(player)
+        ):
+            return Visibility.VISIBLE
+        return Visibility.HIDDEN
+
     def _is_buy_property_enabled(self, player: Player) -> str | None:
         if not self._is_playing():
             return "action-not-playing"
@@ -914,8 +1029,9 @@ class MonopolyGame(Game):
             return
 
         die1, die2 = random.randint(1, 6), random.randint(1, 6)
-        total = die1 + die2
-        player.last_roll = [die1, die2]
+        white_total = die1 + die2
+        speed_die = self._roll_speed_die(player)
+        player.last_roll = [die1, die2] + ([speed_die] if isinstance(speed_die, int) else [])
         is_double = die1 == die2
         self.extra_roll_pending = is_double
         if is_double:
@@ -923,13 +1039,22 @@ class MonopolyGame(Game):
         else:
             self.doubles_count = 0
 
-        self.broadcast_l(
-            "monopoly-roll-result",
-            player=player.name,
-            die1=die1,
-            die2=die2,
-            total=total,
-        )
+        if speed_die is None:
+            self.broadcast_l(
+                "monopoly-roll-result",
+                player=player.name,
+                die1=die1,
+                die2=die2,
+                total=white_total,
+            )
+        else:
+            self.broadcast_l(
+                "monopoly-speed-die-roll-result",
+                player=player.name,
+                die1=die1,
+                die2=die2,
+                speed_die=self._speed_die_label(speed_die),
+            )
 
         if self.doubles_count >= 3:
             self.broadcast_l("monopoly-three-doubles-jail", player=player.name)
@@ -939,9 +1064,89 @@ class MonopolyGame(Game):
             self.rebuild_all_menus()
             return
 
+        if isinstance(speed_die, int) and speed_die == die1 == die2:
+            self.speed_die_action = "triple"
+            self.speed_die_white_total = white_total
+            self.speed_die_roll_total = white_total + speed_die
+            self.phase = "await_speed_die_move"
+            self.broadcast_l("monopoly-speed-die-three-of-a-kind", player=player.name)
+            self.rebuild_all_menus()
+            self._focus_active_player(player)
+            return
+
+        if speed_die == "bus":
+            self.speed_die_action = "bus"
+            self.speed_die_white_total = white_total
+            self.speed_die_roll_total = white_total
+            self.phase = "await_speed_die_move"
+            self.broadcast_l("monopoly-speed-die-bus", player=player.name)
+            self.rebuild_all_menus()
+            self._focus_active_player(player)
+            return
+
+        total = white_total + speed_die if isinstance(speed_die, int) else white_total
+        self.speed_die_roll_total = total
+        self.speed_die_action = "mr_monopoly" if speed_die == "mr_monopoly" else ""
         self._move_steps(player, total)
         if self._resolve_landing(player, roll_total=total):
             self._complete_roll_resolution(player)
+        self.rebuild_all_menus()
+        self._focus_active_player(player)
+
+    def _roll_speed_die(self, player: MonopolyPlayer) -> int | str | None:
+        """Return the active player's third-die result, if the ruleset permits it."""
+
+        if not self.uses_speed_die or not player.speed_die_unlocked:
+            return None
+        result = random.randint(1, 5)
+        if result <= 3:
+            return result
+        return "bus" if result == 4 else "mr_monopoly"
+
+    def _speed_die_label(self, result: int | str) -> str:
+        if isinstance(result, int):
+            return str(result)
+        return "Bus" if result == "bus" else "Mr. Monopoly"
+
+    def _speed_die_move_options(self, player: Player) -> list[str]:
+        mp = self._active_player(player)
+        if self.speed_die_action == "bus" and len(mp.last_roll) >= 2:
+            die1, die2 = mp.last_roll[:2]
+            return [
+                f"first|Move {die1} spaces",
+                f"second|Move {die2} spaces",
+                f"sum|Move {die1 + die2} spaces",
+            ]
+        if self.speed_die_action == "triple":
+            return [f"{space.index}|Move to {space.name}" for space in self.board.spaces]
+        return []
+
+    def _action_speed_die_move(
+        self, player: MonopolyPlayer, selection: str, action_id: str
+    ) -> None:
+        if self._is_speed_die_move_enabled(player) is not None:
+            return
+        choice = selection.split("|", 1)[0]
+        if self.speed_die_action == "bus":
+            die1, die2 = player.last_roll[:2]
+            steps = {"first": die1, "second": die2, "sum": die1 + die2}.get(choice)
+            if steps is None:
+                return
+            self.speed_die_action = ""
+            self._move_steps(player, steps)
+            if self._resolve_landing(player, roll_total=self.speed_die_roll_total):
+                self._complete_roll_resolution(player)
+        elif self.speed_die_action == "triple":
+            try:
+                destination = int(choice)
+            except ValueError:
+                return
+            if destination not in range(len(self.board.spaces)):
+                return
+            self.speed_die_action = ""
+            self._move_to(player, destination, collect_go=False)
+            if self._resolve_landing(player, roll_total=self.speed_die_roll_total):
+                self._complete_roll_resolution(player)
         self.rebuild_all_menus()
         self._focus_active_player(player)
 
@@ -1002,6 +1207,10 @@ class MonopolyGame(Game):
             return
         if self.pending_purchase_property_id or self.pending_debt or self.auction:
             return
+        if self.speed_die_action == "mr_monopoly" and not player.in_jail:
+            self.speed_die_action = ""
+            self._apply_mr_monopoly(player)
+            return
         if self.extra_roll_pending and not player.in_jail:
             self.phase = "await_roll"
             self.broadcast_l("monopoly-roll-again", player=player.name)
@@ -1017,6 +1226,32 @@ class MonopolyGame(Game):
         previous = player
         self.advance_turn(announce=False)
         self._start_turn(rebuild_all=True, previous_player=previous)
+
+    def _apply_mr_monopoly(self, player: MonopolyPlayer) -> None:
+        """Apply the Speed Die's Mr. Monopoly follow-up movement."""
+
+        target: MonopolySpace | None = None
+        for distance in range(1, len(self.board.spaces) + 1):
+            space = self._space_at(player.position + distance)
+            if space.is_purchasable and not self.property_states[space.space_id].owner_id:
+                target = space
+                break
+        if target is None:
+            for distance in range(1, len(self.board.spaces) + 1):
+                space = self._space_at(player.position + distance)
+                if not space.is_purchasable:
+                    continue
+                state = self.property_states[space.space_id]
+                if state.owner_id and state.owner_id != player.id and not state.mortgaged:
+                    target = space
+                    break
+        if target is None:
+            self._complete_roll_resolution(player)
+            return
+
+        self._move_to(player, target.index, collect_go=target.index < player.position)
+        if self._resolve_landing(player, roll_total=self.speed_die_roll_total):
+            self._complete_roll_resolution(player)
 
     # ------------------------------------------------------------------
     # Space resolution and cards
@@ -1117,7 +1352,7 @@ class MonopolyGame(Game):
             deck.extend(CHANCE_CARD_IDS if deck_name == "chance" else COMMUNITY_CHEST_CARD_IDS)
             random.shuffle(deck)
         card_id = deck.pop(0)
-        text = CARD_TEXT.get(card_id, card_id.replace("_", " "))
+        text = self._card_text(card_id)
         self.broadcast_l("monopoly-card-drawn", player=player.name, deck=deck_name, text=text)
 
         keep_card = card_id.startswith("get_out_of_jail_free")
@@ -1133,14 +1368,14 @@ class MonopolyGame(Game):
             self._move_to(player, GO_POSITION, collect_go=True)
             return True
         if card_id == "advance_to_illinois_avenue":
-            self._move_to(player, 24, collect_go=True)
+            self._move_to(player, self._card_target_position(card_id, 24), collect_go=True)
             return self._resolve_landing(player, roll_total=roll_total)
         if card_id == "advance_to_st_charles_place":
-            self._move_to(player, 11, collect_go=True)
+            self._move_to(player, self._card_target_position(card_id, 11), collect_go=True)
             return self._resolve_landing(player, roll_total=roll_total)
         if card_id == "advance_to_nearest_utility":
             self._move_to_nearest(player, "utility")
-            card_roll = random.randint(1, 6) + random.randint(1, 6)
+            card_roll = roll_total if self.uses_speed_die else random.randint(1, 6) + random.randint(1, 6)
             return self._resolve_landing(
                 player,
                 roll_total=card_roll,
@@ -1162,10 +1397,10 @@ class MonopolyGame(Game):
             self.extra_roll_pending = False
             return True
         if card_id == "take_trip_to_reading_railroad":
-            self._move_to(player, 5, collect_go=True)
+            self._move_to(player, self._card_target_position(card_id, 5), collect_go=True)
             return self._resolve_landing(player, roll_total=roll_total)
         if card_id == "take_walk_on_boardwalk":
-            self._move_to(player, 39, collect_go=True)
+            self._move_to(player, self._card_target_position(card_id, 39), collect_go=True)
             return self._resolve_landing(player, roll_total=roll_total)
         if card_id in {
             "bank_dividend_50",
@@ -1435,18 +1670,18 @@ class MonopolyGame(Game):
             return
         if player.cash < space.house_cost:
             return
-        if state.houses == 4:
+        if state.houses == self.houses_per_hotel:
             if self.bank_hotels <= 0:
                 return
             self.bank_hotels -= 1
-            self.bank_houses += 4
+            self.bank_houses += self.houses_per_hotel
             label = "hotel"
         else:
             if self.bank_houses <= 0:
                 return
             self.bank_houses -= 1
             label = "house"
-        state.houses += 1
+        state.houses = HOTEL_LEVEL if label == "hotel" else state.houses + 1
         player.cash -= space.house_cost
         self.broadcast_l(
             "monopoly-building-built",
@@ -1466,13 +1701,14 @@ class MonopolyGame(Game):
             return
         amount = space.house_cost // 2
         if state.houses == HOTEL_LEVEL:
-            if self.bank_houses < 4:
+            if self.bank_houses < self.houses_per_hotel:
                 return
             self.bank_hotels += 1
-            self.bank_houses -= 4
+            self.bank_houses -= self.houses_per_hotel
+            state.houses = self.houses_per_hotel
         else:
             self.bank_houses += 1
-        state.houses -= 1
+            state.houses -= 1
         player.cash += amount
         self.broadcast_l(
             "monopoly-building-sold",
@@ -1910,7 +2146,7 @@ class MonopolyGame(Game):
             self.property_states.setdefault(space.space_id, MonopolyPropertyState())
 
     def _money(self, amount: int) -> str:
-        return f"${amount}"
+        return f"{self.board.currency_symbol}{amount}"
 
     def _space(self, space_id: str) -> MonopolySpace:
         return self.board.get_space(space_id)
@@ -2022,21 +2258,21 @@ class MonopolyGame(Game):
         board_size = len(self.board.spaces)
         wrapped_target = target_position % board_size
         if collect_go and target_position >= board_size and old_position != wrapped_target:
-            self._credit(player, self.board.pass_go_cash, "passing GO")
-            self.broadcast_l(
-                "monopoly-pass-go",
-                player=player.name,
-                amount=self._money(self.board.pass_go_cash),
-            )
+            self._collect_go(player)
         elif collect_go and wrapped_target < old_position and target_position != old_position:
-            self._credit(player, self.board.pass_go_cash, "passing GO")
-            self.broadcast_l(
-                "monopoly-pass-go",
-                player=player.name,
-                amount=self._money(self.board.pass_go_cash),
-            )
+            self._collect_go(player)
         player.position = wrapped_target
         self.broadcast_l("monopoly-moved-to", player=player.name, space=self._space_at(player.position).name)
+
+    def _collect_go(self, player: MonopolyPlayer) -> None:
+        self._credit(player, self.board.pass_go_cash, "passing GO")
+        if self.uses_speed_die:
+            player.speed_die_unlocked = True
+        self.broadcast_l(
+            "monopoly-pass-go",
+            player=player.name,
+            amount=self._money(self.board.pass_go_cash),
+        )
 
     def _move_to_nearest(self, player: MonopolyPlayer, kind: str) -> None:
         board_size = len(self.board.spaces)
@@ -2046,10 +2282,20 @@ class MonopolyGame(Game):
                 self._move_to(player, player.position + distance, collect_go=True)
                 return
 
+    def _card_target_position(self, card_id: str, default: int) -> int:
+        return (self.board.card_target_positions or {}).get(card_id, default)
+
+    def _card_text(self, card_id: str) -> str:
+        text = CARD_TEXT.get(card_id, card_id.replace("_", " "))
+        for old, new in (self.board.card_text_replacements or {}).items():
+            text = text.replace(old, new)
+        return text
+
     def _send_to_jail(self, player: MonopolyPlayer) -> None:
         player.position = JAIL_POSITION
         player.in_jail = True
         player.jail_turns = 0
+        self.speed_die_action = ""
         self.broadcast_l("monopoly-go-to-jail", player=player.name)
 
     def _calculate_rent(
@@ -2151,7 +2397,7 @@ class MonopolyGame(Game):
         levels = [self.property_states[space_id].houses for space_id in group_ids]
         if state.houses > min(levels):
             return False
-        if state.houses == 4:
+        if state.houses == self.houses_per_hotel:
             return self.bank_hotels > 0
         return self.bank_houses > 0
 
@@ -2164,7 +2410,7 @@ class MonopolyGame(Game):
         if state.houses < max(levels):
             return False
         if state.houses == HOTEL_LEVEL:
-            return self.bank_houses >= 4
+            return self.bank_houses >= self.houses_per_hotel
         return True
 
     def _can_trade_property(self, space: MonopolySpace) -> bool:
@@ -2337,8 +2583,9 @@ class MonopolyGame(Game):
 
     def _minimum_auction_bid(self) -> int:
         if not self.auction or self.auction.highest_bid <= 0:
-            return MIN_AUCTION_INCREMENT
-        return self.auction.highest_bid + MIN_AUCTION_INCREMENT
+            return 1 if self.ruleset_id in {UK_CLASSIC_RULESET, UK_SHORT_RULESET, UK_TIME_LIMIT_RULESET} else MIN_AUCTION_INCREMENT
+        increment = 1 if self.ruleset_id in {UK_CLASSIC_RULESET, UK_SHORT_RULESET, UK_TIME_LIMIT_RULESET} else MIN_AUCTION_INCREMENT
+        return self.auction.highest_bid + increment
 
     def _announce_completed_set(self, player: MonopolyPlayer, space: MonopolySpace) -> None:
         if space.kind == "street" and self._owns_complete_group(player.id, space.color_group):
@@ -2391,7 +2638,7 @@ class MonopolyGame(Game):
                 continue
             if state.houses == HOTEL_LEVEL:
                 self.bank_hotels += 1
-                player.cash += (space.house_cost // 2) * 5
+                player.cash += (space.house_cost // 2) * (self.houses_per_hotel + 1)
             else:
                 self.bank_houses += state.houses
                 player.cash += (space.house_cost // 2) * state.houses
@@ -2399,8 +2646,8 @@ class MonopolyGame(Game):
 
     def _check_for_winner(self) -> None:
         solvent = self._solvent_players()
-        if len(solvent) == 1:
-            winner = solvent[0]
+        if len(solvent) == 1 or (self.uses_uk_short_game and len(self.get_active_players()) - len(solvent) >= 2):
+            winner = max(solvent, key=self._net_worth)
             self.winner_id = winner.id
             self.broadcast_l(
                 "monopoly-winner",
@@ -2416,7 +2663,7 @@ class MonopolyGame(Game):
             total += space.mortgage_value if state.mortgaged else space.price
             if space.kind == "street":
                 if state.houses == HOTEL_LEVEL:
-                    total += space.house_cost * 5
+                    total += space.house_cost * (self.houses_per_hotel + 1)
                 else:
                     total += space.house_cost * state.houses
         return total
@@ -2489,6 +2736,12 @@ class MonopolyGame(Game):
     def on_tick(self) -> None:
         super().on_tick()
         if self.status != GameStatus.PLAYING or not self.game_active:
+            return
+        if self.uses_uk_time_limit and self.sound_scheduler_tick - self.ruleset_started_tick >= self.options.time_limit_minutes * 60 * 20:
+            winner = max(self._solvent_players(), key=self._net_worth)
+            self.winner_id = winner.id
+            self.broadcast_l("monopoly-winner", player=winner.name, value=self._money(self._net_worth(winner)))
+            self.finish_game()
             return
         if self.pending_trade:
             self._process_trade_bot()

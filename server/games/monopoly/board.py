@@ -6,7 +6,7 @@ boards can be added later without changing the turn loop.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 
 
 DEFAULT_BOARD_ID = "classic"
@@ -50,6 +50,9 @@ class BoardDefinition:
     pass_go_cash: int = PASS_GO_CASH
     total_houses: int = TOTAL_HOUSES
     total_hotels: int = TOTAL_HOTELS
+    currency_symbol: str = "$"
+    card_target_positions: dict[str, int] | None = None
+    card_text_replacements: dict[str, str] | None = None
 
     @property
     def space_by_id(self) -> dict[str, MonopolySpace]:
@@ -320,7 +323,67 @@ CLASSIC_BOARD = BoardDefinition(
     spaces=CLASSIC_SPACES,
 )
 
-BOARDS: dict[str, BoardDefinition] = {CLASSIC_BOARD.board_id: CLASSIC_BOARD}
+# The 1996 Waddingtons edition uses the same economic values and board layout
+# as the US classic game, but with the London property and station names.
+UK_SPACE_NAMES: dict[int, str] = {
+    1: "Old Kent Road",
+    3: "Whitechapel Road",
+    5: "King's Cross Station",
+    6: "The Angel, Islington",
+    8: "Euston Road",
+    9: "Pentonville Road",
+    11: "Pall Mall",
+    13: "Whitehall",
+    14: "Northumberland Avenue",
+    15: "Marylebone Station",
+    16: "Bow Street",
+    18: "Marlborough Street",
+    19: "Vine Street",
+    21: "Strand",
+    23: "Fleet Street",
+    24: "Trafalgar Square",
+    25: "Fenchurch St. Station",
+    26: "Leicester Square",
+    27: "Coventry Street",
+    29: "Piccadilly",
+    31: "Regent Street",
+    32: "Oxford Street",
+    34: "Bond Street",
+    35: "Liverpool Street Station",
+    37: "Park Lane",
+    38: "Super Tax",
+    39: "Mayfair",
+}
+
+UK_CLASSIC_SPACES: tuple[MonopolySpace, ...] = tuple(
+    replace(space, name=UK_SPACE_NAMES.get(space.index, space.name))
+    for space in CLASSIC_SPACES
+)
+
+UK_CLASSIC_BOARD = BoardDefinition(
+    board_id="uk_classic",
+    name="Waddingtons Monopoly",
+    spaces=UK_CLASSIC_SPACES,
+    currency_symbol="£",
+    card_target_positions={
+        "advance_to_illinois_avenue": 11,  # Pall Mall
+        "advance_to_st_charles_place": 39,  # Mayfair
+        "take_trip_to_reading_railroad": 5,  # King's Cross Station
+        "take_walk_on_boardwalk": 39,  # Mayfair
+    },
+    card_text_replacements={
+        "Illinois Avenue": "Pall Mall",
+        "St. Charles Place": "Mayfair",
+        "Reading Railroad": "King's Cross Station",
+        "Boardwalk": "Mayfair",
+        "$": "£",
+    },
+)
+
+BOARDS: dict[str, BoardDefinition] = {
+    CLASSIC_BOARD.board_id: CLASSIC_BOARD,
+    UK_CLASSIC_BOARD.board_id: UK_CLASSIC_BOARD,
+}
 
 CHANCE_CARD_IDS: tuple[str, ...] = (
     "advance_to_go",
