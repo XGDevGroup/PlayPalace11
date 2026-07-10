@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from datetime import datetime
 import random
+from typing import TYPE_CHECKING
 
 from server.core.ui.keybinds import KeybindState
 
@@ -27,6 +28,9 @@ from .board import (
     MonopolySpace,
     get_board,
 )
+
+if TYPE_CHECKING:
+    from ...core.users.base import User
 
 
 BAIL_AMOUNT = 50
@@ -267,6 +271,19 @@ class MonopolyGame(Game):
 
     def create_player(self, player_id: str, name: str, is_bot: bool = False) -> MonopolyPlayer:
         return MonopolyPlayer(id=player_id, name=name, is_bot=is_bot)
+
+    def attach_user(self, player_id: str, user: User) -> None:
+        """Restore a required Speed Die choice when its player reconnects."""
+
+        super().attach_user(player_id, user)
+        player = self.get_player_by_id(player_id)
+        if (
+            player
+            and self.phase == "await_speed_die_move"
+            and self.speed_die_action in {"bus", "triple"}
+            and self._is_current_turn_player(player)
+        ):
+            self.execute_action(player, "speed_die_move")
 
     def rebuild_runtime_state(self) -> None:
         if self.ruleset_id not in RULESET_BOARD_IDS:

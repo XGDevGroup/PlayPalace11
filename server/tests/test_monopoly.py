@@ -156,6 +156,16 @@ def test_speed_die_bus_offers_white_die_or_total(monkeypatch):
         ("Cancel", "_cancel"),
     ]
 
+    game._pending_actions.pop(alice.id)
+    reconnected_user = MockUser("Alice")
+    game.attach_user(alice.id, reconnected_user)
+    assert [(item.text, item.id) for item in reconnected_user.menus["action_input_menu"]["items"]] == [
+        ("Move 1 spaces", "first|Move 1 spaces"),
+        ("Move 2 spaces", "second|Move 2 spaces"),
+        ("Move 3 spaces", "sum|Move 3 spaces"),
+        ("Cancel", "_cancel"),
+    ]
+
     game.handle_event(
         alice,
         {
