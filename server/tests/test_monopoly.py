@@ -131,7 +131,8 @@ def test_speed_die_unlocks_after_passing_go():
 def test_speed_die_bus_offers_white_die_or_total(monkeypatch):
     game = MonopolyGame()
     game.options.ruleset = US_SPEED_DIE_RULESET
-    alice = game.add_player("Alice", MockUser("Alice"))
+    alice_user = MockUser("Alice")
+    alice = game.add_player("Alice", alice_user)
     game.add_player("Bob", MockUser("Bob"))
     game.on_start()
     game.reset_turn_order()
@@ -148,8 +149,21 @@ def test_speed_die_bus_offers_white_die_or_total(monkeypatch):
         "second|Move 2 spaces",
         "sum|Move 3 spaces",
     ]
+    assert [(item.text, item.id) for item in alice_user.menus["action_input_menu"]["items"]] == [
+        ("Move 1 spaces", "first|Move 1 spaces"),
+        ("Move 2 spaces", "second|Move 2 spaces"),
+        ("Move 3 spaces", "sum|Move 3 spaces"),
+        ("Cancel", "_cancel"),
+    ]
 
-    game.execute_action(alice, "speed_die_move", "sum|Move 3 spaces")
+    game.handle_event(
+        alice,
+        {
+            "type": "menu",
+            "menu_id": "action_input_menu",
+            "selection_id": "sum|Move 3 spaces",
+        },
+    )
 
     assert alice.position == 3
     assert game.pending_purchase_property_id == "baltic_avenue"

@@ -1072,6 +1072,7 @@ class MonopolyGame(Game):
             self.broadcast_l("monopoly-speed-die-three-of-a-kind", player=player.name)
             self.rebuild_all_menus()
             self._focus_active_player(player)
+            self.execute_action(player, "speed_die_move")
             return
 
         if speed_die == "bus":
@@ -1082,6 +1083,7 @@ class MonopolyGame(Game):
             self.broadcast_l("monopoly-speed-die-bus", player=player.name)
             self.rebuild_all_menus()
             self._focus_active_player(player)
+            self.execute_action(player, "speed_die_move")
             return
 
         total = white_total + speed_die if isinstance(speed_die, int) else white_total
