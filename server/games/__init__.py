@@ -24,6 +24,7 @@ from .fivecarddraw.game import FiveCardDrawGame
 from .holdem.game import HoldemGame
 from .crazyeights.game import CrazyEightsGame
 
+from .monopoly.game import MonopolyGame
 from .snakesandladders.game import SnakesAndLaddersGame
 from .rollingballs.game import RollingBallsGame
 from .sorry.game import SorryGame
@@ -67,6 +68,7 @@ __all__ = [
     "FiveCardDrawGame",
     "HoldemGame",
     "CrazyEightsGame",
+    "MonopolyGame",
     "SnakesAndLaddersGame",
     "RollingBallsGame",
     "SorryGame",
